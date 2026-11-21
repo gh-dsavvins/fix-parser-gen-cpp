@@ -1,10 +1,55 @@
 #include "fix/gen/messages.hpp"
 
+#include <array>
+
 namespace fix::gen::message {
+
+static const uint16_t* HeartbeatSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 24}, {9, 26}, {10, 1}, {34, 14}, {35, 16}, {43, 18}, {49, 19}, {50, 20}, {52, 21}, {56, 22}, {57, 23}, {89, 25}, {90, 27}, {91, 28}, {93, 29}, {97, 30}, {112, 2}, {115, 3}, {116, 4}, {122, 5}, {128, 6}, {129, 7}, {142, 8}, {143, 9}, {144, 10}, {145, 11}, {212, 12}, {213, 13}, {347, 15}, {369, 17}, {627, 31}, {628, 31}, {629, 31}, {630, 31}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
 
 Heartbeat::Heartbeat() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &testReqID_;
+  slotFields_[3] = &onBehalfOfCompID_;
+  slotFields_[4] = &onBehalfOfSubID_;
+  slotFields_[5] = &origSendingTime_;
+  slotFields_[6] = &deliverToCompID_;
+  slotFields_[7] = &deliverToSubID_;
+  slotFields_[8] = &senderLocationID_;
+  slotFields_[9] = &targetLocationID_;
+  slotFields_[10] = &onBehalfOfLocationID_;
+  slotFields_[11] = &deliverToLocationID_;
+  slotFields_[12] = &xmlDataLen_;
+  slotFields_[13] = &xmlData_;
+  slotFields_[14] = &msgSeqNum_;
+  slotFields_[15] = &messageEncoding_;
+  slotFields_[16] = &msgType_;
+  slotFields_[17] = &lastMsgSeqNumProcessed_;
+  slotFields_[18] = &possDupFlag_;
+  slotFields_[19] = &senderCompID_;
+  slotFields_[20] = &senderSubID_;
+  slotFields_[21] = &sendingTime_;
+  slotFields_[22] = &targetCompID_;
+  slotFields_[23] = &targetSubID_;
+  slotFields_[24] = &beginString_;
+  slotFields_[25] = &signature_;
+  slotFields_[26] = &bodyLength_;
+  slotFields_[27] = &secureDataLen_;
+  slotFields_[28] = &secureData_;
+  slotFields_[29] = &signatureLength_;
+  slotFields_[30] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(HeartbeatSlotOfTag(), 956, slotFields_, slotGroups_, 31);
 }
 
 AbstractField* Heartbeat::msgType() {
@@ -292,9 +337,52 @@ AbstractField* Heartbeat::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* TestRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 24}, {9, 26}, {10, 1}, {34, 14}, {35, 16}, {43, 18}, {49, 19}, {50, 20}, {52, 21}, {56, 22}, {57, 23}, {89, 25}, {90, 27}, {91, 28}, {93, 29}, {97, 30}, {112, 2}, {115, 3}, {116, 4}, {122, 5}, {128, 6}, {129, 7}, {142, 8}, {143, 9}, {144, 10}, {145, 11}, {212, 12}, {213, 13}, {347, 15}, {369, 17}, {627, 31}, {628, 31}, {629, 31}, {630, 31}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 TestRequest::TestRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &testReqID_;
+  slotFields_[3] = &onBehalfOfCompID_;
+  slotFields_[4] = &onBehalfOfSubID_;
+  slotFields_[5] = &origSendingTime_;
+  slotFields_[6] = &deliverToCompID_;
+  slotFields_[7] = &deliverToSubID_;
+  slotFields_[8] = &senderLocationID_;
+  slotFields_[9] = &targetLocationID_;
+  slotFields_[10] = &onBehalfOfLocationID_;
+  slotFields_[11] = &deliverToLocationID_;
+  slotFields_[12] = &xmlDataLen_;
+  slotFields_[13] = &xmlData_;
+  slotFields_[14] = &msgSeqNum_;
+  slotFields_[15] = &messageEncoding_;
+  slotFields_[16] = &msgType_;
+  slotFields_[17] = &lastMsgSeqNumProcessed_;
+  slotFields_[18] = &possDupFlag_;
+  slotFields_[19] = &senderCompID_;
+  slotFields_[20] = &senderSubID_;
+  slotFields_[21] = &sendingTime_;
+  slotFields_[22] = &targetCompID_;
+  slotFields_[23] = &targetSubID_;
+  slotFields_[24] = &beginString_;
+  slotFields_[25] = &signature_;
+  slotFields_[26] = &bodyLength_;
+  slotFields_[27] = &secureDataLen_;
+  slotFields_[28] = &secureData_;
+  slotFields_[29] = &signatureLength_;
+  slotFields_[30] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(TestRequestSlotOfTag(), 956, slotFields_, slotGroups_, 31);
 }
 
 AbstractField* TestRequest::msgType() {
@@ -582,9 +670,53 @@ AbstractField* TestRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* ResendRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{7, 24}, {8, 25}, {9, 27}, {10, 1}, {16, 11}, {34, 14}, {35, 16}, {43, 18}, {49, 19}, {50, 20}, {52, 21}, {56, 22}, {57, 23}, {89, 26}, {90, 28}, {91, 29}, {93, 30}, {97, 31}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 12}, {213, 13}, {347, 15}, {369, 17}, {627, 32}, {628, 32}, {629, 32}, {630, 32}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 ResendRequest::ResendRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &endSeqNo_;
+  slotFields_[12] = &xmlDataLen_;
+  slotFields_[13] = &xmlData_;
+  slotFields_[14] = &msgSeqNum_;
+  slotFields_[15] = &messageEncoding_;
+  slotFields_[16] = &msgType_;
+  slotFields_[17] = &lastMsgSeqNumProcessed_;
+  slotFields_[18] = &possDupFlag_;
+  slotFields_[19] = &senderCompID_;
+  slotFields_[20] = &senderSubID_;
+  slotFields_[21] = &sendingTime_;
+  slotFields_[22] = &targetCompID_;
+  slotFields_[23] = &targetSubID_;
+  slotFields_[24] = &beginSeqNo_;
+  slotFields_[25] = &beginString_;
+  slotFields_[26] = &signature_;
+  slotFields_[27] = &bodyLength_;
+  slotFields_[28] = &secureDataLen_;
+  slotFields_[29] = &secureData_;
+  slotFields_[30] = &signatureLength_;
+  slotFields_[31] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(ResendRequestSlotOfTag(), 956, slotFields_, slotGroups_, 32);
 }
 
 AbstractField* ResendRequest::msgType() {
@@ -879,9 +1011,58 @@ AbstractField* ResendRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* RejectSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 30}, {9, 32}, {10, 1}, {34, 13}, {35, 15}, {43, 22}, {45, 23}, {49, 24}, {50, 25}, {52, 26}, {56, 27}, {57, 28}, {58, 29}, {89, 31}, {90, 33}, {91, 34}, {93, 35}, {97, 36}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {347, 14}, {354, 16}, {355, 17}, {369, 18}, {371, 19}, {372, 20}, {373, 21}, {627, 37}, {628, 37}, {629, 37}, {630, 37}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 Reject::Reject() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &encodedTextLen_;
+  slotFields_[17] = &encodedText_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &refTagID_;
+  slotFields_[20] = &refMsgType_;
+  slotFields_[21] = &sessionRejectReason_;
+  slotFields_[22] = &possDupFlag_;
+  slotFields_[23] = &refSeqNum_;
+  slotFields_[24] = &senderCompID_;
+  slotFields_[25] = &senderSubID_;
+  slotFields_[26] = &sendingTime_;
+  slotFields_[27] = &targetCompID_;
+  slotFields_[28] = &targetSubID_;
+  slotFields_[29] = &text_;
+  slotFields_[30] = &beginString_;
+  slotFields_[31] = &signature_;
+  slotFields_[32] = &bodyLength_;
+  slotFields_[33] = &secureDataLen_;
+  slotFields_[34] = &secureData_;
+  slotFields_[35] = &signatureLength_;
+  slotFields_[36] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(RejectSlotOfTag(), 956, slotFields_, slotGroups_, 37);
 }
 
 AbstractField* Reject::msgType() {
@@ -1219,9 +1400,53 @@ AbstractField* Reject::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SequenceResetSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 25}, {9, 27}, {10, 1}, {34, 14}, {35, 16}, {36, 17}, {43, 19}, {49, 20}, {50, 21}, {52, 22}, {56, 23}, {57, 24}, {89, 26}, {90, 28}, {91, 29}, {93, 30}, {97, 31}, {115, 2}, {116, 3}, {122, 4}, {123, 5}, {128, 6}, {129, 7}, {142, 8}, {143, 9}, {144, 10}, {145, 11}, {212, 12}, {213, 13}, {347, 15}, {369, 18}, {627, 32}, {628, 32}, {629, 32}, {630, 32}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SequenceReset::SequenceReset() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &gapFillFlag_;
+  slotFields_[6] = &deliverToCompID_;
+  slotFields_[7] = &deliverToSubID_;
+  slotFields_[8] = &senderLocationID_;
+  slotFields_[9] = &targetLocationID_;
+  slotFields_[10] = &onBehalfOfLocationID_;
+  slotFields_[11] = &deliverToLocationID_;
+  slotFields_[12] = &xmlDataLen_;
+  slotFields_[13] = &xmlData_;
+  slotFields_[14] = &msgSeqNum_;
+  slotFields_[15] = &messageEncoding_;
+  slotFields_[16] = &msgType_;
+  slotFields_[17] = &newSeqNo_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &possDupFlag_;
+  slotFields_[20] = &senderCompID_;
+  slotFields_[21] = &senderSubID_;
+  slotFields_[22] = &sendingTime_;
+  slotFields_[23] = &targetCompID_;
+  slotFields_[24] = &targetSubID_;
+  slotFields_[25] = &beginString_;
+  slotFields_[26] = &signature_;
+  slotFields_[27] = &bodyLength_;
+  slotFields_[28] = &secureDataLen_;
+  slotFields_[29] = &secureData_;
+  slotFields_[30] = &signatureLength_;
+  slotFields_[31] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(SequenceResetSlotOfTag(), 956, slotFields_, slotGroups_, 32);
 }
 
 AbstractField* SequenceReset::msgType() {
@@ -1514,9 +1739,54 @@ AbstractField* SequenceReset::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* LogoutSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 26}, {9, 28}, {10, 1}, {34, 13}, {35, 15}, {43, 19}, {49, 20}, {50, 21}, {52, 22}, {56, 23}, {57, 24}, {58, 25}, {89, 27}, {90, 29}, {91, 30}, {93, 31}, {97, 32}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {347, 14}, {354, 16}, {355, 17}, {369, 18}, {627, 33}, {628, 33}, {629, 33}, {630, 33}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 Logout::Logout() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &encodedTextLen_;
+  slotFields_[17] = &encodedText_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &possDupFlag_;
+  slotFields_[20] = &senderCompID_;
+  slotFields_[21] = &senderSubID_;
+  slotFields_[22] = &sendingTime_;
+  slotFields_[23] = &targetCompID_;
+  slotFields_[24] = &targetSubID_;
+  slotFields_[25] = &text_;
+  slotFields_[26] = &beginString_;
+  slotFields_[27] = &signature_;
+  slotFields_[28] = &bodyLength_;
+  slotFields_[29] = &secureDataLen_;
+  slotFields_[30] = &secureData_;
+  slotFields_[31] = &signatureLength_;
+  slotFields_[32] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(LogoutSlotOfTag(), 956, slotFields_, slotGroups_, 33);
 }
 
 AbstractField* Logout::msgType() {
@@ -1821,9 +2091,144 @@ AbstractField* Logout::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* IOISlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 95}, {9, 103}, {10, 1}, {15, 15}, {22, 26}, {23, 36}, {25, 42}, {26, 44}, {27, 45}, {28, 46}, {34, 47}, {35, 51}, {38, 57}, {43, 59}, {44, 60}, {48, 68}, {49, 69}, {50, 70}, {52, 72}, {54, 73}, {55, 76}, {56, 77}, {57, 78}, {58, 79}, {60, 80}, {62, 81}, {65, 82}, {89, 101}, {90, 104}, {91, 105}, {93, 113}, {97, 115}, {104, 116}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {130, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {149, 14}, {152, 16}, {167, 17}, {199, 116}, {200, 18}, {201, 19}, {202, 20}, {206, 21}, {207, 22}, {212, 23}, {213, 24}, {215, 117}, {216, 117}, {217, 117}, {218, 25}, {220, 27}, {221, 28}, {222, 29}, {223, 30}, {224, 31}, {225, 32}, {226, 33}, {227, 34}, {228, 35}, {231, 37}, {232, 118}, {233, 118}, {234, 118}, {235, 38}, {236, 39}, {239, 40}, {240, 41}, {241, 119}, {242, 119}, {243, 119}, {244, 119}, {245, 119}, {246, 119}, {247, 119}, {248, 120}, {249, 120}, {250, 120}, {251, 120}, {252, 120}, {253, 120}, {254, 120}, {255, 43}, {256, 119}, {257, 120}, {305, 119}, {306, 119}, {307, 119}, {308, 119}, {309, 119}, {310, 119}, {311, 119}, {312, 119}, {313, 119}, {315, 119}, {316, 119}, {317, 119}, {318, 119}, {347, 48}, {348, 49}, {349, 50}, {350, 52}, {351, 53}, {354, 54}, {355, 55}, {362, 119}, {363, 119}, {364, 119}, {365, 119}, {369, 56}, {423, 58}, {435, 119}, {436, 119}, {454, 121}, {455, 121}, {456, 121}, {457, 119}, {458, 119}, {459, 119}, {460, 61}, {461, 62}, {462, 119}, {463, 119}, {468, 63}, {469, 64}, {470, 65}, {471, 66}, {472, 67}, {516, 71}, {541, 74}, {542, 119}, {543, 75}, {555, 120}, {556, 120}, {592, 119}, {593, 119}, {594, 119}, {595, 119}, {596, 120}, {597, 120}, {598, 120}, {599, 120}, {600, 120}, {601, 120}, {602, 120}, {603, 120}, {604, 120}, {605, 120}, {606, 120}, {607, 120}, {608, 120}, {609, 120}, {610, 120}, {611, 120}, {612, 120}, {613, 120}, {614, 120}, {615, 120}, {616, 120}, {617, 120}, {618, 120}, {619, 120}, {620, 120}, {621, 120}, {622, 120}, {623, 120}, {624, 120}, {627, 122}, {628, 122}, {629, 122}, {630, 122}, {662, 83}, {663, 84}, {667, 85}, {682, 120}, {683, 120}, {688, 120}, {689, 120}, {691, 86}, {696, 87}, {697, 88}, {698, 89}, {699, 90}, {701, 91}, {711, 119}, {739, 120}, {740, 120}, {761, 92}, {762, 93}, {763, 119}, {764, 120}, {788, 94}, {810, 119}, {854, 96}, {864, 123}, {865, 123}, {866, 123}, {867, 123}, {868, 123}, {873, 97}, {874, 98}, {875, 99}, {876, 100}, {877, 119}, {878, 119}, {879, 119}, {882, 119}, {883, 119}, {884, 119}, {885, 119}, {886, 119}, {887, 119}, {888, 119}, {889, 119}, {898, 102}, {913, 106}, {914, 107}, {915, 108}, {916, 109}, {917, 110}, {918, 111}, {919, 112}, {941, 119}, {942, 120}, {947, 114}, {955, 120}, {956, 120}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 IOI::IOI() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &iOINaturalFlag_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &uRLLink_;
+  slotFields_[15] = &currency_;
+  slotFields_[16] = &cashOrderQty_;
+  slotFields_[17] = &securityType_;
+  slotFields_[18] = &maturityMonthYear_;
+  slotFields_[19] = &putOrCall_;
+  slotFields_[20] = &strikePrice_;
+  slotFields_[21] = &optAttribute_;
+  slotFields_[22] = &securityExchange_;
+  slotFields_[23] = &xmlDataLen_;
+  slotFields_[24] = &xmlData_;
+  slotFields_[25] = &spread_;
+  slotFields_[26] = &securityIDSource_;
+  slotFields_[27] = &benchmarkCurveCurrency_;
+  slotFields_[28] = &benchmarkCurveName_;
+  slotFields_[29] = &benchmarkCurvePoint_;
+  slotFields_[30] = &couponRate_;
+  slotFields_[31] = &couponPaymentDate_;
+  slotFields_[32] = &issueDate_;
+  slotFields_[33] = &repurchaseTerm_;
+  slotFields_[34] = &repurchaseRate_;
+  slotFields_[35] = &factor_;
+  slotFields_[36] = &iOIID_;
+  slotFields_[37] = &contractMultiplier_;
+  slotFields_[38] = &yieldType_;
+  slotFields_[39] = &yield_;
+  slotFields_[40] = &repoCollateralSecurityType_;
+  slotFields_[41] = &redemptionDate_;
+  slotFields_[42] = &iOIQltyInd_;
+  slotFields_[43] = &creditRating_;
+  slotFields_[44] = &iOIRefID_;
+  slotFields_[45] = &iOIQty_;
+  slotFields_[46] = &iOITransType_;
+  slotFields_[47] = &msgSeqNum_;
+  slotFields_[48] = &messageEncoding_;
+  slotFields_[49] = &encodedIssuerLen_;
+  slotFields_[50] = &encodedIssuer_;
+  slotFields_[51] = &msgType_;
+  slotFields_[52] = &encodedSecurityDescLen_;
+  slotFields_[53] = &encodedSecurityDesc_;
+  slotFields_[54] = &encodedTextLen_;
+  slotFields_[55] = &encodedText_;
+  slotFields_[56] = &lastMsgSeqNumProcessed_;
+  slotFields_[57] = &orderQty_;
+  slotFields_[58] = &priceType_;
+  slotFields_[59] = &possDupFlag_;
+  slotFields_[60] = &price_;
+  slotFields_[61] = &product_;
+  slotFields_[62] = &cFICode_;
+  slotFields_[63] = &roundingDirection_;
+  slotFields_[64] = &roundingModulus_;
+  slotFields_[65] = &countryOfIssue_;
+  slotFields_[66] = &stateOrProvinceOfIssue_;
+  slotFields_[67] = &localeOfIssue_;
+  slotFields_[68] = &securityID_;
+  slotFields_[69] = &senderCompID_;
+  slotFields_[70] = &senderSubID_;
+  slotFields_[71] = &orderPercent_;
+  slotFields_[72] = &sendingTime_;
+  slotFields_[73] = &side_;
+  slotFields_[74] = &maturityDate_;
+  slotFields_[75] = &instrRegistry_;
+  slotFields_[76] = &symbol_;
+  slotFields_[77] = &targetCompID_;
+  slotFields_[78] = &targetSubID_;
+  slotFields_[79] = &text_;
+  slotFields_[80] = &transactTime_;
+  slotFields_[81] = &validUntilTime_;
+  slotFields_[82] = &symbolSfx_;
+  slotFields_[83] = &benchmarkPrice_;
+  slotFields_[84] = &benchmarkPriceType_;
+  slotFields_[85] = &contractSettlMonth_;
+  slotFields_[86] = &pool_;
+  slotFields_[87] = &yieldRedemptionDate_;
+  slotFields_[88] = &yieldRedemptionPrice_;
+  slotFields_[89] = &yieldRedemptionPriceType_;
+  slotFields_[90] = &benchmarkSecurityID_;
+  slotFields_[91] = &yieldCalcDate_;
+  slotFields_[92] = &benchmarkSecurityIDSource_;
+  slotFields_[93] = &securitySubType_;
+  slotFields_[94] = &terminationType_;
+  slotFields_[95] = &beginString_;
+  slotFields_[96] = &qtyType_;
+  slotFields_[97] = &datedDate_;
+  slotFields_[98] = &interestAccrualDate_;
+  slotFields_[99] = &cPProgram_;
+  slotFields_[100] = &cPRegType_;
+  slotFields_[101] = &signature_;
+  slotFields_[102] = &marginRatio_;
+  slotFields_[103] = &bodyLength_;
+  slotFields_[104] = &secureDataLen_;
+  slotFields_[105] = &secureData_;
+  slotFields_[106] = &agreementDesc_;
+  slotFields_[107] = &agreementID_;
+  slotFields_[108] = &agreementDate_;
+  slotFields_[109] = &startDate_;
+  slotFields_[110] = &endDate_;
+  slotFields_[111] = &agreementCurrency_;
+  slotFields_[112] = &deliveryType_;
+  slotFields_[113] = &signatureLength_;
+  slotFields_[114] = &strikeCurrency_;
+  slotFields_[115] = &possResend_;
+  slotGroups_[0] = &iOIQualifiersGroup_;
+  slotGroups_[1] = &routingIDsGroup_;
+  slotGroups_[2] = &stipulationsGroup_;
+  slotGroups_[3] = &underlyingsGroup_;
+  slotGroups_[4] = &legsGroup_;
+  slotGroups_[5] = &securityAltIDGroup_;
+  slotGroups_[6] = &hopsGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(IOISlotOfTag(), 956, slotFields_, slotGroups_, 116);
 }
 
 AbstractField* IOI::msgType() {
@@ -3549,9 +3954,113 @@ AbstractField* IOI::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* AdvertisementSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{2, 16}, {3, 35}, {4, 48}, {5, 58}, {8, 75}, {9, 82}, {10, 1}, {15, 14}, {22, 24}, {30, 36}, {34, 38}, {35, 42}, {43, 49}, {44, 50}, {48, 56}, {49, 57}, {50, 59}, {52, 60}, {53, 61}, {55, 64}, {56, 65}, {57, 66}, {58, 67}, {60, 68}, {65, 70}, {75, 73}, {89, 81}, {90, 83}, {91, 84}, {93, 85}, {97, 87}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {149, 13}, {167, 15}, {200, 17}, {201, 18}, {202, 19}, {206, 20}, {207, 21}, {212, 22}, {213, 23}, {223, 25}, {224, 26}, {225, 27}, {226, 28}, {227, 29}, {228, 30}, {231, 31}, {239, 32}, {240, 33}, {241, 88}, {242, 88}, {243, 88}, {244, 88}, {245, 88}, {246, 88}, {247, 88}, {248, 89}, {249, 89}, {250, 89}, {251, 89}, {252, 89}, {253, 89}, {254, 89}, {255, 34}, {256, 88}, {257, 89}, {305, 88}, {306, 88}, {307, 88}, {308, 88}, {309, 88}, {310, 88}, {311, 88}, {312, 88}, {313, 88}, {315, 88}, {316, 88}, {317, 88}, {318, 88}, {336, 37}, {347, 39}, {348, 40}, {349, 41}, {350, 43}, {351, 44}, {354, 45}, {355, 46}, {362, 88}, {363, 88}, {364, 88}, {365, 88}, {369, 47}, {435, 88}, {436, 88}, {454, 90}, {455, 90}, {456, 90}, {457, 88}, {458, 88}, {459, 88}, {460, 51}, {461, 52}, {462, 88}, {463, 88}, {470, 53}, {471, 54}, {472, 55}, {541, 62}, {542, 88}, {543, 63}, {555, 89}, {556, 89}, {592, 88}, {593, 88}, {594, 88}, {595, 88}, {596, 89}, {597, 89}, {598, 89}, {599, 89}, {600, 89}, {601, 89}, {602, 89}, {603, 89}, {604, 89}, {605, 89}, {606, 89}, {607, 89}, {608, 89}, {609, 89}, {610, 89}, {611, 89}, {612, 89}, {613, 89}, {614, 89}, {615, 89}, {616, 89}, {617, 89}, {618, 89}, {619, 89}, {620, 89}, {621, 89}, {622, 89}, {623, 89}, {624, 89}, {625, 69}, {627, 91}, {628, 91}, {629, 91}, {630, 91}, {667, 71}, {691, 72}, {711, 88}, {739, 89}, {740, 89}, {762, 74}, {763, 88}, {764, 89}, {810, 88}, {854, 76}, {864, 92}, {865, 92}, {866, 92}, {867, 92}, {868, 92}, {873, 77}, {874, 78}, {875, 79}, {876, 80}, {877, 88}, {878, 88}, {879, 88}, {882, 88}, {883, 88}, {884, 88}, {885, 88}, {886, 88}, {887, 88}, {888, 88}, {889, 88}, {941, 88}, {942, 89}, {947, 86}, {955, 89}, {956, 89}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 Advertisement::Advertisement() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &uRLLink_;
+  slotFields_[14] = &currency_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &advId_;
+  slotFields_[17] = &maturityMonthYear_;
+  slotFields_[18] = &putOrCall_;
+  slotFields_[19] = &strikePrice_;
+  slotFields_[20] = &optAttribute_;
+  slotFields_[21] = &securityExchange_;
+  slotFields_[22] = &xmlDataLen_;
+  slotFields_[23] = &xmlData_;
+  slotFields_[24] = &securityIDSource_;
+  slotFields_[25] = &couponRate_;
+  slotFields_[26] = &couponPaymentDate_;
+  slotFields_[27] = &issueDate_;
+  slotFields_[28] = &repurchaseTerm_;
+  slotFields_[29] = &repurchaseRate_;
+  slotFields_[30] = &factor_;
+  slotFields_[31] = &contractMultiplier_;
+  slotFields_[32] = &repoCollateralSecurityType_;
+  slotFields_[33] = &redemptionDate_;
+  slotFields_[34] = &creditRating_;
+  slotFields_[35] = &advRefID_;
+  slotFields_[36] = &lastMkt_;
+  slotFields_[37] = &tradingSessionID_;
+  slotFields_[38] = &msgSeqNum_;
+  slotFields_[39] = &messageEncoding_;
+  slotFields_[40] = &encodedIssuerLen_;
+  slotFields_[41] = &encodedIssuer_;
+  slotFields_[42] = &msgType_;
+  slotFields_[43] = &encodedSecurityDescLen_;
+  slotFields_[44] = &encodedSecurityDesc_;
+  slotFields_[45] = &encodedTextLen_;
+  slotFields_[46] = &encodedText_;
+  slotFields_[47] = &lastMsgSeqNumProcessed_;
+  slotFields_[48] = &advSide_;
+  slotFields_[49] = &possDupFlag_;
+  slotFields_[50] = &price_;
+  slotFields_[51] = &product_;
+  slotFields_[52] = &cFICode_;
+  slotFields_[53] = &countryOfIssue_;
+  slotFields_[54] = &stateOrProvinceOfIssue_;
+  slotFields_[55] = &localeOfIssue_;
+  slotFields_[56] = &securityID_;
+  slotFields_[57] = &senderCompID_;
+  slotFields_[58] = &advTransType_;
+  slotFields_[59] = &senderSubID_;
+  slotFields_[60] = &sendingTime_;
+  slotFields_[61] = &quantity_;
+  slotFields_[62] = &maturityDate_;
+  slotFields_[63] = &instrRegistry_;
+  slotFields_[64] = &symbol_;
+  slotFields_[65] = &targetCompID_;
+  slotFields_[66] = &targetSubID_;
+  slotFields_[67] = &text_;
+  slotFields_[68] = &transactTime_;
+  slotFields_[69] = &tradingSessionSubID_;
+  slotFields_[70] = &symbolSfx_;
+  slotFields_[71] = &contractSettlMonth_;
+  slotFields_[72] = &pool_;
+  slotFields_[73] = &tradeDate_;
+  slotFields_[74] = &securitySubType_;
+  slotFields_[75] = &beginString_;
+  slotFields_[76] = &qtyType_;
+  slotFields_[77] = &datedDate_;
+  slotFields_[78] = &interestAccrualDate_;
+  slotFields_[79] = &cPProgram_;
+  slotFields_[80] = &cPRegType_;
+  slotFields_[81] = &signature_;
+  slotFields_[82] = &bodyLength_;
+  slotFields_[83] = &secureDataLen_;
+  slotFields_[84] = &secureData_;
+  slotFields_[85] = &signatureLength_;
+  slotFields_[86] = &strikeCurrency_;
+  slotFields_[87] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &securityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  tagTable(AdvertisementSlotOfTag(), 956, slotFields_, slotGroups_, 88);
 }
 
 AbstractField* Advertisement::msgType() {
@@ -4990,9 +5499,269 @@ AbstractField* Advertisement::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* ExecutionReportSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {6, 159}, {8, 194}, {9, 219}, {10, 2}, {11, 6}, {12, 14}, {13, 20}, {14, 21}, {15, 26}, {17, 37}, {18, 38}, {19, 39}, {21, 50}, {22, 56}, {29, 79}, {30, 80}, {31, 81}, {32, 82}, {34, 84}, {35, 88}, {37, 94}, {38, 98}, {39, 102}, {40, 103}, {41, 104}, {43, 110}, {44, 112}, {48, 122}, {49, 128}, {50, 131}, {52, 135}, {54, 140}, {55, 146}, {56, 148}, {57, 149}, {58, 150}, {59, 156}, {60, 160}, {63, 162}, {64, 167}, {65, 169}, {66, 172}, {75, 186}, {77, 189}, {89, 217}, {90, 220}, {91, 221}, {93, 234}, {97, 237}, {99, 238}, {103, 3}, {106, 4}, {107, 5}, {110, 7}, {111, 8}, {113, 9}, {115, 10}, {116, 11}, {118, 12}, {119, 13}, {120, 15}, {122, 16}, {126, 17}, {128, 18}, {129, 19}, {136, 239}, {137, 239}, {138, 239}, {139, 239}, {142, 22}, {143, 23}, {144, 24}, {145, 25}, {150, 27}, {151, 28}, {152, 29}, {155, 30}, {156, 31}, {157, 32}, {158, 33}, {159, 34}, {167, 35}, {168, 36}, {192, 40}, {193, 41}, {194, 42}, {195, 43}, {198, 44}, {200, 45}, {201, 46}, {202, 47}, {206, 48}, {207, 49}, {210, 51}, {211, 52}, {212, 53}, {213, 54}, {218, 55}, {220, 57}, {221, 58}, {222, 59}, {223, 60}, {224, 61}, {225, 62}, {226, 63}, {227, 64}, {228, 65}, {229, 66}, {230, 67}, {231, 68}, {232, 240}, {233, 240}, {234, 240}, {235, 69}, {236, 70}, {237, 71}, {238, 72}, {239, 73}, {240, 74}, {241, 241}, {242, 241}, {243, 241}, {244, 241}, {245, 241}, {246, 241}, {247, 241}, {248, 242}, {249, 242}, {250, 242}, {251, 242}, {252, 242}, {253, 242}, {254, 242}, {255, 75}, {256, 241}, {257, 242}, {258, 76}, {259, 77}, {260, 78}, {305, 241}, {306, 241}, {307, 241}, {308, 241}, {309, 241}, {310, 241}, {311, 241}, {312, 241}, {313, 241}, {315, 241}, {316, 241}, {317, 241}, {318, 241}, {336, 83}, {337, 243}, {347, 85}, {348, 86}, {349, 87}, {350, 89}, {351, 90}, {354, 91}, {355, 92}, {362, 241}, {363, 241}, {364, 241}, {365, 241}, {369, 93}, {375, 243}, {376, 95}, {377, 96}, {378, 97}, {381, 99}, {382, 243}, {388, 100}, {389, 101}, {423, 105}, {424, 106}, {425, 107}, {426, 108}, {427, 109}, {432, 111}, {435, 241}, {436, 241}, {437, 243}, {438, 243}, {442, 113}, {447, 244}, {448, 244}, {452, 244}, {453, 244}, {454, 245}, {455, 245}, {456, 245}, {457, 241}, {458, 241}, {459, 241}, {460, 114}, {461, 115}, {462, 241}, {463, 241}, {468, 116}, {469, 117}, {470, 118}, {471, 119}, {472, 120}, {479, 121}, {480, 123}, {481, 124}, {483, 125}, {484, 126}, {485, 127}, {494, 129}, {497, 130}, {513, 132}, {515, 133}, {516, 134}, {518, 246}, {519, 246}, {520, 246}, {521, 246}, {523, 244}, {524, 242}, {525, 242}, {526, 136}, {527, 137}, {528, 138}, {529, 139}, {538, 242}, {539, 242}, {541, 141}, {542, 241}, {543, 142}, {544, 143}, {545, 242}, {548, 144}, {549, 145}, {551, 147}, {555, 242}, {556, 242}, {564, 242}, {565, 242}, {566, 242}, {581, 151}, {582, 152}, {583, 153}, {584, 154}, {587, 242}, {588, 242}, {589, 155}, {590, 157}, {591, 158}, {592, 241}, {593, 241}, {594, 241}, {595, 241}, {596, 242}, {597, 242}, {598, 242}, {599, 242}, {600, 242}, {601, 242}, {602, 242}, {603, 242}, {604, 242}, {605, 242}, {606, 242}, {607, 242}, {608, 242}, {609, 242}, {610, 242}, {611, 242}, {612, 242}, {613, 242}, {614, 242}, {615, 242}, {616, 242}, {617, 242}, {618, 242}, {619, 242}, {620, 242}, {621, 242}, {622, 242}, {623, 242}, {624, 242}, {625, 161}, {627, 247}, {628, 247}, {629, 247}, {630, 247}, {635, 163}, {636, 164}, {637, 242}, {638, 165}, {639, 166}, {641, 168}, {651, 170}, {652, 171}, {654, 242}, {655, 243}, {660, 173}, {662, 174}, {663, 175}, {667, 176}, {669, 177}, {683, 242}, {687, 242}, {688, 242}, {689, 242}, {690, 242}, {691, 178}, {693, 179}, {696, 180}, {697, 181}, {698, 182}, {699, 183}, {701, 184}, {711, 241}, {738, 185}, {739, 242}, {740, 242}, {761, 187}, {762, 188}, {763, 241}, {764, 242}, {775, 190}, {788, 191}, {790, 192}, {797, 193}, {802, 244}, {803, 244}, {804, 242}, {805, 242}, {810, 241}, {835, 195}, {836, 196}, {837, 197}, {838, 198}, {839, 199}, {840, 200}, {841, 201}, {842, 202}, {843, 203}, {844, 204}, {845, 205}, {846, 206}, {847, 207}, {848, 208}, {849, 209}, {850, 210}, {851, 211}, {854, 212}, {864, 248}, {865, 248}, {866, 248}, {867, 248}, {868, 248}, {873, 213}, {874, 214}, {875, 215}, {876, 216}, {877, 241}, {878, 241}, {879, 241}, {882, 241}, {883, 241}, {884, 241}, {885, 241}, {886, 241}, {887, 241}, {888, 241}, {889, 241}, {891, 239}, {898, 218}, {911, 222}, {912, 223}, {913, 224}, {914, 225}, {915, 226}, {916, 227}, {917, 228}, {918, 229}, {919, 230}, {920, 231}, {921, 232}, {922, 233}, {941, 241}, {942, 242}, {943, 235}, {947, 236}, {955, 242}, {956, 242}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 ExecutionReport::ExecutionReport() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &ordRejReason_;
+  slotFields_[4] = &issuer_;
+  slotFields_[5] = &securityDesc_;
+  slotFields_[6] = &clOrdID_;
+  slotFields_[7] = &minQty_;
+  slotFields_[8] = &maxFloor_;
+  slotFields_[9] = &reportToExch_;
+  slotFields_[10] = &onBehalfOfCompID_;
+  slotFields_[11] = &onBehalfOfSubID_;
+  slotFields_[12] = &netMoney_;
+  slotFields_[13] = &settlCurrAmt_;
+  slotFields_[14] = &commission_;
+  slotFields_[15] = &settlCurrency_;
+  slotFields_[16] = &origSendingTime_;
+  slotFields_[17] = &expireTime_;
+  slotFields_[18] = &deliverToCompID_;
+  slotFields_[19] = &deliverToSubID_;
+  slotFields_[20] = &commType_;
+  slotFields_[21] = &cumQty_;
+  slotFields_[22] = &senderLocationID_;
+  slotFields_[23] = &targetLocationID_;
+  slotFields_[24] = &onBehalfOfLocationID_;
+  slotFields_[25] = &deliverToLocationID_;
+  slotFields_[26] = &currency_;
+  slotFields_[27] = &execType_;
+  slotFields_[28] = &leavesQty_;
+  slotFields_[29] = &cashOrderQty_;
+  slotFields_[30] = &settlCurrFxRate_;
+  slotFields_[31] = &settlCurrFxRateCalc_;
+  slotFields_[32] = &numDaysInterest_;
+  slotFields_[33] = &accruedInterestRate_;
+  slotFields_[34] = &accruedInterestAmt_;
+  slotFields_[35] = &securityType_;
+  slotFields_[36] = &effectiveTime_;
+  slotFields_[37] = &execID_;
+  slotFields_[38] = &execInst_;
+  slotFields_[39] = &execRefID_;
+  slotFields_[40] = &orderQty2_;
+  slotFields_[41] = &settlDate2_;
+  slotFields_[42] = &lastSpotRate_;
+  slotFields_[43] = &lastForwardPoints_;
+  slotFields_[44] = &secondaryOrderID_;
+  slotFields_[45] = &maturityMonthYear_;
+  slotFields_[46] = &putOrCall_;
+  slotFields_[47] = &strikePrice_;
+  slotFields_[48] = &optAttribute_;
+  slotFields_[49] = &securityExchange_;
+  slotFields_[50] = &handlInst_;
+  slotFields_[51] = &maxShow_;
+  slotFields_[52] = &pegOffsetValue_;
+  slotFields_[53] = &xmlDataLen_;
+  slotFields_[54] = &xmlData_;
+  slotFields_[55] = &spread_;
+  slotFields_[56] = &securityIDSource_;
+  slotFields_[57] = &benchmarkCurveCurrency_;
+  slotFields_[58] = &benchmarkCurveName_;
+  slotFields_[59] = &benchmarkCurvePoint_;
+  slotFields_[60] = &couponRate_;
+  slotFields_[61] = &couponPaymentDate_;
+  slotFields_[62] = &issueDate_;
+  slotFields_[63] = &repurchaseTerm_;
+  slotFields_[64] = &repurchaseRate_;
+  slotFields_[65] = &factor_;
+  slotFields_[66] = &tradeOriginationDate_;
+  slotFields_[67] = &exDate_;
+  slotFields_[68] = &contractMultiplier_;
+  slotFields_[69] = &yieldType_;
+  slotFields_[70] = &yield_;
+  slotFields_[71] = &totalTakedown_;
+  slotFields_[72] = &concession_;
+  slotFields_[73] = &repoCollateralSecurityType_;
+  slotFields_[74] = &redemptionDate_;
+  slotFields_[75] = &creditRating_;
+  slotFields_[76] = &tradedFlatSwitch_;
+  slotFields_[77] = &basisFeatureDate_;
+  slotFields_[78] = &basisFeaturePrice_;
+  slotFields_[79] = &lastCapacity_;
+  slotFields_[80] = &lastMkt_;
+  slotFields_[81] = &lastPx_;
+  slotFields_[82] = &lastQty_;
+  slotFields_[83] = &tradingSessionID_;
+  slotFields_[84] = &msgSeqNum_;
+  slotFields_[85] = &messageEncoding_;
+  slotFields_[86] = &encodedIssuerLen_;
+  slotFields_[87] = &encodedIssuer_;
+  slotFields_[88] = &msgType_;
+  slotFields_[89] = &encodedSecurityDescLen_;
+  slotFields_[90] = &encodedSecurityDesc_;
+  slotFields_[91] = &encodedTextLen_;
+  slotFields_[92] = &encodedText_;
+  slotFields_[93] = &lastMsgSeqNumProcessed_;
+  slotFields_[94] = &orderID_;
+  slotFields_[95] = &complianceID_;
+  slotFields_[96] = &solicitedFlag_;
+  slotFields_[97] = &execRestatementReason_;
+  slotFields_[98] = &orderQty_;
+  slotFields_[99] = &grossTradeAmt_;
+  slotFields_[100] = &discretionInst_;
+  slotFields_[101] = &discretionOffsetValue_;
+  slotFields_[102] = &ordStatus_;
+  slotFields_[103] = &ordType_;
+  slotFields_[104] = &origClOrdID_;
+  slotFields_[105] = &priceType_;
+  slotFields_[106] = &dayOrderQty_;
+  slotFields_[107] = &dayCumQty_;
+  slotFields_[108] = &dayAvgPx_;
+  slotFields_[109] = &gTBookingInst_;
+  slotFields_[110] = &possDupFlag_;
+  slotFields_[111] = &expireDate_;
+  slotFields_[112] = &price_;
+  slotFields_[113] = &multiLegReportingType_;
+  slotFields_[114] = &product_;
+  slotFields_[115] = &cFICode_;
+  slotFields_[116] = &roundingDirection_;
+  slotFields_[117] = &roundingModulus_;
+  slotFields_[118] = &countryOfIssue_;
+  slotFields_[119] = &stateOrProvinceOfIssue_;
+  slotFields_[120] = &localeOfIssue_;
+  slotFields_[121] = &commCurrency_;
+  slotFields_[122] = &securityID_;
+  slotFields_[123] = &cancellationRights_;
+  slotFields_[124] = &moneyLaunderingStatus_;
+  slotFields_[125] = &transBkdTime_;
+  slotFields_[126] = &execPriceType_;
+  slotFields_[127] = &execPriceAdjustment_;
+  slotFields_[128] = &senderCompID_;
+  slotFields_[129] = &designation_;
+  slotFields_[130] = &fundRenewWaiv_;
+  slotFields_[131] = &senderSubID_;
+  slotFields_[132] = &registID_;
+  slotFields_[133] = &execValuationPoint_;
+  slotFields_[134] = &orderPercent_;
+  slotFields_[135] = &sendingTime_;
+  slotFields_[136] = &secondaryClOrdID_;
+  slotFields_[137] = &secondaryExecID_;
+  slotFields_[138] = &orderCapacity_;
+  slotFields_[139] = &orderRestrictions_;
+  slotFields_[140] = &side_;
+  slotFields_[141] = &maturityDate_;
+  slotFields_[142] = &instrRegistry_;
+  slotFields_[143] = &cashMargin_;
+  slotFields_[144] = &crossID_;
+  slotFields_[145] = &crossType_;
+  slotFields_[146] = &symbol_;
+  slotFields_[147] = &origCrossID_;
+  slotFields_[148] = &targetCompID_;
+  slotFields_[149] = &targetSubID_;
+  slotFields_[150] = &text_;
+  slotFields_[151] = &accountType_;
+  slotFields_[152] = &custOrderCapacity_;
+  slotFields_[153] = &clOrdLinkID_;
+  slotFields_[154] = &massStatusReqID_;
+  slotFields_[155] = &dayBookingInst_;
+  slotFields_[156] = &timeInForce_;
+  slotFields_[157] = &bookingUnit_;
+  slotFields_[158] = &preallocMethod_;
+  slotFields_[159] = &avgPx_;
+  slotFields_[160] = &transactTime_;
+  slotFields_[161] = &tradingSessionSubID_;
+  slotFields_[162] = &settlType_;
+  slotFields_[163] = &clearingFeeIndicator_;
+  slotFields_[164] = &workingIndicator_;
+  slotFields_[165] = &priorityIndicator_;
+  slotFields_[166] = &priceImprovement_;
+  slotFields_[167] = &settlDate_;
+  slotFields_[168] = &lastForwardPoints2_;
+  slotFields_[169] = &symbolSfx_;
+  slotFields_[170] = &underlyingLastPx_;
+  slotFields_[171] = &underlyingLastQty_;
+  slotFields_[172] = &listID_;
+  slotFields_[173] = &acctIDSource_;
+  slotFields_[174] = &benchmarkPrice_;
+  slotFields_[175] = &benchmarkPriceType_;
+  slotFields_[176] = &contractSettlMonth_;
+  slotFields_[177] = &lastParPx_;
+  slotFields_[178] = &pool_;
+  slotFields_[179] = &quoteRespID_;
+  slotFields_[180] = &yieldRedemptionDate_;
+  slotFields_[181] = &yieldRedemptionPrice_;
+  slotFields_[182] = &yieldRedemptionPriceType_;
+  slotFields_[183] = &benchmarkSecurityID_;
+  slotFields_[184] = &yieldCalcDate_;
+  slotFields_[185] = &interestAtMaturity_;
+  slotFields_[186] = &tradeDate_;
+  slotFields_[187] = &benchmarkSecurityIDSource_;
+  slotFields_[188] = &securitySubType_;
+  slotFields_[189] = &positionEffect_;
+  slotFields_[190] = &bookingType_;
+  slotFields_[191] = &terminationType_;
+  slotFields_[192] = &ordStatusReqID_;
+  slotFields_[193] = &copyMsgIndicator_;
+  slotFields_[194] = &beginString_;
+  slotFields_[195] = &pegMoveType_;
+  slotFields_[196] = &pegOffsetType_;
+  slotFields_[197] = &pegLimitType_;
+  slotFields_[198] = &pegRoundDirection_;
+  slotFields_[199] = &peggedPrice_;
+  slotFields_[200] = &pegScope_;
+  slotFields_[201] = &discretionMoveType_;
+  slotFields_[202] = &discretionOffsetType_;
+  slotFields_[203] = &discretionLimitType_;
+  slotFields_[204] = &discretionRoundDirection_;
+  slotFields_[205] = &discretionPrice_;
+  slotFields_[206] = &discretionScope_;
+  slotFields_[207] = &targetStrategy_;
+  slotFields_[208] = &targetStrategyParameters_;
+  slotFields_[209] = &participationRate_;
+  slotFields_[210] = &targetStrategyPerformance_;
+  slotFields_[211] = &lastLiquidityInd_;
+  slotFields_[212] = &qtyType_;
+  slotFields_[213] = &datedDate_;
+  slotFields_[214] = &interestAccrualDate_;
+  slotFields_[215] = &cPProgram_;
+  slotFields_[216] = &cPRegType_;
+  slotFields_[217] = &signature_;
+  slotFields_[218] = &marginRatio_;
+  slotFields_[219] = &bodyLength_;
+  slotFields_[220] = &secureDataLen_;
+  slotFields_[221] = &secureData_;
+  slotFields_[222] = &totNumReports_;
+  slotFields_[223] = &lastRptRequested_;
+  slotFields_[224] = &agreementDesc_;
+  slotFields_[225] = &agreementID_;
+  slotFields_[226] = &agreementDate_;
+  slotFields_[227] = &startDate_;
+  slotFields_[228] = &endDate_;
+  slotFields_[229] = &agreementCurrency_;
+  slotFields_[230] = &deliveryType_;
+  slotFields_[231] = &endAccruedInterestAmt_;
+  slotFields_[232] = &startCash_;
+  slotFields_[233] = &endCash_;
+  slotFields_[234] = &signatureLength_;
+  slotFields_[235] = &timeBracket_;
+  slotFields_[236] = &strikeCurrency_;
+  slotFields_[237] = &possResend_;
+  slotFields_[238] = &stopPx_;
+  slotGroups_[0] = &miscFeesGroup_;
+  slotGroups_[1] = &stipulationsGroup_;
+  slotGroups_[2] = &underlyingsGroup_;
+  slotGroups_[3] = &legsGroup2_;
+  slotGroups_[4] = &contraBrokersGroup_;
+  slotGroups_[5] = &partyIDsGroup_;
+  slotGroups_[6] = &securityAltIDGroup_;
+  slotGroups_[7] = &contAmtsGroup_;
+  slotGroups_[8] = &hopsGroup_;
+  slotGroups_[9] = &eventsGroup_;
+  tagTable(ExecutionReportSlotOfTag(), 956, slotFields_, slotGroups_, 239);
 }
 
 AbstractField* ExecutionReport::msgType() {
@@ -7861,9 +8630,72 @@ AbstractField* ExecutionReport::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* OrderCancelRejectSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 44}, {9, 46}, {10, 2}, {11, 4}, {34, 18}, {35, 20}, {37, 24}, {39, 25}, {41, 26}, {43, 27}, {49, 29}, {50, 30}, {52, 31}, {56, 33}, {57, 34}, {58, 35}, {60, 39}, {66, 41}, {75, 43}, {89, 45}, {90, 47}, {91, 48}, {93, 49}, {97, 50}, {102, 3}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {198, 14}, {212, 15}, {213, 16}, {229, 17}, {347, 19}, {354, 21}, {355, 22}, {369, 23}, {434, 28}, {526, 32}, {581, 36}, {583, 37}, {586, 38}, {627, 51}, {628, 51}, {629, 51}, {630, 51}, {636, 40}, {660, 42}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 OrderCancelReject::OrderCancelReject() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &cxlRejReason_;
+  slotFields_[4] = &clOrdID_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &secondaryOrderID_;
+  slotFields_[15] = &xmlDataLen_;
+  slotFields_[16] = &xmlData_;
+  slotFields_[17] = &tradeOriginationDate_;
+  slotFields_[18] = &msgSeqNum_;
+  slotFields_[19] = &messageEncoding_;
+  slotFields_[20] = &msgType_;
+  slotFields_[21] = &encodedTextLen_;
+  slotFields_[22] = &encodedText_;
+  slotFields_[23] = &lastMsgSeqNumProcessed_;
+  slotFields_[24] = &orderID_;
+  slotFields_[25] = &ordStatus_;
+  slotFields_[26] = &origClOrdID_;
+  slotFields_[27] = &possDupFlag_;
+  slotFields_[28] = &cxlRejResponseTo_;
+  slotFields_[29] = &senderCompID_;
+  slotFields_[30] = &senderSubID_;
+  slotFields_[31] = &sendingTime_;
+  slotFields_[32] = &secondaryClOrdID_;
+  slotFields_[33] = &targetCompID_;
+  slotFields_[34] = &targetSubID_;
+  slotFields_[35] = &text_;
+  slotFields_[36] = &accountType_;
+  slotFields_[37] = &clOrdLinkID_;
+  slotFields_[38] = &origOrdModTime_;
+  slotFields_[39] = &transactTime_;
+  slotFields_[40] = &workingIndicator_;
+  slotFields_[41] = &listID_;
+  slotFields_[42] = &acctIDSource_;
+  slotFields_[43] = &tradeDate_;
+  slotFields_[44] = &beginString_;
+  slotFields_[45] = &signature_;
+  slotFields_[46] = &bodyLength_;
+  slotFields_[47] = &secureDataLen_;
+  slotFields_[48] = &secureData_;
+  slotFields_[49] = &signatureLength_;
+  slotFields_[50] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(OrderCancelRejectSlotOfTag(), 956, slotFields_, slotGroups_, 51);
 }
 
 AbstractField* OrderCancelReject::msgType() {
@@ -8290,9 +9122,62 @@ AbstractField* OrderCancelReject::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* LogonSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 30}, {9, 32}, {10, 1}, {34, 15}, {35, 17}, {43, 20}, {49, 22}, {50, 23}, {52, 24}, {56, 27}, {57, 28}, {89, 31}, {90, 33}, {91, 34}, {93, 35}, {95, 36}, {96, 37}, {97, 38}, {98, 39}, {108, 2}, {115, 3}, {116, 4}, {122, 5}, {128, 6}, {129, 7}, {141, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {212, 13}, {213, 14}, {347, 16}, {369, 18}, {372, 40}, {383, 19}, {384, 40}, {385, 40}, {464, 21}, {553, 25}, {554, 26}, {627, 41}, {628, 41}, {629, 41}, {630, 41}, {789, 29}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 Logon::Logon() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &heartBtInt_;
+  slotFields_[3] = &onBehalfOfCompID_;
+  slotFields_[4] = &onBehalfOfSubID_;
+  slotFields_[5] = &origSendingTime_;
+  slotFields_[6] = &deliverToCompID_;
+  slotFields_[7] = &deliverToSubID_;
+  slotFields_[8] = &resetSeqNumFlag_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &xmlDataLen_;
+  slotFields_[14] = &xmlData_;
+  slotFields_[15] = &msgSeqNum_;
+  slotFields_[16] = &messageEncoding_;
+  slotFields_[17] = &msgType_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &maxMessageSize_;
+  slotFields_[20] = &possDupFlag_;
+  slotFields_[21] = &testMessageIndicator_;
+  slotFields_[22] = &senderCompID_;
+  slotFields_[23] = &senderSubID_;
+  slotFields_[24] = &sendingTime_;
+  slotFields_[25] = &username_;
+  slotFields_[26] = &password_;
+  slotFields_[27] = &targetCompID_;
+  slotFields_[28] = &targetSubID_;
+  slotFields_[29] = &nextExpectedMsgSeqNum_;
+  slotFields_[30] = &beginString_;
+  slotFields_[31] = &signature_;
+  slotFields_[32] = &bodyLength_;
+  slotFields_[33] = &secureDataLen_;
+  slotFields_[34] = &secureData_;
+  slotFields_[35] = &signatureLength_;
+  slotFields_[36] = &rawDataLength_;
+  slotFields_[37] = &rawData_;
+  slotFields_[38] = &possResend_;
+  slotFields_[39] = &encryptMethod_;
+  slotGroups_[0] = &msgTypesGroup_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(LogonSlotOfTag(), 956, slotFields_, slotGroups_, 40);
 }
 
 AbstractField* Logon::msgType() {
@@ -8670,9 +9555,64 @@ AbstractField* Logon::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* NewsSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 29}, {9, 31}, {10, 1}, {22, 38}, {33, 42}, {34, 15}, {35, 17}, {42, 21}, {43, 22}, {48, 38}, {49, 23}, {50, 24}, {52, 25}, {55, 38}, {56, 26}, {57, 27}, {58, 42}, {61, 28}, {65, 38}, {89, 30}, {90, 32}, {91, 33}, {93, 34}, {95, 35}, {96, 36}, {97, 37}, {106, 38}, {107, 38}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {146, 38}, {148, 11}, {149, 12}, {167, 38}, {200, 38}, {201, 38}, {202, 38}, {206, 38}, {207, 38}, {212, 13}, {213, 14}, {215, 39}, {216, 39}, {217, 39}, {223, 38}, {224, 38}, {225, 38}, {226, 38}, {227, 38}, {228, 38}, {231, 38}, {239, 38}, {240, 38}, {241, 40}, {242, 40}, {243, 40}, {244, 40}, {245, 40}, {246, 40}, {247, 40}, {248, 41}, {249, 41}, {250, 41}, {251, 41}, {252, 41}, {253, 41}, {254, 41}, {255, 38}, {256, 40}, {257, 41}, {305, 40}, {306, 40}, {307, 40}, {308, 40}, {309, 40}, {310, 40}, {311, 40}, {312, 40}, {313, 40}, {315, 40}, {316, 40}, {317, 40}, {318, 40}, {347, 16}, {348, 38}, {349, 38}, {350, 38}, {351, 38}, {354, 42}, {355, 42}, {358, 18}, {359, 19}, {362, 40}, {363, 40}, {364, 40}, {365, 40}, {369, 20}, {435, 40}, {436, 40}, {454, 38}, {455, 38}, {456, 38}, {457, 40}, {458, 40}, {459, 40}, {460, 38}, {461, 38}, {462, 40}, {463, 40}, {470, 38}, {471, 38}, {472, 38}, {541, 38}, {542, 40}, {543, 38}, {555, 41}, {556, 41}, {592, 40}, {593, 40}, {594, 40}, {595, 40}, {596, 41}, {597, 41}, {598, 41}, {599, 41}, {600, 41}, {601, 41}, {602, 41}, {603, 41}, {604, 41}, {605, 41}, {606, 41}, {607, 41}, {608, 41}, {609, 41}, {610, 41}, {611, 41}, {612, 41}, {613, 41}, {614, 41}, {615, 41}, {616, 41}, {617, 41}, {618, 41}, {619, 41}, {620, 41}, {621, 41}, {622, 41}, {623, 41}, {624, 41}, {627, 43}, {628, 43}, {629, 43}, {630, 43}, {667, 38}, {691, 38}, {711, 40}, {739, 41}, {740, 41}, {762, 38}, {763, 40}, {764, 41}, {810, 40}, {864, 38}, {865, 38}, {866, 38}, {867, 38}, {868, 38}, {873, 38}, {874, 38}, {875, 38}, {876, 38}, {877, 40}, {878, 40}, {879, 40}, {882, 40}, {883, 40}, {884, 40}, {885, 40}, {886, 40}, {887, 40}, {888, 40}, {889, 40}, {941, 40}, {942, 41}, {947, 38}, {955, 41}, {956, 41}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 News::News() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &headline_;
+  slotFields_[12] = &uRLLink_;
+  slotFields_[13] = &xmlDataLen_;
+  slotFields_[14] = &xmlData_;
+  slotFields_[15] = &msgSeqNum_;
+  slotFields_[16] = &messageEncoding_;
+  slotFields_[17] = &msgType_;
+  slotFields_[18] = &encodedHeadlineLen_;
+  slotFields_[19] = &encodedHeadline_;
+  slotFields_[20] = &lastMsgSeqNumProcessed_;
+  slotFields_[21] = &origTime_;
+  slotFields_[22] = &possDupFlag_;
+  slotFields_[23] = &senderCompID_;
+  slotFields_[24] = &senderSubID_;
+  slotFields_[25] = &sendingTime_;
+  slotFields_[26] = &targetCompID_;
+  slotFields_[27] = &targetSubID_;
+  slotFields_[28] = &urgency_;
+  slotFields_[29] = &beginString_;
+  slotFields_[30] = &signature_;
+  slotFields_[31] = &bodyLength_;
+  slotFields_[32] = &secureDataLen_;
+  slotFields_[33] = &secureData_;
+  slotFields_[34] = &signatureLength_;
+  slotFields_[35] = &rawDataLength_;
+  slotFields_[36] = &rawData_;
+  slotFields_[37] = &possResend_;
+  slotGroups_[0] = &relatedSymGroup_;
+  slotGroups_[1] = &routingIDsGroup_;
+  slotGroups_[2] = &underlyingsGroup_;
+  slotGroups_[3] = &legsGroup1_;
+  slotGroups_[4] = &linesOfTextGroup_;
+  slotGroups_[5] = &hopsGroup_;
+  tagTable(NewsSlotOfTag(), 956, slotFields_, slotGroups_, 38);
 }
 
 AbstractField* News::msgType() {
@@ -10064,9 +11004,66 @@ AbstractField* News::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* EmailSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 30}, {9, 32}, {10, 1}, {11, 2}, {22, 40}, {33, 44}, {34, 16}, {35, 18}, {37, 22}, {42, 23}, {43, 24}, {48, 40}, {49, 25}, {50, 26}, {52, 27}, {55, 40}, {56, 28}, {57, 29}, {58, 44}, {65, 40}, {89, 31}, {90, 33}, {91, 34}, {93, 35}, {94, 36}, {95, 37}, {96, 38}, {97, 39}, {106, 40}, {107, 40}, {115, 3}, {116, 4}, {122, 5}, {128, 6}, {129, 7}, {142, 8}, {143, 9}, {144, 10}, {145, 11}, {146, 40}, {147, 12}, {164, 13}, {167, 40}, {200, 40}, {201, 40}, {202, 40}, {206, 40}, {207, 40}, {212, 14}, {213, 15}, {215, 41}, {216, 41}, {217, 41}, {223, 40}, {224, 40}, {225, 40}, {226, 40}, {227, 40}, {228, 40}, {231, 40}, {239, 40}, {240, 40}, {241, 42}, {242, 42}, {243, 42}, {244, 42}, {245, 42}, {246, 42}, {247, 42}, {248, 43}, {249, 43}, {250, 43}, {251, 43}, {252, 43}, {253, 43}, {254, 43}, {255, 40}, {256, 42}, {257, 43}, {305, 42}, {306, 42}, {307, 42}, {308, 42}, {309, 42}, {310, 42}, {311, 42}, {312, 42}, {313, 42}, {315, 42}, {316, 42}, {317, 42}, {318, 42}, {347, 17}, {348, 40}, {349, 40}, {350, 40}, {351, 40}, {354, 44}, {355, 44}, {356, 19}, {357, 20}, {362, 42}, {363, 42}, {364, 42}, {365, 42}, {369, 21}, {435, 42}, {436, 42}, {454, 40}, {455, 40}, {456, 40}, {457, 42}, {458, 42}, {459, 42}, {460, 40}, {461, 40}, {462, 42}, {463, 42}, {470, 40}, {471, 40}, {472, 40}, {541, 40}, {542, 42}, {543, 40}, {555, 43}, {556, 43}, {592, 42}, {593, 42}, {594, 42}, {595, 42}, {596, 43}, {597, 43}, {598, 43}, {599, 43}, {600, 43}, {601, 43}, {602, 43}, {603, 43}, {604, 43}, {605, 43}, {606, 43}, {607, 43}, {608, 43}, {609, 43}, {610, 43}, {611, 43}, {612, 43}, {613, 43}, {614, 43}, {615, 43}, {616, 43}, {617, 43}, {618, 43}, {619, 43}, {620, 43}, {621, 43}, {622, 43}, {623, 43}, {624, 43}, {627, 45}, {628, 45}, {629, 45}, {630, 45}, {667, 40}, {691, 40}, {711, 42}, {739, 43}, {740, 43}, {762, 40}, {763, 42}, {764, 43}, {810, 42}, {864, 40}, {865, 40}, {866, 40}, {867, 40}, {868, 40}, {873, 40}, {874, 40}, {875, 40}, {876, 40}, {877, 42}, {878, 42}, {879, 42}, {882, 42}, {883, 42}, {884, 42}, {885, 42}, {886, 42}, {887, 42}, {888, 42}, {889, 42}, {941, 42}, {942, 43}, {947, 40}, {955, 43}, {956, 43}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 Email::Email() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &clOrdID_;
+  slotFields_[3] = &onBehalfOfCompID_;
+  slotFields_[4] = &onBehalfOfSubID_;
+  slotFields_[5] = &origSendingTime_;
+  slotFields_[6] = &deliverToCompID_;
+  slotFields_[7] = &deliverToSubID_;
+  slotFields_[8] = &senderLocationID_;
+  slotFields_[9] = &targetLocationID_;
+  slotFields_[10] = &onBehalfOfLocationID_;
+  slotFields_[11] = &deliverToLocationID_;
+  slotFields_[12] = &subject_;
+  slotFields_[13] = &emailThreadID_;
+  slotFields_[14] = &xmlDataLen_;
+  slotFields_[15] = &xmlData_;
+  slotFields_[16] = &msgSeqNum_;
+  slotFields_[17] = &messageEncoding_;
+  slotFields_[18] = &msgType_;
+  slotFields_[19] = &encodedSubjectLen_;
+  slotFields_[20] = &encodedSubject_;
+  slotFields_[21] = &lastMsgSeqNumProcessed_;
+  slotFields_[22] = &orderID_;
+  slotFields_[23] = &origTime_;
+  slotFields_[24] = &possDupFlag_;
+  slotFields_[25] = &senderCompID_;
+  slotFields_[26] = &senderSubID_;
+  slotFields_[27] = &sendingTime_;
+  slotFields_[28] = &targetCompID_;
+  slotFields_[29] = &targetSubID_;
+  slotFields_[30] = &beginString_;
+  slotFields_[31] = &signature_;
+  slotFields_[32] = &bodyLength_;
+  slotFields_[33] = &secureDataLen_;
+  slotFields_[34] = &secureData_;
+  slotFields_[35] = &signatureLength_;
+  slotFields_[36] = &emailType_;
+  slotFields_[37] = &rawDataLength_;
+  slotFields_[38] = &rawData_;
+  slotFields_[39] = &possResend_;
+  slotGroups_[0] = &relatedSymGroup_;
+  slotGroups_[1] = &routingIDsGroup_;
+  slotGroups_[2] = &underlyingsGroup_;
+  slotGroups_[3] = &legsGroup1_;
+  slotGroups_[4] = &linesOfTextGroup_;
+  slotGroups_[5] = &hopsGroup_;
+  tagTable(EmailSlotOfTag(), 956, slotFields_, slotGroups_, 40);
 }
 
 AbstractField* Email::msgType() {
@@ -11475,9 +12472,207 @@ AbstractField* Email::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* NewOrderSingleSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 143}, {9, 165}, {10, 2}, {11, 6}, {12, 13}, {13, 20}, {15, 26}, {18, 30}, {21, 39}, {22, 45}, {23, 56}, {34, 63}, {35, 67}, {38, 75}, {40, 78}, {43, 81}, {44, 83}, {48, 92}, {49, 95}, {50, 98}, {52, 101}, {54, 105}, {55, 109}, {56, 110}, {57, 111}, {58, 112}, {59, 117}, {60, 120}, {63, 121}, {64, 123}, {65, 125}, {70, 135}, {75, 137}, {77, 140}, {78, 184}, {79, 184}, {80, 184}, {81, 144}, {89, 163}, {90, 166}, {91, 167}, {93, 175}, {97, 177}, {99, 178}, {100, 3}, {106, 4}, {107, 5}, {110, 7}, {111, 8}, {114, 9}, {115, 10}, {116, 11}, {117, 12}, {120, 14}, {121, 15}, {122, 16}, {126, 17}, {128, 18}, {129, 19}, {140, 21}, {142, 22}, {143, 23}, {144, 24}, {145, 25}, {152, 27}, {167, 28}, {168, 29}, {192, 31}, {193, 32}, {200, 33}, {201, 34}, {202, 35}, {203, 36}, {206, 37}, {207, 38}, {210, 40}, {211, 41}, {212, 42}, {213, 43}, {218, 44}, {220, 46}, {221, 47}, {222, 48}, {223, 49}, {224, 50}, {225, 51}, {226, 52}, {227, 53}, {228, 54}, {229, 55}, {231, 57}, {232, 179}, {233, 179}, {234, 179}, {235, 58}, {236, 59}, {239, 60}, {240, 61}, {241, 180}, {242, 180}, {243, 180}, {244, 180}, {245, 180}, {246, 180}, {247, 180}, {255, 62}, {256, 180}, {305, 180}, {306, 180}, {307, 180}, {308, 180}, {309, 180}, {310, 180}, {311, 180}, {312, 180}, {313, 180}, {315, 180}, {316, 180}, {317, 180}, {318, 180}, {336, 181}, {347, 64}, {348, 65}, {349, 66}, {350, 68}, {351, 69}, {354, 70}, {355, 71}, {362, 180}, {363, 180}, {364, 180}, {365, 180}, {369, 72}, {376, 73}, {377, 74}, {386, 181}, {388, 76}, {389, 77}, {423, 79}, {427, 80}, {432, 82}, {435, 180}, {436, 180}, {447, 182}, {448, 182}, {452, 182}, {453, 182}, {454, 183}, {455, 183}, {456, 183}, {457, 180}, {458, 180}, {459, 180}, {460, 84}, {461, 85}, {462, 180}, {463, 180}, {467, 184}, {468, 86}, {469, 87}, {470, 88}, {471, 89}, {472, 90}, {479, 91}, {480, 93}, {481, 94}, {494, 96}, {497, 97}, {513, 99}, {516, 100}, {523, 182}, {524, 184}, {525, 184}, {526, 102}, {528, 103}, {529, 104}, {538, 184}, {539, 184}, {541, 106}, {542, 180}, {543, 107}, {544, 108}, {545, 184}, {581, 113}, {582, 114}, {583, 115}, {589, 116}, {590, 118}, {591, 119}, {592, 180}, {593, 180}, {594, 180}, {595, 180}, {625, 181}, {627, 185}, {628, 185}, {629, 185}, {630, 185}, {635, 122}, {640, 124}, {660, 126}, {661, 184}, {662, 127}, {663, 128}, {667, 129}, {691, 130}, {696, 131}, {697, 132}, {698, 133}, {699, 134}, {701, 136}, {711, 180}, {736, 184}, {761, 138}, {762, 139}, {763, 180}, {775, 141}, {788, 142}, {802, 182}, {803, 182}, {804, 184}, {805, 184}, {810, 180}, {835, 145}, {836, 146}, {837, 147}, {838, 148}, {840, 149}, {841, 150}, {842, 151}, {843, 152}, {844, 153}, {846, 154}, {847, 155}, {848, 156}, {849, 157}, {854, 158}, {864, 186}, {865, 186}, {866, 186}, {867, 186}, {868, 186}, {873, 159}, {874, 160}, {875, 161}, {876, 162}, {877, 180}, {878, 180}, {879, 180}, {882, 180}, {883, 180}, {884, 180}, {885, 180}, {886, 180}, {887, 180}, {888, 180}, {889, 180}, {898, 164}, {913, 168}, {914, 169}, {915, 170}, {916, 171}, {917, 172}, {918, 173}, {919, 174}, {941, 180}, {947, 176}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 NewOrderSingle::NewOrderSingle() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &exDestination_;
+  slotFields_[4] = &issuer_;
+  slotFields_[5] = &securityDesc_;
+  slotFields_[6] = &clOrdID_;
+  slotFields_[7] = &minQty_;
+  slotFields_[8] = &maxFloor_;
+  slotFields_[9] = &locateReqd_;
+  slotFields_[10] = &onBehalfOfCompID_;
+  slotFields_[11] = &onBehalfOfSubID_;
+  slotFields_[12] = &quoteID_;
+  slotFields_[13] = &commission_;
+  slotFields_[14] = &settlCurrency_;
+  slotFields_[15] = &forexReq_;
+  slotFields_[16] = &origSendingTime_;
+  slotFields_[17] = &expireTime_;
+  slotFields_[18] = &deliverToCompID_;
+  slotFields_[19] = &deliverToSubID_;
+  slotFields_[20] = &commType_;
+  slotFields_[21] = &prevClosePx_;
+  slotFields_[22] = &senderLocationID_;
+  slotFields_[23] = &targetLocationID_;
+  slotFields_[24] = &onBehalfOfLocationID_;
+  slotFields_[25] = &deliverToLocationID_;
+  slotFields_[26] = &currency_;
+  slotFields_[27] = &cashOrderQty_;
+  slotFields_[28] = &securityType_;
+  slotFields_[29] = &effectiveTime_;
+  slotFields_[30] = &execInst_;
+  slotFields_[31] = &orderQty2_;
+  slotFields_[32] = &settlDate2_;
+  slotFields_[33] = &maturityMonthYear_;
+  slotFields_[34] = &putOrCall_;
+  slotFields_[35] = &strikePrice_;
+  slotFields_[36] = &coveredOrUncovered_;
+  slotFields_[37] = &optAttribute_;
+  slotFields_[38] = &securityExchange_;
+  slotFields_[39] = &handlInst_;
+  slotFields_[40] = &maxShow_;
+  slotFields_[41] = &pegOffsetValue_;
+  slotFields_[42] = &xmlDataLen_;
+  slotFields_[43] = &xmlData_;
+  slotFields_[44] = &spread_;
+  slotFields_[45] = &securityIDSource_;
+  slotFields_[46] = &benchmarkCurveCurrency_;
+  slotFields_[47] = &benchmarkCurveName_;
+  slotFields_[48] = &benchmarkCurvePoint_;
+  slotFields_[49] = &couponRate_;
+  slotFields_[50] = &couponPaymentDate_;
+  slotFields_[51] = &issueDate_;
+  slotFields_[52] = &repurchaseTerm_;
+  slotFields_[53] = &repurchaseRate_;
+  slotFields_[54] = &factor_;
+  slotFields_[55] = &tradeOriginationDate_;
+  slotFields_[56] = &iOIID_;
+  slotFields_[57] = &contractMultiplier_;
+  slotFields_[58] = &yieldType_;
+  slotFields_[59] = &yield_;
+  slotFields_[60] = &repoCollateralSecurityType_;
+  slotFields_[61] = &redemptionDate_;
+  slotFields_[62] = &creditRating_;
+  slotFields_[63] = &msgSeqNum_;
+  slotFields_[64] = &messageEncoding_;
+  slotFields_[65] = &encodedIssuerLen_;
+  slotFields_[66] = &encodedIssuer_;
+  slotFields_[67] = &msgType_;
+  slotFields_[68] = &encodedSecurityDescLen_;
+  slotFields_[69] = &encodedSecurityDesc_;
+  slotFields_[70] = &encodedTextLen_;
+  slotFields_[71] = &encodedText_;
+  slotFields_[72] = &lastMsgSeqNumProcessed_;
+  slotFields_[73] = &complianceID_;
+  slotFields_[74] = &solicitedFlag_;
+  slotFields_[75] = &orderQty_;
+  slotFields_[76] = &discretionInst_;
+  slotFields_[77] = &discretionOffsetValue_;
+  slotFields_[78] = &ordType_;
+  slotFields_[79] = &priceType_;
+  slotFields_[80] = &gTBookingInst_;
+  slotFields_[81] = &possDupFlag_;
+  slotFields_[82] = &expireDate_;
+  slotFields_[83] = &price_;
+  slotFields_[84] = &product_;
+  slotFields_[85] = &cFICode_;
+  slotFields_[86] = &roundingDirection_;
+  slotFields_[87] = &roundingModulus_;
+  slotFields_[88] = &countryOfIssue_;
+  slotFields_[89] = &stateOrProvinceOfIssue_;
+  slotFields_[90] = &localeOfIssue_;
+  slotFields_[91] = &commCurrency_;
+  slotFields_[92] = &securityID_;
+  slotFields_[93] = &cancellationRights_;
+  slotFields_[94] = &moneyLaunderingStatus_;
+  slotFields_[95] = &senderCompID_;
+  slotFields_[96] = &designation_;
+  slotFields_[97] = &fundRenewWaiv_;
+  slotFields_[98] = &senderSubID_;
+  slotFields_[99] = &registID_;
+  slotFields_[100] = &orderPercent_;
+  slotFields_[101] = &sendingTime_;
+  slotFields_[102] = &secondaryClOrdID_;
+  slotFields_[103] = &orderCapacity_;
+  slotFields_[104] = &orderRestrictions_;
+  slotFields_[105] = &side_;
+  slotFields_[106] = &maturityDate_;
+  slotFields_[107] = &instrRegistry_;
+  slotFields_[108] = &cashMargin_;
+  slotFields_[109] = &symbol_;
+  slotFields_[110] = &targetCompID_;
+  slotFields_[111] = &targetSubID_;
+  slotFields_[112] = &text_;
+  slotFields_[113] = &accountType_;
+  slotFields_[114] = &custOrderCapacity_;
+  slotFields_[115] = &clOrdLinkID_;
+  slotFields_[116] = &dayBookingInst_;
+  slotFields_[117] = &timeInForce_;
+  slotFields_[118] = &bookingUnit_;
+  slotFields_[119] = &preallocMethod_;
+  slotFields_[120] = &transactTime_;
+  slotFields_[121] = &settlType_;
+  slotFields_[122] = &clearingFeeIndicator_;
+  slotFields_[123] = &settlDate_;
+  slotFields_[124] = &price2_;
+  slotFields_[125] = &symbolSfx_;
+  slotFields_[126] = &acctIDSource_;
+  slotFields_[127] = &benchmarkPrice_;
+  slotFields_[128] = &benchmarkPriceType_;
+  slotFields_[129] = &contractSettlMonth_;
+  slotFields_[130] = &pool_;
+  slotFields_[131] = &yieldRedemptionDate_;
+  slotFields_[132] = &yieldRedemptionPrice_;
+  slotFields_[133] = &yieldRedemptionPriceType_;
+  slotFields_[134] = &benchmarkSecurityID_;
+  slotFields_[135] = &allocID_;
+  slotFields_[136] = &yieldCalcDate_;
+  slotFields_[137] = &tradeDate_;
+  slotFields_[138] = &benchmarkSecurityIDSource_;
+  slotFields_[139] = &securitySubType_;
+  slotFields_[140] = &positionEffect_;
+  slotFields_[141] = &bookingType_;
+  slotFields_[142] = &terminationType_;
+  slotFields_[143] = &beginString_;
+  slotFields_[144] = &processCode_;
+  slotFields_[145] = &pegMoveType_;
+  slotFields_[146] = &pegOffsetType_;
+  slotFields_[147] = &pegLimitType_;
+  slotFields_[148] = &pegRoundDirection_;
+  slotFields_[149] = &pegScope_;
+  slotFields_[150] = &discretionMoveType_;
+  slotFields_[151] = &discretionOffsetType_;
+  slotFields_[152] = &discretionLimitType_;
+  slotFields_[153] = &discretionRoundDirection_;
+  slotFields_[154] = &discretionScope_;
+  slotFields_[155] = &targetStrategy_;
+  slotFields_[156] = &targetStrategyParameters_;
+  slotFields_[157] = &participationRate_;
+  slotFields_[158] = &qtyType_;
+  slotFields_[159] = &datedDate_;
+  slotFields_[160] = &interestAccrualDate_;
+  slotFields_[161] = &cPProgram_;
+  slotFields_[162] = &cPRegType_;
+  slotFields_[163] = &signature_;
+  slotFields_[164] = &marginRatio_;
+  slotFields_[165] = &bodyLength_;
+  slotFields_[166] = &secureDataLen_;
+  slotFields_[167] = &secureData_;
+  slotFields_[168] = &agreementDesc_;
+  slotFields_[169] = &agreementID_;
+  slotFields_[170] = &agreementDate_;
+  slotFields_[171] = &startDate_;
+  slotFields_[172] = &endDate_;
+  slotFields_[173] = &agreementCurrency_;
+  slotFields_[174] = &deliveryType_;
+  slotFields_[175] = &signatureLength_;
+  slotFields_[176] = &strikeCurrency_;
+  slotFields_[177] = &possResend_;
+  slotFields_[178] = &stopPx_;
+  slotGroups_[0] = &stipulationsGroup_;
+  slotGroups_[1] = &underlyingsGroup_;
+  slotGroups_[2] = &tradingSessionsGroup_;
+  slotGroups_[3] = &partyIDsGroup_;
+  slotGroups_[4] = &securityAltIDGroup_;
+  slotGroups_[5] = &allocsGroup_;
+  slotGroups_[6] = &hopsGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(NewOrderSingleSlotOfTag(), 956, slotFields_, slotGroups_, 179);
 }
 
 AbstractField* NewOrderSingle::msgType() {
@@ -13485,9 +14680,70 @@ AbstractField* NewOrderSingle::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* NewOrderListSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 48}, {8, 40}, {9, 43}, {10, 1}, {11, 48}, {12, 48}, {13, 48}, {15, 48}, {18, 48}, {21, 48}, {22, 48}, {23, 48}, {34, 13}, {35, 15}, {38, 48}, {40, 48}, {43, 24}, {44, 48}, {48, 48}, {49, 28}, {50, 29}, {52, 31}, {54, 48}, {55, 48}, {56, 32}, {57, 33}, {58, 48}, {59, 48}, {60, 48}, {63, 48}, {64, 48}, {65, 48}, {66, 34}, {67, 48}, {68, 35}, {69, 36}, {70, 48}, {73, 48}, {75, 48}, {77, 48}, {78, 48}, {79, 48}, {80, 48}, {81, 48}, {89, 41}, {90, 44}, {91, 45}, {93, 46}, {97, 47}, {99, 48}, {100, 48}, {106, 48}, {107, 48}, {110, 48}, {111, 48}, {114, 48}, {115, 2}, {116, 3}, {117, 48}, {120, 48}, {121, 48}, {122, 4}, {126, 48}, {128, 5}, {129, 6}, {140, 48}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {152, 48}, {160, 48}, {167, 48}, {168, 48}, {192, 48}, {193, 48}, {200, 48}, {201, 48}, {202, 48}, {203, 48}, {206, 48}, {207, 48}, {210, 48}, {211, 48}, {212, 11}, {213, 12}, {218, 48}, {220, 48}, {221, 48}, {222, 48}, {223, 48}, {224, 48}, {225, 48}, {226, 48}, {227, 48}, {228, 48}, {229, 48}, {231, 48}, {232, 48}, {233, 48}, {234, 48}, {235, 48}, {236, 48}, {239, 48}, {240, 48}, {241, 48}, {242, 48}, {243, 48}, {244, 48}, {245, 48}, {246, 48}, {247, 48}, {255, 48}, {256, 48}, {305, 48}, {306, 48}, {307, 48}, {308, 48}, {309, 48}, {310, 48}, {311, 48}, {312, 48}, {313, 48}, {315, 48}, {316, 48}, {317, 48}, {318, 48}, {336, 48}, {347, 14}, {348, 48}, {349, 48}, {350, 48}, {351, 48}, {352, 16}, {353, 17}, {354, 48}, {355, 48}, {362, 48}, {363, 48}, {364, 48}, {365, 48}, {369, 18}, {376, 48}, {377, 48}, {386, 48}, {388, 48}, {389, 48}, {390, 19}, {391, 20}, {394, 21}, {401, 48}, {414, 22}, {415, 23}, {423, 48}, {427, 48}, {432, 48}, {433, 25}, {435, 48}, {436, 48}, {447, 48}, {448, 48}, {452, 48}, {453, 48}, {454, 48}, {455, 48}, {456, 48}, {457, 48}, {458, 48}, {459, 48}, {460, 48}, {461, 48}, {462, 48}, {463, 48}, {467, 48}, {468, 48}, {469, 48}, {470, 48}, {471, 48}, {472, 48}, {479, 48}, {480, 26}, {481, 27}, {494, 48}, {497, 48}, {513, 30}, {516, 48}, {523, 48}, {524, 48}, {525, 48}, {526, 48}, {528, 48}, {529, 48}, {538, 48}, {539, 48}, {541, 48}, {542, 48}, {543, 48}, {544, 48}, {545, 48}, {581, 48}, {582, 48}, {583, 48}, {589, 48}, {590, 48}, {591, 48}, {592, 48}, {593, 48}, {594, 48}, {595, 48}, {625, 48}, {627, 49}, {628, 49}, {629, 49}, {630, 49}, {635, 48}, {640, 48}, {660, 48}, {661, 48}, {662, 48}, {663, 48}, {667, 48}, {691, 48}, {696, 48}, {697, 48}, {698, 48}, {699, 48}, {701, 48}, {711, 48}, {736, 48}, {761, 48}, {762, 48}, {763, 48}, {765, 37}, {766, 38}, {767, 39}, {775, 48}, {802, 48}, {803, 48}, {804, 48}, {805, 48}, {810, 48}, {835, 48}, {836, 48}, {837, 48}, {838, 48}, {840, 48}, {841, 48}, {842, 48}, {843, 48}, {844, 48}, {846, 48}, {847, 48}, {848, 48}, {849, 48}, {854, 48}, {864, 48}, {865, 48}, {866, 48}, {867, 48}, {868, 48}, {873, 48}, {874, 48}, {875, 48}, {876, 48}, {877, 48}, {878, 48}, {879, 48}, {882, 48}, {883, 48}, {884, 48}, {885, 48}, {886, 48}, {887, 48}, {888, 48}, {889, 48}, {893, 42}, {941, 48}, {947, 48}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 NewOrderList::NewOrderList() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &encodedListExecInstLen_;
+  slotFields_[17] = &encodedListExecInst_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &bidID_;
+  slotFields_[20] = &clientBidID_;
+  slotFields_[21] = &bidType_;
+  slotFields_[22] = &progRptReqs_;
+  slotFields_[23] = &progPeriodInterval_;
+  slotFields_[24] = &possDupFlag_;
+  slotFields_[25] = &listExecInstType_;
+  slotFields_[26] = &cancellationRights_;
+  slotFields_[27] = &moneyLaunderingStatus_;
+  slotFields_[28] = &senderCompID_;
+  slotFields_[29] = &senderSubID_;
+  slotFields_[30] = &registID_;
+  slotFields_[31] = &sendingTime_;
+  slotFields_[32] = &targetCompID_;
+  slotFields_[33] = &targetSubID_;
+  slotFields_[34] = &listID_;
+  slotFields_[35] = &totNoOrders_;
+  slotFields_[36] = &listExecInst_;
+  slotFields_[37] = &allowableOneSidednessPct_;
+  slotFields_[38] = &allowableOneSidednessValue_;
+  slotFields_[39] = &allowableOneSidednessCurr_;
+  slotFields_[40] = &beginString_;
+  slotFields_[41] = &signature_;
+  slotFields_[42] = &lastFragment_;
+  slotFields_[43] = &bodyLength_;
+  slotFields_[44] = &secureDataLen_;
+  slotFields_[45] = &secureData_;
+  slotFields_[46] = &signatureLength_;
+  slotFields_[47] = &possResend_;
+  slotGroups_[0] = &ordersGroup_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(NewOrderListSlotOfTag(), 956, slotFields_, slotGroups_, 48);
 }
 
 AbstractField* NewOrderList::msgType() {
@@ -15419,9 +16675,126 @@ AbstractField* NewOrderList::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* OrderCancelRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 81}, {9, 88}, {10, 2}, {11, 5}, {22, 24}, {34, 35}, {35, 39}, {37, 45}, {38, 47}, {41, 48}, {43, 49}, {48, 57}, {49, 58}, {50, 59}, {52, 61}, {54, 63}, {55, 66}, {56, 67}, {57, 68}, {58, 69}, {60, 73}, {65, 74}, {66, 75}, {89, 86}, {90, 89}, {91, 90}, {93, 98}, {97, 100}, {106, 3}, {107, 4}, {115, 6}, {116, 7}, {122, 8}, {128, 9}, {129, 10}, {142, 11}, {143, 12}, {144, 13}, {145, 14}, {152, 15}, {167, 16}, {200, 17}, {201, 18}, {202, 19}, {206, 20}, {207, 21}, {212, 22}, {213, 23}, {223, 25}, {224, 26}, {225, 27}, {226, 28}, {227, 29}, {228, 30}, {231, 31}, {239, 32}, {240, 33}, {241, 101}, {242, 101}, {243, 101}, {244, 101}, {245, 101}, {246, 101}, {247, 101}, {255, 34}, {256, 101}, {305, 101}, {306, 101}, {307, 101}, {308, 101}, {309, 101}, {310, 101}, {311, 101}, {312, 101}, {313, 101}, {315, 101}, {316, 101}, {317, 101}, {318, 101}, {347, 36}, {348, 37}, {349, 38}, {350, 40}, {351, 41}, {354, 42}, {355, 43}, {362, 101}, {363, 101}, {364, 101}, {365, 101}, {369, 44}, {376, 46}, {435, 101}, {436, 101}, {447, 102}, {448, 102}, {452, 102}, {453, 102}, {454, 103}, {455, 103}, {456, 103}, {457, 101}, {458, 101}, {459, 101}, {460, 50}, {461, 51}, {462, 101}, {463, 101}, {468, 52}, {469, 53}, {470, 54}, {471, 55}, {472, 56}, {516, 60}, {523, 102}, {526, 62}, {541, 64}, {542, 101}, {543, 65}, {581, 70}, {583, 71}, {586, 72}, {592, 101}, {593, 101}, {594, 101}, {595, 101}, {627, 104}, {628, 104}, {629, 104}, {630, 104}, {660, 76}, {667, 77}, {691, 78}, {711, 101}, {762, 79}, {763, 101}, {788, 80}, {802, 102}, {803, 102}, {810, 101}, {864, 105}, {865, 105}, {866, 105}, {867, 105}, {868, 105}, {873, 82}, {874, 83}, {875, 84}, {876, 85}, {877, 101}, {878, 101}, {879, 101}, {882, 101}, {883, 101}, {884, 101}, {885, 101}, {886, 101}, {887, 101}, {888, 101}, {889, 101}, {898, 87}, {913, 91}, {914, 92}, {915, 93}, {916, 94}, {917, 95}, {918, 96}, {919, 97}, {941, 101}, {947, 99}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 OrderCancelRequest::OrderCancelRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &clOrdID_;
+  slotFields_[6] = &onBehalfOfCompID_;
+  slotFields_[7] = &onBehalfOfSubID_;
+  slotFields_[8] = &origSendingTime_;
+  slotFields_[9] = &deliverToCompID_;
+  slotFields_[10] = &deliverToSubID_;
+  slotFields_[11] = &senderLocationID_;
+  slotFields_[12] = &targetLocationID_;
+  slotFields_[13] = &onBehalfOfLocationID_;
+  slotFields_[14] = &deliverToLocationID_;
+  slotFields_[15] = &cashOrderQty_;
+  slotFields_[16] = &securityType_;
+  slotFields_[17] = &maturityMonthYear_;
+  slotFields_[18] = &putOrCall_;
+  slotFields_[19] = &strikePrice_;
+  slotFields_[20] = &optAttribute_;
+  slotFields_[21] = &securityExchange_;
+  slotFields_[22] = &xmlDataLen_;
+  slotFields_[23] = &xmlData_;
+  slotFields_[24] = &securityIDSource_;
+  slotFields_[25] = &couponRate_;
+  slotFields_[26] = &couponPaymentDate_;
+  slotFields_[27] = &issueDate_;
+  slotFields_[28] = &repurchaseTerm_;
+  slotFields_[29] = &repurchaseRate_;
+  slotFields_[30] = &factor_;
+  slotFields_[31] = &contractMultiplier_;
+  slotFields_[32] = &repoCollateralSecurityType_;
+  slotFields_[33] = &redemptionDate_;
+  slotFields_[34] = &creditRating_;
+  slotFields_[35] = &msgSeqNum_;
+  slotFields_[36] = &messageEncoding_;
+  slotFields_[37] = &encodedIssuerLen_;
+  slotFields_[38] = &encodedIssuer_;
+  slotFields_[39] = &msgType_;
+  slotFields_[40] = &encodedSecurityDescLen_;
+  slotFields_[41] = &encodedSecurityDesc_;
+  slotFields_[42] = &encodedTextLen_;
+  slotFields_[43] = &encodedText_;
+  slotFields_[44] = &lastMsgSeqNumProcessed_;
+  slotFields_[45] = &orderID_;
+  slotFields_[46] = &complianceID_;
+  slotFields_[47] = &orderQty_;
+  slotFields_[48] = &origClOrdID_;
+  slotFields_[49] = &possDupFlag_;
+  slotFields_[50] = &product_;
+  slotFields_[51] = &cFICode_;
+  slotFields_[52] = &roundingDirection_;
+  slotFields_[53] = &roundingModulus_;
+  slotFields_[54] = &countryOfIssue_;
+  slotFields_[55] = &stateOrProvinceOfIssue_;
+  slotFields_[56] = &localeOfIssue_;
+  slotFields_[57] = &securityID_;
+  slotFields_[58] = &senderCompID_;
+  slotFields_[59] = &senderSubID_;
+  slotFields_[60] = &orderPercent_;
+  slotFields_[61] = &sendingTime_;
+  slotFields_[62] = &secondaryClOrdID_;
+  slotFields_[63] = &side_;
+  slotFields_[64] = &maturityDate_;
+  slotFields_[65] = &instrRegistry_;
+  slotFields_[66] = &symbol_;
+  slotFields_[67] = &targetCompID_;
+  slotFields_[68] = &targetSubID_;
+  slotFields_[69] = &text_;
+  slotFields_[70] = &accountType_;
+  slotFields_[71] = &clOrdLinkID_;
+  slotFields_[72] = &origOrdModTime_;
+  slotFields_[73] = &transactTime_;
+  slotFields_[74] = &symbolSfx_;
+  slotFields_[75] = &listID_;
+  slotFields_[76] = &acctIDSource_;
+  slotFields_[77] = &contractSettlMonth_;
+  slotFields_[78] = &pool_;
+  slotFields_[79] = &securitySubType_;
+  slotFields_[80] = &terminationType_;
+  slotFields_[81] = &beginString_;
+  slotFields_[82] = &datedDate_;
+  slotFields_[83] = &interestAccrualDate_;
+  slotFields_[84] = &cPProgram_;
+  slotFields_[85] = &cPRegType_;
+  slotFields_[86] = &signature_;
+  slotFields_[87] = &marginRatio_;
+  slotFields_[88] = &bodyLength_;
+  slotFields_[89] = &secureDataLen_;
+  slotFields_[90] = &secureData_;
+  slotFields_[91] = &agreementDesc_;
+  slotFields_[92] = &agreementID_;
+  slotFields_[93] = &agreementDate_;
+  slotFields_[94] = &startDate_;
+  slotFields_[95] = &endDate_;
+  slotFields_[96] = &agreementCurrency_;
+  slotFields_[97] = &deliveryType_;
+  slotFields_[98] = &signatureLength_;
+  slotFields_[99] = &strikeCurrency_;
+  slotFields_[100] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &partyIDsGroup_;
+  slotGroups_[2] = &securityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  tagTable(OrderCancelRequestSlotOfTag(), 956, slotFields_, slotGroups_, 101);
 }
 
 AbstractField* OrderCancelRequest::msgType() {
@@ -16729,9 +18102,206 @@ AbstractField* OrderCancelRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* OrderCancelReplaceRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 144}, {9, 165}, {10, 2}, {11, 6}, {12, 12}, {13, 19}, {15, 24}, {18, 28}, {21, 37}, {22, 43}, {34, 60}, {35, 64}, {37, 70}, {38, 73}, {40, 76}, {41, 77}, {43, 80}, {44, 82}, {48, 91}, {49, 94}, {50, 97}, {52, 100}, {54, 104}, {55, 108}, {56, 109}, {57, 110}, {58, 111}, {59, 117}, {60, 120}, {63, 121}, {64, 123}, {65, 125}, {66, 126}, {70, 136}, {75, 138}, {77, 141}, {78, 183}, {79, 183}, {80, 183}, {89, 163}, {90, 166}, {91, 167}, {93, 175}, {97, 177}, {99, 178}, {100, 3}, {106, 4}, {107, 5}, {110, 7}, {111, 8}, {114, 9}, {115, 10}, {116, 11}, {120, 13}, {121, 14}, {122, 15}, {126, 16}, {128, 17}, {129, 18}, {142, 20}, {143, 21}, {144, 22}, {145, 23}, {152, 25}, {167, 26}, {168, 27}, {192, 29}, {193, 30}, {200, 31}, {201, 32}, {202, 33}, {203, 34}, {206, 35}, {207, 36}, {210, 38}, {211, 39}, {212, 40}, {213, 41}, {218, 42}, {220, 44}, {221, 45}, {222, 46}, {223, 47}, {224, 48}, {225, 49}, {226, 50}, {227, 51}, {228, 52}, {229, 53}, {231, 54}, {235, 55}, {236, 56}, {239, 57}, {240, 58}, {241, 179}, {242, 179}, {243, 179}, {244, 179}, {245, 179}, {246, 179}, {247, 179}, {255, 59}, {256, 179}, {305, 179}, {306, 179}, {307, 179}, {308, 179}, {309, 179}, {310, 179}, {311, 179}, {312, 179}, {313, 179}, {315, 179}, {316, 179}, {317, 179}, {318, 179}, {336, 180}, {347, 61}, {348, 62}, {349, 63}, {350, 65}, {351, 66}, {354, 67}, {355, 68}, {362, 179}, {363, 179}, {364, 179}, {365, 179}, {369, 69}, {376, 71}, {377, 72}, {386, 180}, {388, 74}, {389, 75}, {423, 78}, {427, 79}, {432, 81}, {435, 179}, {436, 179}, {447, 181}, {448, 181}, {452, 181}, {453, 181}, {454, 182}, {455, 182}, {456, 182}, {457, 179}, {458, 179}, {459, 179}, {460, 83}, {461, 84}, {462, 179}, {463, 179}, {467, 183}, {468, 85}, {469, 86}, {470, 87}, {471, 88}, {472, 89}, {479, 90}, {480, 92}, {481, 93}, {494, 95}, {497, 96}, {513, 98}, {516, 99}, {523, 181}, {524, 183}, {525, 183}, {526, 101}, {528, 102}, {529, 103}, {538, 183}, {539, 183}, {541, 105}, {542, 179}, {543, 106}, {544, 107}, {545, 183}, {581, 112}, {582, 113}, {583, 114}, {586, 115}, {589, 116}, {590, 118}, {591, 119}, {592, 179}, {593, 179}, {594, 179}, {595, 179}, {625, 180}, {627, 184}, {628, 184}, {629, 184}, {630, 184}, {635, 122}, {640, 124}, {660, 127}, {661, 183}, {662, 128}, {663, 129}, {667, 130}, {691, 131}, {696, 132}, {697, 133}, {698, 134}, {699, 135}, {701, 137}, {711, 179}, {736, 183}, {761, 139}, {762, 140}, {763, 179}, {775, 142}, {788, 143}, {802, 181}, {803, 181}, {804, 183}, {805, 183}, {810, 179}, {835, 145}, {836, 146}, {837, 147}, {838, 148}, {840, 149}, {841, 150}, {842, 151}, {843, 152}, {844, 153}, {846, 154}, {847, 155}, {848, 156}, {849, 157}, {854, 158}, {864, 185}, {865, 185}, {866, 185}, {867, 185}, {868, 185}, {873, 159}, {874, 160}, {875, 161}, {876, 162}, {877, 179}, {878, 179}, {879, 179}, {882, 179}, {883, 179}, {884, 179}, {885, 179}, {886, 179}, {887, 179}, {888, 179}, {889, 179}, {898, 164}, {913, 168}, {914, 169}, {915, 170}, {916, 171}, {917, 172}, {918, 173}, {919, 174}, {941, 179}, {947, 176}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 OrderCancelReplaceRequest::OrderCancelReplaceRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &exDestination_;
+  slotFields_[4] = &issuer_;
+  slotFields_[5] = &securityDesc_;
+  slotFields_[6] = &clOrdID_;
+  slotFields_[7] = &minQty_;
+  slotFields_[8] = &maxFloor_;
+  slotFields_[9] = &locateReqd_;
+  slotFields_[10] = &onBehalfOfCompID_;
+  slotFields_[11] = &onBehalfOfSubID_;
+  slotFields_[12] = &commission_;
+  slotFields_[13] = &settlCurrency_;
+  slotFields_[14] = &forexReq_;
+  slotFields_[15] = &origSendingTime_;
+  slotFields_[16] = &expireTime_;
+  slotFields_[17] = &deliverToCompID_;
+  slotFields_[18] = &deliverToSubID_;
+  slotFields_[19] = &commType_;
+  slotFields_[20] = &senderLocationID_;
+  slotFields_[21] = &targetLocationID_;
+  slotFields_[22] = &onBehalfOfLocationID_;
+  slotFields_[23] = &deliverToLocationID_;
+  slotFields_[24] = &currency_;
+  slotFields_[25] = &cashOrderQty_;
+  slotFields_[26] = &securityType_;
+  slotFields_[27] = &effectiveTime_;
+  slotFields_[28] = &execInst_;
+  slotFields_[29] = &orderQty2_;
+  slotFields_[30] = &settlDate2_;
+  slotFields_[31] = &maturityMonthYear_;
+  slotFields_[32] = &putOrCall_;
+  slotFields_[33] = &strikePrice_;
+  slotFields_[34] = &coveredOrUncovered_;
+  slotFields_[35] = &optAttribute_;
+  slotFields_[36] = &securityExchange_;
+  slotFields_[37] = &handlInst_;
+  slotFields_[38] = &maxShow_;
+  slotFields_[39] = &pegOffsetValue_;
+  slotFields_[40] = &xmlDataLen_;
+  slotFields_[41] = &xmlData_;
+  slotFields_[42] = &spread_;
+  slotFields_[43] = &securityIDSource_;
+  slotFields_[44] = &benchmarkCurveCurrency_;
+  slotFields_[45] = &benchmarkCurveName_;
+  slotFields_[46] = &benchmarkCurvePoint_;
+  slotFields_[47] = &couponRate_;
+  slotFields_[48] = &couponPaymentDate_;
+  slotFields_[49] = &issueDate_;
+  slotFields_[50] = &repurchaseTerm_;
+  slotFields_[51] = &repurchaseRate_;
+  slotFields_[52] = &factor_;
+  slotFields_[53] = &tradeOriginationDate_;
+  slotFields_[54] = &contractMultiplier_;
+  slotFields_[55] = &yieldType_;
+  slotFields_[56] = &yield_;
+  slotFields_[57] = &repoCollateralSecurityType_;
+  slotFields_[58] = &redemptionDate_;
+  slotFields_[59] = &creditRating_;
+  slotFields_[60] = &msgSeqNum_;
+  slotFields_[61] = &messageEncoding_;
+  slotFields_[62] = &encodedIssuerLen_;
+  slotFields_[63] = &encodedIssuer_;
+  slotFields_[64] = &msgType_;
+  slotFields_[65] = &encodedSecurityDescLen_;
+  slotFields_[66] = &encodedSecurityDesc_;
+  slotFields_[67] = &encodedTextLen_;
+  slotFields_[68] = &encodedText_;
+  slotFields_[69] = &lastMsgSeqNumProcessed_;
+  slotFields_[70] = &orderID_;
+  slotFields_[71] = &complianceID_;
+  slotFields_[72] = &solicitedFlag_;
+  slotFields_[73] = &orderQty_;
+  slotFields_[74] = &discretionInst_;
+  slotFields_[75] = &discretionOffsetValue_;
+  slotFields_[76] = &ordType_;
+  slotFields_[77] = &origClOrdID_;
+  slotFields_[78] = &priceType_;
+  slotFields_[79] = &gTBookingInst_;
+  slotFields_[80] = &possDupFlag_;
+  slotFields_[81] = &expireDate_;
+  slotFields_[82] = &price_;
+  slotFields_[83] = &product_;
+  slotFields_[84] = &cFICode_;
+  slotFields_[85] = &roundingDirection_;
+  slotFields_[86] = &roundingModulus_;
+  slotFields_[87] = &countryOfIssue_;
+  slotFields_[88] = &stateOrProvinceOfIssue_;
+  slotFields_[89] = &localeOfIssue_;
+  slotFields_[90] = &commCurrency_;
+  slotFields_[91] = &securityID_;
+  slotFields_[92] = &cancellationRights_;
+  slotFields_[93] = &moneyLaunderingStatus_;
+  slotFields_[94] = &senderCompID_;
+  slotFields_[95] = &designation_;
+  slotFields_[96] = &fundRenewWaiv_;
+  slotFields_[97] = &senderSubID_;
+  slotFields_[98] = &registID_;
+  slotFields_[99] = &orderPercent_;
+  slotFields_[100] = &sendingTime_;
+  slotFields_[101] = &secondaryClOrdID_;
+  slotFields_[102] = &orderCapacity_;
+  slotFields_[103] = &orderRestrictions_;
+  slotFields_[104] = &side_;
+  slotFields_[105] = &maturityDate_;
+  slotFields_[106] = &instrRegistry_;
+  slotFields_[107] = &cashMargin_;
+  slotFields_[108] = &symbol_;
+  slotFields_[109] = &targetCompID_;
+  slotFields_[110] = &targetSubID_;
+  slotFields_[111] = &text_;
+  slotFields_[112] = &accountType_;
+  slotFields_[113] = &custOrderCapacity_;
+  slotFields_[114] = &clOrdLinkID_;
+  slotFields_[115] = &origOrdModTime_;
+  slotFields_[116] = &dayBookingInst_;
+  slotFields_[117] = &timeInForce_;
+  slotFields_[118] = &bookingUnit_;
+  slotFields_[119] = &preallocMethod_;
+  slotFields_[120] = &transactTime_;
+  slotFields_[121] = &settlType_;
+  slotFields_[122] = &clearingFeeIndicator_;
+  slotFields_[123] = &settlDate_;
+  slotFields_[124] = &price2_;
+  slotFields_[125] = &symbolSfx_;
+  slotFields_[126] = &listID_;
+  slotFields_[127] = &acctIDSource_;
+  slotFields_[128] = &benchmarkPrice_;
+  slotFields_[129] = &benchmarkPriceType_;
+  slotFields_[130] = &contractSettlMonth_;
+  slotFields_[131] = &pool_;
+  slotFields_[132] = &yieldRedemptionDate_;
+  slotFields_[133] = &yieldRedemptionPrice_;
+  slotFields_[134] = &yieldRedemptionPriceType_;
+  slotFields_[135] = &benchmarkSecurityID_;
+  slotFields_[136] = &allocID_;
+  slotFields_[137] = &yieldCalcDate_;
+  slotFields_[138] = &tradeDate_;
+  slotFields_[139] = &benchmarkSecurityIDSource_;
+  slotFields_[140] = &securitySubType_;
+  slotFields_[141] = &positionEffect_;
+  slotFields_[142] = &bookingType_;
+  slotFields_[143] = &terminationType_;
+  slotFields_[144] = &beginString_;
+  slotFields_[145] = &pegMoveType_;
+  slotFields_[146] = &pegOffsetType_;
+  slotFields_[147] = &pegLimitType_;
+  slotFields_[148] = &pegRoundDirection_;
+  slotFields_[149] = &pegScope_;
+  slotFields_[150] = &discretionMoveType_;
+  slotFields_[151] = &discretionOffsetType_;
+  slotFields_[152] = &discretionLimitType_;
+  slotFields_[153] = &discretionRoundDirection_;
+  slotFields_[154] = &discretionScope_;
+  slotFields_[155] = &targetStrategy_;
+  slotFields_[156] = &targetStrategyParameters_;
+  slotFields_[157] = &participationRate_;
+  slotFields_[158] = &qtyType_;
+  slotFields_[159] = &datedDate_;
+  slotFields_[160] = &interestAccrualDate_;
+  slotFields_[161] = &cPProgram_;
+  slotFields_[162] = &cPRegType_;
+  slotFields_[163] = &signature_;
+  slotFields_[164] = &marginRatio_;
+  slotFields_[165] = &bodyLength_;
+  slotFields_[166] = &secureDataLen_;
+  slotFields_[167] = &secureData_;
+  slotFields_[168] = &agreementDesc_;
+  slotFields_[169] = &agreementID_;
+  slotFields_[170] = &agreementDate_;
+  slotFields_[171] = &startDate_;
+  slotFields_[172] = &endDate_;
+  slotFields_[173] = &agreementCurrency_;
+  slotFields_[174] = &deliveryType_;
+  slotFields_[175] = &signatureLength_;
+  slotFields_[176] = &strikeCurrency_;
+  slotFields_[177] = &possResend_;
+  slotFields_[178] = &stopPx_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &tradingSessionsGroup_;
+  slotGroups_[2] = &partyIDsGroup_;
+  slotGroups_[3] = &securityAltIDGroup_;
+  slotGroups_[4] = &allocsGroup_;
+  slotGroups_[5] = &hopsGroup_;
+  slotGroups_[6] = &eventsGroup_;
+  tagTable(OrderCancelReplaceRequestSlotOfTag(), 956, slotFields_, slotGroups_, 179);
 }
 
 AbstractField* OrderCancelReplaceRequest::msgType() {
@@ -18720,9 +20290,113 @@ AbstractField* OrderCancelReplaceRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* OrderStatusRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 68}, {9, 75}, {10, 2}, {11, 5}, {22, 23}, {34, 34}, {35, 38}, {37, 42}, {43, 43}, {48, 49}, {49, 50}, {50, 51}, {52, 52}, {54, 54}, {55, 57}, {56, 58}, {57, 59}, {65, 61}, {89, 73}, {90, 76}, {91, 77}, {93, 85}, {97, 87}, {106, 3}, {107, 4}, {115, 6}, {116, 7}, {122, 8}, {128, 9}, {129, 10}, {142, 11}, {143, 12}, {144, 13}, {145, 14}, {167, 15}, {200, 16}, {201, 17}, {202, 18}, {206, 19}, {207, 20}, {212, 21}, {213, 22}, {223, 24}, {224, 25}, {225, 26}, {226, 27}, {227, 28}, {228, 29}, {231, 30}, {239, 31}, {240, 32}, {241, 88}, {242, 88}, {243, 88}, {244, 88}, {245, 88}, {246, 88}, {247, 88}, {255, 33}, {256, 88}, {305, 88}, {306, 88}, {307, 88}, {308, 88}, {309, 88}, {310, 88}, {311, 88}, {312, 88}, {313, 88}, {315, 88}, {316, 88}, {317, 88}, {318, 88}, {347, 35}, {348, 36}, {349, 37}, {350, 39}, {351, 40}, {362, 88}, {363, 88}, {364, 88}, {365, 88}, {369, 41}, {435, 88}, {436, 88}, {447, 89}, {448, 89}, {452, 89}, {453, 89}, {454, 90}, {455, 90}, {456, 90}, {457, 88}, {458, 88}, {459, 88}, {460, 44}, {461, 45}, {462, 88}, {463, 88}, {470, 46}, {471, 47}, {472, 48}, {523, 89}, {526, 53}, {541, 55}, {542, 88}, {543, 56}, {583, 60}, {592, 88}, {593, 88}, {594, 88}, {595, 88}, {627, 91}, {628, 91}, {629, 91}, {630, 91}, {660, 62}, {667, 63}, {691, 64}, {711, 88}, {762, 65}, {763, 88}, {788, 66}, {790, 67}, {802, 89}, {803, 89}, {810, 88}, {864, 92}, {865, 92}, {866, 92}, {867, 92}, {868, 92}, {873, 69}, {874, 70}, {875, 71}, {876, 72}, {877, 88}, {878, 88}, {879, 88}, {882, 88}, {883, 88}, {884, 88}, {885, 88}, {886, 88}, {887, 88}, {888, 88}, {889, 88}, {898, 74}, {913, 78}, {914, 79}, {915, 80}, {916, 81}, {917, 82}, {918, 83}, {919, 84}, {941, 88}, {947, 86}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 OrderStatusRequest::OrderStatusRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &clOrdID_;
+  slotFields_[6] = &onBehalfOfCompID_;
+  slotFields_[7] = &onBehalfOfSubID_;
+  slotFields_[8] = &origSendingTime_;
+  slotFields_[9] = &deliverToCompID_;
+  slotFields_[10] = &deliverToSubID_;
+  slotFields_[11] = &senderLocationID_;
+  slotFields_[12] = &targetLocationID_;
+  slotFields_[13] = &onBehalfOfLocationID_;
+  slotFields_[14] = &deliverToLocationID_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &maturityMonthYear_;
+  slotFields_[17] = &putOrCall_;
+  slotFields_[18] = &strikePrice_;
+  slotFields_[19] = &optAttribute_;
+  slotFields_[20] = &securityExchange_;
+  slotFields_[21] = &xmlDataLen_;
+  slotFields_[22] = &xmlData_;
+  slotFields_[23] = &securityIDSource_;
+  slotFields_[24] = &couponRate_;
+  slotFields_[25] = &couponPaymentDate_;
+  slotFields_[26] = &issueDate_;
+  slotFields_[27] = &repurchaseTerm_;
+  slotFields_[28] = &repurchaseRate_;
+  slotFields_[29] = &factor_;
+  slotFields_[30] = &contractMultiplier_;
+  slotFields_[31] = &repoCollateralSecurityType_;
+  slotFields_[32] = &redemptionDate_;
+  slotFields_[33] = &creditRating_;
+  slotFields_[34] = &msgSeqNum_;
+  slotFields_[35] = &messageEncoding_;
+  slotFields_[36] = &encodedIssuerLen_;
+  slotFields_[37] = &encodedIssuer_;
+  slotFields_[38] = &msgType_;
+  slotFields_[39] = &encodedSecurityDescLen_;
+  slotFields_[40] = &encodedSecurityDesc_;
+  slotFields_[41] = &lastMsgSeqNumProcessed_;
+  slotFields_[42] = &orderID_;
+  slotFields_[43] = &possDupFlag_;
+  slotFields_[44] = &product_;
+  slotFields_[45] = &cFICode_;
+  slotFields_[46] = &countryOfIssue_;
+  slotFields_[47] = &stateOrProvinceOfIssue_;
+  slotFields_[48] = &localeOfIssue_;
+  slotFields_[49] = &securityID_;
+  slotFields_[50] = &senderCompID_;
+  slotFields_[51] = &senderSubID_;
+  slotFields_[52] = &sendingTime_;
+  slotFields_[53] = &secondaryClOrdID_;
+  slotFields_[54] = &side_;
+  slotFields_[55] = &maturityDate_;
+  slotFields_[56] = &instrRegistry_;
+  slotFields_[57] = &symbol_;
+  slotFields_[58] = &targetCompID_;
+  slotFields_[59] = &targetSubID_;
+  slotFields_[60] = &clOrdLinkID_;
+  slotFields_[61] = &symbolSfx_;
+  slotFields_[62] = &acctIDSource_;
+  slotFields_[63] = &contractSettlMonth_;
+  slotFields_[64] = &pool_;
+  slotFields_[65] = &securitySubType_;
+  slotFields_[66] = &terminationType_;
+  slotFields_[67] = &ordStatusReqID_;
+  slotFields_[68] = &beginString_;
+  slotFields_[69] = &datedDate_;
+  slotFields_[70] = &interestAccrualDate_;
+  slotFields_[71] = &cPProgram_;
+  slotFields_[72] = &cPRegType_;
+  slotFields_[73] = &signature_;
+  slotFields_[74] = &marginRatio_;
+  slotFields_[75] = &bodyLength_;
+  slotFields_[76] = &secureDataLen_;
+  slotFields_[77] = &secureData_;
+  slotFields_[78] = &agreementDesc_;
+  slotFields_[79] = &agreementID_;
+  slotFields_[80] = &agreementDate_;
+  slotFields_[81] = &startDate_;
+  slotFields_[82] = &endDate_;
+  slotFields_[83] = &agreementCurrency_;
+  slotFields_[84] = &deliveryType_;
+  slotFields_[85] = &signatureLength_;
+  slotFields_[86] = &strikeCurrency_;
+  slotFields_[87] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &partyIDsGroup_;
+  slotGroups_[2] = &securityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  tagTable(OrderStatusRequestSlotOfTag(), 956, slotFields_, slotGroups_, 88);
 }
 
 AbstractField* OrderStatusRequest::msgType() {
@@ -19940,9 +21614,178 @@ AbstractField* OrderStatusRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* AllocationInstructionSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{6, 84}, {8, 117}, {9, 131}, {10, 1}, {11, 147}, {12, 148}, {13, 148}, {15, 14}, {17, 149}, {22, 29}, {29, 149}, {30, 48}, {31, 149}, {32, 149}, {34, 50}, {35, 54}, {37, 147}, {38, 147}, {43, 62}, {48, 69}, {49, 70}, {50, 71}, {52, 72}, {53, 73}, {54, 74}, {55, 78}, {56, 79}, {57, 80}, {58, 83}, {60, 85}, {63, 88}, {64, 89}, {65, 90}, {66, 147}, {70, 101}, {71, 104}, {72, 105}, {73, 147}, {74, 107}, {75, 108}, {77, 112}, {78, 148}, {79, 148}, {80, 148}, {81, 148}, {85, 148}, {89, 127}, {90, 132}, {91, 133}, {93, 144}, {97, 146}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {118, 6}, {119, 148}, {120, 148}, {122, 7}, {124, 149}, {128, 8}, {129, 9}, {136, 148}, {137, 148}, {138, 148}, {139, 148}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {153, 148}, {154, 148}, {155, 148}, {156, 148}, {157, 15}, {158, 16}, {159, 17}, {161, 148}, {165, 148}, {167, 18}, {169, 148}, {170, 148}, {171, 148}, {172, 148}, {196, 19}, {197, 20}, {198, 147}, {200, 21}, {201, 22}, {202, 23}, {206, 24}, {207, 25}, {208, 148}, {209, 148}, {212, 26}, {213, 27}, {218, 28}, {220, 30}, {221, 31}, {222, 32}, {223, 33}, {224, 34}, {225, 35}, {226, 36}, {227, 37}, {228, 38}, {229, 39}, {231, 40}, {232, 150}, {233, 150}, {234, 150}, {235, 41}, {236, 42}, {237, 43}, {238, 44}, {239, 45}, {240, 46}, {241, 151}, {242, 151}, {243, 151}, {244, 151}, {245, 151}, {246, 151}, {247, 151}, {248, 152}, {249, 152}, {250, 152}, {251, 152}, {252, 152}, {253, 152}, {254, 152}, {255, 47}, {256, 151}, {257, 152}, {305, 151}, {306, 151}, {307, 151}, {308, 151}, {309, 151}, {310, 151}, {311, 151}, {312, 151}, {313, 151}, {315, 151}, {316, 151}, {317, 151}, {318, 151}, {336, 49}, {347, 51}, {348, 52}, {349, 53}, {350, 55}, {351, 56}, {354, 57}, {355, 58}, {360, 148}, {361, 148}, {362, 151}, {363, 151}, {364, 151}, {365, 151}, {366, 148}, {369, 59}, {381, 60}, {423, 61}, {435, 151}, {436, 151}, {447, 153}, {448, 153}, {452, 153}, {453, 153}, {454, 154}, {455, 154}, {456, 154}, {457, 151}, {458, 151}, {459, 151}, {460, 63}, {461, 64}, {462, 151}, {463, 151}, {466, 65}, {467, 148}, {470, 66}, {471, 67}, {472, 68}, {479, 148}, {497, 148}, {523, 153}, {524, 148}, {525, 148}, {526, 147}, {527, 149}, {538, 148}, {539, 148}, {540, 75}, {541, 76}, {542, 151}, {543, 77}, {545, 148}, {555, 152}, {556, 152}, {570, 81}, {573, 148}, {574, 82}, {576, 148}, {577, 148}, {592, 151}, {593, 151}, {594, 151}, {595, 151}, {596, 152}, {597, 152}, {598, 152}, {599, 152}, {600, 152}, {601, 152}, {602, 152}, {603, 152}, {604, 152}, {605, 152}, {606, 152}, {607, 152}, {608, 152}, {609, 152}, {610, 152}, {611, 152}, {612, 152}, {613, 152}, {614, 152}, {615, 152}, {616, 152}, {617, 152}, {618, 152}, {619, 152}, {620, 152}, {621, 152}, {622, 152}, {623, 152}, {624, 152}, {625, 86}, {626, 87}, {627, 155}, {628, 155}, {629, 155}, {630, 155}, {650, 91}, {661, 148}, {662, 92}, {663, 93}, {667, 94}, {668, 95}, {669, 149}, {691, 96}, {696, 97}, {697, 98}, {698, 99}, {699, 100}, {700, 102}, {701, 103}, {711, 151}, {736, 148}, {737, 148}, {738, 106}, {739, 152}, {740, 152}, {741, 148}, {742, 148}, {754, 109}, {756, 147}, {757, 147}, {758, 147}, {759, 147}, {760, 147}, {761, 110}, {762, 111}, {763, 151}, {764, 152}, {775, 113}, {780, 148}, {781, 148}, {782, 148}, {783, 148}, {784, 148}, {785, 148}, {786, 148}, {787, 148}, {788, 114}, {793, 115}, {796, 116}, {799, 147}, {800, 147}, {801, 148}, {802, 153}, {803, 153}, {804, 148}, {805, 148}, {806, 147}, {807, 147}, {808, 118}, {810, 151}, {854, 119}, {857, 120}, {860, 121}, {864, 156}, {865, 156}, {866, 156}, {867, 156}, {868, 156}, {869, 122}, {870, 157}, {871, 157}, {872, 157}, {873, 123}, {874, 124}, {875, 125}, {876, 126}, {877, 151}, {878, 151}, {879, 151}, {882, 151}, {883, 151}, {884, 151}, {885, 151}, {886, 151}, {887, 151}, {888, 151}, {889, 151}, {891, 148}, {892, 128}, {893, 129}, {898, 130}, {913, 134}, {914, 135}, {915, 136}, {916, 137}, {917, 138}, {918, 139}, {919, 140}, {920, 141}, {921, 142}, {922, 143}, {941, 151}, {942, 152}, {947, 145}, {955, 152}, {956, 152}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 AllocationInstruction::AllocationInstruction() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &netMoney_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &currency_;
+  slotFields_[15] = &numDaysInterest_;
+  slotFields_[16] = &accruedInterestRate_;
+  slotFields_[17] = &accruedInterestAmt_;
+  slotFields_[18] = &securityType_;
+  slotFields_[19] = &allocLinkID_;
+  slotFields_[20] = &allocLinkType_;
+  slotFields_[21] = &maturityMonthYear_;
+  slotFields_[22] = &putOrCall_;
+  slotFields_[23] = &strikePrice_;
+  slotFields_[24] = &optAttribute_;
+  slotFields_[25] = &securityExchange_;
+  slotFields_[26] = &xmlDataLen_;
+  slotFields_[27] = &xmlData_;
+  slotFields_[28] = &spread_;
+  slotFields_[29] = &securityIDSource_;
+  slotFields_[30] = &benchmarkCurveCurrency_;
+  slotFields_[31] = &benchmarkCurveName_;
+  slotFields_[32] = &benchmarkCurvePoint_;
+  slotFields_[33] = &couponRate_;
+  slotFields_[34] = &couponPaymentDate_;
+  slotFields_[35] = &issueDate_;
+  slotFields_[36] = &repurchaseTerm_;
+  slotFields_[37] = &repurchaseRate_;
+  slotFields_[38] = &factor_;
+  slotFields_[39] = &tradeOriginationDate_;
+  slotFields_[40] = &contractMultiplier_;
+  slotFields_[41] = &yieldType_;
+  slotFields_[42] = &yield_;
+  slotFields_[43] = &totalTakedown_;
+  slotFields_[44] = &concession_;
+  slotFields_[45] = &repoCollateralSecurityType_;
+  slotFields_[46] = &redemptionDate_;
+  slotFields_[47] = &creditRating_;
+  slotFields_[48] = &lastMkt_;
+  slotFields_[49] = &tradingSessionID_;
+  slotFields_[50] = &msgSeqNum_;
+  slotFields_[51] = &messageEncoding_;
+  slotFields_[52] = &encodedIssuerLen_;
+  slotFields_[53] = &encodedIssuer_;
+  slotFields_[54] = &msgType_;
+  slotFields_[55] = &encodedSecurityDescLen_;
+  slotFields_[56] = &encodedSecurityDesc_;
+  slotFields_[57] = &encodedTextLen_;
+  slotFields_[58] = &encodedText_;
+  slotFields_[59] = &lastMsgSeqNumProcessed_;
+  slotFields_[60] = &grossTradeAmt_;
+  slotFields_[61] = &priceType_;
+  slotFields_[62] = &possDupFlag_;
+  slotFields_[63] = &product_;
+  slotFields_[64] = &cFICode_;
+  slotFields_[65] = &bookingRefID_;
+  slotFields_[66] = &countryOfIssue_;
+  slotFields_[67] = &stateOrProvinceOfIssue_;
+  slotFields_[68] = &localeOfIssue_;
+  slotFields_[69] = &securityID_;
+  slotFields_[70] = &senderCompID_;
+  slotFields_[71] = &senderSubID_;
+  slotFields_[72] = &sendingTime_;
+  slotFields_[73] = &quantity_;
+  slotFields_[74] = &side_;
+  slotFields_[75] = &totalAccruedInterestAmt_;
+  slotFields_[76] = &maturityDate_;
+  slotFields_[77] = &instrRegistry_;
+  slotFields_[78] = &symbol_;
+  slotFields_[79] = &targetCompID_;
+  slotFields_[80] = &targetSubID_;
+  slotFields_[81] = &previouslyReported_;
+  slotFields_[82] = &matchType_;
+  slotFields_[83] = &text_;
+  slotFields_[84] = &avgPx_;
+  slotFields_[85] = &transactTime_;
+  slotFields_[86] = &tradingSessionSubID_;
+  slotFields_[87] = &allocType_;
+  slotFields_[88] = &settlType_;
+  slotFields_[89] = &settlDate_;
+  slotFields_[90] = &symbolSfx_;
+  slotFields_[91] = &legalConfirm_;
+  slotFields_[92] = &benchmarkPrice_;
+  slotFields_[93] = &benchmarkPriceType_;
+  slotFields_[94] = &contractSettlMonth_;
+  slotFields_[95] = &deliveryForm_;
+  slotFields_[96] = &pool_;
+  slotFields_[97] = &yieldRedemptionDate_;
+  slotFields_[98] = &yieldRedemptionPrice_;
+  slotFields_[99] = &yieldRedemptionPriceType_;
+  slotFields_[100] = &benchmarkSecurityID_;
+  slotFields_[101] = &allocID_;
+  slotFields_[102] = &reversalIndicator_;
+  slotFields_[103] = &yieldCalcDate_;
+  slotFields_[104] = &allocTransType_;
+  slotFields_[105] = &refAllocID_;
+  slotFields_[106] = &interestAtMaturity_;
+  slotFields_[107] = &avgPxPrecision_;
+  slotFields_[108] = &tradeDate_;
+  slotFields_[109] = &autoAcceptIndicator_;
+  slotFields_[110] = &benchmarkSecurityIDSource_;
+  slotFields_[111] = &securitySubType_;
+  slotFields_[112] = &positionEffect_;
+  slotFields_[113] = &bookingType_;
+  slotFields_[114] = &terminationType_;
+  slotFields_[115] = &secondaryAllocID_;
+  slotFields_[116] = &allocCancReplaceReason_;
+  slotFields_[117] = &beginString_;
+  slotFields_[118] = &allocIntermedReqType_;
+  slotFields_[119] = &qtyType_;
+  slotFields_[120] = &allocNoOrdersType_;
+  slotFields_[121] = &avgParPx_;
+  slotFields_[122] = &pctAtRisk_;
+  slotFields_[123] = &datedDate_;
+  slotFields_[124] = &interestAccrualDate_;
+  slotFields_[125] = &cPProgram_;
+  slotFields_[126] = &cPRegType_;
+  slotFields_[127] = &signature_;
+  slotFields_[128] = &totNoAllocs_;
+  slotFields_[129] = &lastFragment_;
+  slotFields_[130] = &marginRatio_;
+  slotFields_[131] = &bodyLength_;
+  slotFields_[132] = &secureDataLen_;
+  slotFields_[133] = &secureData_;
+  slotFields_[134] = &agreementDesc_;
+  slotFields_[135] = &agreementID_;
+  slotFields_[136] = &agreementDate_;
+  slotFields_[137] = &startDate_;
+  slotFields_[138] = &endDate_;
+  slotFields_[139] = &agreementCurrency_;
+  slotFields_[140] = &deliveryType_;
+  slotFields_[141] = &endAccruedInterestAmt_;
+  slotFields_[142] = &startCash_;
+  slotFields_[143] = &endCash_;
+  slotFields_[144] = &signatureLength_;
+  slotFields_[145] = &strikeCurrency_;
+  slotFields_[146] = &possResend_;
+  slotGroups_[0] = &ordersGroup1_;
+  slotGroups_[1] = &allocsGroup1_;
+  slotGroups_[2] = &execsGroup_;
+  slotGroups_[3] = &stipulationsGroup_;
+  slotGroups_[4] = &underlyingsGroup_;
+  slotGroups_[5] = &legsGroup1_;
+  slotGroups_[6] = &partyIDsGroup_;
+  slotGroups_[7] = &securityAltIDGroup_;
+  slotGroups_[8] = &hopsGroup_;
+  slotGroups_[9] = &eventsGroup_;
+  slotGroups_[10] = &instrAttribGroup_;
+  tagTable(AllocationInstructionSlotOfTag(), 956, slotFields_, slotGroups_, 147);
 }
 
 AbstractField* AllocationInstruction::msgType() {
@@ -22412,9 +24255,58 @@ AbstractField* AllocationInstruction::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* ListCancelRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 30}, {9, 32}, {10, 1}, {34, 14}, {35, 16}, {43, 20}, {49, 21}, {50, 22}, {52, 23}, {56, 24}, {57, 25}, {58, 26}, {60, 27}, {66, 28}, {75, 29}, {89, 31}, {90, 33}, {91, 34}, {93, 35}, {97, 36}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {229, 13}, {347, 15}, {354, 17}, {355, 18}, {369, 19}, {627, 37}, {628, 37}, {629, 37}, {630, 37}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 ListCancelRequest::ListCancelRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &tradeOriginationDate_;
+  slotFields_[14] = &msgSeqNum_;
+  slotFields_[15] = &messageEncoding_;
+  slotFields_[16] = &msgType_;
+  slotFields_[17] = &encodedTextLen_;
+  slotFields_[18] = &encodedText_;
+  slotFields_[19] = &lastMsgSeqNumProcessed_;
+  slotFields_[20] = &possDupFlag_;
+  slotFields_[21] = &senderCompID_;
+  slotFields_[22] = &senderSubID_;
+  slotFields_[23] = &sendingTime_;
+  slotFields_[24] = &targetCompID_;
+  slotFields_[25] = &targetSubID_;
+  slotFields_[26] = &text_;
+  slotFields_[27] = &transactTime_;
+  slotFields_[28] = &listID_;
+  slotFields_[29] = &tradeDate_;
+  slotFields_[30] = &beginString_;
+  slotFields_[31] = &signature_;
+  slotFields_[32] = &bodyLength_;
+  slotFields_[33] = &secureDataLen_;
+  slotFields_[34] = &secureData_;
+  slotFields_[35] = &signatureLength_;
+  slotFields_[36] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(ListCancelRequestSlotOfTag(), 956, slotFields_, slotGroups_, 37);
 }
 
 AbstractField* ListCancelRequest::msgType() {
@@ -22747,9 +24639,58 @@ AbstractField* ListCancelRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* ListExecuteSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 30}, {9, 32}, {10, 1}, {34, 13}, {35, 15}, {43, 21}, {49, 22}, {50, 23}, {52, 24}, {56, 25}, {57, 26}, {58, 27}, {60, 28}, {66, 29}, {89, 31}, {90, 33}, {91, 34}, {93, 35}, {97, 36}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {347, 14}, {354, 16}, {355, 17}, {369, 18}, {390, 19}, {391, 20}, {627, 37}, {628, 37}, {629, 37}, {630, 37}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 ListExecute::ListExecute() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &encodedTextLen_;
+  slotFields_[17] = &encodedText_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &bidID_;
+  slotFields_[20] = &clientBidID_;
+  slotFields_[21] = &possDupFlag_;
+  slotFields_[22] = &senderCompID_;
+  slotFields_[23] = &senderSubID_;
+  slotFields_[24] = &sendingTime_;
+  slotFields_[25] = &targetCompID_;
+  slotFields_[26] = &targetSubID_;
+  slotFields_[27] = &text_;
+  slotFields_[28] = &transactTime_;
+  slotFields_[29] = &listID_;
+  slotFields_[30] = &beginString_;
+  slotFields_[31] = &signature_;
+  slotFields_[32] = &bodyLength_;
+  slotFields_[33] = &secureDataLen_;
+  slotFields_[34] = &secureData_;
+  slotFields_[35] = &signatureLength_;
+  slotFields_[36] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(ListExecuteSlotOfTag(), 956, slotFields_, slotGroups_, 37);
 }
 
 AbstractField* ListExecute::msgType() {
@@ -23087,9 +25028,55 @@ AbstractField* ListExecute::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* ListStatusRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 27}, {9, 29}, {10, 1}, {34, 13}, {35, 15}, {43, 19}, {49, 20}, {50, 21}, {52, 22}, {56, 23}, {57, 24}, {58, 25}, {66, 26}, {89, 28}, {90, 30}, {91, 31}, {93, 32}, {97, 33}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {347, 14}, {354, 16}, {355, 17}, {369, 18}, {627, 34}, {628, 34}, {629, 34}, {630, 34}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 ListStatusRequest::ListStatusRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &encodedTextLen_;
+  slotFields_[17] = &encodedText_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &possDupFlag_;
+  slotFields_[20] = &senderCompID_;
+  slotFields_[21] = &senderSubID_;
+  slotFields_[22] = &sendingTime_;
+  slotFields_[23] = &targetCompID_;
+  slotFields_[24] = &targetSubID_;
+  slotFields_[25] = &text_;
+  slotFields_[26] = &listID_;
+  slotFields_[27] = &beginString_;
+  slotFields_[28] = &signature_;
+  slotFields_[29] = &bodyLength_;
+  slotFields_[30] = &secureDataLen_;
+  slotFields_[31] = &secureData_;
+  slotFields_[32] = &signatureLength_;
+  slotFields_[33] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(ListStatusRequestSlotOfTag(), 956, slotFields_, slotGroups_, 34);
 }
 
 AbstractField* ListStatusRequest::msgType() {
@@ -23401,9 +25388,63 @@ AbstractField* ListStatusRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* ListStatusSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{6, 41}, {8, 31}, {9, 36}, {10, 1}, {11, 41}, {14, 41}, {34, 13}, {35, 15}, {39, 41}, {43, 18}, {49, 23}, {50, 24}, {52, 25}, {56, 26}, {57, 27}, {58, 41}, {60, 28}, {66, 29}, {68, 30}, {73, 41}, {82, 32}, {83, 33}, {84, 41}, {89, 34}, {90, 37}, {91, 38}, {93, 39}, {97, 40}, {103, 41}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {151, 41}, {212, 11}, {213, 12}, {347, 14}, {354, 41}, {355, 41}, {369, 16}, {429, 17}, {431, 19}, {444, 20}, {445, 21}, {446, 22}, {526, 41}, {627, 42}, {628, 42}, {629, 42}, {630, 42}, {636, 41}, {893, 35}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 ListStatus::ListStatus() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &lastMsgSeqNumProcessed_;
+  slotFields_[17] = &listStatusType_;
+  slotFields_[18] = &possDupFlag_;
+  slotFields_[19] = &listOrderStatus_;
+  slotFields_[20] = &listStatusText_;
+  slotFields_[21] = &encodedListStatusTextLen_;
+  slotFields_[22] = &encodedListStatusText_;
+  slotFields_[23] = &senderCompID_;
+  slotFields_[24] = &senderSubID_;
+  slotFields_[25] = &sendingTime_;
+  slotFields_[26] = &targetCompID_;
+  slotFields_[27] = &targetSubID_;
+  slotFields_[28] = &transactTime_;
+  slotFields_[29] = &listID_;
+  slotFields_[30] = &totNoOrders_;
+  slotFields_[31] = &beginString_;
+  slotFields_[32] = &noRpts_;
+  slotFields_[33] = &rptSeq_;
+  slotFields_[34] = &signature_;
+  slotFields_[35] = &lastFragment_;
+  slotFields_[36] = &bodyLength_;
+  slotFields_[37] = &secureDataLen_;
+  slotFields_[38] = &secureData_;
+  slotFields_[39] = &signatureLength_;
+  slotFields_[40] = &possResend_;
+  slotGroups_[0] = &ordersGroup2_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(ListStatusSlotOfTag(), 956, slotFields_, slotGroups_, 41);
 }
 
 AbstractField* ListStatus::msgType() {
@@ -23844,9 +25885,67 @@ AbstractField* ListStatus::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* AllocationInstructionAckSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 34}, {9, 39}, {10, 1}, {34, 14}, {35, 16}, {43, 20}, {49, 22}, {50, 23}, {52, 24}, {56, 25}, {57, 26}, {58, 28}, {60, 29}, {70, 31}, {75, 32}, {78, 44}, {79, 44}, {87, 36}, {88, 37}, {89, 38}, {90, 40}, {91, 41}, {93, 42}, {97, 43}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {161, 44}, {167, 11}, {212, 12}, {213, 13}, {347, 15}, {354, 17}, {355, 18}, {360, 44}, {361, 44}, {366, 44}, {369, 19}, {447, 45}, {448, 45}, {452, 45}, {453, 45}, {460, 21}, {467, 44}, {523, 45}, {573, 27}, {626, 30}, {627, 46}, {628, 46}, {629, 46}, {630, 46}, {661, 44}, {776, 44}, {793, 33}, {802, 45}, {803, 45}, {808, 35}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 AllocationInstructionAck::AllocationInstructionAck() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &securityType_;
+  slotFields_[12] = &xmlDataLen_;
+  slotFields_[13] = &xmlData_;
+  slotFields_[14] = &msgSeqNum_;
+  slotFields_[15] = &messageEncoding_;
+  slotFields_[16] = &msgType_;
+  slotFields_[17] = &encodedTextLen_;
+  slotFields_[18] = &encodedText_;
+  slotFields_[19] = &lastMsgSeqNumProcessed_;
+  slotFields_[20] = &possDupFlag_;
+  slotFields_[21] = &product_;
+  slotFields_[22] = &senderCompID_;
+  slotFields_[23] = &senderSubID_;
+  slotFields_[24] = &sendingTime_;
+  slotFields_[25] = &targetCompID_;
+  slotFields_[26] = &targetSubID_;
+  slotFields_[27] = &matchStatus_;
+  slotFields_[28] = &text_;
+  slotFields_[29] = &transactTime_;
+  slotFields_[30] = &allocType_;
+  slotFields_[31] = &allocID_;
+  slotFields_[32] = &tradeDate_;
+  slotFields_[33] = &secondaryAllocID_;
+  slotFields_[34] = &beginString_;
+  slotFields_[35] = &allocIntermedReqType_;
+  slotFields_[36] = &allocStatus_;
+  slotFields_[37] = &allocRejCode_;
+  slotFields_[38] = &signature_;
+  slotFields_[39] = &bodyLength_;
+  slotFields_[40] = &secureDataLen_;
+  slotFields_[41] = &secureData_;
+  slotFields_[42] = &signatureLength_;
+  slotFields_[43] = &possResend_;
+  slotGroups_[0] = &allocsGroup2_;
+  slotGroups_[1] = &partyIDsGroup_;
+  slotGroups_[2] = &hopsGroup_;
+  tagTable(AllocationInstructionAckSlotOfTag(), 956, slotFields_, slotGroups_, 44);
 }
 
 AbstractField* AllocationInstructionAck::msgType() {
@@ -24360,9 +26459,111 @@ AbstractField* AllocationInstructionAck::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* DontKnowTradeSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 74}, {9, 80}, {10, 1}, {17, 16}, {22, 25}, {31, 36}, {32, 37}, {34, 38}, {35, 42}, {37, 48}, {38, 49}, {43, 50}, {48, 58}, {49, 59}, {50, 60}, {52, 62}, {54, 63}, {55, 66}, {56, 67}, {57, 68}, {58, 69}, {65, 70}, {89, 79}, {90, 81}, {91, 82}, {93, 83}, {97, 85}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {122, 6}, {127, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {152, 14}, {167, 15}, {198, 17}, {200, 18}, {201, 19}, {202, 20}, {206, 21}, {207, 22}, {212, 23}, {213, 24}, {223, 26}, {224, 27}, {225, 28}, {226, 29}, {227, 30}, {228, 31}, {231, 32}, {239, 33}, {240, 34}, {241, 86}, {242, 86}, {243, 86}, {244, 86}, {245, 86}, {246, 86}, {247, 86}, {248, 87}, {249, 87}, {250, 87}, {251, 87}, {252, 87}, {253, 87}, {254, 87}, {255, 35}, {256, 86}, {257, 87}, {305, 86}, {306, 86}, {307, 86}, {308, 86}, {309, 86}, {310, 86}, {311, 86}, {312, 86}, {313, 86}, {315, 86}, {316, 86}, {317, 86}, {318, 86}, {347, 39}, {348, 40}, {349, 41}, {350, 43}, {351, 44}, {354, 45}, {355, 46}, {362, 86}, {363, 86}, {364, 86}, {365, 86}, {369, 47}, {435, 86}, {436, 86}, {454, 88}, {455, 88}, {456, 88}, {457, 86}, {458, 86}, {459, 86}, {460, 51}, {461, 52}, {462, 86}, {463, 86}, {468, 53}, {469, 54}, {470, 55}, {471, 56}, {472, 57}, {516, 61}, {541, 64}, {542, 86}, {543, 65}, {555, 87}, {556, 87}, {592, 86}, {593, 86}, {594, 86}, {595, 86}, {596, 87}, {597, 87}, {598, 87}, {599, 87}, {600, 87}, {601, 87}, {602, 87}, {603, 87}, {604, 87}, {605, 87}, {606, 87}, {607, 87}, {608, 87}, {609, 87}, {610, 87}, {611, 87}, {612, 87}, {613, 87}, {614, 87}, {615, 87}, {616, 87}, {617, 87}, {618, 87}, {619, 87}, {620, 87}, {621, 87}, {622, 87}, {623, 87}, {624, 87}, {627, 89}, {628, 89}, {629, 89}, {630, 89}, {667, 71}, {691, 72}, {711, 86}, {739, 87}, {740, 87}, {762, 73}, {763, 86}, {764, 87}, {810, 86}, {864, 90}, {865, 90}, {866, 90}, {867, 90}, {868, 90}, {873, 75}, {874, 76}, {875, 77}, {876, 78}, {877, 86}, {878, 86}, {879, 86}, {882, 86}, {883, 86}, {884, 86}, {885, 86}, {886, 86}, {887, 86}, {888, 86}, {889, 86}, {941, 86}, {942, 87}, {947, 84}, {955, 87}, {956, 87}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 DontKnowTrade::DontKnowTrade() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &dKReason_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &cashOrderQty_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &execID_;
+  slotFields_[17] = &secondaryOrderID_;
+  slotFields_[18] = &maturityMonthYear_;
+  slotFields_[19] = &putOrCall_;
+  slotFields_[20] = &strikePrice_;
+  slotFields_[21] = &optAttribute_;
+  slotFields_[22] = &securityExchange_;
+  slotFields_[23] = &xmlDataLen_;
+  slotFields_[24] = &xmlData_;
+  slotFields_[25] = &securityIDSource_;
+  slotFields_[26] = &couponRate_;
+  slotFields_[27] = &couponPaymentDate_;
+  slotFields_[28] = &issueDate_;
+  slotFields_[29] = &repurchaseTerm_;
+  slotFields_[30] = &repurchaseRate_;
+  slotFields_[31] = &factor_;
+  slotFields_[32] = &contractMultiplier_;
+  slotFields_[33] = &repoCollateralSecurityType_;
+  slotFields_[34] = &redemptionDate_;
+  slotFields_[35] = &creditRating_;
+  slotFields_[36] = &lastPx_;
+  slotFields_[37] = &lastQty_;
+  slotFields_[38] = &msgSeqNum_;
+  slotFields_[39] = &messageEncoding_;
+  slotFields_[40] = &encodedIssuerLen_;
+  slotFields_[41] = &encodedIssuer_;
+  slotFields_[42] = &msgType_;
+  slotFields_[43] = &encodedSecurityDescLen_;
+  slotFields_[44] = &encodedSecurityDesc_;
+  slotFields_[45] = &encodedTextLen_;
+  slotFields_[46] = &encodedText_;
+  slotFields_[47] = &lastMsgSeqNumProcessed_;
+  slotFields_[48] = &orderID_;
+  slotFields_[49] = &orderQty_;
+  slotFields_[50] = &possDupFlag_;
+  slotFields_[51] = &product_;
+  slotFields_[52] = &cFICode_;
+  slotFields_[53] = &roundingDirection_;
+  slotFields_[54] = &roundingModulus_;
+  slotFields_[55] = &countryOfIssue_;
+  slotFields_[56] = &stateOrProvinceOfIssue_;
+  slotFields_[57] = &localeOfIssue_;
+  slotFields_[58] = &securityID_;
+  slotFields_[59] = &senderCompID_;
+  slotFields_[60] = &senderSubID_;
+  slotFields_[61] = &orderPercent_;
+  slotFields_[62] = &sendingTime_;
+  slotFields_[63] = &side_;
+  slotFields_[64] = &maturityDate_;
+  slotFields_[65] = &instrRegistry_;
+  slotFields_[66] = &symbol_;
+  slotFields_[67] = &targetCompID_;
+  slotFields_[68] = &targetSubID_;
+  slotFields_[69] = &text_;
+  slotFields_[70] = &symbolSfx_;
+  slotFields_[71] = &contractSettlMonth_;
+  slotFields_[72] = &pool_;
+  slotFields_[73] = &securitySubType_;
+  slotFields_[74] = &beginString_;
+  slotFields_[75] = &datedDate_;
+  slotFields_[76] = &interestAccrualDate_;
+  slotFields_[77] = &cPProgram_;
+  slotFields_[78] = &cPRegType_;
+  slotFields_[79] = &signature_;
+  slotFields_[80] = &bodyLength_;
+  slotFields_[81] = &secureDataLen_;
+  slotFields_[82] = &secureData_;
+  slotFields_[83] = &signatureLength_;
+  slotFields_[84] = &strikeCurrency_;
+  slotFields_[85] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &securityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  tagTable(DontKnowTradeSlotOfTag(), 956, slotFields_, slotGroups_, 86);
 }
 
 AbstractField* DontKnowTrade::msgType() {
@@ -25795,9 +27996,59 @@ AbstractField* DontKnowTrade::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* QuoteRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 37}, {8, 30}, {9, 32}, {10, 1}, {11, 2}, {15, 37}, {22, 37}, {34, 15}, {35, 17}, {38, 37}, {40, 37}, {43, 21}, {44, 37}, {48, 37}, {49, 22}, {50, 23}, {52, 24}, {54, 37}, {55, 37}, {56, 26}, {57, 27}, {58, 28}, {60, 37}, {62, 37}, {63, 37}, {64, 37}, {65, 37}, {89, 31}, {90, 33}, {91, 34}, {93, 35}, {97, 36}, {106, 37}, {107, 37}, {115, 3}, {116, 4}, {122, 5}, {126, 37}, {128, 6}, {129, 7}, {131, 8}, {140, 37}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {146, 37}, {152, 37}, {167, 37}, {192, 37}, {193, 37}, {200, 37}, {201, 37}, {202, 37}, {206, 37}, {207, 37}, {212, 13}, {213, 14}, {218, 37}, {220, 37}, {221, 37}, {222, 37}, {223, 37}, {224, 37}, {225, 37}, {226, 37}, {227, 37}, {228, 37}, {229, 37}, {231, 37}, {232, 37}, {233, 37}, {234, 37}, {235, 37}, {236, 37}, {239, 37}, {240, 37}, {241, 37}, {242, 37}, {243, 37}, {244, 37}, {245, 37}, {246, 37}, {247, 37}, {248, 37}, {249, 37}, {250, 37}, {251, 37}, {252, 37}, {253, 37}, {254, 37}, {255, 37}, {256, 37}, {257, 37}, {303, 37}, {305, 37}, {306, 37}, {307, 37}, {308, 37}, {309, 37}, {310, 37}, {311, 37}, {312, 37}, {313, 37}, {315, 37}, {316, 37}, {317, 37}, {318, 37}, {336, 37}, {347, 16}, {348, 37}, {349, 37}, {350, 37}, {351, 37}, {354, 18}, {355, 19}, {362, 37}, {363, 37}, {364, 37}, {365, 37}, {369, 20}, {423, 37}, {435, 37}, {436, 37}, {447, 37}, {448, 37}, {452, 37}, {453, 37}, {454, 37}, {455, 37}, {456, 37}, {457, 37}, {458, 37}, {459, 37}, {460, 37}, {461, 37}, {462, 37}, {463, 37}, {468, 37}, {469, 37}, {470, 37}, {471, 37}, {472, 37}, {516, 37}, {523, 37}, {524, 37}, {525, 37}, {528, 25}, {537, 37}, {538, 37}, {539, 37}, {541, 37}, {542, 37}, {543, 37}, {545, 37}, {555, 37}, {556, 37}, {581, 37}, {587, 37}, {588, 37}, {592, 37}, {593, 37}, {594, 37}, {595, 37}, {596, 37}, {597, 37}, {598, 37}, {599, 37}, {600, 37}, {601, 37}, {602, 37}, {603, 37}, {604, 37}, {605, 37}, {606, 37}, {607, 37}, {608, 37}, {609, 37}, {610, 37}, {611, 37}, {612, 37}, {613, 37}, {614, 37}, {615, 37}, {616, 37}, {617, 37}, {618, 37}, {619, 37}, {620, 37}, {621, 37}, {622, 37}, {623, 37}, {624, 37}, {625, 37}, {627, 38}, {628, 38}, {629, 38}, {630, 38}, {640, 37}, {644, 29}, {660, 37}, {662, 37}, {663, 37}, {667, 37}, {676, 37}, {677, 37}, {678, 37}, {679, 37}, {680, 37}, {683, 37}, {687, 37}, {688, 37}, {689, 37}, {690, 37}, {691, 37}, {692, 37}, {695, 37}, {696, 37}, {697, 37}, {698, 37}, {699, 37}, {701, 37}, {711, 37}, {735, 37}, {739, 37}, {740, 37}, {761, 37}, {762, 37}, {763, 37}, {764, 37}, {788, 37}, {802, 37}, {803, 37}, {804, 37}, {805, 37}, {810, 37}, {854, 37}, {864, 37}, {865, 37}, {866, 37}, {867, 37}, {868, 37}, {873, 37}, {874, 37}, {875, 37}, {876, 37}, {877, 37}, {878, 37}, {879, 37}, {882, 37}, {883, 37}, {884, 37}, {885, 37}, {886, 37}, {887, 37}, {888, 37}, {889, 37}, {898, 37}, {913, 37}, {914, 37}, {915, 37}, {916, 37}, {917, 37}, {918, 37}, {919, 37}, {941, 37}, {942, 37}, {947, 37}, {955, 37}, {956, 37}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 QuoteRequest::QuoteRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &clOrdID_;
+  slotFields_[3] = &onBehalfOfCompID_;
+  slotFields_[4] = &onBehalfOfSubID_;
+  slotFields_[5] = &origSendingTime_;
+  slotFields_[6] = &deliverToCompID_;
+  slotFields_[7] = &deliverToSubID_;
+  slotFields_[8] = &quoteReqID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &xmlDataLen_;
+  slotFields_[14] = &xmlData_;
+  slotFields_[15] = &msgSeqNum_;
+  slotFields_[16] = &messageEncoding_;
+  slotFields_[17] = &msgType_;
+  slotFields_[18] = &encodedTextLen_;
+  slotFields_[19] = &encodedText_;
+  slotFields_[20] = &lastMsgSeqNumProcessed_;
+  slotFields_[21] = &possDupFlag_;
+  slotFields_[22] = &senderCompID_;
+  slotFields_[23] = &senderSubID_;
+  slotFields_[24] = &sendingTime_;
+  slotFields_[25] = &orderCapacity_;
+  slotFields_[26] = &targetCompID_;
+  slotFields_[27] = &targetSubID_;
+  slotFields_[28] = &text_;
+  slotFields_[29] = &rFQReqID_;
+  slotFields_[30] = &beginString_;
+  slotFields_[31] = &signature_;
+  slotFields_[32] = &bodyLength_;
+  slotFields_[33] = &secureDataLen_;
+  slotFields_[34] = &secureData_;
+  slotFields_[35] = &signatureLength_;
+  slotFields_[36] = &possResend_;
+  slotGroups_[0] = &relatedSymGroup1_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(QuoteRequestSlotOfTag(), 956, slotFields_, slotGroups_, 37);
 }
 
 AbstractField* QuoteRequest::msgType() {
@@ -27677,9 +29928,176 @@ AbstractField* QuoteRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* QuoteSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 128}, {9, 135}, {10, 2}, {12, 9}, {13, 13}, {15, 23}, {22, 41}, {34, 59}, {35, 63}, {38, 69}, {40, 70}, {43, 72}, {48, 80}, {49, 81}, {50, 82}, {52, 84}, {54, 87}, {55, 90}, {56, 91}, {57, 92}, {58, 93}, {60, 96}, {62, 97}, {63, 99}, {64, 104}, {65, 111}, {89, 133}, {90, 136}, {91, 137}, {93, 145}, {97, 147}, {100, 3}, {106, 4}, {107, 5}, {115, 6}, {116, 7}, {117, 8}, {122, 10}, {128, 11}, {129, 12}, {131, 14}, {132, 15}, {133, 16}, {134, 17}, {135, 18}, {142, 19}, {143, 20}, {144, 21}, {145, 22}, {152, 24}, {156, 25}, {167, 26}, {188, 27}, {189, 28}, {190, 29}, {191, 30}, {192, 31}, {193, 32}, {200, 33}, {201, 34}, {202, 35}, {206, 36}, {207, 37}, {212, 38}, {213, 39}, {218, 40}, {220, 42}, {221, 43}, {222, 44}, {223, 45}, {224, 46}, {225, 47}, {226, 48}, {227, 49}, {228, 50}, {231, 51}, {232, 148}, {233, 148}, {234, 148}, {235, 52}, {236, 53}, {239, 54}, {240, 55}, {241, 149}, {242, 149}, {243, 149}, {244, 149}, {245, 149}, {246, 149}, {247, 149}, {248, 150}, {249, 150}, {250, 150}, {251, 150}, {252, 150}, {253, 150}, {254, 150}, {255, 56}, {256, 149}, {257, 150}, {301, 57}, {305, 149}, {306, 149}, {307, 149}, {308, 149}, {309, 149}, {310, 149}, {311, 149}, {312, 149}, {313, 149}, {315, 149}, {316, 149}, {317, 149}, {318, 149}, {336, 58}, {347, 60}, {348, 61}, {349, 62}, {350, 64}, {351, 65}, {354, 66}, {355, 67}, {362, 149}, {363, 149}, {364, 149}, {365, 149}, {369, 68}, {423, 71}, {435, 149}, {436, 149}, {447, 151}, {448, 151}, {452, 151}, {453, 151}, {454, 152}, {455, 152}, {456, 152}, {457, 149}, {458, 149}, {459, 149}, {460, 73}, {461, 74}, {462, 149}, {463, 149}, {468, 75}, {469, 76}, {470, 77}, {471, 78}, {472, 79}, {516, 83}, {523, 151}, {524, 150}, {525, 150}, {528, 85}, {537, 86}, {538, 150}, {539, 150}, {541, 88}, {542, 149}, {543, 89}, {545, 150}, {555, 150}, {556, 150}, {581, 94}, {582, 95}, {587, 150}, {588, 150}, {592, 149}, {593, 149}, {594, 149}, {595, 149}, {596, 150}, {597, 150}, {598, 150}, {599, 150}, {600, 150}, {601, 150}, {602, 150}, {603, 150}, {604, 150}, {605, 150}, {606, 150}, {607, 150}, {608, 150}, {609, 150}, {610, 150}, {611, 150}, {612, 150}, {613, 150}, {614, 150}, {615, 150}, {616, 150}, {617, 150}, {618, 150}, {619, 150}, {620, 150}, {621, 150}, {622, 150}, {623, 150}, {624, 150}, {625, 98}, {627, 153}, {628, 153}, {629, 153}, {630, 153}, {631, 100}, {632, 101}, {633, 102}, {634, 103}, {642, 105}, {643, 106}, {645, 107}, {646, 108}, {647, 109}, {648, 110}, {656, 112}, {657, 113}, {660, 114}, {662, 115}, {663, 116}, {667, 117}, {676, 150}, {677, 150}, {678, 150}, {679, 150}, {680, 150}, {681, 150}, {683, 150}, {684, 150}, {686, 150}, {687, 150}, {688, 150}, {689, 150}, {690, 150}, {691, 118}, {693, 119}, {695, 154}, {696, 120}, {697, 121}, {698, 122}, {699, 123}, {701, 124}, {711, 149}, {735, 154}, {739, 150}, {740, 150}, {761, 125}, {762, 126}, {763, 149}, {764, 150}, {788, 127}, {802, 151}, {803, 151}, {804, 150}, {805, 150}, {810, 149}, {864, 155}, {865, 155}, {866, 155}, {867, 155}, {868, 155}, {873, 129}, {874, 130}, {875, 131}, {876, 132}, {877, 149}, {878, 149}, {879, 149}, {882, 149}, {883, 149}, {884, 149}, {885, 149}, {886, 149}, {887, 149}, {888, 149}, {889, 149}, {898, 134}, {913, 138}, {914, 139}, {915, 140}, {916, 141}, {917, 142}, {918, 143}, {919, 144}, {941, 149}, {942, 150}, {947, 146}, {955, 150}, {956, 150}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 Quote::Quote() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &exDestination_;
+  slotFields_[4] = &issuer_;
+  slotFields_[5] = &securityDesc_;
+  slotFields_[6] = &onBehalfOfCompID_;
+  slotFields_[7] = &onBehalfOfSubID_;
+  slotFields_[8] = &quoteID_;
+  slotFields_[9] = &commission_;
+  slotFields_[10] = &origSendingTime_;
+  slotFields_[11] = &deliverToCompID_;
+  slotFields_[12] = &deliverToSubID_;
+  slotFields_[13] = &commType_;
+  slotFields_[14] = &quoteReqID_;
+  slotFields_[15] = &bidPx_;
+  slotFields_[16] = &offerPx_;
+  slotFields_[17] = &bidSize_;
+  slotFields_[18] = &offerSize_;
+  slotFields_[19] = &senderLocationID_;
+  slotFields_[20] = &targetLocationID_;
+  slotFields_[21] = &onBehalfOfLocationID_;
+  slotFields_[22] = &deliverToLocationID_;
+  slotFields_[23] = &currency_;
+  slotFields_[24] = &cashOrderQty_;
+  slotFields_[25] = &settlCurrFxRateCalc_;
+  slotFields_[26] = &securityType_;
+  slotFields_[27] = &bidSpotRate_;
+  slotFields_[28] = &bidForwardPoints_;
+  slotFields_[29] = &offerSpotRate_;
+  slotFields_[30] = &offerForwardPoints_;
+  slotFields_[31] = &orderQty2_;
+  slotFields_[32] = &settlDate2_;
+  slotFields_[33] = &maturityMonthYear_;
+  slotFields_[34] = &putOrCall_;
+  slotFields_[35] = &strikePrice_;
+  slotFields_[36] = &optAttribute_;
+  slotFields_[37] = &securityExchange_;
+  slotFields_[38] = &xmlDataLen_;
+  slotFields_[39] = &xmlData_;
+  slotFields_[40] = &spread_;
+  slotFields_[41] = &securityIDSource_;
+  slotFields_[42] = &benchmarkCurveCurrency_;
+  slotFields_[43] = &benchmarkCurveName_;
+  slotFields_[44] = &benchmarkCurvePoint_;
+  slotFields_[45] = &couponRate_;
+  slotFields_[46] = &couponPaymentDate_;
+  slotFields_[47] = &issueDate_;
+  slotFields_[48] = &repurchaseTerm_;
+  slotFields_[49] = &repurchaseRate_;
+  slotFields_[50] = &factor_;
+  slotFields_[51] = &contractMultiplier_;
+  slotFields_[52] = &yieldType_;
+  slotFields_[53] = &yield_;
+  slotFields_[54] = &repoCollateralSecurityType_;
+  slotFields_[55] = &redemptionDate_;
+  slotFields_[56] = &creditRating_;
+  slotFields_[57] = &quoteResponseLevel_;
+  slotFields_[58] = &tradingSessionID_;
+  slotFields_[59] = &msgSeqNum_;
+  slotFields_[60] = &messageEncoding_;
+  slotFields_[61] = &encodedIssuerLen_;
+  slotFields_[62] = &encodedIssuer_;
+  slotFields_[63] = &msgType_;
+  slotFields_[64] = &encodedSecurityDescLen_;
+  slotFields_[65] = &encodedSecurityDesc_;
+  slotFields_[66] = &encodedTextLen_;
+  slotFields_[67] = &encodedText_;
+  slotFields_[68] = &lastMsgSeqNumProcessed_;
+  slotFields_[69] = &orderQty_;
+  slotFields_[70] = &ordType_;
+  slotFields_[71] = &priceType_;
+  slotFields_[72] = &possDupFlag_;
+  slotFields_[73] = &product_;
+  slotFields_[74] = &cFICode_;
+  slotFields_[75] = &roundingDirection_;
+  slotFields_[76] = &roundingModulus_;
+  slotFields_[77] = &countryOfIssue_;
+  slotFields_[78] = &stateOrProvinceOfIssue_;
+  slotFields_[79] = &localeOfIssue_;
+  slotFields_[80] = &securityID_;
+  slotFields_[81] = &senderCompID_;
+  slotFields_[82] = &senderSubID_;
+  slotFields_[83] = &orderPercent_;
+  slotFields_[84] = &sendingTime_;
+  slotFields_[85] = &orderCapacity_;
+  slotFields_[86] = &quoteType_;
+  slotFields_[87] = &side_;
+  slotFields_[88] = &maturityDate_;
+  slotFields_[89] = &instrRegistry_;
+  slotFields_[90] = &symbol_;
+  slotFields_[91] = &targetCompID_;
+  slotFields_[92] = &targetSubID_;
+  slotFields_[93] = &text_;
+  slotFields_[94] = &accountType_;
+  slotFields_[95] = &custOrderCapacity_;
+  slotFields_[96] = &transactTime_;
+  slotFields_[97] = &validUntilTime_;
+  slotFields_[98] = &tradingSessionSubID_;
+  slotFields_[99] = &settlType_;
+  slotFields_[100] = &midPx_;
+  slotFields_[101] = &bidYield_;
+  slotFields_[102] = &midYield_;
+  slotFields_[103] = &offerYield_;
+  slotFields_[104] = &settlDate_;
+  slotFields_[105] = &bidForwardPoints2_;
+  slotFields_[106] = &offerForwardPoints2_;
+  slotFields_[107] = &mktBidPx_;
+  slotFields_[108] = &mktOfferPx_;
+  slotFields_[109] = &minBidSize_;
+  slotFields_[110] = &minOfferSize_;
+  slotFields_[111] = &symbolSfx_;
+  slotFields_[112] = &settlCurrBidFxRate_;
+  slotFields_[113] = &settlCurrOfferFxRate_;
+  slotFields_[114] = &acctIDSource_;
+  slotFields_[115] = &benchmarkPrice_;
+  slotFields_[116] = &benchmarkPriceType_;
+  slotFields_[117] = &contractSettlMonth_;
+  slotFields_[118] = &pool_;
+  slotFields_[119] = &quoteRespID_;
+  slotFields_[120] = &yieldRedemptionDate_;
+  slotFields_[121] = &yieldRedemptionPrice_;
+  slotFields_[122] = &yieldRedemptionPriceType_;
+  slotFields_[123] = &benchmarkSecurityID_;
+  slotFields_[124] = &yieldCalcDate_;
+  slotFields_[125] = &benchmarkSecurityIDSource_;
+  slotFields_[126] = &securitySubType_;
+  slotFields_[127] = &terminationType_;
+  slotFields_[128] = &beginString_;
+  slotFields_[129] = &datedDate_;
+  slotFields_[130] = &interestAccrualDate_;
+  slotFields_[131] = &cPProgram_;
+  slotFields_[132] = &cPRegType_;
+  slotFields_[133] = &signature_;
+  slotFields_[134] = &marginRatio_;
+  slotFields_[135] = &bodyLength_;
+  slotFields_[136] = &secureDataLen_;
+  slotFields_[137] = &secureData_;
+  slotFields_[138] = &agreementDesc_;
+  slotFields_[139] = &agreementID_;
+  slotFields_[140] = &agreementDate_;
+  slotFields_[141] = &startDate_;
+  slotFields_[142] = &endDate_;
+  slotFields_[143] = &agreementCurrency_;
+  slotFields_[144] = &deliveryType_;
+  slotFields_[145] = &signatureLength_;
+  slotFields_[146] = &strikeCurrency_;
+  slotFields_[147] = &possResend_;
+  slotGroups_[0] = &stipulationsGroup_;
+  slotGroups_[1] = &underlyingsGroup_;
+  slotGroups_[2] = &legsGroup4_;
+  slotGroups_[3] = &partyIDsGroup_;
+  slotGroups_[4] = &securityAltIDGroup_;
+  slotGroups_[5] = &hopsGroup_;
+  slotGroups_[6] = &quoteQualifiersGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(QuoteSlotOfTag(), 956, slotFields_, slotGroups_, 148);
 }
 
 AbstractField* Quote::msgType() {
@@ -29819,9 +32237,61 @@ AbstractField* Quote::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SettlementInstructionsSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 32}, {9, 34}, {10, 1}, {11, 2}, {34, 15}, {35, 17}, {43, 21}, {49, 22}, {50, 23}, {52, 24}, {54, 39}, {56, 25}, {57, 26}, {58, 27}, {60, 28}, {85, 39}, {89, 33}, {90, 35}, {91, 36}, {93, 37}, {97, 38}, {115, 3}, {116, 4}, {122, 5}, {126, 39}, {128, 6}, {129, 7}, {142, 8}, {143, 9}, {144, 10}, {145, 11}, {160, 12}, {162, 39}, {163, 39}, {165, 39}, {167, 39}, {168, 39}, {169, 39}, {170, 39}, {171, 39}, {172, 39}, {212, 13}, {213, 14}, {214, 39}, {347, 16}, {354, 18}, {355, 19}, {369, 20}, {447, 39}, {448, 39}, {452, 39}, {453, 39}, {460, 39}, {461, 39}, {476, 39}, {488, 39}, {489, 39}, {490, 39}, {491, 39}, {492, 39}, {503, 39}, {504, 39}, {505, 39}, {523, 39}, {627, 40}, {628, 40}, {629, 40}, {630, 40}, {777, 29}, {778, 39}, {779, 39}, {781, 39}, {782, 39}, {783, 39}, {784, 39}, {785, 39}, {786, 39}, {787, 39}, {791, 30}, {792, 31}, {801, 39}, {802, 39}, {803, 39}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SettlementInstructions::SettlementInstructions() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &clOrdID_;
+  slotFields_[3] = &onBehalfOfCompID_;
+  slotFields_[4] = &onBehalfOfSubID_;
+  slotFields_[5] = &origSendingTime_;
+  slotFields_[6] = &deliverToCompID_;
+  slotFields_[7] = &deliverToSubID_;
+  slotFields_[8] = &senderLocationID_;
+  slotFields_[9] = &targetLocationID_;
+  slotFields_[10] = &onBehalfOfLocationID_;
+  slotFields_[11] = &deliverToLocationID_;
+  slotFields_[12] = &settlInstMode_;
+  slotFields_[13] = &xmlDataLen_;
+  slotFields_[14] = &xmlData_;
+  slotFields_[15] = &msgSeqNum_;
+  slotFields_[16] = &messageEncoding_;
+  slotFields_[17] = &msgType_;
+  slotFields_[18] = &encodedTextLen_;
+  slotFields_[19] = &encodedText_;
+  slotFields_[20] = &lastMsgSeqNumProcessed_;
+  slotFields_[21] = &possDupFlag_;
+  slotFields_[22] = &senderCompID_;
+  slotFields_[23] = &senderSubID_;
+  slotFields_[24] = &sendingTime_;
+  slotFields_[25] = &targetCompID_;
+  slotFields_[26] = &targetSubID_;
+  slotFields_[27] = &text_;
+  slotFields_[28] = &transactTime_;
+  slotFields_[29] = &settlInstMsgID_;
+  slotFields_[30] = &settlInstReqID_;
+  slotFields_[31] = &settlInstReqRejCode_;
+  slotFields_[32] = &beginString_;
+  slotFields_[33] = &signature_;
+  slotFields_[34] = &bodyLength_;
+  slotFields_[35] = &secureDataLen_;
+  slotFields_[36] = &secureData_;
+  slotFields_[37] = &signatureLength_;
+  slotFields_[38] = &possResend_;
+  slotGroups_[0] = &settlInstGroup_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(SettlementInstructionsSlotOfTag(), 956, slotFields_, slotGroups_, 39);
 }
 
 AbstractField* SettlementInstructions::msgType() {
@@ -30477,9 +32947,64 @@ AbstractField* SettlementInstructions::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* MarketDataRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 31}, {9, 35}, {10, 1}, {22, 40}, {34, 19}, {35, 21}, {43, 23}, {48, 40}, {49, 24}, {50, 25}, {52, 26}, {55, 40}, {56, 29}, {57, 30}, {65, 40}, {89, 34}, {90, 36}, {91, 37}, {93, 38}, {97, 39}, {106, 40}, {107, 40}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {146, 40}, {167, 40}, {200, 40}, {201, 40}, {202, 40}, {206, 40}, {207, 40}, {212, 11}, {213, 12}, {223, 40}, {224, 40}, {225, 40}, {226, 40}, {227, 40}, {228, 40}, {231, 40}, {239, 40}, {240, 40}, {241, 40}, {242, 40}, {243, 40}, {244, 40}, {245, 40}, {246, 40}, {247, 40}, {248, 40}, {249, 40}, {250, 40}, {251, 40}, {252, 40}, {253, 40}, {254, 40}, {255, 40}, {256, 40}, {257, 40}, {262, 13}, {263, 14}, {264, 15}, {265, 16}, {266, 17}, {267, 41}, {269, 41}, {286, 18}, {305, 40}, {306, 40}, {307, 40}, {308, 40}, {309, 40}, {310, 40}, {311, 40}, {312, 40}, {313, 40}, {315, 40}, {316, 40}, {317, 40}, {318, 40}, {336, 42}, {347, 20}, {348, 40}, {349, 40}, {350, 40}, {351, 40}, {362, 40}, {363, 40}, {364, 40}, {365, 40}, {369, 22}, {386, 42}, {435, 40}, {436, 40}, {454, 40}, {455, 40}, {456, 40}, {457, 40}, {458, 40}, {459, 40}, {460, 40}, {461, 40}, {462, 40}, {463, 40}, {470, 40}, {471, 40}, {472, 40}, {541, 40}, {542, 40}, {543, 40}, {546, 27}, {547, 28}, {555, 40}, {556, 40}, {592, 40}, {593, 40}, {594, 40}, {595, 40}, {596, 40}, {597, 40}, {598, 40}, {599, 40}, {600, 40}, {601, 40}, {602, 40}, {603, 40}, {604, 40}, {605, 40}, {606, 40}, {607, 40}, {608, 40}, {609, 40}, {610, 40}, {611, 40}, {612, 40}, {613, 40}, {614, 40}, {615, 40}, {616, 40}, {617, 40}, {618, 40}, {619, 40}, {620, 40}, {621, 40}, {622, 40}, {623, 40}, {624, 40}, {625, 42}, {627, 43}, {628, 43}, {629, 43}, {630, 43}, {667, 40}, {691, 40}, {711, 40}, {739, 40}, {740, 40}, {762, 40}, {763, 40}, {764, 40}, {810, 40}, {812, 32}, {815, 33}, {864, 40}, {865, 40}, {866, 40}, {867, 40}, {868, 40}, {873, 40}, {874, 40}, {875, 40}, {876, 40}, {877, 40}, {878, 40}, {879, 40}, {882, 40}, {883, 40}, {884, 40}, {885, 40}, {886, 40}, {887, 40}, {888, 40}, {889, 40}, {941, 40}, {942, 40}, {947, 40}, {955, 40}, {956, 40}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 MarketDataRequest::MarketDataRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &mDReqID_;
+  slotFields_[14] = &subscriptionRequestType_;
+  slotFields_[15] = &marketDepth_;
+  slotFields_[16] = &mDUpdateType_;
+  slotFields_[17] = &aggregatedBook_;
+  slotFields_[18] = &openCloseSettlFlag_;
+  slotFields_[19] = &msgSeqNum_;
+  slotFields_[20] = &messageEncoding_;
+  slotFields_[21] = &msgType_;
+  slotFields_[22] = &lastMsgSeqNumProcessed_;
+  slotFields_[23] = &possDupFlag_;
+  slotFields_[24] = &senderCompID_;
+  slotFields_[25] = &senderSubID_;
+  slotFields_[26] = &sendingTime_;
+  slotFields_[27] = &scope_;
+  slotFields_[28] = &mDImplicitDelete_;
+  slotFields_[29] = &targetCompID_;
+  slotFields_[30] = &targetSubID_;
+  slotFields_[31] = &beginString_;
+  slotFields_[32] = &applQueueMax_;
+  slotFields_[33] = &applQueueAction_;
+  slotFields_[34] = &signature_;
+  slotFields_[35] = &bodyLength_;
+  slotFields_[36] = &secureDataLen_;
+  slotFields_[37] = &secureData_;
+  slotFields_[38] = &signatureLength_;
+  slotFields_[39] = &possResend_;
+  slotGroups_[0] = &relatedSymGroup2_;
+  slotGroups_[1] = &mDEntryTypesGroup_;
+  slotGroups_[2] = &tradingSessionsGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  tagTable(MarketDataRequestSlotOfTag(), 956, slotFields_, slotGroups_, 40);
 }
 
 AbstractField* MarketDataRequest::msgType() {
@@ -31885,9 +34410,103 @@ AbstractField* MarketDataRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* MarketDataSnapshotFullRefreshSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 63}, {9, 71}, {10, 1}, {15, 77}, {18, 77}, {22, 21}, {34, 35}, {35, 39}, {37, 77}, {43, 43}, {48, 50}, {49, 51}, {50, 52}, {52, 53}, {55, 56}, {56, 57}, {57, 58}, {58, 77}, {59, 77}, {65, 59}, {89, 70}, {90, 72}, {91, 73}, {93, 74}, {97, 76}, {106, 2}, {107, 3}, {110, 77}, {115, 4}, {116, 5}, {122, 6}, {126, 77}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {167, 13}, {200, 14}, {201, 15}, {202, 16}, {206, 17}, {207, 18}, {212, 19}, {213, 20}, {223, 22}, {224, 23}, {225, 24}, {226, 25}, {227, 26}, {228, 27}, {231, 28}, {239, 29}, {240, 30}, {241, 78}, {242, 78}, {243, 78}, {244, 78}, {245, 78}, {246, 78}, {247, 78}, {248, 79}, {249, 79}, {250, 79}, {251, 79}, {252, 79}, {253, 79}, {254, 79}, {255, 31}, {256, 78}, {257, 79}, {262, 32}, {268, 77}, {269, 77}, {270, 77}, {271, 77}, {272, 77}, {273, 77}, {274, 77}, {275, 77}, {276, 77}, {277, 77}, {282, 77}, {283, 77}, {284, 77}, {286, 77}, {287, 77}, {288, 77}, {289, 77}, {290, 77}, {291, 33}, {292, 34}, {299, 77}, {305, 78}, {306, 78}, {307, 78}, {308, 78}, {309, 78}, {310, 78}, {311, 78}, {312, 78}, {313, 78}, {315, 78}, {316, 78}, {317, 78}, {318, 78}, {336, 77}, {346, 77}, {347, 36}, {348, 37}, {349, 38}, {350, 40}, {351, 41}, {354, 77}, {355, 77}, {362, 78}, {363, 78}, {364, 78}, {365, 78}, {369, 42}, {432, 77}, {435, 78}, {436, 78}, {451, 44}, {454, 80}, {455, 80}, {456, 80}, {457, 78}, {458, 78}, {459, 78}, {460, 45}, {461, 46}, {462, 78}, {463, 78}, {470, 47}, {471, 48}, {472, 49}, {541, 54}, {542, 78}, {543, 55}, {546, 77}, {555, 79}, {556, 79}, {592, 78}, {593, 78}, {594, 78}, {595, 78}, {596, 79}, {597, 79}, {598, 79}, {599, 79}, {600, 79}, {601, 79}, {602, 79}, {603, 79}, {604, 79}, {605, 79}, {606, 79}, {607, 79}, {608, 79}, {609, 79}, {610, 79}, {611, 79}, {612, 79}, {613, 79}, {614, 79}, {615, 79}, {616, 79}, {617, 79}, {618, 79}, {619, 79}, {620, 79}, {621, 79}, {622, 79}, {623, 79}, {624, 79}, {625, 77}, {627, 81}, {628, 81}, {629, 81}, {630, 81}, {667, 60}, {691, 61}, {711, 78}, {739, 79}, {740, 79}, {762, 62}, {763, 78}, {764, 79}, {810, 78}, {811, 77}, {813, 64}, {814, 65}, {864, 82}, {865, 82}, {866, 82}, {867, 82}, {868, 82}, {873, 66}, {874, 67}, {875, 68}, {876, 69}, {877, 78}, {878, 78}, {879, 78}, {882, 78}, {883, 78}, {884, 78}, {885, 78}, {886, 78}, {887, 78}, {888, 78}, {889, 78}, {941, 78}, {942, 79}, {947, 75}, {955, 79}, {956, 79}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 MarketDataSnapshotFullRefresh::MarketDataSnapshotFullRefresh() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &securityType_;
+  slotFields_[14] = &maturityMonthYear_;
+  slotFields_[15] = &putOrCall_;
+  slotFields_[16] = &strikePrice_;
+  slotFields_[17] = &optAttribute_;
+  slotFields_[18] = &securityExchange_;
+  slotFields_[19] = &xmlDataLen_;
+  slotFields_[20] = &xmlData_;
+  slotFields_[21] = &securityIDSource_;
+  slotFields_[22] = &couponRate_;
+  slotFields_[23] = &couponPaymentDate_;
+  slotFields_[24] = &issueDate_;
+  slotFields_[25] = &repurchaseTerm_;
+  slotFields_[26] = &repurchaseRate_;
+  slotFields_[27] = &factor_;
+  slotFields_[28] = &contractMultiplier_;
+  slotFields_[29] = &repoCollateralSecurityType_;
+  slotFields_[30] = &redemptionDate_;
+  slotFields_[31] = &creditRating_;
+  slotFields_[32] = &mDReqID_;
+  slotFields_[33] = &financialStatus_;
+  slotFields_[34] = &corporateAction_;
+  slotFields_[35] = &msgSeqNum_;
+  slotFields_[36] = &messageEncoding_;
+  slotFields_[37] = &encodedIssuerLen_;
+  slotFields_[38] = &encodedIssuer_;
+  slotFields_[39] = &msgType_;
+  slotFields_[40] = &encodedSecurityDescLen_;
+  slotFields_[41] = &encodedSecurityDesc_;
+  slotFields_[42] = &lastMsgSeqNumProcessed_;
+  slotFields_[43] = &possDupFlag_;
+  slotFields_[44] = &netChgPrevDay_;
+  slotFields_[45] = &product_;
+  slotFields_[46] = &cFICode_;
+  slotFields_[47] = &countryOfIssue_;
+  slotFields_[48] = &stateOrProvinceOfIssue_;
+  slotFields_[49] = &localeOfIssue_;
+  slotFields_[50] = &securityID_;
+  slotFields_[51] = &senderCompID_;
+  slotFields_[52] = &senderSubID_;
+  slotFields_[53] = &sendingTime_;
+  slotFields_[54] = &maturityDate_;
+  slotFields_[55] = &instrRegistry_;
+  slotFields_[56] = &symbol_;
+  slotFields_[57] = &targetCompID_;
+  slotFields_[58] = &targetSubID_;
+  slotFields_[59] = &symbolSfx_;
+  slotFields_[60] = &contractSettlMonth_;
+  slotFields_[61] = &pool_;
+  slotFields_[62] = &securitySubType_;
+  slotFields_[63] = &beginString_;
+  slotFields_[64] = &applQueueDepth_;
+  slotFields_[65] = &applQueueResolution_;
+  slotFields_[66] = &datedDate_;
+  slotFields_[67] = &interestAccrualDate_;
+  slotFields_[68] = &cPProgram_;
+  slotFields_[69] = &cPRegType_;
+  slotFields_[70] = &signature_;
+  slotFields_[71] = &bodyLength_;
+  slotFields_[72] = &secureDataLen_;
+  slotFields_[73] = &secureData_;
+  slotFields_[74] = &signatureLength_;
+  slotFields_[75] = &strikeCurrency_;
+  slotFields_[76] = &possResend_;
+  slotGroups_[0] = &mDEntriesGroup_;
+  slotGroups_[1] = &underlyingsGroup_;
+  slotGroups_[2] = &legsGroup1_;
+  slotGroups_[3] = &securityAltIDGroup_;
+  slotGroups_[4] = &hopsGroup_;
+  slotGroups_[5] = &eventsGroup_;
+  tagTable(MarketDataSnapshotFullRefreshSlotOfTag(), 956, slotFields_, slotGroups_, 77);
 }
 
 AbstractField* MarketDataSnapshotFullRefresh::msgType() {
@@ -33489,9 +36108,55 @@ AbstractField* MarketDataSnapshotFullRefresh::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* MarketDataIncrementalRefreshSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 24}, {9, 28}, {10, 1}, {15, 33}, {18, 33}, {22, 33}, {34, 14}, {35, 16}, {37, 33}, {43, 18}, {48, 33}, {49, 19}, {50, 20}, {52, 21}, {55, 33}, {56, 22}, {57, 23}, {58, 33}, {59, 33}, {65, 33}, {89, 27}, {90, 29}, {91, 30}, {93, 31}, {97, 32}, {106, 33}, {107, 33}, {110, 33}, {115, 2}, {116, 3}, {122, 4}, {126, 33}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {167, 33}, {200, 33}, {201, 33}, {202, 33}, {206, 33}, {207, 33}, {212, 11}, {213, 12}, {223, 33}, {224, 33}, {225, 33}, {226, 33}, {227, 33}, {228, 33}, {231, 33}, {239, 33}, {240, 33}, {241, 33}, {242, 33}, {243, 33}, {244, 33}, {245, 33}, {246, 33}, {247, 33}, {248, 33}, {249, 33}, {250, 33}, {251, 33}, {252, 33}, {253, 33}, {254, 33}, {255, 33}, {256, 33}, {257, 33}, {262, 13}, {268, 33}, {269, 33}, {270, 33}, {271, 33}, {272, 33}, {273, 33}, {274, 33}, {275, 33}, {276, 33}, {277, 33}, {278, 33}, {279, 33}, {280, 33}, {282, 33}, {283, 33}, {284, 33}, {285, 33}, {286, 33}, {287, 33}, {288, 33}, {289, 33}, {290, 33}, {291, 33}, {292, 33}, {299, 33}, {305, 33}, {306, 33}, {307, 33}, {308, 33}, {309, 33}, {310, 33}, {311, 33}, {312, 33}, {313, 33}, {315, 33}, {316, 33}, {317, 33}, {318, 33}, {336, 33}, {346, 33}, {347, 15}, {348, 33}, {349, 33}, {350, 33}, {351, 33}, {354, 33}, {355, 33}, {362, 33}, {363, 33}, {364, 33}, {365, 33}, {369, 17}, {432, 33}, {435, 33}, {436, 33}, {451, 33}, {454, 33}, {455, 33}, {456, 33}, {457, 33}, {458, 33}, {459, 33}, {460, 33}, {461, 33}, {462, 33}, {463, 33}, {470, 33}, {471, 33}, {472, 33}, {541, 33}, {542, 33}, {543, 33}, {546, 33}, {555, 33}, {556, 33}, {592, 33}, {593, 33}, {594, 33}, {595, 33}, {596, 33}, {597, 33}, {598, 33}, {599, 33}, {600, 33}, {601, 33}, {602, 33}, {603, 33}, {604, 33}, {605, 33}, {606, 33}, {607, 33}, {608, 33}, {609, 33}, {610, 33}, {611, 33}, {612, 33}, {613, 33}, {614, 33}, {615, 33}, {616, 33}, {617, 33}, {618, 33}, {619, 33}, {620, 33}, {621, 33}, {622, 33}, {623, 33}, {624, 33}, {625, 33}, {627, 34}, {628, 34}, {629, 34}, {630, 34}, {667, 33}, {691, 33}, {711, 33}, {739, 33}, {740, 33}, {762, 33}, {763, 33}, {764, 33}, {810, 33}, {811, 33}, {813, 25}, {814, 26}, {864, 33}, {865, 33}, {866, 33}, {867, 33}, {868, 33}, {873, 33}, {874, 33}, {875, 33}, {876, 33}, {877, 33}, {878, 33}, {879, 33}, {882, 33}, {883, 33}, {884, 33}, {885, 33}, {886, 33}, {887, 33}, {888, 33}, {889, 33}, {941, 33}, {942, 33}, {947, 33}, {955, 33}, {956, 33}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 MarketDataIncrementalRefresh::MarketDataIncrementalRefresh() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &mDReqID_;
+  slotFields_[14] = &msgSeqNum_;
+  slotFields_[15] = &messageEncoding_;
+  slotFields_[16] = &msgType_;
+  slotFields_[17] = &lastMsgSeqNumProcessed_;
+  slotFields_[18] = &possDupFlag_;
+  slotFields_[19] = &senderCompID_;
+  slotFields_[20] = &senderSubID_;
+  slotFields_[21] = &sendingTime_;
+  slotFields_[22] = &targetCompID_;
+  slotFields_[23] = &targetSubID_;
+  slotFields_[24] = &beginString_;
+  slotFields_[25] = &applQueueDepth_;
+  slotFields_[26] = &applQueueResolution_;
+  slotFields_[27] = &signature_;
+  slotFields_[28] = &bodyLength_;
+  slotFields_[29] = &secureDataLen_;
+  slotFields_[30] = &secureData_;
+  slotFields_[31] = &signatureLength_;
+  slotFields_[32] = &possResend_;
+  slotGroups_[0] = &mDEntriesGroup1_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(MarketDataIncrementalRefreshSlotOfTag(), 956, slotFields_, slotGroups_, 33);
 }
 
 AbstractField* MarketDataIncrementalRefresh::msgType() {
@@ -35069,9 +37734,57 @@ AbstractField* MarketDataIncrementalRefresh::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* MarketDataRequestRejectSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 28}, {9, 30}, {10, 1}, {34, 15}, {35, 17}, {43, 21}, {49, 22}, {50, 23}, {52, 24}, {56, 25}, {57, 26}, {58, 27}, {89, 29}, {90, 31}, {91, 32}, {93, 33}, {97, 34}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {262, 13}, {281, 14}, {347, 16}, {354, 18}, {355, 19}, {369, 20}, {627, 35}, {628, 35}, {629, 35}, {630, 35}, {816, 36}, {817, 36}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 MarketDataRequestReject::MarketDataRequestReject() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &mDReqID_;
+  slotFields_[14] = &mDReqRejReason_;
+  slotFields_[15] = &msgSeqNum_;
+  slotFields_[16] = &messageEncoding_;
+  slotFields_[17] = &msgType_;
+  slotFields_[18] = &encodedTextLen_;
+  slotFields_[19] = &encodedText_;
+  slotFields_[20] = &lastMsgSeqNumProcessed_;
+  slotFields_[21] = &possDupFlag_;
+  slotFields_[22] = &senderCompID_;
+  slotFields_[23] = &senderSubID_;
+  slotFields_[24] = &sendingTime_;
+  slotFields_[25] = &targetCompID_;
+  slotFields_[26] = &targetSubID_;
+  slotFields_[27] = &text_;
+  slotFields_[28] = &beginString_;
+  slotFields_[29] = &signature_;
+  slotFields_[30] = &bodyLength_;
+  slotFields_[31] = &secureDataLen_;
+  slotFields_[32] = &secureData_;
+  slotFields_[33] = &signatureLength_;
+  slotFields_[34] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  slotGroups_[1] = &altMDSourceGroup_;
+  tagTable(MarketDataRequestRejectSlotOfTag(), 956, slotFields_, slotGroups_, 35);
 }
 
 AbstractField* MarketDataRequestReject::msgType() {
@@ -35413,9 +38126,62 @@ AbstractField* MarketDataRequestReject::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* QuoteCancelSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 32}, {9, 34}, {10, 2}, {22, 39}, {34, 19}, {35, 21}, {43, 23}, {48, 39}, {49, 24}, {50, 25}, {52, 26}, {55, 39}, {56, 27}, {57, 28}, {65, 39}, {89, 33}, {90, 35}, {91, 36}, {93, 37}, {97, 38}, {106, 39}, {107, 39}, {115, 3}, {116, 4}, {117, 5}, {122, 6}, {128, 7}, {129, 8}, {131, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 39}, {200, 39}, {201, 39}, {202, 39}, {206, 39}, {207, 39}, {212, 14}, {213, 15}, {223, 39}, {224, 39}, {225, 39}, {226, 39}, {227, 39}, {228, 39}, {231, 39}, {239, 39}, {240, 39}, {241, 39}, {242, 39}, {243, 39}, {244, 39}, {245, 39}, {246, 39}, {247, 39}, {248, 39}, {249, 39}, {250, 39}, {251, 39}, {252, 39}, {253, 39}, {254, 39}, {255, 39}, {256, 39}, {257, 39}, {295, 39}, {298, 16}, {301, 17}, {305, 39}, {306, 39}, {307, 39}, {308, 39}, {309, 39}, {310, 39}, {311, 39}, {312, 39}, {313, 39}, {315, 39}, {316, 39}, {317, 39}, {318, 39}, {336, 18}, {347, 20}, {348, 39}, {349, 39}, {350, 39}, {351, 39}, {362, 39}, {363, 39}, {364, 39}, {365, 39}, {369, 22}, {435, 39}, {436, 39}, {447, 40}, {448, 40}, {452, 40}, {453, 40}, {454, 39}, {455, 39}, {456, 39}, {457, 39}, {458, 39}, {459, 39}, {460, 39}, {461, 39}, {462, 39}, {463, 39}, {470, 39}, {471, 39}, {472, 39}, {523, 40}, {541, 39}, {542, 39}, {543, 39}, {555, 39}, {556, 39}, {581, 29}, {592, 39}, {593, 39}, {594, 39}, {595, 39}, {596, 39}, {597, 39}, {598, 39}, {599, 39}, {600, 39}, {601, 39}, {602, 39}, {603, 39}, {604, 39}, {605, 39}, {606, 39}, {607, 39}, {608, 39}, {609, 39}, {610, 39}, {611, 39}, {612, 39}, {613, 39}, {614, 39}, {615, 39}, {616, 39}, {617, 39}, {618, 39}, {619, 39}, {620, 39}, {621, 39}, {622, 39}, {623, 39}, {624, 39}, {625, 30}, {627, 41}, {628, 41}, {629, 41}, {630, 41}, {660, 31}, {667, 39}, {691, 39}, {711, 39}, {739, 39}, {740, 39}, {762, 39}, {763, 39}, {764, 39}, {788, 39}, {802, 40}, {803, 40}, {810, 39}, {864, 39}, {865, 39}, {866, 39}, {867, 39}, {868, 39}, {873, 39}, {874, 39}, {875, 39}, {876, 39}, {877, 39}, {878, 39}, {879, 39}, {882, 39}, {883, 39}, {884, 39}, {885, 39}, {886, 39}, {887, 39}, {888, 39}, {889, 39}, {898, 39}, {913, 39}, {914, 39}, {915, 39}, {916, 39}, {917, 39}, {918, 39}, {919, 39}, {941, 39}, {942, 39}, {947, 39}, {955, 39}, {956, 39}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 QuoteCancel::QuoteCancel() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &onBehalfOfCompID_;
+  slotFields_[4] = &onBehalfOfSubID_;
+  slotFields_[5] = &quoteID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &quoteReqID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &xmlDataLen_;
+  slotFields_[15] = &xmlData_;
+  slotFields_[16] = &quoteCancelType_;
+  slotFields_[17] = &quoteResponseLevel_;
+  slotFields_[18] = &tradingSessionID_;
+  slotFields_[19] = &msgSeqNum_;
+  slotFields_[20] = &messageEncoding_;
+  slotFields_[21] = &msgType_;
+  slotFields_[22] = &lastMsgSeqNumProcessed_;
+  slotFields_[23] = &possDupFlag_;
+  slotFields_[24] = &senderCompID_;
+  slotFields_[25] = &senderSubID_;
+  slotFields_[26] = &sendingTime_;
+  slotFields_[27] = &targetCompID_;
+  slotFields_[28] = &targetSubID_;
+  slotFields_[29] = &accountType_;
+  slotFields_[30] = &tradingSessionSubID_;
+  slotFields_[31] = &acctIDSource_;
+  slotFields_[32] = &beginString_;
+  slotFields_[33] = &signature_;
+  slotFields_[34] = &bodyLength_;
+  slotFields_[35] = &secureDataLen_;
+  slotFields_[36] = &secureData_;
+  slotFields_[37] = &signatureLength_;
+  slotFields_[38] = &possResend_;
+  slotGroups_[0] = &quoteEntriesGroup_;
+  slotGroups_[1] = &partyIDsGroup_;
+  slotGroups_[2] = &hopsGroup_;
+  tagTable(QuoteCancelSlotOfTag(), 956, slotFields_, slotGroups_, 39);
 }
 
 AbstractField* QuoteCancel::msgType() {
@@ -36886,9 +39652,114 @@ AbstractField* QuoteCancel::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* QuoteStatusRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 68}, {9, 75}, {10, 2}, {22, 23}, {34, 36}, {35, 40}, {43, 44}, {48, 50}, {49, 51}, {50, 52}, {52, 53}, {55, 56}, {56, 57}, {57, 58}, {65, 62}, {89, 73}, {90, 76}, {91, 77}, {93, 85}, {97, 87}, {106, 3}, {107, 4}, {115, 5}, {116, 6}, {117, 7}, {122, 8}, {128, 9}, {129, 10}, {142, 11}, {143, 12}, {144, 13}, {145, 14}, {167, 15}, {200, 16}, {201, 17}, {202, 18}, {206, 19}, {207, 20}, {212, 21}, {213, 22}, {223, 24}, {224, 25}, {225, 26}, {226, 27}, {227, 28}, {228, 29}, {231, 30}, {239, 31}, {240, 32}, {241, 88}, {242, 88}, {243, 88}, {244, 88}, {245, 88}, {246, 88}, {247, 88}, {248, 89}, {249, 89}, {250, 89}, {251, 89}, {252, 89}, {253, 89}, {254, 89}, {255, 33}, {256, 88}, {257, 89}, {263, 34}, {305, 88}, {306, 88}, {307, 88}, {308, 88}, {309, 88}, {310, 88}, {311, 88}, {312, 88}, {313, 88}, {315, 88}, {316, 88}, {317, 88}, {318, 88}, {336, 35}, {347, 37}, {348, 38}, {349, 39}, {350, 41}, {351, 42}, {362, 88}, {363, 88}, {364, 88}, {365, 88}, {369, 43}, {435, 88}, {436, 88}, {447, 90}, {448, 90}, {452, 90}, {453, 90}, {454, 91}, {455, 91}, {456, 91}, {457, 88}, {458, 88}, {459, 88}, {460, 45}, {461, 46}, {462, 88}, {463, 88}, {470, 47}, {471, 48}, {472, 49}, {523, 90}, {541, 54}, {542, 88}, {543, 55}, {555, 89}, {556, 89}, {581, 59}, {592, 88}, {593, 88}, {594, 88}, {595, 88}, {596, 89}, {597, 89}, {598, 89}, {599, 89}, {600, 89}, {601, 89}, {602, 89}, {603, 89}, {604, 89}, {605, 89}, {606, 89}, {607, 89}, {608, 89}, {609, 89}, {610, 89}, {611, 89}, {612, 89}, {613, 89}, {614, 89}, {615, 89}, {616, 89}, {617, 89}, {618, 89}, {619, 89}, {620, 89}, {621, 89}, {622, 89}, {623, 89}, {624, 89}, {625, 60}, {627, 92}, {628, 92}, {629, 92}, {630, 92}, {649, 61}, {660, 63}, {667, 64}, {691, 65}, {711, 88}, {739, 89}, {740, 89}, {762, 66}, {763, 88}, {764, 89}, {788, 67}, {802, 90}, {803, 90}, {810, 88}, {864, 93}, {865, 93}, {866, 93}, {867, 93}, {868, 93}, {873, 69}, {874, 70}, {875, 71}, {876, 72}, {877, 88}, {878, 88}, {879, 88}, {882, 88}, {883, 88}, {884, 88}, {885, 88}, {886, 88}, {887, 88}, {888, 88}, {889, 88}, {898, 74}, {913, 78}, {914, 79}, {915, 80}, {916, 81}, {917, 82}, {918, 83}, {919, 84}, {941, 88}, {942, 89}, {947, 86}, {955, 89}, {956, 89}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 QuoteStatusRequest::QuoteStatusRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &quoteID_;
+  slotFields_[8] = &origSendingTime_;
+  slotFields_[9] = &deliverToCompID_;
+  slotFields_[10] = &deliverToSubID_;
+  slotFields_[11] = &senderLocationID_;
+  slotFields_[12] = &targetLocationID_;
+  slotFields_[13] = &onBehalfOfLocationID_;
+  slotFields_[14] = &deliverToLocationID_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &maturityMonthYear_;
+  slotFields_[17] = &putOrCall_;
+  slotFields_[18] = &strikePrice_;
+  slotFields_[19] = &optAttribute_;
+  slotFields_[20] = &securityExchange_;
+  slotFields_[21] = &xmlDataLen_;
+  slotFields_[22] = &xmlData_;
+  slotFields_[23] = &securityIDSource_;
+  slotFields_[24] = &couponRate_;
+  slotFields_[25] = &couponPaymentDate_;
+  slotFields_[26] = &issueDate_;
+  slotFields_[27] = &repurchaseTerm_;
+  slotFields_[28] = &repurchaseRate_;
+  slotFields_[29] = &factor_;
+  slotFields_[30] = &contractMultiplier_;
+  slotFields_[31] = &repoCollateralSecurityType_;
+  slotFields_[32] = &redemptionDate_;
+  slotFields_[33] = &creditRating_;
+  slotFields_[34] = &subscriptionRequestType_;
+  slotFields_[35] = &tradingSessionID_;
+  slotFields_[36] = &msgSeqNum_;
+  slotFields_[37] = &messageEncoding_;
+  slotFields_[38] = &encodedIssuerLen_;
+  slotFields_[39] = &encodedIssuer_;
+  slotFields_[40] = &msgType_;
+  slotFields_[41] = &encodedSecurityDescLen_;
+  slotFields_[42] = &encodedSecurityDesc_;
+  slotFields_[43] = &lastMsgSeqNumProcessed_;
+  slotFields_[44] = &possDupFlag_;
+  slotFields_[45] = &product_;
+  slotFields_[46] = &cFICode_;
+  slotFields_[47] = &countryOfIssue_;
+  slotFields_[48] = &stateOrProvinceOfIssue_;
+  slotFields_[49] = &localeOfIssue_;
+  slotFields_[50] = &securityID_;
+  slotFields_[51] = &senderCompID_;
+  slotFields_[52] = &senderSubID_;
+  slotFields_[53] = &sendingTime_;
+  slotFields_[54] = &maturityDate_;
+  slotFields_[55] = &instrRegistry_;
+  slotFields_[56] = &symbol_;
+  slotFields_[57] = &targetCompID_;
+  slotFields_[58] = &targetSubID_;
+  slotFields_[59] = &accountType_;
+  slotFields_[60] = &tradingSessionSubID_;
+  slotFields_[61] = &quoteStatusReqID_;
+  slotFields_[62] = &symbolSfx_;
+  slotFields_[63] = &acctIDSource_;
+  slotFields_[64] = &contractSettlMonth_;
+  slotFields_[65] = &pool_;
+  slotFields_[66] = &securitySubType_;
+  slotFields_[67] = &terminationType_;
+  slotFields_[68] = &beginString_;
+  slotFields_[69] = &datedDate_;
+  slotFields_[70] = &interestAccrualDate_;
+  slotFields_[71] = &cPProgram_;
+  slotFields_[72] = &cPRegType_;
+  slotFields_[73] = &signature_;
+  slotFields_[74] = &marginRatio_;
+  slotFields_[75] = &bodyLength_;
+  slotFields_[76] = &secureDataLen_;
+  slotFields_[77] = &secureData_;
+  slotFields_[78] = &agreementDesc_;
+  slotFields_[79] = &agreementID_;
+  slotFields_[80] = &agreementDate_;
+  slotFields_[81] = &startDate_;
+  slotFields_[82] = &endDate_;
+  slotFields_[83] = &agreementCurrency_;
+  slotFields_[84] = &deliveryType_;
+  slotFields_[85] = &signatureLength_;
+  slotFields_[86] = &strikeCurrency_;
+  slotFields_[87] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &partyIDsGroup_;
+  slotGroups_[3] = &securityAltIDGroup_;
+  slotGroups_[4] = &hopsGroup_;
+  slotGroups_[5] = &eventsGroup_;
+  tagTable(QuoteStatusRequestSlotOfTag(), 956, slotFields_, slotGroups_, 88);
 }
 
 AbstractField* QuoteStatusRequest::msgType() {
@@ -38394,9 +41265,65 @@ AbstractField* QuoteStatusRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* MassQuoteAcknowledgementSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 35}, {9, 37}, {10, 2}, {15, 42}, {22, 42}, {34, 19}, {35, 21}, {40, 42}, {43, 25}, {48, 42}, {49, 26}, {50, 27}, {52, 28}, {55, 42}, {56, 30}, {57, 31}, {58, 32}, {60, 42}, {62, 42}, {64, 42}, {65, 42}, {89, 36}, {90, 38}, {91, 39}, {93, 40}, {97, 41}, {106, 42}, {107, 42}, {115, 3}, {116, 4}, {117, 5}, {122, 6}, {128, 7}, {129, 8}, {131, 9}, {132, 42}, {133, 42}, {134, 42}, {135, 42}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 42}, {188, 42}, {189, 42}, {190, 42}, {191, 42}, {192, 42}, {193, 42}, {200, 42}, {201, 42}, {202, 42}, {206, 42}, {207, 42}, {212, 14}, {213, 15}, {223, 42}, {224, 42}, {225, 42}, {226, 42}, {227, 42}, {228, 42}, {231, 42}, {239, 42}, {240, 42}, {241, 42}, {242, 42}, {243, 42}, {244, 42}, {245, 42}, {246, 42}, {247, 42}, {248, 42}, {249, 42}, {250, 42}, {251, 42}, {252, 42}, {253, 42}, {254, 42}, {255, 42}, {256, 42}, {257, 42}, {295, 42}, {296, 42}, {297, 16}, {299, 42}, {300, 17}, {301, 18}, {302, 42}, {304, 42}, {305, 42}, {306, 42}, {307, 42}, {308, 42}, {309, 42}, {310, 42}, {311, 42}, {312, 42}, {313, 42}, {315, 42}, {316, 42}, {317, 42}, {318, 42}, {336, 42}, {347, 20}, {348, 42}, {349, 42}, {350, 42}, {351, 42}, {354, 22}, {355, 23}, {362, 42}, {363, 42}, {364, 42}, {365, 42}, {368, 42}, {369, 24}, {435, 42}, {436, 42}, {447, 43}, {448, 43}, {452, 43}, {453, 43}, {454, 42}, {455, 42}, {456, 42}, {457, 42}, {458, 42}, {459, 42}, {460, 42}, {461, 42}, {462, 42}, {463, 42}, {470, 42}, {471, 42}, {472, 42}, {523, 43}, {537, 29}, {541, 42}, {542, 42}, {543, 42}, {555, 42}, {556, 42}, {581, 33}, {592, 42}, {593, 42}, {594, 42}, {595, 42}, {596, 42}, {597, 42}, {598, 42}, {599, 42}, {600, 42}, {601, 42}, {602, 42}, {603, 42}, {604, 42}, {605, 42}, {606, 42}, {607, 42}, {608, 42}, {609, 42}, {610, 42}, {611, 42}, {612, 42}, {613, 42}, {614, 42}, {615, 42}, {616, 42}, {617, 42}, {618, 42}, {619, 42}, {620, 42}, {621, 42}, {622, 42}, {623, 42}, {624, 42}, {625, 42}, {627, 44}, {628, 44}, {629, 44}, {630, 44}, {631, 42}, {632, 42}, {633, 42}, {634, 42}, {642, 42}, {643, 42}, {660, 34}, {667, 42}, {691, 42}, {739, 42}, {740, 42}, {762, 42}, {763, 42}, {764, 42}, {802, 43}, {803, 43}, {810, 42}, {864, 42}, {865, 42}, {866, 42}, {867, 42}, {868, 42}, {873, 42}, {874, 42}, {875, 42}, {876, 42}, {877, 42}, {878, 42}, {879, 42}, {882, 42}, {883, 42}, {884, 42}, {885, 42}, {886, 42}, {887, 42}, {888, 42}, {889, 42}, {893, 42}, {941, 42}, {942, 42}, {947, 42}, {955, 42}, {956, 42}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 MassQuoteAcknowledgement::MassQuoteAcknowledgement() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &onBehalfOfCompID_;
+  slotFields_[4] = &onBehalfOfSubID_;
+  slotFields_[5] = &quoteID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &quoteReqID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &xmlDataLen_;
+  slotFields_[15] = &xmlData_;
+  slotFields_[16] = &quoteStatus_;
+  slotFields_[17] = &quoteRejectReason_;
+  slotFields_[18] = &quoteResponseLevel_;
+  slotFields_[19] = &msgSeqNum_;
+  slotFields_[20] = &messageEncoding_;
+  slotFields_[21] = &msgType_;
+  slotFields_[22] = &encodedTextLen_;
+  slotFields_[23] = &encodedText_;
+  slotFields_[24] = &lastMsgSeqNumProcessed_;
+  slotFields_[25] = &possDupFlag_;
+  slotFields_[26] = &senderCompID_;
+  slotFields_[27] = &senderSubID_;
+  slotFields_[28] = &sendingTime_;
+  slotFields_[29] = &quoteType_;
+  slotFields_[30] = &targetCompID_;
+  slotFields_[31] = &targetSubID_;
+  slotFields_[32] = &text_;
+  slotFields_[33] = &accountType_;
+  slotFields_[34] = &acctIDSource_;
+  slotFields_[35] = &beginString_;
+  slotFields_[36] = &signature_;
+  slotFields_[37] = &bodyLength_;
+  slotFields_[38] = &secureDataLen_;
+  slotFields_[39] = &secureData_;
+  slotFields_[40] = &signatureLength_;
+  slotFields_[41] = &possResend_;
+  slotGroups_[0] = &quoteSetsGroup_;
+  slotGroups_[1] = &partyIDsGroup_;
+  slotGroups_[2] = &hopsGroup_;
+  tagTable(MassQuoteAcknowledgementSlotOfTag(), 956, slotFields_, slotGroups_, 42);
 }
 
 AbstractField* MassQuoteAcknowledgement::msgType() {
@@ -40016,9 +42943,109 @@ AbstractField* MassQuoteAcknowledgement::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SecurityDefinitionRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 69}, {9, 77}, {10, 1}, {15, 13}, {22, 22}, {34, 37}, {35, 41}, {43, 47}, {48, 53}, {49, 54}, {50, 55}, {52, 56}, {55, 59}, {56, 60}, {57, 61}, {58, 62}, {65, 64}, {89, 76}, {90, 78}, {91, 79}, {93, 80}, {97, 82}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {167, 14}, {200, 15}, {201, 16}, {202, 17}, {206, 18}, {207, 19}, {212, 20}, {213, 21}, {223, 23}, {224, 24}, {225, 25}, {226, 26}, {227, 27}, {228, 28}, {231, 29}, {239, 30}, {240, 31}, {241, 83}, {242, 83}, {243, 83}, {244, 83}, {245, 83}, {246, 83}, {247, 83}, {248, 84}, {249, 84}, {250, 84}, {251, 84}, {252, 84}, {253, 84}, {254, 84}, {255, 32}, {256, 83}, {257, 84}, {263, 33}, {305, 83}, {306, 83}, {307, 83}, {308, 83}, {309, 83}, {310, 83}, {311, 83}, {312, 83}, {313, 83}, {315, 83}, {316, 83}, {317, 83}, {318, 83}, {320, 34}, {321, 35}, {336, 36}, {347, 38}, {348, 39}, {349, 40}, {350, 42}, {351, 43}, {354, 44}, {355, 45}, {362, 83}, {363, 83}, {364, 83}, {365, 83}, {369, 46}, {435, 83}, {436, 83}, {454, 85}, {455, 85}, {456, 85}, {457, 83}, {458, 83}, {459, 83}, {460, 48}, {461, 49}, {462, 83}, {463, 83}, {470, 50}, {471, 51}, {472, 52}, {541, 57}, {542, 83}, {543, 58}, {555, 84}, {556, 84}, {592, 83}, {593, 83}, {594, 83}, {595, 83}, {596, 84}, {597, 84}, {598, 84}, {599, 84}, {600, 84}, {601, 84}, {602, 84}, {603, 84}, {604, 84}, {605, 84}, {606, 84}, {607, 84}, {608, 84}, {609, 84}, {610, 84}, {611, 84}, {612, 84}, {613, 84}, {614, 84}, {615, 84}, {616, 84}, {617, 84}, {618, 84}, {619, 84}, {620, 84}, {621, 84}, {622, 84}, {623, 84}, {624, 84}, {625, 63}, {627, 86}, {628, 86}, {629, 86}, {630, 86}, {667, 65}, {668, 66}, {691, 67}, {711, 83}, {739, 84}, {740, 84}, {762, 68}, {763, 83}, {764, 84}, {810, 83}, {827, 70}, {864, 87}, {865, 87}, {866, 87}, {867, 87}, {868, 87}, {869, 71}, {870, 88}, {871, 88}, {872, 88}, {873, 72}, {874, 73}, {875, 74}, {876, 75}, {877, 83}, {878, 83}, {879, 83}, {882, 83}, {883, 83}, {884, 83}, {885, 83}, {886, 83}, {887, 83}, {888, 83}, {889, 83}, {941, 83}, {942, 84}, {947, 81}, {955, 84}, {956, 84}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SecurityDefinitionRequest::SecurityDefinitionRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &currency_;
+  slotFields_[14] = &securityType_;
+  slotFields_[15] = &maturityMonthYear_;
+  slotFields_[16] = &putOrCall_;
+  slotFields_[17] = &strikePrice_;
+  slotFields_[18] = &optAttribute_;
+  slotFields_[19] = &securityExchange_;
+  slotFields_[20] = &xmlDataLen_;
+  slotFields_[21] = &xmlData_;
+  slotFields_[22] = &securityIDSource_;
+  slotFields_[23] = &couponRate_;
+  slotFields_[24] = &couponPaymentDate_;
+  slotFields_[25] = &issueDate_;
+  slotFields_[26] = &repurchaseTerm_;
+  slotFields_[27] = &repurchaseRate_;
+  slotFields_[28] = &factor_;
+  slotFields_[29] = &contractMultiplier_;
+  slotFields_[30] = &repoCollateralSecurityType_;
+  slotFields_[31] = &redemptionDate_;
+  slotFields_[32] = &creditRating_;
+  slotFields_[33] = &subscriptionRequestType_;
+  slotFields_[34] = &securityReqID_;
+  slotFields_[35] = &securityRequestType_;
+  slotFields_[36] = &tradingSessionID_;
+  slotFields_[37] = &msgSeqNum_;
+  slotFields_[38] = &messageEncoding_;
+  slotFields_[39] = &encodedIssuerLen_;
+  slotFields_[40] = &encodedIssuer_;
+  slotFields_[41] = &msgType_;
+  slotFields_[42] = &encodedSecurityDescLen_;
+  slotFields_[43] = &encodedSecurityDesc_;
+  slotFields_[44] = &encodedTextLen_;
+  slotFields_[45] = &encodedText_;
+  slotFields_[46] = &lastMsgSeqNumProcessed_;
+  slotFields_[47] = &possDupFlag_;
+  slotFields_[48] = &product_;
+  slotFields_[49] = &cFICode_;
+  slotFields_[50] = &countryOfIssue_;
+  slotFields_[51] = &stateOrProvinceOfIssue_;
+  slotFields_[52] = &localeOfIssue_;
+  slotFields_[53] = &securityID_;
+  slotFields_[54] = &senderCompID_;
+  slotFields_[55] = &senderSubID_;
+  slotFields_[56] = &sendingTime_;
+  slotFields_[57] = &maturityDate_;
+  slotFields_[58] = &instrRegistry_;
+  slotFields_[59] = &symbol_;
+  slotFields_[60] = &targetCompID_;
+  slotFields_[61] = &targetSubID_;
+  slotFields_[62] = &text_;
+  slotFields_[63] = &tradingSessionSubID_;
+  slotFields_[64] = &symbolSfx_;
+  slotFields_[65] = &contractSettlMonth_;
+  slotFields_[66] = &deliveryForm_;
+  slotFields_[67] = &pool_;
+  slotFields_[68] = &securitySubType_;
+  slotFields_[69] = &beginString_;
+  slotFields_[70] = &expirationCycle_;
+  slotFields_[71] = &pctAtRisk_;
+  slotFields_[72] = &datedDate_;
+  slotFields_[73] = &interestAccrualDate_;
+  slotFields_[74] = &cPProgram_;
+  slotFields_[75] = &cPRegType_;
+  slotFields_[76] = &signature_;
+  slotFields_[77] = &bodyLength_;
+  slotFields_[78] = &secureDataLen_;
+  slotFields_[79] = &secureData_;
+  slotFields_[80] = &signatureLength_;
+  slotFields_[81] = &strikeCurrency_;
+  slotFields_[82] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &securityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  slotGroups_[5] = &instrAttribGroup_;
+  tagTable(SecurityDefinitionRequestSlotOfTag(), 956, slotFields_, slotGroups_, 83);
 }
 
 AbstractField* SecurityDefinitionRequest::msgType() {
@@ -41463,9 +44490,111 @@ AbstractField* SecurityDefinitionRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SecurityDefinitionSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 71}, {9, 79}, {10, 1}, {15, 13}, {22, 22}, {34, 37}, {35, 41}, {43, 47}, {48, 53}, {49, 54}, {50, 55}, {52, 56}, {55, 59}, {56, 60}, {57, 63}, {58, 64}, {65, 66}, {89, 78}, {90, 80}, {91, 81}, {93, 82}, {97, 84}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {167, 14}, {200, 15}, {201, 16}, {202, 17}, {206, 18}, {207, 19}, {212, 20}, {213, 21}, {223, 23}, {224, 24}, {225, 25}, {226, 26}, {227, 27}, {228, 28}, {231, 29}, {239, 30}, {240, 31}, {241, 85}, {242, 85}, {243, 85}, {244, 85}, {245, 85}, {246, 85}, {247, 85}, {248, 86}, {249, 86}, {250, 86}, {251, 86}, {252, 86}, {253, 86}, {254, 86}, {255, 32}, {256, 85}, {257, 86}, {305, 85}, {306, 85}, {307, 85}, {308, 85}, {309, 85}, {310, 85}, {311, 85}, {312, 85}, {313, 85}, {315, 85}, {316, 85}, {317, 85}, {318, 85}, {320, 33}, {322, 34}, {323, 35}, {336, 36}, {347, 38}, {348, 39}, {349, 40}, {350, 42}, {351, 43}, {354, 44}, {355, 45}, {362, 85}, {363, 85}, {364, 85}, {365, 85}, {369, 46}, {435, 85}, {436, 85}, {454, 87}, {455, 87}, {456, 87}, {457, 85}, {458, 85}, {459, 85}, {460, 48}, {461, 49}, {462, 85}, {463, 85}, {470, 50}, {471, 51}, {472, 52}, {541, 57}, {542, 85}, {543, 58}, {555, 86}, {556, 86}, {561, 61}, {562, 62}, {592, 85}, {593, 85}, {594, 85}, {595, 85}, {596, 86}, {597, 86}, {598, 86}, {599, 86}, {600, 86}, {601, 86}, {602, 86}, {603, 86}, {604, 86}, {605, 86}, {606, 86}, {607, 86}, {608, 86}, {609, 86}, {610, 86}, {611, 86}, {612, 86}, {613, 86}, {614, 86}, {615, 86}, {616, 86}, {617, 86}, {618, 86}, {619, 86}, {620, 86}, {621, 86}, {622, 86}, {623, 86}, {624, 86}, {625, 65}, {627, 88}, {628, 88}, {629, 88}, {630, 88}, {667, 67}, {668, 68}, {691, 69}, {711, 85}, {739, 86}, {740, 86}, {762, 70}, {763, 85}, {764, 86}, {810, 85}, {827, 72}, {864, 89}, {865, 89}, {866, 89}, {867, 89}, {868, 89}, {869, 73}, {870, 90}, {871, 90}, {872, 90}, {873, 74}, {874, 75}, {875, 76}, {876, 77}, {877, 85}, {878, 85}, {879, 85}, {882, 85}, {883, 85}, {884, 85}, {885, 85}, {886, 85}, {887, 85}, {888, 85}, {889, 85}, {941, 85}, {942, 86}, {947, 83}, {955, 86}, {956, 86}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SecurityDefinition::SecurityDefinition() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &currency_;
+  slotFields_[14] = &securityType_;
+  slotFields_[15] = &maturityMonthYear_;
+  slotFields_[16] = &putOrCall_;
+  slotFields_[17] = &strikePrice_;
+  slotFields_[18] = &optAttribute_;
+  slotFields_[19] = &securityExchange_;
+  slotFields_[20] = &xmlDataLen_;
+  slotFields_[21] = &xmlData_;
+  slotFields_[22] = &securityIDSource_;
+  slotFields_[23] = &couponRate_;
+  slotFields_[24] = &couponPaymentDate_;
+  slotFields_[25] = &issueDate_;
+  slotFields_[26] = &repurchaseTerm_;
+  slotFields_[27] = &repurchaseRate_;
+  slotFields_[28] = &factor_;
+  slotFields_[29] = &contractMultiplier_;
+  slotFields_[30] = &repoCollateralSecurityType_;
+  slotFields_[31] = &redemptionDate_;
+  slotFields_[32] = &creditRating_;
+  slotFields_[33] = &securityReqID_;
+  slotFields_[34] = &securityResponseID_;
+  slotFields_[35] = &securityResponseType_;
+  slotFields_[36] = &tradingSessionID_;
+  slotFields_[37] = &msgSeqNum_;
+  slotFields_[38] = &messageEncoding_;
+  slotFields_[39] = &encodedIssuerLen_;
+  slotFields_[40] = &encodedIssuer_;
+  slotFields_[41] = &msgType_;
+  slotFields_[42] = &encodedSecurityDescLen_;
+  slotFields_[43] = &encodedSecurityDesc_;
+  slotFields_[44] = &encodedTextLen_;
+  slotFields_[45] = &encodedText_;
+  slotFields_[46] = &lastMsgSeqNumProcessed_;
+  slotFields_[47] = &possDupFlag_;
+  slotFields_[48] = &product_;
+  slotFields_[49] = &cFICode_;
+  slotFields_[50] = &countryOfIssue_;
+  slotFields_[51] = &stateOrProvinceOfIssue_;
+  slotFields_[52] = &localeOfIssue_;
+  slotFields_[53] = &securityID_;
+  slotFields_[54] = &senderCompID_;
+  slotFields_[55] = &senderSubID_;
+  slotFields_[56] = &sendingTime_;
+  slotFields_[57] = &maturityDate_;
+  slotFields_[58] = &instrRegistry_;
+  slotFields_[59] = &symbol_;
+  slotFields_[60] = &targetCompID_;
+  slotFields_[61] = &roundLot_;
+  slotFields_[62] = &minTradeVol_;
+  slotFields_[63] = &targetSubID_;
+  slotFields_[64] = &text_;
+  slotFields_[65] = &tradingSessionSubID_;
+  slotFields_[66] = &symbolSfx_;
+  slotFields_[67] = &contractSettlMonth_;
+  slotFields_[68] = &deliveryForm_;
+  slotFields_[69] = &pool_;
+  slotFields_[70] = &securitySubType_;
+  slotFields_[71] = &beginString_;
+  slotFields_[72] = &expirationCycle_;
+  slotFields_[73] = &pctAtRisk_;
+  slotFields_[74] = &datedDate_;
+  slotFields_[75] = &interestAccrualDate_;
+  slotFields_[76] = &cPProgram_;
+  slotFields_[77] = &cPRegType_;
+  slotFields_[78] = &signature_;
+  slotFields_[79] = &bodyLength_;
+  slotFields_[80] = &secureDataLen_;
+  slotFields_[81] = &secureData_;
+  slotFields_[82] = &signatureLength_;
+  slotFields_[83] = &strikeCurrency_;
+  slotFields_[84] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &securityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  slotGroups_[5] = &instrAttribGroup_;
+  tagTable(SecurityDefinitionSlotOfTag(), 956, slotFields_, slotGroups_, 85);
 }
 
 AbstractField* SecurityDefinition::msgType() {
@@ -42927,9 +46056,104 @@ AbstractField* SecurityDefinition::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SecurityStatusRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 65}, {9, 72}, {10, 1}, {15, 13}, {22, 22}, {34, 36}, {35, 40}, {43, 44}, {48, 50}, {49, 51}, {50, 52}, {52, 53}, {55, 56}, {56, 57}, {57, 58}, {65, 60}, {89, 71}, {90, 73}, {91, 74}, {93, 75}, {97, 77}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {167, 14}, {200, 15}, {201, 16}, {202, 17}, {206, 18}, {207, 19}, {212, 20}, {213, 21}, {223, 23}, {224, 24}, {225, 25}, {226, 26}, {227, 27}, {228, 28}, {231, 29}, {239, 30}, {240, 31}, {241, 78}, {242, 78}, {243, 78}, {244, 78}, {245, 78}, {246, 78}, {247, 78}, {248, 79}, {249, 79}, {250, 79}, {251, 79}, {252, 79}, {253, 79}, {254, 79}, {255, 32}, {256, 78}, {257, 79}, {263, 33}, {305, 78}, {306, 78}, {307, 78}, {308, 78}, {309, 78}, {310, 78}, {311, 78}, {312, 78}, {313, 78}, {315, 78}, {316, 78}, {317, 78}, {318, 78}, {324, 34}, {336, 35}, {347, 37}, {348, 38}, {349, 39}, {350, 41}, {351, 42}, {362, 78}, {363, 78}, {364, 78}, {365, 78}, {369, 43}, {435, 78}, {436, 78}, {454, 80}, {455, 80}, {456, 80}, {457, 78}, {458, 78}, {459, 78}, {460, 45}, {461, 46}, {462, 78}, {463, 78}, {470, 47}, {471, 48}, {472, 49}, {541, 54}, {542, 78}, {543, 55}, {555, 79}, {556, 79}, {592, 78}, {593, 78}, {594, 78}, {595, 78}, {596, 79}, {597, 79}, {598, 79}, {599, 79}, {600, 79}, {601, 79}, {602, 79}, {603, 79}, {604, 79}, {605, 79}, {606, 79}, {607, 79}, {608, 79}, {609, 79}, {610, 79}, {611, 79}, {612, 79}, {613, 79}, {614, 79}, {615, 79}, {616, 79}, {617, 79}, {618, 79}, {619, 79}, {620, 79}, {621, 79}, {622, 79}, {623, 79}, {624, 79}, {625, 59}, {627, 81}, {628, 81}, {629, 81}, {630, 81}, {667, 61}, {668, 62}, {691, 63}, {711, 78}, {739, 79}, {740, 79}, {762, 64}, {763, 78}, {764, 79}, {810, 78}, {864, 82}, {865, 82}, {866, 82}, {867, 82}, {868, 82}, {869, 66}, {870, 83}, {871, 83}, {872, 83}, {873, 67}, {874, 68}, {875, 69}, {876, 70}, {877, 78}, {878, 78}, {879, 78}, {882, 78}, {883, 78}, {884, 78}, {885, 78}, {886, 78}, {887, 78}, {888, 78}, {889, 78}, {941, 78}, {942, 79}, {947, 76}, {955, 79}, {956, 79}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SecurityStatusRequest::SecurityStatusRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &currency_;
+  slotFields_[14] = &securityType_;
+  slotFields_[15] = &maturityMonthYear_;
+  slotFields_[16] = &putOrCall_;
+  slotFields_[17] = &strikePrice_;
+  slotFields_[18] = &optAttribute_;
+  slotFields_[19] = &securityExchange_;
+  slotFields_[20] = &xmlDataLen_;
+  slotFields_[21] = &xmlData_;
+  slotFields_[22] = &securityIDSource_;
+  slotFields_[23] = &couponRate_;
+  slotFields_[24] = &couponPaymentDate_;
+  slotFields_[25] = &issueDate_;
+  slotFields_[26] = &repurchaseTerm_;
+  slotFields_[27] = &repurchaseRate_;
+  slotFields_[28] = &factor_;
+  slotFields_[29] = &contractMultiplier_;
+  slotFields_[30] = &repoCollateralSecurityType_;
+  slotFields_[31] = &redemptionDate_;
+  slotFields_[32] = &creditRating_;
+  slotFields_[33] = &subscriptionRequestType_;
+  slotFields_[34] = &securityStatusReqID_;
+  slotFields_[35] = &tradingSessionID_;
+  slotFields_[36] = &msgSeqNum_;
+  slotFields_[37] = &messageEncoding_;
+  slotFields_[38] = &encodedIssuerLen_;
+  slotFields_[39] = &encodedIssuer_;
+  slotFields_[40] = &msgType_;
+  slotFields_[41] = &encodedSecurityDescLen_;
+  slotFields_[42] = &encodedSecurityDesc_;
+  slotFields_[43] = &lastMsgSeqNumProcessed_;
+  slotFields_[44] = &possDupFlag_;
+  slotFields_[45] = &product_;
+  slotFields_[46] = &cFICode_;
+  slotFields_[47] = &countryOfIssue_;
+  slotFields_[48] = &stateOrProvinceOfIssue_;
+  slotFields_[49] = &localeOfIssue_;
+  slotFields_[50] = &securityID_;
+  slotFields_[51] = &senderCompID_;
+  slotFields_[52] = &senderSubID_;
+  slotFields_[53] = &sendingTime_;
+  slotFields_[54] = &maturityDate_;
+  slotFields_[55] = &instrRegistry_;
+  slotFields_[56] = &symbol_;
+  slotFields_[57] = &targetCompID_;
+  slotFields_[58] = &targetSubID_;
+  slotFields_[59] = &tradingSessionSubID_;
+  slotFields_[60] = &symbolSfx_;
+  slotFields_[61] = &contractSettlMonth_;
+  slotFields_[62] = &deliveryForm_;
+  slotFields_[63] = &pool_;
+  slotFields_[64] = &securitySubType_;
+  slotFields_[65] = &beginString_;
+  slotFields_[66] = &pctAtRisk_;
+  slotFields_[67] = &datedDate_;
+  slotFields_[68] = &interestAccrualDate_;
+  slotFields_[69] = &cPProgram_;
+  slotFields_[70] = &cPRegType_;
+  slotFields_[71] = &signature_;
+  slotFields_[72] = &bodyLength_;
+  slotFields_[73] = &secureDataLen_;
+  slotFields_[74] = &secureData_;
+  slotFields_[75] = &signatureLength_;
+  slotFields_[76] = &strikeCurrency_;
+  slotFields_[77] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &securityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  slotGroups_[5] = &instrAttribGroup_;
+  tagTable(SecurityStatusRequestSlotOfTag(), 956, slotFields_, slotGroups_, 78);
 }
 
 AbstractField* SecurityStatusRequest::msgType() {
@@ -44334,9 +47558,120 @@ AbstractField* SecurityStatusRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SecurityStatusSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 81}, {9, 88}, {10, 1}, {15, 13}, {22, 22}, {31, 35}, {34, 48}, {35, 52}, {43, 58}, {48, 64}, {49, 65}, {50, 66}, {52, 67}, {55, 70}, {56, 71}, {57, 72}, {58, 73}, {60, 74}, {65, 76}, {89, 87}, {90, 89}, {91, 90}, {93, 91}, {97, 93}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {167, 14}, {200, 15}, {201, 16}, {202, 17}, {206, 18}, {207, 19}, {212, 20}, {213, 21}, {223, 23}, {224, 24}, {225, 25}, {226, 26}, {227, 27}, {228, 28}, {231, 29}, {239, 30}, {240, 31}, {241, 94}, {242, 94}, {243, 94}, {244, 94}, {245, 94}, {246, 94}, {247, 94}, {248, 95}, {249, 95}, {250, 95}, {251, 95}, {252, 95}, {253, 95}, {254, 95}, {255, 32}, {256, 94}, {257, 95}, {291, 33}, {292, 34}, {305, 94}, {306, 94}, {307, 94}, {308, 94}, {309, 94}, {310, 94}, {311, 94}, {312, 94}, {313, 94}, {315, 94}, {316, 94}, {317, 94}, {318, 94}, {324, 36}, {325, 37}, {326, 38}, {327, 39}, {328, 40}, {329, 41}, {330, 42}, {331, 43}, {332, 44}, {333, 45}, {334, 46}, {336, 47}, {347, 49}, {348, 50}, {349, 51}, {350, 53}, {351, 54}, {354, 55}, {355, 56}, {362, 94}, {363, 94}, {364, 94}, {365, 94}, {369, 57}, {435, 94}, {436, 94}, {454, 96}, {455, 96}, {456, 96}, {457, 94}, {458, 94}, {459, 94}, {460, 59}, {461, 60}, {462, 94}, {463, 94}, {470, 61}, {471, 62}, {472, 63}, {541, 68}, {542, 94}, {543, 69}, {555, 95}, {556, 95}, {592, 94}, {593, 94}, {594, 94}, {595, 94}, {596, 95}, {597, 95}, {598, 95}, {599, 95}, {600, 95}, {601, 95}, {602, 95}, {603, 95}, {604, 95}, {605, 95}, {606, 95}, {607, 95}, {608, 95}, {609, 95}, {610, 95}, {611, 95}, {612, 95}, {613, 95}, {614, 95}, {615, 95}, {616, 95}, {617, 95}, {618, 95}, {619, 95}, {620, 95}, {621, 95}, {622, 95}, {623, 95}, {624, 95}, {625, 75}, {627, 97}, {628, 97}, {629, 97}, {630, 97}, {667, 77}, {668, 78}, {691, 79}, {711, 94}, {739, 95}, {740, 95}, {762, 80}, {763, 94}, {764, 95}, {810, 94}, {864, 98}, {865, 98}, {866, 98}, {867, 98}, {868, 98}, {869, 82}, {870, 99}, {871, 99}, {872, 99}, {873, 83}, {874, 84}, {875, 85}, {876, 86}, {877, 94}, {878, 94}, {879, 94}, {882, 94}, {883, 94}, {884, 94}, {885, 94}, {886, 94}, {887, 94}, {888, 94}, {889, 94}, {941, 94}, {942, 95}, {947, 92}, {955, 95}, {956, 95}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SecurityStatus::SecurityStatus() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &currency_;
+  slotFields_[14] = &securityType_;
+  slotFields_[15] = &maturityMonthYear_;
+  slotFields_[16] = &putOrCall_;
+  slotFields_[17] = &strikePrice_;
+  slotFields_[18] = &optAttribute_;
+  slotFields_[19] = &securityExchange_;
+  slotFields_[20] = &xmlDataLen_;
+  slotFields_[21] = &xmlData_;
+  slotFields_[22] = &securityIDSource_;
+  slotFields_[23] = &couponRate_;
+  slotFields_[24] = &couponPaymentDate_;
+  slotFields_[25] = &issueDate_;
+  slotFields_[26] = &repurchaseTerm_;
+  slotFields_[27] = &repurchaseRate_;
+  slotFields_[28] = &factor_;
+  slotFields_[29] = &contractMultiplier_;
+  slotFields_[30] = &repoCollateralSecurityType_;
+  slotFields_[31] = &redemptionDate_;
+  slotFields_[32] = &creditRating_;
+  slotFields_[33] = &financialStatus_;
+  slotFields_[34] = &corporateAction_;
+  slotFields_[35] = &lastPx_;
+  slotFields_[36] = &securityStatusReqID_;
+  slotFields_[37] = &unsolicitedIndicator_;
+  slotFields_[38] = &securityTradingStatus_;
+  slotFields_[39] = &haltReasonChar_;
+  slotFields_[40] = &inViewOfCommon_;
+  slotFields_[41] = &dueToRelated_;
+  slotFields_[42] = &buyVolume_;
+  slotFields_[43] = &sellVolume_;
+  slotFields_[44] = &highPx_;
+  slotFields_[45] = &lowPx_;
+  slotFields_[46] = &adjustment_;
+  slotFields_[47] = &tradingSessionID_;
+  slotFields_[48] = &msgSeqNum_;
+  slotFields_[49] = &messageEncoding_;
+  slotFields_[50] = &encodedIssuerLen_;
+  slotFields_[51] = &encodedIssuer_;
+  slotFields_[52] = &msgType_;
+  slotFields_[53] = &encodedSecurityDescLen_;
+  slotFields_[54] = &encodedSecurityDesc_;
+  slotFields_[55] = &encodedTextLen_;
+  slotFields_[56] = &encodedText_;
+  slotFields_[57] = &lastMsgSeqNumProcessed_;
+  slotFields_[58] = &possDupFlag_;
+  slotFields_[59] = &product_;
+  slotFields_[60] = &cFICode_;
+  slotFields_[61] = &countryOfIssue_;
+  slotFields_[62] = &stateOrProvinceOfIssue_;
+  slotFields_[63] = &localeOfIssue_;
+  slotFields_[64] = &securityID_;
+  slotFields_[65] = &senderCompID_;
+  slotFields_[66] = &senderSubID_;
+  slotFields_[67] = &sendingTime_;
+  slotFields_[68] = &maturityDate_;
+  slotFields_[69] = &instrRegistry_;
+  slotFields_[70] = &symbol_;
+  slotFields_[71] = &targetCompID_;
+  slotFields_[72] = &targetSubID_;
+  slotFields_[73] = &text_;
+  slotFields_[74] = &transactTime_;
+  slotFields_[75] = &tradingSessionSubID_;
+  slotFields_[76] = &symbolSfx_;
+  slotFields_[77] = &contractSettlMonth_;
+  slotFields_[78] = &deliveryForm_;
+  slotFields_[79] = &pool_;
+  slotFields_[80] = &securitySubType_;
+  slotFields_[81] = &beginString_;
+  slotFields_[82] = &pctAtRisk_;
+  slotFields_[83] = &datedDate_;
+  slotFields_[84] = &interestAccrualDate_;
+  slotFields_[85] = &cPProgram_;
+  slotFields_[86] = &cPRegType_;
+  slotFields_[87] = &signature_;
+  slotFields_[88] = &bodyLength_;
+  slotFields_[89] = &secureDataLen_;
+  slotFields_[90] = &secureData_;
+  slotFields_[91] = &signatureLength_;
+  slotFields_[92] = &strikeCurrency_;
+  slotFields_[93] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &securityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  slotGroups_[5] = &instrAttribGroup_;
+  tagTable(SecurityStatusSlotOfTag(), 956, slotFields_, slotGroups_, 94);
 }
 
 AbstractField* SecurityStatus::msgType() {
@@ -45864,9 +49199,57 @@ AbstractField* SecurityStatus::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* TradingSessionStatusRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 29}, {9, 31}, {10, 1}, {34, 18}, {35, 20}, {43, 22}, {49, 23}, {50, 24}, {52, 25}, {56, 26}, {57, 27}, {89, 30}, {90, 32}, {91, 33}, {93, 34}, {97, 35}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {263, 13}, {335, 14}, {336, 15}, {338, 16}, {339, 17}, {347, 19}, {369, 21}, {625, 28}, {627, 36}, {628, 36}, {629, 36}, {630, 36}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 TradingSessionStatusRequest::TradingSessionStatusRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &subscriptionRequestType_;
+  slotFields_[14] = &tradSesReqID_;
+  slotFields_[15] = &tradingSessionID_;
+  slotFields_[16] = &tradSesMethod_;
+  slotFields_[17] = &tradSesMode_;
+  slotFields_[18] = &msgSeqNum_;
+  slotFields_[19] = &messageEncoding_;
+  slotFields_[20] = &msgType_;
+  slotFields_[21] = &lastMsgSeqNumProcessed_;
+  slotFields_[22] = &possDupFlag_;
+  slotFields_[23] = &senderCompID_;
+  slotFields_[24] = &senderSubID_;
+  slotFields_[25] = &sendingTime_;
+  slotFields_[26] = &targetCompID_;
+  slotFields_[27] = &targetSubID_;
+  slotFields_[28] = &tradingSessionSubID_;
+  slotFields_[29] = &beginString_;
+  slotFields_[30] = &signature_;
+  slotFields_[31] = &bodyLength_;
+  slotFields_[32] = &secureDataLen_;
+  slotFields_[33] = &secureData_;
+  slotFields_[34] = &signatureLength_;
+  slotFields_[35] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(TradingSessionStatusRequestSlotOfTag(), 956, slotFields_, slotGroups_, 36);
 }
 
 AbstractField* TradingSessionStatusRequest::msgType() {
@@ -46194,9 +49577,68 @@ AbstractField* TradingSessionStatusRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* TradingSessionStatusSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 40}, {9, 42}, {10, 1}, {34, 18}, {35, 26}, {43, 31}, {49, 32}, {50, 33}, {52, 34}, {56, 35}, {57, 37}, {58, 38}, {89, 41}, {90, 43}, {91, 44}, {93, 45}, {97, 46}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {325, 13}, {335, 14}, {336, 15}, {338, 16}, {339, 17}, {340, 19}, {341, 20}, {342, 21}, {343, 22}, {344, 23}, {345, 24}, {347, 25}, {354, 27}, {355, 28}, {369, 29}, {387, 30}, {567, 36}, {625, 39}, {627, 47}, {628, 47}, {629, 47}, {630, 47}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 TradingSessionStatus::TradingSessionStatus() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &unsolicitedIndicator_;
+  slotFields_[14] = &tradSesReqID_;
+  slotFields_[15] = &tradingSessionID_;
+  slotFields_[16] = &tradSesMethod_;
+  slotFields_[17] = &tradSesMode_;
+  slotFields_[18] = &msgSeqNum_;
+  slotFields_[19] = &tradSesStatus_;
+  slotFields_[20] = &tradSesStartTime_;
+  slotFields_[21] = &tradSesOpenTime_;
+  slotFields_[22] = &tradSesPreCloseTime_;
+  slotFields_[23] = &tradSesCloseTime_;
+  slotFields_[24] = &tradSesEndTime_;
+  slotFields_[25] = &messageEncoding_;
+  slotFields_[26] = &msgType_;
+  slotFields_[27] = &encodedTextLen_;
+  slotFields_[28] = &encodedText_;
+  slotFields_[29] = &lastMsgSeqNumProcessed_;
+  slotFields_[30] = &totalVolumeTraded_;
+  slotFields_[31] = &possDupFlag_;
+  slotFields_[32] = &senderCompID_;
+  slotFields_[33] = &senderSubID_;
+  slotFields_[34] = &sendingTime_;
+  slotFields_[35] = &targetCompID_;
+  slotFields_[36] = &tradSesStatusRejReason_;
+  slotFields_[37] = &targetSubID_;
+  slotFields_[38] = &text_;
+  slotFields_[39] = &tradingSessionSubID_;
+  slotFields_[40] = &beginString_;
+  slotFields_[41] = &signature_;
+  slotFields_[42] = &bodyLength_;
+  slotFields_[43] = &secureDataLen_;
+  slotFields_[44] = &secureData_;
+  slotFields_[45] = &signatureLength_;
+  slotFields_[46] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(TradingSessionStatusSlotOfTag(), 956, slotFields_, slotGroups_, 47);
 }
 
 AbstractField* TradingSessionStatus::msgType() {
@@ -46607,9 +50049,62 @@ AbstractField* TradingSessionStatus::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* MassQuoteSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 32}, {9, 34}, {10, 2}, {15, 39}, {22, 39}, {34, 19}, {35, 21}, {40, 39}, {43, 23}, {48, 39}, {49, 24}, {50, 25}, {52, 26}, {55, 39}, {56, 28}, {57, 29}, {60, 39}, {62, 39}, {64, 39}, {65, 39}, {89, 33}, {90, 35}, {91, 36}, {93, 37}, {97, 38}, {106, 39}, {107, 39}, {115, 3}, {116, 4}, {117, 5}, {122, 6}, {128, 7}, {129, 8}, {131, 9}, {132, 39}, {133, 39}, {134, 39}, {135, 39}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 39}, {188, 39}, {189, 39}, {190, 39}, {191, 39}, {192, 39}, {193, 39}, {200, 39}, {201, 39}, {202, 39}, {206, 39}, {207, 39}, {212, 14}, {213, 15}, {223, 39}, {224, 39}, {225, 39}, {226, 39}, {227, 39}, {228, 39}, {231, 39}, {239, 39}, {240, 39}, {241, 39}, {242, 39}, {243, 39}, {244, 39}, {245, 39}, {246, 39}, {247, 39}, {248, 39}, {249, 39}, {250, 39}, {251, 39}, {252, 39}, {253, 39}, {254, 39}, {255, 39}, {256, 39}, {257, 39}, {293, 16}, {294, 17}, {295, 39}, {296, 39}, {299, 39}, {301, 18}, {302, 39}, {304, 39}, {305, 39}, {306, 39}, {307, 39}, {308, 39}, {309, 39}, {310, 39}, {311, 39}, {312, 39}, {313, 39}, {315, 39}, {316, 39}, {317, 39}, {318, 39}, {336, 39}, {347, 20}, {348, 39}, {349, 39}, {350, 39}, {351, 39}, {362, 39}, {363, 39}, {364, 39}, {365, 39}, {367, 39}, {369, 22}, {435, 39}, {436, 39}, {447, 40}, {448, 40}, {452, 40}, {453, 40}, {454, 39}, {455, 39}, {456, 39}, {457, 39}, {458, 39}, {459, 39}, {460, 39}, {461, 39}, {462, 39}, {463, 39}, {470, 39}, {471, 39}, {472, 39}, {523, 40}, {537, 27}, {541, 39}, {542, 39}, {543, 39}, {555, 39}, {556, 39}, {581, 30}, {592, 39}, {593, 39}, {594, 39}, {595, 39}, {596, 39}, {597, 39}, {598, 39}, {599, 39}, {600, 39}, {601, 39}, {602, 39}, {603, 39}, {604, 39}, {605, 39}, {606, 39}, {607, 39}, {608, 39}, {609, 39}, {610, 39}, {611, 39}, {612, 39}, {613, 39}, {614, 39}, {615, 39}, {616, 39}, {617, 39}, {618, 39}, {619, 39}, {620, 39}, {621, 39}, {622, 39}, {623, 39}, {624, 39}, {625, 39}, {627, 41}, {628, 41}, {629, 41}, {630, 41}, {631, 39}, {632, 39}, {633, 39}, {634, 39}, {642, 39}, {643, 39}, {660, 31}, {667, 39}, {691, 39}, {739, 39}, {740, 39}, {762, 39}, {763, 39}, {764, 39}, {802, 40}, {803, 40}, {810, 39}, {864, 39}, {865, 39}, {866, 39}, {867, 39}, {868, 39}, {873, 39}, {874, 39}, {875, 39}, {876, 39}, {877, 39}, {878, 39}, {879, 39}, {882, 39}, {883, 39}, {884, 39}, {885, 39}, {886, 39}, {887, 39}, {888, 39}, {889, 39}, {893, 39}, {941, 39}, {942, 39}, {947, 39}, {955, 39}, {956, 39}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 MassQuote::MassQuote() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &onBehalfOfCompID_;
+  slotFields_[4] = &onBehalfOfSubID_;
+  slotFields_[5] = &quoteID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &quoteReqID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &xmlDataLen_;
+  slotFields_[15] = &xmlData_;
+  slotFields_[16] = &defBidSize_;
+  slotFields_[17] = &defOfferSize_;
+  slotFields_[18] = &quoteResponseLevel_;
+  slotFields_[19] = &msgSeqNum_;
+  slotFields_[20] = &messageEncoding_;
+  slotFields_[21] = &msgType_;
+  slotFields_[22] = &lastMsgSeqNumProcessed_;
+  slotFields_[23] = &possDupFlag_;
+  slotFields_[24] = &senderCompID_;
+  slotFields_[25] = &senderSubID_;
+  slotFields_[26] = &sendingTime_;
+  slotFields_[27] = &quoteType_;
+  slotFields_[28] = &targetCompID_;
+  slotFields_[29] = &targetSubID_;
+  slotFields_[30] = &accountType_;
+  slotFields_[31] = &acctIDSource_;
+  slotFields_[32] = &beginString_;
+  slotFields_[33] = &signature_;
+  slotFields_[34] = &bodyLength_;
+  slotFields_[35] = &secureDataLen_;
+  slotFields_[36] = &secureData_;
+  slotFields_[37] = &signatureLength_;
+  slotFields_[38] = &possResend_;
+  slotGroups_[0] = &quoteSetsGroup1_;
+  slotGroups_[1] = &partyIDsGroup_;
+  slotGroups_[2] = &hopsGroup_;
+  tagTable(MassQuoteSlotOfTag(), 956, slotFields_, slotGroups_, 39);
 }
 
 AbstractField* MassQuote::msgType() {
@@ -48210,9 +51705,58 @@ AbstractField* MassQuote::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* BusinessMessageRejectSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 30}, {9, 32}, {10, 1}, {34, 13}, {35, 15}, {43, 22}, {45, 23}, {49, 24}, {50, 25}, {52, 26}, {56, 27}, {57, 28}, {58, 29}, {89, 31}, {90, 33}, {91, 34}, {93, 35}, {97, 36}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {347, 14}, {354, 16}, {355, 17}, {369, 18}, {372, 19}, {379, 20}, {380, 21}, {627, 37}, {628, 37}, {629, 37}, {630, 37}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 BusinessMessageReject::BusinessMessageReject() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &encodedTextLen_;
+  slotFields_[17] = &encodedText_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &refMsgType_;
+  slotFields_[20] = &businessRejectRefID_;
+  slotFields_[21] = &businessRejectReason_;
+  slotFields_[22] = &possDupFlag_;
+  slotFields_[23] = &refSeqNum_;
+  slotFields_[24] = &senderCompID_;
+  slotFields_[25] = &senderSubID_;
+  slotFields_[26] = &sendingTime_;
+  slotFields_[27] = &targetCompID_;
+  slotFields_[28] = &targetSubID_;
+  slotFields_[29] = &text_;
+  slotFields_[30] = &beginString_;
+  slotFields_[31] = &signature_;
+  slotFields_[32] = &bodyLength_;
+  slotFields_[33] = &secureDataLen_;
+  slotFields_[34] = &secureData_;
+  slotFields_[35] = &signatureLength_;
+  slotFields_[36] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(BusinessMessageRejectSlotOfTag(), 956, slotFields_, slotGroups_, 37);
 }
 
 AbstractField* BusinessMessageReject::msgType() {
@@ -48550,9 +52094,80 @@ AbstractField* BusinessMessageReject::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* BidRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 57}, {8, 50}, {9, 52}, {10, 1}, {15, 12}, {34, 15}, {35, 17}, {43, 41}, {49, 43}, {50, 44}, {52, 45}, {54, 57}, {56, 46}, {57, 47}, {58, 48}, {63, 57}, {64, 57}, {66, 57}, {75, 49}, {89, 51}, {90, 53}, {91, 54}, {93, 55}, {97, 56}, {115, 2}, {116, 3}, {121, 4}, {122, 5}, {128, 6}, {129, 7}, {142, 8}, {143, 9}, {144, 10}, {145, 11}, {212, 13}, {213, 14}, {336, 57}, {347, 16}, {354, 18}, {355, 19}, {369, 20}, {374, 21}, {390, 22}, {391, 23}, {392, 24}, {393, 25}, {394, 26}, {395, 27}, {396, 28}, {397, 29}, {398, 58}, {399, 58}, {400, 58}, {401, 58}, {402, 58}, {403, 58}, {404, 58}, {405, 58}, {406, 58}, {407, 58}, {408, 58}, {409, 30}, {410, 31}, {411, 32}, {412, 33}, {413, 34}, {414, 35}, {415, 36}, {416, 37}, {417, 38}, {418, 39}, {419, 40}, {420, 57}, {430, 57}, {441, 58}, {443, 42}, {625, 57}, {627, 59}, {628, 59}, {629, 59}, {630, 59}, {660, 57}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 BidRequest::BidRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &forexReq_;
+  slotFields_[5] = &origSendingTime_;
+  slotFields_[6] = &deliverToCompID_;
+  slotFields_[7] = &deliverToSubID_;
+  slotFields_[8] = &senderLocationID_;
+  slotFields_[9] = &targetLocationID_;
+  slotFields_[10] = &onBehalfOfLocationID_;
+  slotFields_[11] = &deliverToLocationID_;
+  slotFields_[12] = &currency_;
+  slotFields_[13] = &xmlDataLen_;
+  slotFields_[14] = &xmlData_;
+  slotFields_[15] = &msgSeqNum_;
+  slotFields_[16] = &messageEncoding_;
+  slotFields_[17] = &msgType_;
+  slotFields_[18] = &encodedTextLen_;
+  slotFields_[19] = &encodedText_;
+  slotFields_[20] = &lastMsgSeqNumProcessed_;
+  slotFields_[21] = &bidRequestTransType_;
+  slotFields_[22] = &bidID_;
+  slotFields_[23] = &clientBidID_;
+  slotFields_[24] = &listName_;
+  slotFields_[25] = &totNoRelatedSym_;
+  slotFields_[26] = &bidType_;
+  slotFields_[27] = &numTickets_;
+  slotFields_[28] = &sideValue1_;
+  slotFields_[29] = &sideValue2_;
+  slotFields_[30] = &liquidityIndType_;
+  slotFields_[31] = &wtAverageLiquidity_;
+  slotFields_[32] = &exchangeForPhysical_;
+  slotFields_[33] = &outMainCntryUIndex_;
+  slotFields_[34] = &crossPercent_;
+  slotFields_[35] = &progRptReqs_;
+  slotFields_[36] = &progPeriodInterval_;
+  slotFields_[37] = &incTaxInd_;
+  slotFields_[38] = &numBidders_;
+  slotFields_[39] = &bidTradeType_;
+  slotFields_[40] = &basisPxType_;
+  slotFields_[41] = &possDupFlag_;
+  slotFields_[42] = &strikeTime_;
+  slotFields_[43] = &senderCompID_;
+  slotFields_[44] = &senderSubID_;
+  slotFields_[45] = &sendingTime_;
+  slotFields_[46] = &targetCompID_;
+  slotFields_[47] = &targetSubID_;
+  slotFields_[48] = &text_;
+  slotFields_[49] = &tradeDate_;
+  slotFields_[50] = &beginString_;
+  slotFields_[51] = &signature_;
+  slotFields_[52] = &bodyLength_;
+  slotFields_[53] = &secureDataLen_;
+  slotFields_[54] = &secureData_;
+  slotFields_[55] = &signatureLength_;
+  slotFields_[56] = &possResend_;
+  slotGroups_[0] = &bidComponentsGroup_;
+  slotGroups_[1] = &bidDescriptorsGroup_;
+  slotGroups_[2] = &hopsGroup_;
+  tagTable(BidRequestSlotOfTag(), 956, slotFields_, slotGroups_, 57);
 }
 
 AbstractField* BidRequest::msgType() {
@@ -49171,9 +52786,54 @@ AbstractField* BidRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* BidResponseSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 25}, {9, 27}, {10, 1}, {12, 32}, {13, 32}, {34, 13}, {35, 15}, {43, 19}, {44, 32}, {49, 20}, {50, 21}, {52, 22}, {54, 32}, {56, 23}, {57, 24}, {58, 32}, {63, 32}, {64, 32}, {66, 32}, {89, 26}, {90, 28}, {91, 29}, {93, 30}, {97, 31}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {336, 32}, {347, 14}, {354, 32}, {355, 32}, {369, 16}, {390, 17}, {391, 18}, {406, 32}, {420, 32}, {421, 32}, {423, 32}, {430, 32}, {479, 32}, {497, 32}, {625, 32}, {627, 33}, {628, 33}, {629, 33}, {630, 33}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 BidResponse::BidResponse() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &lastMsgSeqNumProcessed_;
+  slotFields_[17] = &bidID_;
+  slotFields_[18] = &clientBidID_;
+  slotFields_[19] = &possDupFlag_;
+  slotFields_[20] = &senderCompID_;
+  slotFields_[21] = &senderSubID_;
+  slotFields_[22] = &sendingTime_;
+  slotFields_[23] = &targetCompID_;
+  slotFields_[24] = &targetSubID_;
+  slotFields_[25] = &beginString_;
+  slotFields_[26] = &signature_;
+  slotFields_[27] = &bodyLength_;
+  slotFields_[28] = &secureDataLen_;
+  slotFields_[29] = &secureData_;
+  slotFields_[30] = &signatureLength_;
+  slotFields_[31] = &possResend_;
+  slotGroups_[0] = &bidComponentsGroup1_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(BidResponseSlotOfTag(), 956, slotFields_, slotGroups_, 32);
 }
 
 AbstractField* BidResponse::msgType() {
@@ -49588,9 +53248,56 @@ AbstractField* BidResponse::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* ListStrikePriceSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 25}, {9, 28}, {10, 1}, {11, 34}, {15, 34}, {22, 33}, {34, 13}, {35, 15}, {43, 18}, {44, 34}, {48, 33}, {49, 19}, {50, 20}, {52, 21}, {54, 34}, {55, 33}, {56, 22}, {57, 23}, {58, 34}, {65, 33}, {66, 24}, {89, 26}, {90, 29}, {91, 30}, {93, 31}, {97, 32}, {106, 33}, {107, 33}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {140, 34}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {167, 33}, {200, 33}, {201, 33}, {202, 33}, {206, 33}, {207, 33}, {212, 11}, {213, 12}, {223, 33}, {224, 33}, {225, 33}, {226, 33}, {227, 33}, {228, 33}, {231, 33}, {239, 33}, {240, 33}, {241, 34}, {242, 34}, {243, 34}, {244, 34}, {245, 34}, {246, 34}, {247, 34}, {255, 33}, {256, 34}, {305, 34}, {306, 34}, {307, 34}, {308, 34}, {309, 34}, {310, 34}, {311, 34}, {312, 34}, {313, 34}, {315, 34}, {316, 34}, {317, 34}, {318, 34}, {347, 14}, {348, 33}, {349, 33}, {350, 33}, {351, 33}, {354, 34}, {355, 34}, {362, 34}, {363, 34}, {364, 34}, {365, 34}, {369, 16}, {422, 17}, {428, 33}, {435, 34}, {436, 34}, {454, 33}, {455, 33}, {456, 33}, {457, 34}, {458, 34}, {459, 34}, {460, 33}, {461, 33}, {462, 34}, {463, 34}, {470, 33}, {471, 33}, {472, 33}, {526, 34}, {541, 33}, {542, 34}, {543, 33}, {592, 34}, {593, 34}, {594, 34}, {595, 34}, {627, 35}, {628, 35}, {629, 35}, {630, 35}, {667, 33}, {691, 33}, {711, 34}, {762, 33}, {763, 34}, {810, 34}, {864, 33}, {865, 33}, {866, 33}, {867, 33}, {868, 33}, {873, 33}, {874, 33}, {875, 33}, {876, 33}, {877, 34}, {878, 34}, {879, 34}, {882, 34}, {883, 34}, {884, 34}, {885, 34}, {886, 34}, {887, 34}, {888, 34}, {889, 34}, {893, 27}, {941, 34}, {947, 33}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 ListStrikePrice::ListStrikePrice() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &lastMsgSeqNumProcessed_;
+  slotFields_[17] = &totNoStrikes_;
+  slotFields_[18] = &possDupFlag_;
+  slotFields_[19] = &senderCompID_;
+  slotFields_[20] = &senderSubID_;
+  slotFields_[21] = &sendingTime_;
+  slotFields_[22] = &targetCompID_;
+  slotFields_[23] = &targetSubID_;
+  slotFields_[24] = &listID_;
+  slotFields_[25] = &beginString_;
+  slotFields_[26] = &signature_;
+  slotFields_[27] = &lastFragment_;
+  slotFields_[28] = &bodyLength_;
+  slotFields_[29] = &secureDataLen_;
+  slotFields_[30] = &secureData_;
+  slotFields_[31] = &signatureLength_;
+  slotFields_[32] = &possResend_;
+  slotGroups_[0] = &strikesGroup_;
+  slotGroups_[1] = &underlyingsGroup1_;
+  slotGroups_[2] = &hopsGroup_;
+  tagTable(ListStrikePriceSlotOfTag(), 956, slotFields_, slotGroups_, 33);
 }
 
 AbstractField* ListStrikePrice::msgType() {
@@ -50667,9 +54374,51 @@ AbstractField* ListStrikePrice::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* XMLnonFIXSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 23}, {9, 25}, {10, 1}, {34, 13}, {35, 15}, {43, 17}, {49, 18}, {50, 19}, {52, 20}, {56, 21}, {57, 22}, {89, 24}, {90, 26}, {91, 27}, {93, 28}, {97, 29}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {347, 14}, {369, 16}, {627, 30}, {628, 30}, {629, 30}, {630, 30}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 XMLnonFIX::XMLnonFIX() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &lastMsgSeqNumProcessed_;
+  slotFields_[17] = &possDupFlag_;
+  slotFields_[18] = &senderCompID_;
+  slotFields_[19] = &senderSubID_;
+  slotFields_[20] = &sendingTime_;
+  slotFields_[21] = &targetCompID_;
+  slotFields_[22] = &targetSubID_;
+  slotFields_[23] = &beginString_;
+  slotFields_[24] = &signature_;
+  slotFields_[25] = &bodyLength_;
+  slotFields_[26] = &secureDataLen_;
+  slotFields_[27] = &secureData_;
+  slotFields_[28] = &signatureLength_;
+  slotFields_[29] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(XMLnonFIXSlotOfTag(), 956, slotFields_, slotGroups_, 30);
 }
 
 AbstractField* XMLnonFIX::msgType() {
@@ -50950,9 +54699,63 @@ AbstractField* XMLnonFIX::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* RegistrationInstructionsSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 32}, {9, 34}, {10, 2}, {11, 3}, {34, 15}, {35, 17}, {43, 19}, {49, 20}, {50, 23}, {52, 28}, {56, 29}, {57, 30}, {89, 33}, {90, 35}, {91, 36}, {93, 37}, {97, 38}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {212, 13}, {213, 14}, {347, 16}, {369, 18}, {447, 39}, {448, 39}, {452, 39}, {453, 39}, {473, 40}, {474, 40}, {475, 40}, {477, 41}, {478, 41}, {482, 40}, {486, 40}, {493, 21}, {495, 22}, {498, 41}, {499, 41}, {500, 41}, {501, 41}, {502, 41}, {508, 24}, {509, 40}, {510, 41}, {511, 40}, {512, 41}, {513, 25}, {514, 26}, {517, 27}, {522, 40}, {523, 39}, {524, 40}, {525, 40}, {538, 40}, {539, 40}, {545, 40}, {627, 42}, {628, 42}, {629, 42}, {630, 42}, {660, 31}, {802, 39}, {803, 39}, {804, 40}, {805, 40}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 RegistrationInstructions::RegistrationInstructions() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &clOrdID_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &xmlDataLen_;
+  slotFields_[14] = &xmlData_;
+  slotFields_[15] = &msgSeqNum_;
+  slotFields_[16] = &messageEncoding_;
+  slotFields_[17] = &msgType_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &possDupFlag_;
+  slotFields_[20] = &senderCompID_;
+  slotFields_[21] = &registAcctType_;
+  slotFields_[22] = &taxAdvantageType_;
+  slotFields_[23] = &senderSubID_;
+  slotFields_[24] = &registRefID_;
+  slotFields_[25] = &registID_;
+  slotFields_[26] = &registTransType_;
+  slotFields_[27] = &ownershipType_;
+  slotFields_[28] = &sendingTime_;
+  slotFields_[29] = &targetCompID_;
+  slotFields_[30] = &targetSubID_;
+  slotFields_[31] = &acctIDSource_;
+  slotFields_[32] = &beginString_;
+  slotFields_[33] = &signature_;
+  slotFields_[34] = &bodyLength_;
+  slotFields_[35] = &secureDataLen_;
+  slotFields_[36] = &secureData_;
+  slotFields_[37] = &signatureLength_;
+  slotFields_[38] = &possResend_;
+  slotGroups_[0] = &partyIDsGroup_;
+  slotGroups_[1] = &registDtlsGroup_;
+  slotGroups_[2] = &distribInstsGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  tagTable(RegistrationInstructionsSlotOfTag(), 956, slotFields_, slotGroups_, 39);
 }
 
 AbstractField* RegistrationInstructions::msgType() {
@@ -51530,9 +55333,61 @@ AbstractField* RegistrationInstructions::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* RegistrationInstructionsResponseSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 32}, {9, 34}, {10, 2}, {11, 3}, {34, 15}, {35, 17}, {43, 19}, {49, 20}, {50, 22}, {52, 28}, {56, 29}, {57, 30}, {89, 33}, {90, 35}, {91, 36}, {93, 37}, {97, 38}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {212, 13}, {213, 14}, {347, 16}, {369, 18}, {447, 39}, {448, 39}, {452, 39}, {453, 39}, {496, 21}, {506, 23}, {507, 24}, {508, 25}, {513, 26}, {514, 27}, {523, 39}, {627, 40}, {628, 40}, {629, 40}, {630, 40}, {660, 31}, {802, 39}, {803, 39}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 RegistrationInstructionsResponse::RegistrationInstructionsResponse() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &clOrdID_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &xmlDataLen_;
+  slotFields_[14] = &xmlData_;
+  slotFields_[15] = &msgSeqNum_;
+  slotFields_[16] = &messageEncoding_;
+  slotFields_[17] = &msgType_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &possDupFlag_;
+  slotFields_[20] = &senderCompID_;
+  slotFields_[21] = &registRejReasonText_;
+  slotFields_[22] = &senderSubID_;
+  slotFields_[23] = &registStatus_;
+  slotFields_[24] = &registRejReasonCode_;
+  slotFields_[25] = &registRefID_;
+  slotFields_[26] = &registID_;
+  slotFields_[27] = &registTransType_;
+  slotFields_[28] = &sendingTime_;
+  slotFields_[29] = &targetCompID_;
+  slotFields_[30] = &targetSubID_;
+  slotFields_[31] = &acctIDSource_;
+  slotFields_[32] = &beginString_;
+  slotFields_[33] = &signature_;
+  slotFields_[34] = &bodyLength_;
+  slotFields_[35] = &secureDataLen_;
+  slotFields_[36] = &secureData_;
+  slotFields_[37] = &signatureLength_;
+  slotFields_[38] = &possResend_;
+  slotGroups_[0] = &partyIDsGroup_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(RegistrationInstructionsResponseSlotOfTag(), 956, slotFields_, slotGroups_, 39);
 }
 
 AbstractField* RegistrationInstructionsResponse::msgType() {
@@ -51939,9 +55794,151 @@ AbstractField* RegistrationInstructionsResponse::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* OrderMassCancelRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 104}, {9, 119}, {10, 1}, {11, 4}, {22, 22}, {34, 55}, {35, 59}, {43, 69}, {48, 79}, {49, 80}, {50, 81}, {52, 82}, {54, 85}, {55, 89}, {56, 90}, {57, 91}, {58, 92}, {60, 97}, {65, 99}, {89, 118}, {90, 120}, {91, 121}, {93, 122}, {97, 125}, {106, 2}, {107, 3}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 14}, {200, 15}, {201, 16}, {202, 17}, {206, 18}, {207, 19}, {212, 20}, {213, 21}, {223, 23}, {224, 24}, {225, 25}, {226, 26}, {227, 27}, {228, 28}, {231, 29}, {239, 30}, {240, 31}, {241, 32}, {242, 33}, {243, 34}, {244, 35}, {245, 36}, {246, 37}, {247, 38}, {255, 39}, {256, 40}, {305, 41}, {306, 42}, {307, 43}, {308, 44}, {309, 45}, {310, 46}, {311, 47}, {312, 48}, {313, 49}, {315, 50}, {316, 51}, {317, 52}, {318, 53}, {336, 54}, {347, 56}, {348, 57}, {349, 58}, {350, 60}, {351, 61}, {354, 62}, {355, 63}, {362, 64}, {363, 65}, {364, 66}, {365, 67}, {369, 68}, {435, 70}, {436, 71}, {454, 126}, {455, 126}, {456, 126}, {457, 127}, {458, 127}, {459, 127}, {460, 72}, {461, 73}, {462, 74}, {463, 75}, {470, 76}, {471, 77}, {472, 78}, {526, 83}, {530, 84}, {541, 86}, {542, 87}, {543, 88}, {592, 93}, {593, 94}, {594, 95}, {595, 96}, {625, 98}, {627, 128}, {628, 128}, {629, 128}, {630, 128}, {667, 100}, {691, 101}, {762, 102}, {763, 103}, {810, 105}, {864, 129}, {865, 129}, {866, 129}, {867, 129}, {868, 129}, {873, 106}, {874, 107}, {875, 108}, {876, 109}, {877, 110}, {878, 111}, {879, 112}, {882, 113}, {883, 114}, {884, 115}, {885, 116}, {886, 117}, {887, 130}, {888, 130}, {889, 130}, {941, 123}, {947, 124}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 OrderMassCancelRequest::OrderMassCancelRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &clOrdID_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &securityType_;
+  slotFields_[15] = &maturityMonthYear_;
+  slotFields_[16] = &putOrCall_;
+  slotFields_[17] = &strikePrice_;
+  slotFields_[18] = &optAttribute_;
+  slotFields_[19] = &securityExchange_;
+  slotFields_[20] = &xmlDataLen_;
+  slotFields_[21] = &xmlData_;
+  slotFields_[22] = &securityIDSource_;
+  slotFields_[23] = &couponRate_;
+  slotFields_[24] = &couponPaymentDate_;
+  slotFields_[25] = &issueDate_;
+  slotFields_[26] = &repurchaseTerm_;
+  slotFields_[27] = &repurchaseRate_;
+  slotFields_[28] = &factor_;
+  slotFields_[29] = &contractMultiplier_;
+  slotFields_[30] = &repoCollateralSecurityType_;
+  slotFields_[31] = &redemptionDate_;
+  slotFields_[32] = &underlyingCouponPaymentDate_;
+  slotFields_[33] = &underlyingIssueDate_;
+  slotFields_[34] = &underlyingRepoCollateralSecurityType_;
+  slotFields_[35] = &underlyingRepurchaseTerm_;
+  slotFields_[36] = &underlyingRepurchaseRate_;
+  slotFields_[37] = &underlyingFactor_;
+  slotFields_[38] = &underlyingRedemptionDate_;
+  slotFields_[39] = &creditRating_;
+  slotFields_[40] = &underlyingCreditRating_;
+  slotFields_[41] = &underlyingSecurityIDSource_;
+  slotFields_[42] = &underlyingIssuer_;
+  slotFields_[43] = &underlyingSecurityDesc_;
+  slotFields_[44] = &underlyingSecurityExchange_;
+  slotFields_[45] = &underlyingSecurityID_;
+  slotFields_[46] = &underlyingSecurityType_;
+  slotFields_[47] = &underlyingSymbol_;
+  slotFields_[48] = &underlyingSymbolSfx_;
+  slotFields_[49] = &underlyingMaturityMonthYear_;
+  slotFields_[50] = &underlyingPutOrCall_;
+  slotFields_[51] = &underlyingStrikePrice_;
+  slotFields_[52] = &underlyingOptAttribute_;
+  slotFields_[53] = &underlyingCurrency_;
+  slotFields_[54] = &tradingSessionID_;
+  slotFields_[55] = &msgSeqNum_;
+  slotFields_[56] = &messageEncoding_;
+  slotFields_[57] = &encodedIssuerLen_;
+  slotFields_[58] = &encodedIssuer_;
+  slotFields_[59] = &msgType_;
+  slotFields_[60] = &encodedSecurityDescLen_;
+  slotFields_[61] = &encodedSecurityDesc_;
+  slotFields_[62] = &encodedTextLen_;
+  slotFields_[63] = &encodedText_;
+  slotFields_[64] = &encodedUnderlyingIssuerLen_;
+  slotFields_[65] = &encodedUnderlyingIssuer_;
+  slotFields_[66] = &encodedUnderlyingSecurityDescLen_;
+  slotFields_[67] = &encodedUnderlyingSecurityDesc_;
+  slotFields_[68] = &lastMsgSeqNumProcessed_;
+  slotFields_[69] = &possDupFlag_;
+  slotFields_[70] = &underlyingCouponRate_;
+  slotFields_[71] = &underlyingContractMultiplier_;
+  slotFields_[72] = &product_;
+  slotFields_[73] = &cFICode_;
+  slotFields_[74] = &underlyingProduct_;
+  slotFields_[75] = &underlyingCFICode_;
+  slotFields_[76] = &countryOfIssue_;
+  slotFields_[77] = &stateOrProvinceOfIssue_;
+  slotFields_[78] = &localeOfIssue_;
+  slotFields_[79] = &securityID_;
+  slotFields_[80] = &senderCompID_;
+  slotFields_[81] = &senderSubID_;
+  slotFields_[82] = &sendingTime_;
+  slotFields_[83] = &secondaryClOrdID_;
+  slotFields_[84] = &massCancelRequestType_;
+  slotFields_[85] = &side_;
+  slotFields_[86] = &maturityDate_;
+  slotFields_[87] = &underlyingMaturityDate_;
+  slotFields_[88] = &instrRegistry_;
+  slotFields_[89] = &symbol_;
+  slotFields_[90] = &targetCompID_;
+  slotFields_[91] = &targetSubID_;
+  slotFields_[92] = &text_;
+  slotFields_[93] = &underlyingCountryOfIssue_;
+  slotFields_[94] = &underlyingStateOrProvinceOfIssue_;
+  slotFields_[95] = &underlyingLocaleOfIssue_;
+  slotFields_[96] = &underlyingInstrRegistry_;
+  slotFields_[97] = &transactTime_;
+  slotFields_[98] = &tradingSessionSubID_;
+  slotFields_[99] = &symbolSfx_;
+  slotFields_[100] = &contractSettlMonth_;
+  slotFields_[101] = &pool_;
+  slotFields_[102] = &securitySubType_;
+  slotFields_[103] = &underlyingSecuritySubType_;
+  slotFields_[104] = &beginString_;
+  slotFields_[105] = &underlyingPx_;
+  slotFields_[106] = &datedDate_;
+  slotFields_[107] = &interestAccrualDate_;
+  slotFields_[108] = &cPProgram_;
+  slotFields_[109] = &cPRegType_;
+  slotFields_[110] = &underlyingCPProgram_;
+  slotFields_[111] = &underlyingCPRegType_;
+  slotFields_[112] = &underlyingQty_;
+  slotFields_[113] = &underlyingDirtyPrice_;
+  slotFields_[114] = &underlyingEndPrice_;
+  slotFields_[115] = &underlyingStartValue_;
+  slotFields_[116] = &underlyingCurrentValue_;
+  slotFields_[117] = &underlyingEndValue_;
+  slotFields_[118] = &signature_;
+  slotFields_[119] = &bodyLength_;
+  slotFields_[120] = &secureDataLen_;
+  slotFields_[121] = &secureData_;
+  slotFields_[122] = &signatureLength_;
+  slotFields_[123] = &underlyingStrikeCurrency_;
+  slotFields_[124] = &strikeCurrency_;
+  slotFields_[125] = &possResend_;
+  slotGroups_[0] = &securityAltIDGroup_;
+  slotGroups_[1] = &underlyingSecurityAltIDGroup_;
+  slotGroups_[2] = &hopsGroup_;
+  slotGroups_[3] = &eventsGroup_;
+  slotGroups_[4] = &underlyingStipsGroup_;
+  tagTable(OrderMassCancelRequestSlotOfTag(), 956, slotFields_, slotGroups_, 126);
 }
 
 AbstractField* OrderMassCancelRequest::msgType() {
@@ -53088,9 +57085,157 @@ AbstractField* OrderMassCancelRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* OrderMassCancelReportSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 109}, {9, 124}, {10, 1}, {11, 4}, {22, 23}, {34, 56}, {35, 60}, {37, 70}, {41, 131}, {43, 71}, {48, 81}, {49, 82}, {50, 83}, {52, 84}, {54, 90}, {55, 94}, {56, 95}, {57, 96}, {58, 97}, {60, 102}, {65, 104}, {89, 123}, {90, 125}, {91, 126}, {93, 127}, {97, 130}, {106, 2}, {107, 3}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 14}, {198, 15}, {200, 16}, {201, 17}, {202, 18}, {206, 19}, {207, 20}, {212, 21}, {213, 22}, {223, 24}, {224, 25}, {225, 26}, {226, 27}, {227, 28}, {228, 29}, {231, 30}, {239, 31}, {240, 32}, {241, 33}, {242, 34}, {243, 35}, {244, 36}, {245, 37}, {246, 38}, {247, 39}, {255, 40}, {256, 41}, {305, 42}, {306, 43}, {307, 44}, {308, 45}, {309, 46}, {310, 47}, {311, 48}, {312, 49}, {313, 50}, {315, 51}, {316, 52}, {317, 53}, {318, 54}, {336, 55}, {347, 57}, {348, 58}, {349, 59}, {350, 61}, {351, 62}, {354, 63}, {355, 64}, {362, 65}, {363, 66}, {364, 67}, {365, 68}, {369, 69}, {435, 72}, {436, 73}, {454, 132}, {455, 132}, {456, 132}, {457, 133}, {458, 133}, {459, 133}, {460, 74}, {461, 75}, {462, 76}, {463, 77}, {470, 78}, {471, 79}, {472, 80}, {526, 85}, {530, 86}, {531, 87}, {532, 88}, {533, 89}, {534, 131}, {535, 131}, {536, 131}, {541, 91}, {542, 92}, {543, 93}, {592, 98}, {593, 99}, {594, 100}, {595, 101}, {625, 103}, {627, 134}, {628, 134}, {629, 134}, {630, 134}, {667, 105}, {691, 106}, {762, 107}, {763, 108}, {810, 110}, {864, 135}, {865, 135}, {866, 135}, {867, 135}, {868, 135}, {873, 111}, {874, 112}, {875, 113}, {876, 114}, {877, 115}, {878, 116}, {879, 117}, {882, 118}, {883, 119}, {884, 120}, {885, 121}, {886, 122}, {887, 136}, {888, 136}, {889, 136}, {941, 128}, {947, 129}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 OrderMassCancelReport::OrderMassCancelReport() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &clOrdID_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &securityType_;
+  slotFields_[15] = &secondaryOrderID_;
+  slotFields_[16] = &maturityMonthYear_;
+  slotFields_[17] = &putOrCall_;
+  slotFields_[18] = &strikePrice_;
+  slotFields_[19] = &optAttribute_;
+  slotFields_[20] = &securityExchange_;
+  slotFields_[21] = &xmlDataLen_;
+  slotFields_[22] = &xmlData_;
+  slotFields_[23] = &securityIDSource_;
+  slotFields_[24] = &couponRate_;
+  slotFields_[25] = &couponPaymentDate_;
+  slotFields_[26] = &issueDate_;
+  slotFields_[27] = &repurchaseTerm_;
+  slotFields_[28] = &repurchaseRate_;
+  slotFields_[29] = &factor_;
+  slotFields_[30] = &contractMultiplier_;
+  slotFields_[31] = &repoCollateralSecurityType_;
+  slotFields_[32] = &redemptionDate_;
+  slotFields_[33] = &underlyingCouponPaymentDate_;
+  slotFields_[34] = &underlyingIssueDate_;
+  slotFields_[35] = &underlyingRepoCollateralSecurityType_;
+  slotFields_[36] = &underlyingRepurchaseTerm_;
+  slotFields_[37] = &underlyingRepurchaseRate_;
+  slotFields_[38] = &underlyingFactor_;
+  slotFields_[39] = &underlyingRedemptionDate_;
+  slotFields_[40] = &creditRating_;
+  slotFields_[41] = &underlyingCreditRating_;
+  slotFields_[42] = &underlyingSecurityIDSource_;
+  slotFields_[43] = &underlyingIssuer_;
+  slotFields_[44] = &underlyingSecurityDesc_;
+  slotFields_[45] = &underlyingSecurityExchange_;
+  slotFields_[46] = &underlyingSecurityID_;
+  slotFields_[47] = &underlyingSecurityType_;
+  slotFields_[48] = &underlyingSymbol_;
+  slotFields_[49] = &underlyingSymbolSfx_;
+  slotFields_[50] = &underlyingMaturityMonthYear_;
+  slotFields_[51] = &underlyingPutOrCall_;
+  slotFields_[52] = &underlyingStrikePrice_;
+  slotFields_[53] = &underlyingOptAttribute_;
+  slotFields_[54] = &underlyingCurrency_;
+  slotFields_[55] = &tradingSessionID_;
+  slotFields_[56] = &msgSeqNum_;
+  slotFields_[57] = &messageEncoding_;
+  slotFields_[58] = &encodedIssuerLen_;
+  slotFields_[59] = &encodedIssuer_;
+  slotFields_[60] = &msgType_;
+  slotFields_[61] = &encodedSecurityDescLen_;
+  slotFields_[62] = &encodedSecurityDesc_;
+  slotFields_[63] = &encodedTextLen_;
+  slotFields_[64] = &encodedText_;
+  slotFields_[65] = &encodedUnderlyingIssuerLen_;
+  slotFields_[66] = &encodedUnderlyingIssuer_;
+  slotFields_[67] = &encodedUnderlyingSecurityDescLen_;
+  slotFields_[68] = &encodedUnderlyingSecurityDesc_;
+  slotFields_[69] = &lastMsgSeqNumProcessed_;
+  slotFields_[70] = &orderID_;
+  slotFields_[71] = &possDupFlag_;
+  slotFields_[72] = &underlyingCouponRate_;
+  slotFields_[73] = &underlyingContractMultiplier_;
+  slotFields_[74] = &product_;
+  slotFields_[75] = &cFICode_;
+  slotFields_[76] = &underlyingProduct_;
+  slotFields_[77] = &underlyingCFICode_;
+  slotFields_[78] = &countryOfIssue_;
+  slotFields_[79] = &stateOrProvinceOfIssue_;
+  slotFields_[80] = &localeOfIssue_;
+  slotFields_[81] = &securityID_;
+  slotFields_[82] = &senderCompID_;
+  slotFields_[83] = &senderSubID_;
+  slotFields_[84] = &sendingTime_;
+  slotFields_[85] = &secondaryClOrdID_;
+  slotFields_[86] = &massCancelRequestType_;
+  slotFields_[87] = &massCancelResponse_;
+  slotFields_[88] = &massCancelRejectReason_;
+  slotFields_[89] = &totalAffectedOrders_;
+  slotFields_[90] = &side_;
+  slotFields_[91] = &maturityDate_;
+  slotFields_[92] = &underlyingMaturityDate_;
+  slotFields_[93] = &instrRegistry_;
+  slotFields_[94] = &symbol_;
+  slotFields_[95] = &targetCompID_;
+  slotFields_[96] = &targetSubID_;
+  slotFields_[97] = &text_;
+  slotFields_[98] = &underlyingCountryOfIssue_;
+  slotFields_[99] = &underlyingStateOrProvinceOfIssue_;
+  slotFields_[100] = &underlyingLocaleOfIssue_;
+  slotFields_[101] = &underlyingInstrRegistry_;
+  slotFields_[102] = &transactTime_;
+  slotFields_[103] = &tradingSessionSubID_;
+  slotFields_[104] = &symbolSfx_;
+  slotFields_[105] = &contractSettlMonth_;
+  slotFields_[106] = &pool_;
+  slotFields_[107] = &securitySubType_;
+  slotFields_[108] = &underlyingSecuritySubType_;
+  slotFields_[109] = &beginString_;
+  slotFields_[110] = &underlyingPx_;
+  slotFields_[111] = &datedDate_;
+  slotFields_[112] = &interestAccrualDate_;
+  slotFields_[113] = &cPProgram_;
+  slotFields_[114] = &cPRegType_;
+  slotFields_[115] = &underlyingCPProgram_;
+  slotFields_[116] = &underlyingCPRegType_;
+  slotFields_[117] = &underlyingQty_;
+  slotFields_[118] = &underlyingDirtyPrice_;
+  slotFields_[119] = &underlyingEndPrice_;
+  slotFields_[120] = &underlyingStartValue_;
+  slotFields_[121] = &underlyingCurrentValue_;
+  slotFields_[122] = &underlyingEndValue_;
+  slotFields_[123] = &signature_;
+  slotFields_[124] = &bodyLength_;
+  slotFields_[125] = &secureDataLen_;
+  slotFields_[126] = &secureData_;
+  slotFields_[127] = &signatureLength_;
+  slotFields_[128] = &underlyingStrikeCurrency_;
+  slotFields_[129] = &strikeCurrency_;
+  slotFields_[130] = &possResend_;
+  slotGroups_[0] = &affectedOrdersGroup_;
+  slotGroups_[1] = &securityAltIDGroup_;
+  slotGroups_[2] = &underlyingSecurityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  slotGroups_[5] = &underlyingStipsGroup_;
+  tagTable(OrderMassCancelReportSlotOfTag(), 956, slotFields_, slotGroups_, 131);
 }
 
 AbstractField* OrderMassCancelReport::msgType() {
@@ -54302,9 +58447,161 @@ AbstractField* OrderMassCancelReport::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* NewOrderCrossSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 133}, {8, 106}, {9, 126}, {10, 1}, {11, 133}, {12, 133}, {13, 133}, {15, 20}, {18, 23}, {21, 29}, {22, 35}, {23, 45}, {34, 52}, {35, 56}, {38, 133}, {40, 63}, {43, 66}, {44, 68}, {48, 74}, {49, 77}, {50, 79}, {52, 81}, {54, 133}, {55, 86}, {56, 88}, {57, 89}, {58, 133}, {59, 90}, {60, 91}, {63, 92}, {64, 93}, {65, 94}, {70, 133}, {75, 133}, {77, 133}, {78, 133}, {79, 133}, {80, 133}, {81, 107}, {89, 125}, {90, 127}, {91, 128}, {93, 129}, {97, 131}, {99, 132}, {100, 2}, {106, 3}, {107, 4}, {110, 5}, {111, 6}, {114, 7}, {115, 8}, {116, 9}, {117, 10}, {120, 133}, {121, 133}, {122, 11}, {126, 12}, {128, 13}, {129, 14}, {140, 15}, {142, 16}, {143, 17}, {144, 18}, {145, 19}, {152, 133}, {167, 21}, {168, 22}, {200, 24}, {201, 25}, {202, 26}, {203, 133}, {206, 27}, {207, 28}, {210, 30}, {211, 31}, {212, 32}, {213, 33}, {218, 34}, {220, 36}, {221, 37}, {222, 38}, {223, 39}, {224, 40}, {225, 41}, {226, 42}, {227, 43}, {228, 44}, {229, 133}, {231, 46}, {232, 134}, {233, 134}, {234, 134}, {235, 47}, {236, 48}, {239, 49}, {240, 50}, {241, 135}, {242, 135}, {243, 135}, {244, 135}, {245, 135}, {246, 135}, {247, 135}, {248, 136}, {249, 136}, {250, 136}, {251, 136}, {252, 136}, {253, 136}, {254, 136}, {255, 51}, {256, 135}, {257, 136}, {305, 135}, {306, 135}, {307, 135}, {308, 135}, {309, 135}, {310, 135}, {311, 135}, {312, 135}, {313, 135}, {315, 135}, {316, 135}, {317, 135}, {318, 135}, {336, 137}, {347, 53}, {348, 54}, {349, 55}, {350, 57}, {351, 58}, {354, 133}, {355, 133}, {362, 135}, {363, 135}, {364, 135}, {365, 135}, {369, 59}, {376, 60}, {377, 133}, {386, 137}, {388, 61}, {389, 62}, {423, 64}, {427, 65}, {432, 67}, {435, 135}, {436, 135}, {447, 133}, {448, 133}, {452, 133}, {453, 133}, {454, 138}, {455, 138}, {456, 138}, {457, 135}, {458, 135}, {459, 135}, {460, 69}, {461, 70}, {462, 135}, {463, 135}, {467, 133}, {468, 133}, {469, 133}, {470, 71}, {471, 72}, {472, 73}, {479, 133}, {480, 75}, {481, 76}, {494, 78}, {497, 133}, {513, 80}, {516, 133}, {523, 133}, {524, 133}, {525, 133}, {526, 133}, {528, 133}, {529, 133}, {538, 133}, {539, 133}, {541, 82}, {542, 135}, {543, 83}, {544, 133}, {545, 133}, {548, 84}, {549, 85}, {550, 87}, {552, 133}, {555, 136}, {556, 136}, {581, 133}, {582, 133}, {583, 133}, {589, 133}, {590, 133}, {591, 133}, {592, 135}, {593, 135}, {594, 135}, {595, 135}, {596, 136}, {597, 136}, {598, 136}, {599, 136}, {600, 136}, {601, 136}, {602, 136}, {603, 136}, {604, 136}, {605, 136}, {606, 136}, {607, 136}, {608, 136}, {609, 136}, {610, 136}, {611, 136}, {612, 136}, {613, 136}, {614, 136}, {615, 136}, {616, 136}, {617, 136}, {618, 136}, {619, 136}, {620, 136}, {621, 136}, {622, 136}, {623, 136}, {624, 136}, {625, 137}, {627, 139}, {628, 139}, {629, 139}, {630, 139}, {635, 133}, {659, 133}, {660, 133}, {661, 133}, {662, 95}, {663, 96}, {667, 97}, {691, 98}, {696, 99}, {697, 100}, {698, 101}, {699, 102}, {701, 103}, {711, 135}, {736, 133}, {739, 136}, {740, 136}, {761, 104}, {762, 105}, {763, 135}, {764, 136}, {775, 133}, {802, 133}, {803, 133}, {804, 133}, {805, 133}, {810, 135}, {835, 108}, {836, 109}, {837, 110}, {838, 111}, {840, 112}, {841, 113}, {842, 114}, {843, 115}, {844, 116}, {846, 117}, {847, 118}, {848, 119}, {849, 120}, {854, 133}, {864, 140}, {865, 140}, {866, 140}, {867, 140}, {868, 140}, {873, 121}, {874, 122}, {875, 123}, {876, 124}, {877, 135}, {878, 135}, {879, 135}, {882, 135}, {883, 135}, {884, 135}, {885, 135}, {886, 135}, {887, 135}, {888, 135}, {889, 135}, {941, 135}, {942, 136}, {947, 130}, {955, 136}, {956, 136}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 NewOrderCross::NewOrderCross() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &exDestination_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &minQty_;
+  slotFields_[6] = &maxFloor_;
+  slotFields_[7] = &locateReqd_;
+  slotFields_[8] = &onBehalfOfCompID_;
+  slotFields_[9] = &onBehalfOfSubID_;
+  slotFields_[10] = &quoteID_;
+  slotFields_[11] = &origSendingTime_;
+  slotFields_[12] = &expireTime_;
+  slotFields_[13] = &deliverToCompID_;
+  slotFields_[14] = &deliverToSubID_;
+  slotFields_[15] = &prevClosePx_;
+  slotFields_[16] = &senderLocationID_;
+  slotFields_[17] = &targetLocationID_;
+  slotFields_[18] = &onBehalfOfLocationID_;
+  slotFields_[19] = &deliverToLocationID_;
+  slotFields_[20] = &currency_;
+  slotFields_[21] = &securityType_;
+  slotFields_[22] = &effectiveTime_;
+  slotFields_[23] = &execInst_;
+  slotFields_[24] = &maturityMonthYear_;
+  slotFields_[25] = &putOrCall_;
+  slotFields_[26] = &strikePrice_;
+  slotFields_[27] = &optAttribute_;
+  slotFields_[28] = &securityExchange_;
+  slotFields_[29] = &handlInst_;
+  slotFields_[30] = &maxShow_;
+  slotFields_[31] = &pegOffsetValue_;
+  slotFields_[32] = &xmlDataLen_;
+  slotFields_[33] = &xmlData_;
+  slotFields_[34] = &spread_;
+  slotFields_[35] = &securityIDSource_;
+  slotFields_[36] = &benchmarkCurveCurrency_;
+  slotFields_[37] = &benchmarkCurveName_;
+  slotFields_[38] = &benchmarkCurvePoint_;
+  slotFields_[39] = &couponRate_;
+  slotFields_[40] = &couponPaymentDate_;
+  slotFields_[41] = &issueDate_;
+  slotFields_[42] = &repurchaseTerm_;
+  slotFields_[43] = &repurchaseRate_;
+  slotFields_[44] = &factor_;
+  slotFields_[45] = &iOIID_;
+  slotFields_[46] = &contractMultiplier_;
+  slotFields_[47] = &yieldType_;
+  slotFields_[48] = &yield_;
+  slotFields_[49] = &repoCollateralSecurityType_;
+  slotFields_[50] = &redemptionDate_;
+  slotFields_[51] = &creditRating_;
+  slotFields_[52] = &msgSeqNum_;
+  slotFields_[53] = &messageEncoding_;
+  slotFields_[54] = &encodedIssuerLen_;
+  slotFields_[55] = &encodedIssuer_;
+  slotFields_[56] = &msgType_;
+  slotFields_[57] = &encodedSecurityDescLen_;
+  slotFields_[58] = &encodedSecurityDesc_;
+  slotFields_[59] = &lastMsgSeqNumProcessed_;
+  slotFields_[60] = &complianceID_;
+  slotFields_[61] = &discretionInst_;
+  slotFields_[62] = &discretionOffsetValue_;
+  slotFields_[63] = &ordType_;
+  slotFields_[64] = &priceType_;
+  slotFields_[65] = &gTBookingInst_;
+  slotFields_[66] = &possDupFlag_;
+  slotFields_[67] = &expireDate_;
+  slotFields_[68] = &price_;
+  slotFields_[69] = &product_;
+  slotFields_[70] = &cFICode_;
+  slotFields_[71] = &countryOfIssue_;
+  slotFields_[72] = &stateOrProvinceOfIssue_;
+  slotFields_[73] = &localeOfIssue_;
+  slotFields_[74] = &securityID_;
+  slotFields_[75] = &cancellationRights_;
+  slotFields_[76] = &moneyLaunderingStatus_;
+  slotFields_[77] = &senderCompID_;
+  slotFields_[78] = &designation_;
+  slotFields_[79] = &senderSubID_;
+  slotFields_[80] = &registID_;
+  slotFields_[81] = &sendingTime_;
+  slotFields_[82] = &maturityDate_;
+  slotFields_[83] = &instrRegistry_;
+  slotFields_[84] = &crossID_;
+  slotFields_[85] = &crossType_;
+  slotFields_[86] = &symbol_;
+  slotFields_[87] = &crossPrioritization_;
+  slotFields_[88] = &targetCompID_;
+  slotFields_[89] = &targetSubID_;
+  slotFields_[90] = &timeInForce_;
+  slotFields_[91] = &transactTime_;
+  slotFields_[92] = &settlType_;
+  slotFields_[93] = &settlDate_;
+  slotFields_[94] = &symbolSfx_;
+  slotFields_[95] = &benchmarkPrice_;
+  slotFields_[96] = &benchmarkPriceType_;
+  slotFields_[97] = &contractSettlMonth_;
+  slotFields_[98] = &pool_;
+  slotFields_[99] = &yieldRedemptionDate_;
+  slotFields_[100] = &yieldRedemptionPrice_;
+  slotFields_[101] = &yieldRedemptionPriceType_;
+  slotFields_[102] = &benchmarkSecurityID_;
+  slotFields_[103] = &yieldCalcDate_;
+  slotFields_[104] = &benchmarkSecurityIDSource_;
+  slotFields_[105] = &securitySubType_;
+  slotFields_[106] = &beginString_;
+  slotFields_[107] = &processCode_;
+  slotFields_[108] = &pegMoveType_;
+  slotFields_[109] = &pegOffsetType_;
+  slotFields_[110] = &pegLimitType_;
+  slotFields_[111] = &pegRoundDirection_;
+  slotFields_[112] = &pegScope_;
+  slotFields_[113] = &discretionMoveType_;
+  slotFields_[114] = &discretionOffsetType_;
+  slotFields_[115] = &discretionLimitType_;
+  slotFields_[116] = &discretionRoundDirection_;
+  slotFields_[117] = &discretionScope_;
+  slotFields_[118] = &targetStrategy_;
+  slotFields_[119] = &targetStrategyParameters_;
+  slotFields_[120] = &participationRate_;
+  slotFields_[121] = &datedDate_;
+  slotFields_[122] = &interestAccrualDate_;
+  slotFields_[123] = &cPProgram_;
+  slotFields_[124] = &cPRegType_;
+  slotFields_[125] = &signature_;
+  slotFields_[126] = &bodyLength_;
+  slotFields_[127] = &secureDataLen_;
+  slotFields_[128] = &secureData_;
+  slotFields_[129] = &signatureLength_;
+  slotFields_[130] = &strikeCurrency_;
+  slotFields_[131] = &possResend_;
+  slotFields_[132] = &stopPx_;
+  slotGroups_[0] = &sidesGroup_;
+  slotGroups_[1] = &stipulationsGroup_;
+  slotGroups_[2] = &underlyingsGroup_;
+  slotGroups_[3] = &legsGroup1_;
+  slotGroups_[4] = &tradingSessionsGroup_;
+  slotGroups_[5] = &securityAltIDGroup_;
+  slotGroups_[6] = &hopsGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(NewOrderCrossSlotOfTag(), 956, slotFields_, slotGroups_, 133);
 }
 
 AbstractField* NewOrderCross::msgType() {
@@ -56511,9 +60808,163 @@ AbstractField* NewOrderCross::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* CrossOrderCancelReplaceRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 135}, {8, 108}, {9, 128}, {10, 1}, {11, 135}, {12, 135}, {13, 135}, {15, 20}, {18, 23}, {21, 29}, {22, 35}, {23, 45}, {34, 52}, {35, 56}, {37, 60}, {38, 135}, {40, 64}, {43, 67}, {44, 69}, {48, 75}, {49, 78}, {50, 80}, {52, 82}, {54, 135}, {55, 87}, {56, 90}, {57, 91}, {58, 135}, {59, 92}, {60, 93}, {63, 94}, {64, 95}, {65, 96}, {70, 135}, {75, 135}, {77, 135}, {78, 135}, {79, 135}, {80, 135}, {81, 109}, {89, 127}, {90, 129}, {91, 130}, {93, 131}, {97, 133}, {99, 134}, {100, 2}, {106, 3}, {107, 4}, {110, 5}, {111, 6}, {114, 7}, {115, 8}, {116, 9}, {117, 10}, {120, 135}, {121, 135}, {122, 11}, {126, 12}, {128, 13}, {129, 14}, {140, 15}, {142, 16}, {143, 17}, {144, 18}, {145, 19}, {152, 135}, {167, 21}, {168, 22}, {200, 24}, {201, 25}, {202, 26}, {203, 135}, {206, 27}, {207, 28}, {210, 30}, {211, 31}, {212, 32}, {213, 33}, {218, 34}, {220, 36}, {221, 37}, {222, 38}, {223, 39}, {224, 40}, {225, 41}, {226, 42}, {227, 43}, {228, 44}, {229, 135}, {231, 46}, {232, 136}, {233, 136}, {234, 136}, {235, 47}, {236, 48}, {239, 49}, {240, 50}, {241, 137}, {242, 137}, {243, 137}, {244, 137}, {245, 137}, {246, 137}, {247, 137}, {248, 138}, {249, 138}, {250, 138}, {251, 138}, {252, 138}, {253, 138}, {254, 138}, {255, 51}, {256, 137}, {257, 138}, {305, 137}, {306, 137}, {307, 137}, {308, 137}, {309, 137}, {310, 137}, {311, 137}, {312, 137}, {313, 137}, {315, 137}, {316, 137}, {317, 137}, {318, 137}, {336, 139}, {347, 53}, {348, 54}, {349, 55}, {350, 57}, {351, 58}, {354, 135}, {355, 135}, {362, 137}, {363, 137}, {364, 137}, {365, 137}, {369, 59}, {376, 61}, {377, 135}, {386, 139}, {388, 62}, {389, 63}, {423, 65}, {427, 66}, {432, 68}, {435, 137}, {436, 137}, {447, 135}, {448, 135}, {452, 135}, {453, 135}, {454, 140}, {455, 140}, {456, 140}, {457, 137}, {458, 137}, {459, 137}, {460, 70}, {461, 71}, {462, 137}, {463, 137}, {467, 135}, {468, 135}, {469, 135}, {470, 72}, {471, 73}, {472, 74}, {479, 135}, {480, 76}, {481, 77}, {494, 79}, {497, 135}, {513, 81}, {516, 135}, {523, 135}, {524, 135}, {525, 135}, {526, 135}, {528, 135}, {529, 135}, {538, 135}, {539, 135}, {541, 83}, {542, 137}, {543, 84}, {544, 135}, {545, 135}, {548, 85}, {549, 86}, {550, 88}, {551, 89}, {552, 135}, {555, 138}, {556, 138}, {581, 135}, {582, 135}, {583, 135}, {589, 135}, {590, 135}, {591, 135}, {592, 137}, {593, 137}, {594, 137}, {595, 137}, {596, 138}, {597, 138}, {598, 138}, {599, 138}, {600, 138}, {601, 138}, {602, 138}, {603, 138}, {604, 138}, {605, 138}, {606, 138}, {607, 138}, {608, 138}, {609, 138}, {610, 138}, {611, 138}, {612, 138}, {613, 138}, {614, 138}, {615, 138}, {616, 138}, {617, 138}, {618, 138}, {619, 138}, {620, 138}, {621, 138}, {622, 138}, {623, 138}, {624, 138}, {625, 139}, {627, 141}, {628, 141}, {629, 141}, {630, 141}, {635, 135}, {659, 135}, {660, 135}, {661, 135}, {662, 97}, {663, 98}, {667, 99}, {691, 100}, {696, 101}, {697, 102}, {698, 103}, {699, 104}, {701, 105}, {711, 137}, {736, 135}, {739, 138}, {740, 138}, {761, 106}, {762, 107}, {763, 137}, {764, 138}, {775, 135}, {802, 135}, {803, 135}, {804, 135}, {805, 135}, {810, 137}, {835, 110}, {836, 111}, {837, 112}, {838, 113}, {840, 114}, {841, 115}, {842, 116}, {843, 117}, {844, 118}, {846, 119}, {847, 120}, {848, 121}, {849, 122}, {854, 135}, {864, 142}, {865, 142}, {866, 142}, {867, 142}, {868, 142}, {873, 123}, {874, 124}, {875, 125}, {876, 126}, {877, 137}, {878, 137}, {879, 137}, {882, 137}, {883, 137}, {884, 137}, {885, 137}, {886, 137}, {887, 137}, {888, 137}, {889, 137}, {941, 137}, {942, 138}, {947, 132}, {955, 138}, {956, 138}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 CrossOrderCancelReplaceRequest::CrossOrderCancelReplaceRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &exDestination_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &minQty_;
+  slotFields_[6] = &maxFloor_;
+  slotFields_[7] = &locateReqd_;
+  slotFields_[8] = &onBehalfOfCompID_;
+  slotFields_[9] = &onBehalfOfSubID_;
+  slotFields_[10] = &quoteID_;
+  slotFields_[11] = &origSendingTime_;
+  slotFields_[12] = &expireTime_;
+  slotFields_[13] = &deliverToCompID_;
+  slotFields_[14] = &deliverToSubID_;
+  slotFields_[15] = &prevClosePx_;
+  slotFields_[16] = &senderLocationID_;
+  slotFields_[17] = &targetLocationID_;
+  slotFields_[18] = &onBehalfOfLocationID_;
+  slotFields_[19] = &deliverToLocationID_;
+  slotFields_[20] = &currency_;
+  slotFields_[21] = &securityType_;
+  slotFields_[22] = &effectiveTime_;
+  slotFields_[23] = &execInst_;
+  slotFields_[24] = &maturityMonthYear_;
+  slotFields_[25] = &putOrCall_;
+  slotFields_[26] = &strikePrice_;
+  slotFields_[27] = &optAttribute_;
+  slotFields_[28] = &securityExchange_;
+  slotFields_[29] = &handlInst_;
+  slotFields_[30] = &maxShow_;
+  slotFields_[31] = &pegOffsetValue_;
+  slotFields_[32] = &xmlDataLen_;
+  slotFields_[33] = &xmlData_;
+  slotFields_[34] = &spread_;
+  slotFields_[35] = &securityIDSource_;
+  slotFields_[36] = &benchmarkCurveCurrency_;
+  slotFields_[37] = &benchmarkCurveName_;
+  slotFields_[38] = &benchmarkCurvePoint_;
+  slotFields_[39] = &couponRate_;
+  slotFields_[40] = &couponPaymentDate_;
+  slotFields_[41] = &issueDate_;
+  slotFields_[42] = &repurchaseTerm_;
+  slotFields_[43] = &repurchaseRate_;
+  slotFields_[44] = &factor_;
+  slotFields_[45] = &iOIID_;
+  slotFields_[46] = &contractMultiplier_;
+  slotFields_[47] = &yieldType_;
+  slotFields_[48] = &yield_;
+  slotFields_[49] = &repoCollateralSecurityType_;
+  slotFields_[50] = &redemptionDate_;
+  slotFields_[51] = &creditRating_;
+  slotFields_[52] = &msgSeqNum_;
+  slotFields_[53] = &messageEncoding_;
+  slotFields_[54] = &encodedIssuerLen_;
+  slotFields_[55] = &encodedIssuer_;
+  slotFields_[56] = &msgType_;
+  slotFields_[57] = &encodedSecurityDescLen_;
+  slotFields_[58] = &encodedSecurityDesc_;
+  slotFields_[59] = &lastMsgSeqNumProcessed_;
+  slotFields_[60] = &orderID_;
+  slotFields_[61] = &complianceID_;
+  slotFields_[62] = &discretionInst_;
+  slotFields_[63] = &discretionOffsetValue_;
+  slotFields_[64] = &ordType_;
+  slotFields_[65] = &priceType_;
+  slotFields_[66] = &gTBookingInst_;
+  slotFields_[67] = &possDupFlag_;
+  slotFields_[68] = &expireDate_;
+  slotFields_[69] = &price_;
+  slotFields_[70] = &product_;
+  slotFields_[71] = &cFICode_;
+  slotFields_[72] = &countryOfIssue_;
+  slotFields_[73] = &stateOrProvinceOfIssue_;
+  slotFields_[74] = &localeOfIssue_;
+  slotFields_[75] = &securityID_;
+  slotFields_[76] = &cancellationRights_;
+  slotFields_[77] = &moneyLaunderingStatus_;
+  slotFields_[78] = &senderCompID_;
+  slotFields_[79] = &designation_;
+  slotFields_[80] = &senderSubID_;
+  slotFields_[81] = &registID_;
+  slotFields_[82] = &sendingTime_;
+  slotFields_[83] = &maturityDate_;
+  slotFields_[84] = &instrRegistry_;
+  slotFields_[85] = &crossID_;
+  slotFields_[86] = &crossType_;
+  slotFields_[87] = &symbol_;
+  slotFields_[88] = &crossPrioritization_;
+  slotFields_[89] = &origCrossID_;
+  slotFields_[90] = &targetCompID_;
+  slotFields_[91] = &targetSubID_;
+  slotFields_[92] = &timeInForce_;
+  slotFields_[93] = &transactTime_;
+  slotFields_[94] = &settlType_;
+  slotFields_[95] = &settlDate_;
+  slotFields_[96] = &symbolSfx_;
+  slotFields_[97] = &benchmarkPrice_;
+  slotFields_[98] = &benchmarkPriceType_;
+  slotFields_[99] = &contractSettlMonth_;
+  slotFields_[100] = &pool_;
+  slotFields_[101] = &yieldRedemptionDate_;
+  slotFields_[102] = &yieldRedemptionPrice_;
+  slotFields_[103] = &yieldRedemptionPriceType_;
+  slotFields_[104] = &benchmarkSecurityID_;
+  slotFields_[105] = &yieldCalcDate_;
+  slotFields_[106] = &benchmarkSecurityIDSource_;
+  slotFields_[107] = &securitySubType_;
+  slotFields_[108] = &beginString_;
+  slotFields_[109] = &processCode_;
+  slotFields_[110] = &pegMoveType_;
+  slotFields_[111] = &pegOffsetType_;
+  slotFields_[112] = &pegLimitType_;
+  slotFields_[113] = &pegRoundDirection_;
+  slotFields_[114] = &pegScope_;
+  slotFields_[115] = &discretionMoveType_;
+  slotFields_[116] = &discretionOffsetType_;
+  slotFields_[117] = &discretionLimitType_;
+  slotFields_[118] = &discretionRoundDirection_;
+  slotFields_[119] = &discretionScope_;
+  slotFields_[120] = &targetStrategy_;
+  slotFields_[121] = &targetStrategyParameters_;
+  slotFields_[122] = &participationRate_;
+  slotFields_[123] = &datedDate_;
+  slotFields_[124] = &interestAccrualDate_;
+  slotFields_[125] = &cPProgram_;
+  slotFields_[126] = &cPRegType_;
+  slotFields_[127] = &signature_;
+  slotFields_[128] = &bodyLength_;
+  slotFields_[129] = &secureDataLen_;
+  slotFields_[130] = &secureData_;
+  slotFields_[131] = &signatureLength_;
+  slotFields_[132] = &strikeCurrency_;
+  slotFields_[133] = &possResend_;
+  slotFields_[134] = &stopPx_;
+  slotGroups_[0] = &sidesGroup_;
+  slotGroups_[1] = &stipulationsGroup_;
+  slotGroups_[2] = &underlyingsGroup_;
+  slotGroups_[3] = &legsGroup1_;
+  slotGroups_[4] = &tradingSessionsGroup_;
+  slotGroups_[5] = &securityAltIDGroup_;
+  slotGroups_[6] = &hopsGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(CrossOrderCancelReplaceRequestSlotOfTag(), 956, slotFields_, slotGroups_, 135);
 }
 
 AbstractField* CrossOrderCancelReplaceRequest::msgType() {
@@ -58732,9 +63183,103 @@ AbstractField* CrossOrderCancelReplaceRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* CrossOrderCancelRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 65}, {9, 71}, {10, 1}, {11, 77}, {22, 21}, {34, 32}, {35, 36}, {37, 40}, {38, 77}, {41, 77}, {43, 41}, {48, 47}, {49, 48}, {50, 49}, {52, 50}, {54, 77}, {55, 55}, {56, 58}, {57, 59}, {58, 77}, {60, 60}, {65, 61}, {75, 77}, {89, 70}, {90, 72}, {91, 73}, {93, 74}, {97, 76}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {152, 77}, {167, 13}, {200, 14}, {201, 15}, {202, 16}, {206, 17}, {207, 18}, {212, 19}, {213, 20}, {223, 22}, {224, 23}, {225, 24}, {226, 25}, {227, 26}, {228, 27}, {229, 77}, {231, 28}, {239, 29}, {240, 30}, {241, 78}, {242, 78}, {243, 78}, {244, 78}, {245, 78}, {246, 78}, {247, 78}, {248, 79}, {249, 79}, {250, 79}, {251, 79}, {252, 79}, {253, 79}, {254, 79}, {255, 31}, {256, 78}, {257, 79}, {305, 78}, {306, 78}, {307, 78}, {308, 78}, {309, 78}, {310, 78}, {311, 78}, {312, 78}, {313, 78}, {315, 78}, {316, 78}, {317, 78}, {318, 78}, {347, 33}, {348, 34}, {349, 35}, {350, 37}, {351, 38}, {354, 77}, {355, 77}, {362, 78}, {363, 78}, {364, 78}, {365, 78}, {369, 39}, {376, 77}, {435, 78}, {436, 78}, {447, 77}, {448, 77}, {452, 77}, {453, 77}, {454, 80}, {455, 80}, {456, 80}, {457, 78}, {458, 78}, {459, 78}, {460, 42}, {461, 43}, {462, 78}, {463, 78}, {468, 77}, {469, 77}, {470, 44}, {471, 45}, {472, 46}, {516, 77}, {523, 77}, {526, 77}, {541, 51}, {542, 78}, {543, 52}, {548, 53}, {549, 54}, {550, 56}, {551, 57}, {552, 77}, {555, 79}, {556, 79}, {583, 77}, {586, 77}, {592, 78}, {593, 78}, {594, 78}, {595, 78}, {596, 79}, {597, 79}, {598, 79}, {599, 79}, {600, 79}, {601, 79}, {602, 79}, {603, 79}, {604, 79}, {605, 79}, {606, 79}, {607, 79}, {608, 79}, {609, 79}, {610, 79}, {611, 79}, {612, 79}, {613, 79}, {614, 79}, {615, 79}, {616, 79}, {617, 79}, {618, 79}, {619, 79}, {620, 79}, {621, 79}, {622, 79}, {623, 79}, {624, 79}, {627, 81}, {628, 81}, {629, 81}, {630, 81}, {667, 62}, {691, 63}, {711, 78}, {739, 79}, {740, 79}, {762, 64}, {763, 78}, {764, 79}, {802, 77}, {803, 77}, {810, 78}, {864, 82}, {865, 82}, {866, 82}, {867, 82}, {868, 82}, {873, 66}, {874, 67}, {875, 68}, {876, 69}, {877, 78}, {878, 78}, {879, 78}, {882, 78}, {883, 78}, {884, 78}, {885, 78}, {886, 78}, {887, 78}, {888, 78}, {889, 78}, {941, 78}, {942, 79}, {947, 75}, {955, 79}, {956, 79}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 CrossOrderCancelRequest::CrossOrderCancelRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &securityType_;
+  slotFields_[14] = &maturityMonthYear_;
+  slotFields_[15] = &putOrCall_;
+  slotFields_[16] = &strikePrice_;
+  slotFields_[17] = &optAttribute_;
+  slotFields_[18] = &securityExchange_;
+  slotFields_[19] = &xmlDataLen_;
+  slotFields_[20] = &xmlData_;
+  slotFields_[21] = &securityIDSource_;
+  slotFields_[22] = &couponRate_;
+  slotFields_[23] = &couponPaymentDate_;
+  slotFields_[24] = &issueDate_;
+  slotFields_[25] = &repurchaseTerm_;
+  slotFields_[26] = &repurchaseRate_;
+  slotFields_[27] = &factor_;
+  slotFields_[28] = &contractMultiplier_;
+  slotFields_[29] = &repoCollateralSecurityType_;
+  slotFields_[30] = &redemptionDate_;
+  slotFields_[31] = &creditRating_;
+  slotFields_[32] = &msgSeqNum_;
+  slotFields_[33] = &messageEncoding_;
+  slotFields_[34] = &encodedIssuerLen_;
+  slotFields_[35] = &encodedIssuer_;
+  slotFields_[36] = &msgType_;
+  slotFields_[37] = &encodedSecurityDescLen_;
+  slotFields_[38] = &encodedSecurityDesc_;
+  slotFields_[39] = &lastMsgSeqNumProcessed_;
+  slotFields_[40] = &orderID_;
+  slotFields_[41] = &possDupFlag_;
+  slotFields_[42] = &product_;
+  slotFields_[43] = &cFICode_;
+  slotFields_[44] = &countryOfIssue_;
+  slotFields_[45] = &stateOrProvinceOfIssue_;
+  slotFields_[46] = &localeOfIssue_;
+  slotFields_[47] = &securityID_;
+  slotFields_[48] = &senderCompID_;
+  slotFields_[49] = &senderSubID_;
+  slotFields_[50] = &sendingTime_;
+  slotFields_[51] = &maturityDate_;
+  slotFields_[52] = &instrRegistry_;
+  slotFields_[53] = &crossID_;
+  slotFields_[54] = &crossType_;
+  slotFields_[55] = &symbol_;
+  slotFields_[56] = &crossPrioritization_;
+  slotFields_[57] = &origCrossID_;
+  slotFields_[58] = &targetCompID_;
+  slotFields_[59] = &targetSubID_;
+  slotFields_[60] = &transactTime_;
+  slotFields_[61] = &symbolSfx_;
+  slotFields_[62] = &contractSettlMonth_;
+  slotFields_[63] = &pool_;
+  slotFields_[64] = &securitySubType_;
+  slotFields_[65] = &beginString_;
+  slotFields_[66] = &datedDate_;
+  slotFields_[67] = &interestAccrualDate_;
+  slotFields_[68] = &cPProgram_;
+  slotFields_[69] = &cPRegType_;
+  slotFields_[70] = &signature_;
+  slotFields_[71] = &bodyLength_;
+  slotFields_[72] = &secureDataLen_;
+  slotFields_[73] = &secureData_;
+  slotFields_[74] = &signatureLength_;
+  slotFields_[75] = &strikeCurrency_;
+  slotFields_[76] = &possResend_;
+  slotGroups_[0] = &sidesGroup1_;
+  slotGroups_[1] = &underlyingsGroup_;
+  slotGroups_[2] = &legsGroup1_;
+  slotGroups_[3] = &securityAltIDGroup_;
+  slotGroups_[4] = &hopsGroup_;
+  slotGroups_[5] = &eventsGroup_;
+  tagTable(CrossOrderCancelRequestSlotOfTag(), 956, slotFields_, slotGroups_, 77);
 }
 
 AbstractField* CrossOrderCancelRequest::msgType() {
@@ -60267,9 +64812,60 @@ AbstractField* CrossOrderCancelRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SecurityTypeRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 32}, {9, 34}, {10, 1}, {34, 16}, {35, 18}, {43, 22}, {49, 24}, {50, 25}, {52, 26}, {56, 27}, {57, 28}, {58, 29}, {89, 33}, {90, 35}, {91, 36}, {93, 37}, {97, 38}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {167, 11}, {212, 12}, {213, 13}, {320, 14}, {336, 15}, {347, 17}, {354, 19}, {355, 20}, {369, 21}, {460, 23}, {625, 30}, {627, 39}, {628, 39}, {629, 39}, {630, 39}, {762, 31}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SecurityTypeRequest::SecurityTypeRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &securityType_;
+  slotFields_[12] = &xmlDataLen_;
+  slotFields_[13] = &xmlData_;
+  slotFields_[14] = &securityReqID_;
+  slotFields_[15] = &tradingSessionID_;
+  slotFields_[16] = &msgSeqNum_;
+  slotFields_[17] = &messageEncoding_;
+  slotFields_[18] = &msgType_;
+  slotFields_[19] = &encodedTextLen_;
+  slotFields_[20] = &encodedText_;
+  slotFields_[21] = &lastMsgSeqNumProcessed_;
+  slotFields_[22] = &possDupFlag_;
+  slotFields_[23] = &product_;
+  slotFields_[24] = &senderCompID_;
+  slotFields_[25] = &senderSubID_;
+  slotFields_[26] = &sendingTime_;
+  slotFields_[27] = &targetCompID_;
+  slotFields_[28] = &targetSubID_;
+  slotFields_[29] = &text_;
+  slotFields_[30] = &tradingSessionSubID_;
+  slotFields_[31] = &securitySubType_;
+  slotFields_[32] = &beginString_;
+  slotFields_[33] = &signature_;
+  slotFields_[34] = &bodyLength_;
+  slotFields_[35] = &secureDataLen_;
+  slotFields_[36] = &secureData_;
+  slotFields_[37] = &signatureLength_;
+  slotFields_[38] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(SecurityTypeRequestSlotOfTag(), 956, slotFields_, slotGroups_, 39);
 }
 
 AbstractField* SecurityTypeRequest::msgType() {
@@ -60616,9 +65212,63 @@ AbstractField* SecurityTypeRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SecurityTypesSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 33}, {9, 36}, {10, 1}, {34, 18}, {35, 20}, {43, 24}, {49, 25}, {50, 26}, {52, 27}, {56, 29}, {57, 30}, {58, 31}, {89, 34}, {90, 37}, {91, 38}, {93, 39}, {97, 40}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {167, 41}, {212, 11}, {213, 12}, {263, 13}, {320, 14}, {322, 15}, {323, 16}, {336, 17}, {347, 19}, {354, 21}, {355, 22}, {369, 23}, {460, 41}, {461, 41}, {557, 28}, {558, 41}, {625, 32}, {627, 42}, {628, 42}, {629, 42}, {630, 42}, {762, 41}, {893, 35}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SecurityTypes::SecurityTypes() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &subscriptionRequestType_;
+  slotFields_[14] = &securityReqID_;
+  slotFields_[15] = &securityResponseID_;
+  slotFields_[16] = &securityResponseType_;
+  slotFields_[17] = &tradingSessionID_;
+  slotFields_[18] = &msgSeqNum_;
+  slotFields_[19] = &messageEncoding_;
+  slotFields_[20] = &msgType_;
+  slotFields_[21] = &encodedTextLen_;
+  slotFields_[22] = &encodedText_;
+  slotFields_[23] = &lastMsgSeqNumProcessed_;
+  slotFields_[24] = &possDupFlag_;
+  slotFields_[25] = &senderCompID_;
+  slotFields_[26] = &senderSubID_;
+  slotFields_[27] = &sendingTime_;
+  slotFields_[28] = &totNoSecurityTypes_;
+  slotFields_[29] = &targetCompID_;
+  slotFields_[30] = &targetSubID_;
+  slotFields_[31] = &text_;
+  slotFields_[32] = &tradingSessionSubID_;
+  slotFields_[33] = &beginString_;
+  slotFields_[34] = &signature_;
+  slotFields_[35] = &lastFragment_;
+  slotFields_[36] = &bodyLength_;
+  slotFields_[37] = &secureDataLen_;
+  slotFields_[38] = &secureData_;
+  slotFields_[39] = &signatureLength_;
+  slotFields_[40] = &possResend_;
+  slotGroups_[0] = &securityTypesGroup_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(SecurityTypesSlotOfTag(), 956, slotFields_, slotGroups_, 41);
 }
 
 AbstractField* SecurityTypes::msgType() {
@@ -61028,9 +65678,117 @@ AbstractField* SecurityTypes::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SecurityListRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 70}, {9, 78}, {10, 1}, {15, 13}, {22, 22}, {34, 36}, {35, 40}, {43, 46}, {48, 52}, {49, 53}, {50, 54}, {52, 55}, {55, 58}, {56, 60}, {57, 61}, {58, 62}, {65, 64}, {89, 76}, {90, 79}, {91, 80}, {93, 88}, {97, 90}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {167, 14}, {200, 15}, {201, 16}, {202, 17}, {206, 18}, {207, 19}, {212, 20}, {213, 21}, {223, 23}, {224, 24}, {225, 25}, {226, 26}, {227, 27}, {228, 28}, {231, 29}, {239, 30}, {240, 31}, {241, 91}, {242, 91}, {243, 91}, {244, 91}, {245, 91}, {246, 91}, {247, 91}, {248, 92}, {249, 92}, {250, 92}, {251, 92}, {252, 92}, {253, 92}, {254, 92}, {255, 32}, {256, 91}, {257, 92}, {263, 33}, {305, 91}, {306, 91}, {307, 91}, {308, 91}, {309, 91}, {310, 91}, {311, 91}, {312, 91}, {313, 91}, {315, 91}, {316, 91}, {317, 91}, {318, 91}, {320, 34}, {336, 35}, {347, 37}, {348, 38}, {349, 39}, {350, 41}, {351, 42}, {354, 43}, {355, 44}, {362, 91}, {363, 91}, {364, 91}, {365, 91}, {369, 45}, {435, 91}, {436, 91}, {454, 93}, {455, 93}, {456, 93}, {457, 91}, {458, 91}, {459, 91}, {460, 47}, {461, 48}, {462, 91}, {463, 91}, {470, 49}, {471, 50}, {472, 51}, {541, 56}, {542, 91}, {543, 57}, {555, 92}, {556, 92}, {559, 59}, {592, 91}, {593, 91}, {594, 91}, {595, 91}, {596, 92}, {597, 92}, {598, 92}, {599, 92}, {600, 92}, {601, 92}, {602, 92}, {603, 92}, {604, 92}, {605, 92}, {606, 92}, {607, 92}, {608, 92}, {609, 92}, {610, 92}, {611, 92}, {612, 92}, {613, 92}, {614, 92}, {615, 92}, {616, 92}, {617, 92}, {618, 92}, {619, 92}, {620, 92}, {621, 92}, {622, 92}, {623, 92}, {624, 92}, {625, 63}, {627, 94}, {628, 94}, {629, 94}, {630, 94}, {667, 65}, {668, 66}, {691, 67}, {711, 91}, {739, 92}, {740, 92}, {762, 68}, {763, 91}, {764, 92}, {788, 69}, {810, 91}, {864, 95}, {865, 95}, {866, 95}, {867, 95}, {868, 95}, {869, 71}, {870, 96}, {871, 96}, {872, 96}, {873, 72}, {874, 73}, {875, 74}, {876, 75}, {877, 91}, {878, 91}, {879, 91}, {882, 91}, {883, 91}, {884, 91}, {885, 91}, {886, 91}, {887, 91}, {888, 91}, {889, 91}, {898, 77}, {913, 81}, {914, 82}, {915, 83}, {916, 84}, {917, 85}, {918, 86}, {919, 87}, {941, 91}, {942, 92}, {947, 89}, {955, 92}, {956, 92}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SecurityListRequest::SecurityListRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &currency_;
+  slotFields_[14] = &securityType_;
+  slotFields_[15] = &maturityMonthYear_;
+  slotFields_[16] = &putOrCall_;
+  slotFields_[17] = &strikePrice_;
+  slotFields_[18] = &optAttribute_;
+  slotFields_[19] = &securityExchange_;
+  slotFields_[20] = &xmlDataLen_;
+  slotFields_[21] = &xmlData_;
+  slotFields_[22] = &securityIDSource_;
+  slotFields_[23] = &couponRate_;
+  slotFields_[24] = &couponPaymentDate_;
+  slotFields_[25] = &issueDate_;
+  slotFields_[26] = &repurchaseTerm_;
+  slotFields_[27] = &repurchaseRate_;
+  slotFields_[28] = &factor_;
+  slotFields_[29] = &contractMultiplier_;
+  slotFields_[30] = &repoCollateralSecurityType_;
+  slotFields_[31] = &redemptionDate_;
+  slotFields_[32] = &creditRating_;
+  slotFields_[33] = &subscriptionRequestType_;
+  slotFields_[34] = &securityReqID_;
+  slotFields_[35] = &tradingSessionID_;
+  slotFields_[36] = &msgSeqNum_;
+  slotFields_[37] = &messageEncoding_;
+  slotFields_[38] = &encodedIssuerLen_;
+  slotFields_[39] = &encodedIssuer_;
+  slotFields_[40] = &msgType_;
+  slotFields_[41] = &encodedSecurityDescLen_;
+  slotFields_[42] = &encodedSecurityDesc_;
+  slotFields_[43] = &encodedTextLen_;
+  slotFields_[44] = &encodedText_;
+  slotFields_[45] = &lastMsgSeqNumProcessed_;
+  slotFields_[46] = &possDupFlag_;
+  slotFields_[47] = &product_;
+  slotFields_[48] = &cFICode_;
+  slotFields_[49] = &countryOfIssue_;
+  slotFields_[50] = &stateOrProvinceOfIssue_;
+  slotFields_[51] = &localeOfIssue_;
+  slotFields_[52] = &securityID_;
+  slotFields_[53] = &senderCompID_;
+  slotFields_[54] = &senderSubID_;
+  slotFields_[55] = &sendingTime_;
+  slotFields_[56] = &maturityDate_;
+  slotFields_[57] = &instrRegistry_;
+  slotFields_[58] = &symbol_;
+  slotFields_[59] = &securityListRequestType_;
+  slotFields_[60] = &targetCompID_;
+  slotFields_[61] = &targetSubID_;
+  slotFields_[62] = &text_;
+  slotFields_[63] = &tradingSessionSubID_;
+  slotFields_[64] = &symbolSfx_;
+  slotFields_[65] = &contractSettlMonth_;
+  slotFields_[66] = &deliveryForm_;
+  slotFields_[67] = &pool_;
+  slotFields_[68] = &securitySubType_;
+  slotFields_[69] = &terminationType_;
+  slotFields_[70] = &beginString_;
+  slotFields_[71] = &pctAtRisk_;
+  slotFields_[72] = &datedDate_;
+  slotFields_[73] = &interestAccrualDate_;
+  slotFields_[74] = &cPProgram_;
+  slotFields_[75] = &cPRegType_;
+  slotFields_[76] = &signature_;
+  slotFields_[77] = &marginRatio_;
+  slotFields_[78] = &bodyLength_;
+  slotFields_[79] = &secureDataLen_;
+  slotFields_[80] = &secureData_;
+  slotFields_[81] = &agreementDesc_;
+  slotFields_[82] = &agreementID_;
+  slotFields_[83] = &agreementDate_;
+  slotFields_[84] = &startDate_;
+  slotFields_[85] = &endDate_;
+  slotFields_[86] = &agreementCurrency_;
+  slotFields_[87] = &deliveryType_;
+  slotFields_[88] = &signatureLength_;
+  slotFields_[89] = &strikeCurrency_;
+  slotFields_[90] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &securityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  slotGroups_[5] = &instrAttribGroup_;
+  tagTable(SecurityListRequestSlotOfTag(), 956, slotFields_, slotGroups_, 91);
 }
 
 AbstractField* SecurityListRequest::msgType() {
@@ -62527,9 +67285,57 @@ AbstractField* SecurityListRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SecurityListSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 27}, {9, 30}, {10, 1}, {15, 35}, {22, 35}, {34, 15}, {35, 17}, {43, 20}, {48, 35}, {49, 21}, {50, 22}, {52, 23}, {55, 35}, {56, 24}, {57, 26}, {58, 35}, {65, 35}, {89, 28}, {90, 31}, {91, 32}, {93, 33}, {97, 34}, {106, 35}, {107, 35}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {146, 35}, {167, 35}, {200, 35}, {201, 35}, {202, 35}, {206, 35}, {207, 35}, {212, 11}, {213, 12}, {218, 35}, {220, 35}, {221, 35}, {222, 35}, {223, 35}, {224, 35}, {225, 35}, {226, 35}, {227, 35}, {228, 35}, {231, 35}, {232, 35}, {233, 35}, {234, 35}, {235, 35}, {236, 35}, {239, 35}, {240, 35}, {241, 35}, {242, 35}, {243, 35}, {244, 35}, {245, 35}, {246, 35}, {247, 35}, {248, 35}, {249, 35}, {250, 35}, {251, 35}, {252, 35}, {253, 35}, {254, 35}, {255, 35}, {256, 35}, {257, 35}, {305, 35}, {306, 35}, {307, 35}, {308, 35}, {309, 35}, {310, 35}, {311, 35}, {312, 35}, {313, 35}, {315, 35}, {316, 35}, {317, 35}, {318, 35}, {320, 13}, {322, 14}, {336, 35}, {347, 16}, {348, 35}, {349, 35}, {350, 35}, {351, 35}, {354, 35}, {355, 35}, {362, 35}, {363, 35}, {364, 35}, {365, 35}, {369, 18}, {393, 19}, {435, 35}, {436, 35}, {454, 35}, {455, 35}, {456, 35}, {457, 35}, {458, 35}, {459, 35}, {460, 35}, {461, 35}, {462, 35}, {463, 35}, {470, 35}, {471, 35}, {472, 35}, {541, 35}, {542, 35}, {543, 35}, {555, 35}, {556, 35}, {560, 25}, {561, 35}, {562, 35}, {587, 35}, {592, 35}, {593, 35}, {594, 35}, {595, 35}, {596, 35}, {597, 35}, {598, 35}, {599, 35}, {600, 35}, {601, 35}, {602, 35}, {603, 35}, {604, 35}, {605, 35}, {606, 35}, {607, 35}, {608, 35}, {609, 35}, {610, 35}, {611, 35}, {612, 35}, {613, 35}, {614, 35}, {615, 35}, {616, 35}, {617, 35}, {618, 35}, {619, 35}, {620, 35}, {621, 35}, {622, 35}, {623, 35}, {624, 35}, {625, 35}, {627, 36}, {628, 36}, {629, 36}, {630, 36}, {662, 35}, {663, 35}, {667, 35}, {668, 35}, {676, 35}, {677, 35}, {678, 35}, {679, 35}, {680, 35}, {683, 35}, {688, 35}, {689, 35}, {690, 35}, {691, 35}, {696, 35}, {697, 35}, {698, 35}, {699, 35}, {701, 35}, {711, 35}, {739, 35}, {740, 35}, {761, 35}, {762, 35}, {763, 35}, {764, 35}, {788, 35}, {810, 35}, {827, 35}, {864, 35}, {865, 35}, {866, 35}, {867, 35}, {868, 35}, {869, 35}, {870, 35}, {871, 35}, {872, 35}, {873, 35}, {874, 35}, {875, 35}, {876, 35}, {877, 35}, {878, 35}, {879, 35}, {882, 35}, {883, 35}, {884, 35}, {885, 35}, {886, 35}, {887, 35}, {888, 35}, {889, 35}, {893, 29}, {898, 35}, {913, 35}, {914, 35}, {915, 35}, {916, 35}, {917, 35}, {918, 35}, {919, 35}, {941, 35}, {942, 35}, {947, 35}, {955, 35}, {956, 35}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SecurityList::SecurityList() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &securityReqID_;
+  slotFields_[14] = &securityResponseID_;
+  slotFields_[15] = &msgSeqNum_;
+  slotFields_[16] = &messageEncoding_;
+  slotFields_[17] = &msgType_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &totNoRelatedSym_;
+  slotFields_[20] = &possDupFlag_;
+  slotFields_[21] = &senderCompID_;
+  slotFields_[22] = &senderSubID_;
+  slotFields_[23] = &sendingTime_;
+  slotFields_[24] = &targetCompID_;
+  slotFields_[25] = &securityRequestResult_;
+  slotFields_[26] = &targetSubID_;
+  slotFields_[27] = &beginString_;
+  slotFields_[28] = &signature_;
+  slotFields_[29] = &lastFragment_;
+  slotFields_[30] = &bodyLength_;
+  slotFields_[31] = &secureDataLen_;
+  slotFields_[32] = &secureData_;
+  slotFields_[33] = &signatureLength_;
+  slotFields_[34] = &possResend_;
+  slotGroups_[0] = &relatedSymGroup3_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(SecurityListSlotOfTag(), 956, slotFields_, slotGroups_, 35);
 }
 
 AbstractField* SecurityList::msgType() {
@@ -64190,9 +68996,108 @@ AbstractField* SecurityList::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* DerivativeSecurityListRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 68}, {9, 79}, {10, 1}, {15, 11}, {34, 38}, {35, 40}, {43, 48}, {49, 53}, {50, 54}, {52, 55}, {56, 58}, {57, 59}, {58, 60}, {89, 78}, {90, 80}, {91, 81}, {93, 82}, {97, 84}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 12}, {213, 13}, {241, 14}, {242, 15}, {243, 16}, {244, 17}, {245, 18}, {246, 19}, {247, 20}, {256, 21}, {263, 22}, {305, 23}, {306, 24}, {307, 25}, {308, 26}, {309, 27}, {310, 28}, {311, 29}, {312, 30}, {313, 31}, {315, 32}, {316, 33}, {317, 34}, {318, 35}, {320, 36}, {336, 37}, {347, 39}, {354, 41}, {355, 42}, {362, 43}, {363, 44}, {364, 45}, {365, 46}, {369, 47}, {435, 49}, {436, 50}, {457, 85}, {458, 85}, {459, 85}, {462, 51}, {463, 52}, {542, 56}, {559, 57}, {592, 61}, {593, 62}, {594, 63}, {595, 64}, {625, 65}, {627, 86}, {628, 86}, {629, 86}, {630, 86}, {762, 66}, {763, 67}, {810, 69}, {877, 70}, {878, 71}, {879, 72}, {882, 73}, {883, 74}, {884, 75}, {885, 76}, {886, 77}, {887, 87}, {888, 87}, {889, 87}, {941, 83}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 DerivativeSecurityListRequest::DerivativeSecurityListRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &currency_;
+  slotFields_[12] = &xmlDataLen_;
+  slotFields_[13] = &xmlData_;
+  slotFields_[14] = &underlyingCouponPaymentDate_;
+  slotFields_[15] = &underlyingIssueDate_;
+  slotFields_[16] = &underlyingRepoCollateralSecurityType_;
+  slotFields_[17] = &underlyingRepurchaseTerm_;
+  slotFields_[18] = &underlyingRepurchaseRate_;
+  slotFields_[19] = &underlyingFactor_;
+  slotFields_[20] = &underlyingRedemptionDate_;
+  slotFields_[21] = &underlyingCreditRating_;
+  slotFields_[22] = &subscriptionRequestType_;
+  slotFields_[23] = &underlyingSecurityIDSource_;
+  slotFields_[24] = &underlyingIssuer_;
+  slotFields_[25] = &underlyingSecurityDesc_;
+  slotFields_[26] = &underlyingSecurityExchange_;
+  slotFields_[27] = &underlyingSecurityID_;
+  slotFields_[28] = &underlyingSecurityType_;
+  slotFields_[29] = &underlyingSymbol_;
+  slotFields_[30] = &underlyingSymbolSfx_;
+  slotFields_[31] = &underlyingMaturityMonthYear_;
+  slotFields_[32] = &underlyingPutOrCall_;
+  slotFields_[33] = &underlyingStrikePrice_;
+  slotFields_[34] = &underlyingOptAttribute_;
+  slotFields_[35] = &underlyingCurrency_;
+  slotFields_[36] = &securityReqID_;
+  slotFields_[37] = &tradingSessionID_;
+  slotFields_[38] = &msgSeqNum_;
+  slotFields_[39] = &messageEncoding_;
+  slotFields_[40] = &msgType_;
+  slotFields_[41] = &encodedTextLen_;
+  slotFields_[42] = &encodedText_;
+  slotFields_[43] = &encodedUnderlyingIssuerLen_;
+  slotFields_[44] = &encodedUnderlyingIssuer_;
+  slotFields_[45] = &encodedUnderlyingSecurityDescLen_;
+  slotFields_[46] = &encodedUnderlyingSecurityDesc_;
+  slotFields_[47] = &lastMsgSeqNumProcessed_;
+  slotFields_[48] = &possDupFlag_;
+  slotFields_[49] = &underlyingCouponRate_;
+  slotFields_[50] = &underlyingContractMultiplier_;
+  slotFields_[51] = &underlyingProduct_;
+  slotFields_[52] = &underlyingCFICode_;
+  slotFields_[53] = &senderCompID_;
+  slotFields_[54] = &senderSubID_;
+  slotFields_[55] = &sendingTime_;
+  slotFields_[56] = &underlyingMaturityDate_;
+  slotFields_[57] = &securityListRequestType_;
+  slotFields_[58] = &targetCompID_;
+  slotFields_[59] = &targetSubID_;
+  slotFields_[60] = &text_;
+  slotFields_[61] = &underlyingCountryOfIssue_;
+  slotFields_[62] = &underlyingStateOrProvinceOfIssue_;
+  slotFields_[63] = &underlyingLocaleOfIssue_;
+  slotFields_[64] = &underlyingInstrRegistry_;
+  slotFields_[65] = &tradingSessionSubID_;
+  slotFields_[66] = &securitySubType_;
+  slotFields_[67] = &underlyingSecuritySubType_;
+  slotFields_[68] = &beginString_;
+  slotFields_[69] = &underlyingPx_;
+  slotFields_[70] = &underlyingCPProgram_;
+  slotFields_[71] = &underlyingCPRegType_;
+  slotFields_[72] = &underlyingQty_;
+  slotFields_[73] = &underlyingDirtyPrice_;
+  slotFields_[74] = &underlyingEndPrice_;
+  slotFields_[75] = &underlyingStartValue_;
+  slotFields_[76] = &underlyingCurrentValue_;
+  slotFields_[77] = &underlyingEndValue_;
+  slotFields_[78] = &signature_;
+  slotFields_[79] = &bodyLength_;
+  slotFields_[80] = &secureDataLen_;
+  slotFields_[81] = &secureData_;
+  slotFields_[82] = &signatureLength_;
+  slotFields_[83] = &underlyingStrikeCurrency_;
+  slotFields_[84] = &possResend_;
+  slotGroups_[0] = &underlyingSecurityAltIDGroup_;
+  slotGroups_[1] = &hopsGroup_;
+  slotGroups_[2] = &underlyingStipsGroup_;
+  tagTable(DerivativeSecurityListRequestSlotOfTag(), 956, slotFields_, slotGroups_, 85);
 }
 
 AbstractField* DerivativeSecurityListRequest::msgType() {
@@ -64962,9 +69867,104 @@ AbstractField* DerivativeSecurityListRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* DerivativeSecurityListSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 62}, {9, 74}, {10, 1}, {15, 80}, {22, 80}, {34, 36}, {35, 38}, {43, 45}, {48, 80}, {49, 50}, {50, 51}, {52, 52}, {55, 80}, {56, 54}, {57, 56}, {58, 80}, {65, 80}, {89, 72}, {90, 75}, {91, 76}, {93, 77}, {97, 79}, {106, 80}, {107, 80}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {146, 80}, {167, 80}, {200, 80}, {201, 80}, {202, 80}, {206, 80}, {207, 80}, {212, 11}, {213, 12}, {223, 80}, {224, 80}, {225, 80}, {226, 80}, {227, 80}, {228, 80}, {231, 80}, {239, 80}, {240, 80}, {241, 13}, {242, 14}, {243, 15}, {244, 16}, {245, 17}, {246, 18}, {247, 19}, {248, 80}, {249, 80}, {250, 80}, {251, 80}, {252, 80}, {253, 80}, {254, 80}, {255, 80}, {256, 20}, {257, 80}, {305, 21}, {306, 22}, {307, 23}, {308, 24}, {309, 25}, {310, 26}, {311, 27}, {312, 28}, {313, 29}, {315, 30}, {316, 31}, {317, 32}, {318, 33}, {320, 34}, {322, 35}, {336, 80}, {347, 37}, {348, 80}, {349, 80}, {350, 80}, {351, 80}, {354, 80}, {355, 80}, {362, 39}, {363, 40}, {364, 41}, {365, 42}, {369, 43}, {393, 44}, {435, 46}, {436, 47}, {454, 80}, {455, 80}, {456, 80}, {457, 81}, {458, 81}, {459, 81}, {460, 80}, {461, 80}, {462, 48}, {463, 49}, {470, 80}, {471, 80}, {472, 80}, {541, 80}, {542, 53}, {543, 80}, {555, 80}, {556, 80}, {560, 55}, {592, 57}, {593, 58}, {594, 59}, {595, 60}, {596, 80}, {597, 80}, {598, 80}, {599, 80}, {600, 80}, {601, 80}, {602, 80}, {603, 80}, {604, 80}, {605, 80}, {606, 80}, {607, 80}, {608, 80}, {609, 80}, {610, 80}, {611, 80}, {612, 80}, {613, 80}, {614, 80}, {615, 80}, {616, 80}, {617, 80}, {618, 80}, {619, 80}, {620, 80}, {621, 80}, {622, 80}, {623, 80}, {624, 80}, {625, 80}, {627, 82}, {628, 82}, {629, 82}, {630, 82}, {667, 80}, {668, 80}, {691, 80}, {739, 80}, {740, 80}, {762, 80}, {763, 61}, {764, 80}, {810, 63}, {827, 80}, {864, 80}, {865, 80}, {866, 80}, {867, 80}, {868, 80}, {869, 80}, {870, 80}, {871, 80}, {872, 80}, {873, 80}, {874, 80}, {875, 80}, {876, 80}, {877, 64}, {878, 65}, {879, 66}, {882, 67}, {883, 68}, {884, 69}, {885, 70}, {886, 71}, {887, 83}, {888, 83}, {889, 83}, {893, 73}, {941, 78}, {942, 80}, {947, 80}, {955, 80}, {956, 80}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 DerivativeSecurityList::DerivativeSecurityList() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &underlyingCouponPaymentDate_;
+  slotFields_[14] = &underlyingIssueDate_;
+  slotFields_[15] = &underlyingRepoCollateralSecurityType_;
+  slotFields_[16] = &underlyingRepurchaseTerm_;
+  slotFields_[17] = &underlyingRepurchaseRate_;
+  slotFields_[18] = &underlyingFactor_;
+  slotFields_[19] = &underlyingRedemptionDate_;
+  slotFields_[20] = &underlyingCreditRating_;
+  slotFields_[21] = &underlyingSecurityIDSource_;
+  slotFields_[22] = &underlyingIssuer_;
+  slotFields_[23] = &underlyingSecurityDesc_;
+  slotFields_[24] = &underlyingSecurityExchange_;
+  slotFields_[25] = &underlyingSecurityID_;
+  slotFields_[26] = &underlyingSecurityType_;
+  slotFields_[27] = &underlyingSymbol_;
+  slotFields_[28] = &underlyingSymbolSfx_;
+  slotFields_[29] = &underlyingMaturityMonthYear_;
+  slotFields_[30] = &underlyingPutOrCall_;
+  slotFields_[31] = &underlyingStrikePrice_;
+  slotFields_[32] = &underlyingOptAttribute_;
+  slotFields_[33] = &underlyingCurrency_;
+  slotFields_[34] = &securityReqID_;
+  slotFields_[35] = &securityResponseID_;
+  slotFields_[36] = &msgSeqNum_;
+  slotFields_[37] = &messageEncoding_;
+  slotFields_[38] = &msgType_;
+  slotFields_[39] = &encodedUnderlyingIssuerLen_;
+  slotFields_[40] = &encodedUnderlyingIssuer_;
+  slotFields_[41] = &encodedUnderlyingSecurityDescLen_;
+  slotFields_[42] = &encodedUnderlyingSecurityDesc_;
+  slotFields_[43] = &lastMsgSeqNumProcessed_;
+  slotFields_[44] = &totNoRelatedSym_;
+  slotFields_[45] = &possDupFlag_;
+  slotFields_[46] = &underlyingCouponRate_;
+  slotFields_[47] = &underlyingContractMultiplier_;
+  slotFields_[48] = &underlyingProduct_;
+  slotFields_[49] = &underlyingCFICode_;
+  slotFields_[50] = &senderCompID_;
+  slotFields_[51] = &senderSubID_;
+  slotFields_[52] = &sendingTime_;
+  slotFields_[53] = &underlyingMaturityDate_;
+  slotFields_[54] = &targetCompID_;
+  slotFields_[55] = &securityRequestResult_;
+  slotFields_[56] = &targetSubID_;
+  slotFields_[57] = &underlyingCountryOfIssue_;
+  slotFields_[58] = &underlyingStateOrProvinceOfIssue_;
+  slotFields_[59] = &underlyingLocaleOfIssue_;
+  slotFields_[60] = &underlyingInstrRegistry_;
+  slotFields_[61] = &underlyingSecuritySubType_;
+  slotFields_[62] = &beginString_;
+  slotFields_[63] = &underlyingPx_;
+  slotFields_[64] = &underlyingCPProgram_;
+  slotFields_[65] = &underlyingCPRegType_;
+  slotFields_[66] = &underlyingQty_;
+  slotFields_[67] = &underlyingDirtyPrice_;
+  slotFields_[68] = &underlyingEndPrice_;
+  slotFields_[69] = &underlyingStartValue_;
+  slotFields_[70] = &underlyingCurrentValue_;
+  slotFields_[71] = &underlyingEndValue_;
+  slotFields_[72] = &signature_;
+  slotFields_[73] = &lastFragment_;
+  slotFields_[74] = &bodyLength_;
+  slotFields_[75] = &secureDataLen_;
+  slotFields_[76] = &secureData_;
+  slotFields_[77] = &signatureLength_;
+  slotFields_[78] = &underlyingStrikeCurrency_;
+  slotFields_[79] = &possResend_;
+  slotGroups_[0] = &relatedSymGroup4_;
+  slotGroups_[1] = &underlyingSecurityAltIDGroup_;
+  slotGroups_[2] = &hopsGroup_;
+  slotGroups_[3] = &underlyingStipsGroup_;
+  tagTable(DerivativeSecurityListSlotOfTag(), 956, slotFields_, slotGroups_, 80);
 }
 
 AbstractField* DerivativeSecurityList::msgType() {
@@ -66412,9 +71412,182 @@ AbstractField* DerivativeSecurityList::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* NewOrderMultilegSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 126}, {9, 147}, {10, 2}, {11, 6}, {12, 13}, {13, 20}, {15, 26}, {18, 30}, {21, 37}, {22, 42}, {23, 50}, {34, 55}, {35, 59}, {38, 67}, {40, 70}, {43, 73}, {44, 75}, {48, 84}, {49, 87}, {50, 90}, {52, 93}, {54, 97}, {55, 101}, {56, 102}, {57, 104}, {58, 105}, {59, 110}, {60, 113}, {63, 114}, {64, 116}, {65, 117}, {70, 121}, {75, 122}, {77, 124}, {78, 159}, {79, 159}, {80, 159}, {81, 127}, {89, 146}, {90, 148}, {91, 149}, {93, 150}, {97, 152}, {99, 153}, {100, 3}, {106, 4}, {107, 5}, {110, 7}, {111, 8}, {114, 9}, {115, 10}, {116, 11}, {117, 12}, {120, 14}, {121, 15}, {122, 16}, {126, 17}, {128, 18}, {129, 19}, {140, 21}, {142, 22}, {143, 23}, {144, 24}, {145, 25}, {152, 27}, {167, 28}, {168, 29}, {200, 31}, {201, 32}, {202, 33}, {203, 34}, {206, 35}, {207, 36}, {210, 38}, {211, 39}, {212, 40}, {213, 41}, {223, 43}, {224, 44}, {225, 45}, {226, 46}, {227, 47}, {228, 48}, {229, 49}, {231, 51}, {239, 52}, {240, 53}, {241, 154}, {242, 154}, {243, 154}, {244, 154}, {245, 154}, {246, 154}, {247, 154}, {248, 155}, {249, 155}, {250, 155}, {251, 155}, {252, 155}, {253, 155}, {254, 155}, {255, 54}, {256, 154}, {257, 155}, {305, 154}, {306, 154}, {307, 154}, {308, 154}, {309, 154}, {310, 154}, {311, 154}, {312, 154}, {313, 154}, {315, 154}, {316, 154}, {317, 154}, {318, 154}, {336, 156}, {347, 56}, {348, 57}, {349, 58}, {350, 60}, {351, 61}, {354, 62}, {355, 63}, {362, 154}, {363, 154}, {364, 154}, {365, 154}, {369, 64}, {376, 65}, {377, 66}, {386, 156}, {388, 68}, {389, 69}, {423, 71}, {427, 72}, {432, 74}, {435, 154}, {436, 154}, {447, 157}, {448, 157}, {452, 157}, {453, 157}, {454, 158}, {455, 158}, {456, 158}, {457, 154}, {458, 154}, {459, 154}, {460, 76}, {461, 77}, {462, 154}, {463, 154}, {467, 159}, {468, 78}, {469, 79}, {470, 80}, {471, 81}, {472, 82}, {479, 83}, {480, 85}, {481, 86}, {494, 88}, {497, 89}, {513, 91}, {516, 92}, {523, 157}, {524, 155}, {525, 155}, {526, 94}, {528, 95}, {529, 96}, {538, 155}, {539, 155}, {541, 98}, {542, 154}, {543, 99}, {544, 100}, {545, 155}, {555, 155}, {556, 155}, {563, 103}, {564, 155}, {565, 155}, {566, 155}, {581, 106}, {582, 107}, {583, 108}, {587, 155}, {588, 155}, {589, 109}, {590, 111}, {591, 112}, {592, 154}, {593, 154}, {594, 154}, {595, 154}, {596, 155}, {597, 155}, {598, 155}, {599, 155}, {600, 155}, {601, 155}, {602, 155}, {603, 155}, {604, 155}, {605, 155}, {606, 155}, {607, 155}, {608, 155}, {609, 155}, {610, 155}, {611, 155}, {612, 155}, {613, 155}, {614, 155}, {615, 155}, {616, 155}, {617, 155}, {618, 155}, {619, 155}, {620, 155}, {621, 155}, {622, 155}, {623, 155}, {624, 155}, {625, 156}, {627, 160}, {628, 160}, {629, 160}, {630, 160}, {635, 115}, {654, 155}, {660, 118}, {661, 159}, {667, 119}, {670, 155}, {671, 155}, {672, 155}, {673, 155}, {674, 155}, {675, 155}, {683, 155}, {687, 155}, {688, 155}, {689, 155}, {690, 155}, {691, 120}, {711, 154}, {736, 159}, {739, 155}, {740, 155}, {756, 155}, {757, 155}, {758, 155}, {759, 155}, {760, 155}, {762, 123}, {763, 154}, {764, 155}, {775, 125}, {802, 157}, {803, 157}, {804, 155}, {805, 155}, {806, 155}, {807, 155}, {810, 154}, {835, 128}, {836, 129}, {837, 130}, {838, 131}, {840, 132}, {841, 133}, {842, 134}, {843, 135}, {844, 136}, {846, 137}, {847, 138}, {848, 139}, {849, 140}, {854, 141}, {864, 161}, {865, 161}, {866, 161}, {867, 161}, {868, 161}, {873, 142}, {874, 143}, {875, 144}, {876, 145}, {877, 154}, {878, 154}, {879, 154}, {882, 154}, {883, 154}, {884, 154}, {885, 154}, {886, 154}, {887, 154}, {888, 154}, {889, 154}, {941, 154}, {942, 155}, {947, 151}, {948, 159}, {949, 159}, {950, 159}, {951, 159}, {952, 159}, {953, 159}, {954, 159}, {955, 155}, {956, 155}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 NewOrderMultileg::NewOrderMultileg() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &exDestination_;
+  slotFields_[4] = &issuer_;
+  slotFields_[5] = &securityDesc_;
+  slotFields_[6] = &clOrdID_;
+  slotFields_[7] = &minQty_;
+  slotFields_[8] = &maxFloor_;
+  slotFields_[9] = &locateReqd_;
+  slotFields_[10] = &onBehalfOfCompID_;
+  slotFields_[11] = &onBehalfOfSubID_;
+  slotFields_[12] = &quoteID_;
+  slotFields_[13] = &commission_;
+  slotFields_[14] = &settlCurrency_;
+  slotFields_[15] = &forexReq_;
+  slotFields_[16] = &origSendingTime_;
+  slotFields_[17] = &expireTime_;
+  slotFields_[18] = &deliverToCompID_;
+  slotFields_[19] = &deliverToSubID_;
+  slotFields_[20] = &commType_;
+  slotFields_[21] = &prevClosePx_;
+  slotFields_[22] = &senderLocationID_;
+  slotFields_[23] = &targetLocationID_;
+  slotFields_[24] = &onBehalfOfLocationID_;
+  slotFields_[25] = &deliverToLocationID_;
+  slotFields_[26] = &currency_;
+  slotFields_[27] = &cashOrderQty_;
+  slotFields_[28] = &securityType_;
+  slotFields_[29] = &effectiveTime_;
+  slotFields_[30] = &execInst_;
+  slotFields_[31] = &maturityMonthYear_;
+  slotFields_[32] = &putOrCall_;
+  slotFields_[33] = &strikePrice_;
+  slotFields_[34] = &coveredOrUncovered_;
+  slotFields_[35] = &optAttribute_;
+  slotFields_[36] = &securityExchange_;
+  slotFields_[37] = &handlInst_;
+  slotFields_[38] = &maxShow_;
+  slotFields_[39] = &pegOffsetValue_;
+  slotFields_[40] = &xmlDataLen_;
+  slotFields_[41] = &xmlData_;
+  slotFields_[42] = &securityIDSource_;
+  slotFields_[43] = &couponRate_;
+  slotFields_[44] = &couponPaymentDate_;
+  slotFields_[45] = &issueDate_;
+  slotFields_[46] = &repurchaseTerm_;
+  slotFields_[47] = &repurchaseRate_;
+  slotFields_[48] = &factor_;
+  slotFields_[49] = &tradeOriginationDate_;
+  slotFields_[50] = &iOIID_;
+  slotFields_[51] = &contractMultiplier_;
+  slotFields_[52] = &repoCollateralSecurityType_;
+  slotFields_[53] = &redemptionDate_;
+  slotFields_[54] = &creditRating_;
+  slotFields_[55] = &msgSeqNum_;
+  slotFields_[56] = &messageEncoding_;
+  slotFields_[57] = &encodedIssuerLen_;
+  slotFields_[58] = &encodedIssuer_;
+  slotFields_[59] = &msgType_;
+  slotFields_[60] = &encodedSecurityDescLen_;
+  slotFields_[61] = &encodedSecurityDesc_;
+  slotFields_[62] = &encodedTextLen_;
+  slotFields_[63] = &encodedText_;
+  slotFields_[64] = &lastMsgSeqNumProcessed_;
+  slotFields_[65] = &complianceID_;
+  slotFields_[66] = &solicitedFlag_;
+  slotFields_[67] = &orderQty_;
+  slotFields_[68] = &discretionInst_;
+  slotFields_[69] = &discretionOffsetValue_;
+  slotFields_[70] = &ordType_;
+  slotFields_[71] = &priceType_;
+  slotFields_[72] = &gTBookingInst_;
+  slotFields_[73] = &possDupFlag_;
+  slotFields_[74] = &expireDate_;
+  slotFields_[75] = &price_;
+  slotFields_[76] = &product_;
+  slotFields_[77] = &cFICode_;
+  slotFields_[78] = &roundingDirection_;
+  slotFields_[79] = &roundingModulus_;
+  slotFields_[80] = &countryOfIssue_;
+  slotFields_[81] = &stateOrProvinceOfIssue_;
+  slotFields_[82] = &localeOfIssue_;
+  slotFields_[83] = &commCurrency_;
+  slotFields_[84] = &securityID_;
+  slotFields_[85] = &cancellationRights_;
+  slotFields_[86] = &moneyLaunderingStatus_;
+  slotFields_[87] = &senderCompID_;
+  slotFields_[88] = &designation_;
+  slotFields_[89] = &fundRenewWaiv_;
+  slotFields_[90] = &senderSubID_;
+  slotFields_[91] = &registID_;
+  slotFields_[92] = &orderPercent_;
+  slotFields_[93] = &sendingTime_;
+  slotFields_[94] = &secondaryClOrdID_;
+  slotFields_[95] = &orderCapacity_;
+  slotFields_[96] = &orderRestrictions_;
+  slotFields_[97] = &side_;
+  slotFields_[98] = &maturityDate_;
+  slotFields_[99] = &instrRegistry_;
+  slotFields_[100] = &cashMargin_;
+  slotFields_[101] = &symbol_;
+  slotFields_[102] = &targetCompID_;
+  slotFields_[103] = &multiLegRptTypeReq_;
+  slotFields_[104] = &targetSubID_;
+  slotFields_[105] = &text_;
+  slotFields_[106] = &accountType_;
+  slotFields_[107] = &custOrderCapacity_;
+  slotFields_[108] = &clOrdLinkID_;
+  slotFields_[109] = &dayBookingInst_;
+  slotFields_[110] = &timeInForce_;
+  slotFields_[111] = &bookingUnit_;
+  slotFields_[112] = &preallocMethod_;
+  slotFields_[113] = &transactTime_;
+  slotFields_[114] = &settlType_;
+  slotFields_[115] = &clearingFeeIndicator_;
+  slotFields_[116] = &settlDate_;
+  slotFields_[117] = &symbolSfx_;
+  slotFields_[118] = &acctIDSource_;
+  slotFields_[119] = &contractSettlMonth_;
+  slotFields_[120] = &pool_;
+  slotFields_[121] = &allocID_;
+  slotFields_[122] = &tradeDate_;
+  slotFields_[123] = &securitySubType_;
+  slotFields_[124] = &positionEffect_;
+  slotFields_[125] = &bookingType_;
+  slotFields_[126] = &beginString_;
+  slotFields_[127] = &processCode_;
+  slotFields_[128] = &pegMoveType_;
+  slotFields_[129] = &pegOffsetType_;
+  slotFields_[130] = &pegLimitType_;
+  slotFields_[131] = &pegRoundDirection_;
+  slotFields_[132] = &pegScope_;
+  slotFields_[133] = &discretionMoveType_;
+  slotFields_[134] = &discretionOffsetType_;
+  slotFields_[135] = &discretionLimitType_;
+  slotFields_[136] = &discretionRoundDirection_;
+  slotFields_[137] = &discretionScope_;
+  slotFields_[138] = &targetStrategy_;
+  slotFields_[139] = &targetStrategyParameters_;
+  slotFields_[140] = &participationRate_;
+  slotFields_[141] = &qtyType_;
+  slotFields_[142] = &datedDate_;
+  slotFields_[143] = &interestAccrualDate_;
+  slotFields_[144] = &cPProgram_;
+  slotFields_[145] = &cPRegType_;
+  slotFields_[146] = &signature_;
+  slotFields_[147] = &bodyLength_;
+  slotFields_[148] = &secureDataLen_;
+  slotFields_[149] = &secureData_;
+  slotFields_[150] = &signatureLength_;
+  slotFields_[151] = &strikeCurrency_;
+  slotFields_[152] = &possResend_;
+  slotFields_[153] = &stopPx_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup6_;
+  slotGroups_[2] = &tradingSessionsGroup_;
+  slotGroups_[3] = &partyIDsGroup_;
+  slotGroups_[4] = &securityAltIDGroup_;
+  slotGroups_[5] = &allocsGroup3_;
+  slotGroups_[6] = &hopsGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(NewOrderMultilegSlotOfTag(), 956, slotFields_, slotGroups_, 154);
 }
 
 AbstractField* NewOrderMultileg::msgType() {
@@ -68720,9 +73893,185 @@ AbstractField* NewOrderMultileg::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* MultilegOrderCancelReplaceSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 129}, {9, 150}, {10, 2}, {11, 6}, {12, 13}, {13, 20}, {15, 26}, {18, 30}, {21, 37}, {22, 42}, {23, 50}, {34, 55}, {35, 59}, {37, 65}, {38, 68}, {40, 71}, {41, 72}, {43, 75}, {44, 77}, {48, 86}, {49, 89}, {50, 92}, {52, 95}, {54, 99}, {55, 103}, {56, 104}, {57, 106}, {58, 107}, {59, 113}, {60, 116}, {63, 117}, {64, 119}, {65, 120}, {70, 124}, {75, 125}, {77, 127}, {78, 162}, {79, 162}, {80, 162}, {81, 130}, {89, 149}, {90, 151}, {91, 152}, {93, 153}, {97, 155}, {99, 156}, {100, 3}, {106, 4}, {107, 5}, {110, 7}, {111, 8}, {114, 9}, {115, 10}, {116, 11}, {117, 12}, {120, 14}, {121, 15}, {122, 16}, {126, 17}, {128, 18}, {129, 19}, {140, 21}, {142, 22}, {143, 23}, {144, 24}, {145, 25}, {152, 27}, {167, 28}, {168, 29}, {200, 31}, {201, 32}, {202, 33}, {203, 34}, {206, 35}, {207, 36}, {210, 38}, {211, 39}, {212, 40}, {213, 41}, {223, 43}, {224, 44}, {225, 45}, {226, 46}, {227, 47}, {228, 48}, {229, 49}, {231, 51}, {239, 52}, {240, 53}, {241, 157}, {242, 157}, {243, 157}, {244, 157}, {245, 157}, {246, 157}, {247, 157}, {248, 158}, {249, 158}, {250, 158}, {251, 158}, {252, 158}, {253, 158}, {254, 158}, {255, 54}, {256, 157}, {257, 158}, {305, 157}, {306, 157}, {307, 157}, {308, 157}, {309, 157}, {310, 157}, {311, 157}, {312, 157}, {313, 157}, {315, 157}, {316, 157}, {317, 157}, {318, 157}, {336, 159}, {347, 56}, {348, 57}, {349, 58}, {350, 60}, {351, 61}, {354, 62}, {355, 63}, {362, 157}, {363, 157}, {364, 157}, {365, 157}, {369, 64}, {376, 66}, {377, 67}, {386, 159}, {388, 69}, {389, 70}, {423, 73}, {427, 74}, {432, 76}, {435, 157}, {436, 157}, {447, 160}, {448, 160}, {452, 160}, {453, 160}, {454, 161}, {455, 161}, {456, 161}, {457, 157}, {458, 157}, {459, 157}, {460, 78}, {461, 79}, {462, 157}, {463, 157}, {467, 162}, {468, 80}, {469, 81}, {470, 82}, {471, 83}, {472, 84}, {479, 85}, {480, 87}, {481, 88}, {494, 90}, {497, 91}, {513, 93}, {516, 94}, {523, 160}, {524, 158}, {525, 158}, {526, 96}, {528, 97}, {529, 98}, {538, 158}, {539, 158}, {541, 100}, {542, 157}, {543, 101}, {544, 102}, {545, 158}, {555, 158}, {556, 158}, {563, 105}, {564, 158}, {565, 158}, {566, 158}, {581, 108}, {582, 109}, {583, 110}, {586, 111}, {587, 158}, {588, 158}, {589, 112}, {590, 114}, {591, 115}, {592, 157}, {593, 157}, {594, 157}, {595, 157}, {596, 158}, {597, 158}, {598, 158}, {599, 158}, {600, 158}, {601, 158}, {602, 158}, {603, 158}, {604, 158}, {605, 158}, {606, 158}, {607, 158}, {608, 158}, {609, 158}, {610, 158}, {611, 158}, {612, 158}, {613, 158}, {614, 158}, {615, 158}, {616, 158}, {617, 158}, {618, 158}, {619, 158}, {620, 158}, {621, 158}, {622, 158}, {623, 158}, {624, 158}, {625, 159}, {627, 163}, {628, 163}, {629, 163}, {630, 163}, {635, 118}, {654, 158}, {660, 121}, {661, 162}, {667, 122}, {670, 158}, {671, 158}, {672, 158}, {673, 158}, {674, 158}, {675, 158}, {683, 158}, {687, 158}, {688, 158}, {689, 158}, {690, 158}, {691, 123}, {711, 157}, {736, 162}, {739, 158}, {740, 158}, {756, 158}, {757, 158}, {758, 158}, {759, 158}, {760, 158}, {762, 126}, {763, 157}, {764, 158}, {775, 128}, {802, 160}, {803, 160}, {804, 158}, {805, 158}, {806, 158}, {807, 158}, {810, 157}, {835, 131}, {836, 132}, {837, 133}, {838, 134}, {840, 135}, {841, 136}, {842, 137}, {843, 138}, {844, 139}, {846, 140}, {847, 141}, {848, 142}, {849, 143}, {854, 144}, {864, 164}, {865, 164}, {866, 164}, {867, 164}, {868, 164}, {873, 145}, {874, 146}, {875, 147}, {876, 148}, {877, 157}, {878, 157}, {879, 157}, {882, 157}, {883, 157}, {884, 157}, {885, 157}, {886, 157}, {887, 157}, {888, 157}, {889, 157}, {941, 157}, {942, 158}, {947, 154}, {948, 162}, {949, 162}, {950, 162}, {951, 162}, {952, 162}, {953, 162}, {954, 162}, {955, 158}, {956, 158}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 MultilegOrderCancelReplace::MultilegOrderCancelReplace() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &exDestination_;
+  slotFields_[4] = &issuer_;
+  slotFields_[5] = &securityDesc_;
+  slotFields_[6] = &clOrdID_;
+  slotFields_[7] = &minQty_;
+  slotFields_[8] = &maxFloor_;
+  slotFields_[9] = &locateReqd_;
+  slotFields_[10] = &onBehalfOfCompID_;
+  slotFields_[11] = &onBehalfOfSubID_;
+  slotFields_[12] = &quoteID_;
+  slotFields_[13] = &commission_;
+  slotFields_[14] = &settlCurrency_;
+  slotFields_[15] = &forexReq_;
+  slotFields_[16] = &origSendingTime_;
+  slotFields_[17] = &expireTime_;
+  slotFields_[18] = &deliverToCompID_;
+  slotFields_[19] = &deliverToSubID_;
+  slotFields_[20] = &commType_;
+  slotFields_[21] = &prevClosePx_;
+  slotFields_[22] = &senderLocationID_;
+  slotFields_[23] = &targetLocationID_;
+  slotFields_[24] = &onBehalfOfLocationID_;
+  slotFields_[25] = &deliverToLocationID_;
+  slotFields_[26] = &currency_;
+  slotFields_[27] = &cashOrderQty_;
+  slotFields_[28] = &securityType_;
+  slotFields_[29] = &effectiveTime_;
+  slotFields_[30] = &execInst_;
+  slotFields_[31] = &maturityMonthYear_;
+  slotFields_[32] = &putOrCall_;
+  slotFields_[33] = &strikePrice_;
+  slotFields_[34] = &coveredOrUncovered_;
+  slotFields_[35] = &optAttribute_;
+  slotFields_[36] = &securityExchange_;
+  slotFields_[37] = &handlInst_;
+  slotFields_[38] = &maxShow_;
+  slotFields_[39] = &pegOffsetValue_;
+  slotFields_[40] = &xmlDataLen_;
+  slotFields_[41] = &xmlData_;
+  slotFields_[42] = &securityIDSource_;
+  slotFields_[43] = &couponRate_;
+  slotFields_[44] = &couponPaymentDate_;
+  slotFields_[45] = &issueDate_;
+  slotFields_[46] = &repurchaseTerm_;
+  slotFields_[47] = &repurchaseRate_;
+  slotFields_[48] = &factor_;
+  slotFields_[49] = &tradeOriginationDate_;
+  slotFields_[50] = &iOIID_;
+  slotFields_[51] = &contractMultiplier_;
+  slotFields_[52] = &repoCollateralSecurityType_;
+  slotFields_[53] = &redemptionDate_;
+  slotFields_[54] = &creditRating_;
+  slotFields_[55] = &msgSeqNum_;
+  slotFields_[56] = &messageEncoding_;
+  slotFields_[57] = &encodedIssuerLen_;
+  slotFields_[58] = &encodedIssuer_;
+  slotFields_[59] = &msgType_;
+  slotFields_[60] = &encodedSecurityDescLen_;
+  slotFields_[61] = &encodedSecurityDesc_;
+  slotFields_[62] = &encodedTextLen_;
+  slotFields_[63] = &encodedText_;
+  slotFields_[64] = &lastMsgSeqNumProcessed_;
+  slotFields_[65] = &orderID_;
+  slotFields_[66] = &complianceID_;
+  slotFields_[67] = &solicitedFlag_;
+  slotFields_[68] = &orderQty_;
+  slotFields_[69] = &discretionInst_;
+  slotFields_[70] = &discretionOffsetValue_;
+  slotFields_[71] = &ordType_;
+  slotFields_[72] = &origClOrdID_;
+  slotFields_[73] = &priceType_;
+  slotFields_[74] = &gTBookingInst_;
+  slotFields_[75] = &possDupFlag_;
+  slotFields_[76] = &expireDate_;
+  slotFields_[77] = &price_;
+  slotFields_[78] = &product_;
+  slotFields_[79] = &cFICode_;
+  slotFields_[80] = &roundingDirection_;
+  slotFields_[81] = &roundingModulus_;
+  slotFields_[82] = &countryOfIssue_;
+  slotFields_[83] = &stateOrProvinceOfIssue_;
+  slotFields_[84] = &localeOfIssue_;
+  slotFields_[85] = &commCurrency_;
+  slotFields_[86] = &securityID_;
+  slotFields_[87] = &cancellationRights_;
+  slotFields_[88] = &moneyLaunderingStatus_;
+  slotFields_[89] = &senderCompID_;
+  slotFields_[90] = &designation_;
+  slotFields_[91] = &fundRenewWaiv_;
+  slotFields_[92] = &senderSubID_;
+  slotFields_[93] = &registID_;
+  slotFields_[94] = &orderPercent_;
+  slotFields_[95] = &sendingTime_;
+  slotFields_[96] = &secondaryClOrdID_;
+  slotFields_[97] = &orderCapacity_;
+  slotFields_[98] = &orderRestrictions_;
+  slotFields_[99] = &side_;
+  slotFields_[100] = &maturityDate_;
+  slotFields_[101] = &instrRegistry_;
+  slotFields_[102] = &cashMargin_;
+  slotFields_[103] = &symbol_;
+  slotFields_[104] = &targetCompID_;
+  slotFields_[105] = &multiLegRptTypeReq_;
+  slotFields_[106] = &targetSubID_;
+  slotFields_[107] = &text_;
+  slotFields_[108] = &accountType_;
+  slotFields_[109] = &custOrderCapacity_;
+  slotFields_[110] = &clOrdLinkID_;
+  slotFields_[111] = &origOrdModTime_;
+  slotFields_[112] = &dayBookingInst_;
+  slotFields_[113] = &timeInForce_;
+  slotFields_[114] = &bookingUnit_;
+  slotFields_[115] = &preallocMethod_;
+  slotFields_[116] = &transactTime_;
+  slotFields_[117] = &settlType_;
+  slotFields_[118] = &clearingFeeIndicator_;
+  slotFields_[119] = &settlDate_;
+  slotFields_[120] = &symbolSfx_;
+  slotFields_[121] = &acctIDSource_;
+  slotFields_[122] = &contractSettlMonth_;
+  slotFields_[123] = &pool_;
+  slotFields_[124] = &allocID_;
+  slotFields_[125] = &tradeDate_;
+  slotFields_[126] = &securitySubType_;
+  slotFields_[127] = &positionEffect_;
+  slotFields_[128] = &bookingType_;
+  slotFields_[129] = &beginString_;
+  slotFields_[130] = &processCode_;
+  slotFields_[131] = &pegMoveType_;
+  slotFields_[132] = &pegOffsetType_;
+  slotFields_[133] = &pegLimitType_;
+  slotFields_[134] = &pegRoundDirection_;
+  slotFields_[135] = &pegScope_;
+  slotFields_[136] = &discretionMoveType_;
+  slotFields_[137] = &discretionOffsetType_;
+  slotFields_[138] = &discretionLimitType_;
+  slotFields_[139] = &discretionRoundDirection_;
+  slotFields_[140] = &discretionScope_;
+  slotFields_[141] = &targetStrategy_;
+  slotFields_[142] = &targetStrategyParameters_;
+  slotFields_[143] = &participationRate_;
+  slotFields_[144] = &qtyType_;
+  slotFields_[145] = &datedDate_;
+  slotFields_[146] = &interestAccrualDate_;
+  slotFields_[147] = &cPProgram_;
+  slotFields_[148] = &cPRegType_;
+  slotFields_[149] = &signature_;
+  slotFields_[150] = &bodyLength_;
+  slotFields_[151] = &secureDataLen_;
+  slotFields_[152] = &secureData_;
+  slotFields_[153] = &signatureLength_;
+  slotFields_[154] = &strikeCurrency_;
+  slotFields_[155] = &possResend_;
+  slotFields_[156] = &stopPx_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup6_;
+  slotGroups_[2] = &tradingSessionsGroup_;
+  slotGroups_[3] = &partyIDsGroup_;
+  slotGroups_[4] = &securityAltIDGroup_;
+  slotGroups_[5] = &allocsGroup3_;
+  slotGroups_[6] = &hopsGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(MultilegOrderCancelReplaceSlotOfTag(), 956, slotFields_, slotGroups_, 157);
 }
 
 AbstractField* MultilegOrderCancelReplace::msgType() {
@@ -71047,9 +76396,139 @@ AbstractField* MultilegOrderCancelReplace::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* TradeCaptureReportRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 82}, {9, 97}, {10, 1}, {11, 4}, {17, 16}, {22, 24}, {34, 37}, {35, 41}, {37, 47}, {43, 48}, {48, 55}, {49, 56}, {50, 57}, {52, 58}, {54, 59}, {55, 62}, {56, 63}, {57, 66}, {58, 71}, {60, 115}, {65, 73}, {75, 115}, {89, 95}, {90, 98}, {91, 99}, {93, 107}, {97, 110}, {106, 2}, {107, 3}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {150, 14}, {167, 15}, {200, 17}, {201, 18}, {202, 19}, {206, 20}, {207, 21}, {212, 22}, {213, 23}, {223, 25}, {224, 26}, {225, 27}, {226, 28}, {227, 29}, {228, 30}, {231, 31}, {239, 32}, {240, 33}, {241, 111}, {242, 111}, {243, 111}, {244, 111}, {245, 111}, {246, 111}, {247, 111}, {248, 112}, {249, 112}, {250, 112}, {251, 112}, {252, 112}, {253, 112}, {254, 112}, {255, 34}, {256, 111}, {257, 112}, {263, 35}, {305, 111}, {306, 111}, {307, 111}, {308, 111}, {309, 111}, {310, 111}, {311, 111}, {312, 111}, {313, 111}, {315, 111}, {316, 111}, {317, 111}, {318, 111}, {336, 36}, {347, 38}, {348, 39}, {349, 40}, {350, 42}, {351, 43}, {354, 44}, {355, 45}, {362, 111}, {363, 111}, {364, 111}, {365, 111}, {369, 46}, {435, 111}, {436, 111}, {442, 49}, {447, 113}, {448, 113}, {452, 113}, {453, 113}, {454, 114}, {455, 114}, {456, 114}, {457, 111}, {458, 111}, {459, 111}, {460, 50}, {461, 51}, {462, 111}, {463, 111}, {470, 52}, {471, 53}, {472, 54}, {523, 113}, {541, 60}, {542, 111}, {543, 61}, {555, 112}, {556, 112}, {568, 64}, {569, 65}, {571, 67}, {573, 68}, {578, 69}, {579, 70}, {580, 115}, {592, 111}, {593, 111}, {594, 111}, {595, 111}, {596, 112}, {597, 112}, {598, 112}, {599, 112}, {600, 112}, {601, 112}, {602, 112}, {603, 112}, {604, 112}, {605, 112}, {606, 112}, {607, 112}, {608, 112}, {609, 112}, {610, 112}, {611, 112}, {612, 112}, {613, 112}, {614, 112}, {615, 112}, {616, 112}, {617, 112}, {618, 112}, {619, 112}, {620, 112}, {621, 112}, {622, 112}, {623, 112}, {624, 112}, {625, 72}, {627, 116}, {628, 116}, {629, 116}, {630, 116}, {667, 74}, {668, 75}, {691, 76}, {711, 111}, {715, 77}, {725, 78}, {726, 79}, {739, 112}, {740, 112}, {762, 80}, {763, 111}, {764, 112}, {788, 81}, {802, 113}, {803, 113}, {810, 111}, {818, 83}, {820, 84}, {828, 85}, {829, 86}, {830, 87}, {855, 88}, {864, 117}, {865, 117}, {866, 117}, {867, 117}, {868, 117}, {869, 89}, {870, 118}, {871, 118}, {872, 118}, {873, 90}, {874, 91}, {875, 92}, {876, 93}, {877, 111}, {878, 111}, {879, 111}, {880, 94}, {882, 111}, {883, 111}, {884, 111}, {885, 111}, {886, 111}, {887, 111}, {888, 111}, {889, 111}, {898, 96}, {913, 100}, {914, 101}, {915, 102}, {916, 103}, {917, 104}, {918, 105}, {919, 106}, {941, 111}, {942, 112}, {943, 108}, {947, 109}, {955, 112}, {956, 112}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 TradeCaptureReportRequest::TradeCaptureReportRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &clOrdID_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &execType_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &execID_;
+  slotFields_[17] = &maturityMonthYear_;
+  slotFields_[18] = &putOrCall_;
+  slotFields_[19] = &strikePrice_;
+  slotFields_[20] = &optAttribute_;
+  slotFields_[21] = &securityExchange_;
+  slotFields_[22] = &xmlDataLen_;
+  slotFields_[23] = &xmlData_;
+  slotFields_[24] = &securityIDSource_;
+  slotFields_[25] = &couponRate_;
+  slotFields_[26] = &couponPaymentDate_;
+  slotFields_[27] = &issueDate_;
+  slotFields_[28] = &repurchaseTerm_;
+  slotFields_[29] = &repurchaseRate_;
+  slotFields_[30] = &factor_;
+  slotFields_[31] = &contractMultiplier_;
+  slotFields_[32] = &repoCollateralSecurityType_;
+  slotFields_[33] = &redemptionDate_;
+  slotFields_[34] = &creditRating_;
+  slotFields_[35] = &subscriptionRequestType_;
+  slotFields_[36] = &tradingSessionID_;
+  slotFields_[37] = &msgSeqNum_;
+  slotFields_[38] = &messageEncoding_;
+  slotFields_[39] = &encodedIssuerLen_;
+  slotFields_[40] = &encodedIssuer_;
+  slotFields_[41] = &msgType_;
+  slotFields_[42] = &encodedSecurityDescLen_;
+  slotFields_[43] = &encodedSecurityDesc_;
+  slotFields_[44] = &encodedTextLen_;
+  slotFields_[45] = &encodedText_;
+  slotFields_[46] = &lastMsgSeqNumProcessed_;
+  slotFields_[47] = &orderID_;
+  slotFields_[48] = &possDupFlag_;
+  slotFields_[49] = &multiLegReportingType_;
+  slotFields_[50] = &product_;
+  slotFields_[51] = &cFICode_;
+  slotFields_[52] = &countryOfIssue_;
+  slotFields_[53] = &stateOrProvinceOfIssue_;
+  slotFields_[54] = &localeOfIssue_;
+  slotFields_[55] = &securityID_;
+  slotFields_[56] = &senderCompID_;
+  slotFields_[57] = &senderSubID_;
+  slotFields_[58] = &sendingTime_;
+  slotFields_[59] = &side_;
+  slotFields_[60] = &maturityDate_;
+  slotFields_[61] = &instrRegistry_;
+  slotFields_[62] = &symbol_;
+  slotFields_[63] = &targetCompID_;
+  slotFields_[64] = &tradeRequestID_;
+  slotFields_[65] = &tradeRequestType_;
+  slotFields_[66] = &targetSubID_;
+  slotFields_[67] = &tradeReportID_;
+  slotFields_[68] = &matchStatus_;
+  slotFields_[69] = &tradeInputSource_;
+  slotFields_[70] = &tradeInputDevice_;
+  slotFields_[71] = &text_;
+  slotFields_[72] = &tradingSessionSubID_;
+  slotFields_[73] = &symbolSfx_;
+  slotFields_[74] = &contractSettlMonth_;
+  slotFields_[75] = &deliveryForm_;
+  slotFields_[76] = &pool_;
+  slotFields_[77] = &clearingBusinessDate_;
+  slotFields_[78] = &responseTransportType_;
+  slotFields_[79] = &responseDestination_;
+  slotFields_[80] = &securitySubType_;
+  slotFields_[81] = &terminationType_;
+  slotFields_[82] = &beginString_;
+  slotFields_[83] = &secondaryTradeReportID_;
+  slotFields_[84] = &tradeLinkID_;
+  slotFields_[85] = &trdType_;
+  slotFields_[86] = &trdSubType_;
+  slotFields_[87] = &transferReason_;
+  slotFields_[88] = &secondaryTrdType_;
+  slotFields_[89] = &pctAtRisk_;
+  slotFields_[90] = &datedDate_;
+  slotFields_[91] = &interestAccrualDate_;
+  slotFields_[92] = &cPProgram_;
+  slotFields_[93] = &cPRegType_;
+  slotFields_[94] = &trdMatchID_;
+  slotFields_[95] = &signature_;
+  slotFields_[96] = &marginRatio_;
+  slotFields_[97] = &bodyLength_;
+  slotFields_[98] = &secureDataLen_;
+  slotFields_[99] = &secureData_;
+  slotFields_[100] = &agreementDesc_;
+  slotFields_[101] = &agreementID_;
+  slotFields_[102] = &agreementDate_;
+  slotFields_[103] = &startDate_;
+  slotFields_[104] = &endDate_;
+  slotFields_[105] = &agreementCurrency_;
+  slotFields_[106] = &deliveryType_;
+  slotFields_[107] = &signatureLength_;
+  slotFields_[108] = &timeBracket_;
+  slotFields_[109] = &strikeCurrency_;
+  slotFields_[110] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &partyIDsGroup_;
+  slotGroups_[3] = &securityAltIDGroup_;
+  slotGroups_[4] = &datesGroup_;
+  slotGroups_[5] = &hopsGroup_;
+  slotGroups_[6] = &eventsGroup_;
+  slotGroups_[7] = &instrAttribGroup_;
+  tagTable(TradeCaptureReportRequestSlotOfTag(), 956, slotFields_, slotGroups_, 111);
 }
 
 AbstractField* TradeCaptureReportRequest::msgType() {
@@ -72774,9 +78253,174 @@ AbstractField* TradeCaptureReportRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* TradeCaptureReportSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 146}, {6, 87}, {8, 109}, {9, 132}, {10, 1}, {11, 146}, {12, 146}, {13, 146}, {15, 146}, {17, 16}, {18, 146}, {22, 27}, {30, 44}, {31, 45}, {32, 46}, {34, 48}, {35, 52}, {37, 146}, {38, 57}, {39, 58}, {40, 146}, {43, 60}, {48, 69}, {49, 71}, {50, 72}, {52, 74}, {54, 146}, {55, 78}, {56, 79}, {57, 81}, {58, 146}, {60, 88}, {63, 89}, {64, 90}, {65, 91}, {66, 146}, {70, 146}, {75, 104}, {77, 146}, {78, 146}, {79, 146}, {80, 146}, {81, 146}, {89, 130}, {90, 133}, {91, 134}, {93, 143}, {97, 145}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {118, 146}, {119, 146}, {120, 146}, {122, 6}, {128, 7}, {129, 8}, {136, 146}, {137, 146}, {138, 146}, {139, 146}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {150, 13}, {152, 14}, {155, 146}, {156, 146}, {157, 146}, {158, 146}, {159, 146}, {167, 15}, {194, 17}, {195, 18}, {198, 146}, {200, 19}, {201, 20}, {202, 21}, {206, 22}, {207, 23}, {212, 24}, {213, 25}, {218, 26}, {220, 28}, {221, 29}, {222, 30}, {223, 31}, {224, 32}, {225, 33}, {226, 34}, {227, 35}, {228, 36}, {230, 146}, {231, 37}, {232, 146}, {233, 146}, {234, 146}, {235, 38}, {236, 39}, {237, 146}, {238, 146}, {239, 40}, {240, 41}, {241, 147}, {242, 147}, {243, 147}, {244, 147}, {245, 147}, {246, 147}, {247, 147}, {248, 148}, {249, 148}, {250, 148}, {251, 148}, {252, 148}, {253, 148}, {254, 148}, {255, 42}, {256, 147}, {257, 148}, {263, 43}, {305, 147}, {306, 147}, {307, 147}, {308, 147}, {309, 147}, {310, 147}, {311, 147}, {312, 147}, {313, 147}, {315, 147}, {316, 147}, {317, 147}, {318, 147}, {325, 47}, {336, 146}, {347, 49}, {348, 50}, {349, 51}, {350, 53}, {351, 54}, {354, 146}, {355, 146}, {362, 147}, {363, 147}, {364, 147}, {365, 147}, {369, 55}, {376, 146}, {377, 146}, {378, 56}, {381, 146}, {423, 59}, {435, 147}, {436, 147}, {442, 61}, {447, 146}, {448, 146}, {452, 146}, {453, 146}, {454, 149}, {455, 149}, {456, 149}, {457, 147}, {458, 147}, {459, 147}, {460, 62}, {461, 63}, {462, 147}, {463, 147}, {467, 146}, {468, 64}, {469, 65}, {470, 66}, {471, 67}, {472, 68}, {479, 146}, {483, 146}, {487, 70}, {497, 146}, {516, 73}, {518, 146}, {519, 146}, {520, 146}, {521, 146}, {523, 146}, {524, 148}, {525, 148}, {526, 146}, {527, 75}, {528, 146}, {529, 146}, {538, 148}, {539, 148}, {541, 76}, {542, 147}, {543, 77}, {545, 148}, {552, 146}, {555, 148}, {556, 148}, {564, 148}, {565, 148}, {566, 148}, {568, 80}, {570, 82}, {571, 83}, {572, 84}, {573, 85}, {574, 86}, {575, 146}, {576, 146}, {577, 146}, {578, 146}, {579, 146}, {581, 146}, {582, 146}, {587, 148}, {588, 148}, {591, 146}, {592, 147}, {593, 147}, {594, 147}, {595, 147}, {596, 148}, {597, 148}, {598, 148}, {599, 148}, {600, 148}, {601, 148}, {602, 148}, {603, 148}, {604, 148}, {605, 148}, {606, 148}, {607, 148}, {608, 148}, {609, 148}, {610, 148}, {611, 148}, {612, 148}, {613, 148}, {614, 148}, {615, 148}, {616, 148}, {617, 148}, {618, 148}, {619, 148}, {620, 148}, {621, 148}, {622, 148}, {623, 148}, {624, 148}, {625, 146}, {627, 150}, {628, 150}, {629, 150}, {630, 150}, {637, 148}, {654, 148}, {660, 146}, {661, 146}, {662, 92}, {663, 93}, {667, 94}, {669, 95}, {683, 148}, {687, 148}, {688, 148}, {689, 148}, {690, 148}, {691, 96}, {696, 97}, {697, 98}, {698, 99}, {699, 100}, {701, 101}, {707, 151}, {708, 151}, {711, 147}, {715, 102}, {736, 146}, {738, 146}, {739, 148}, {740, 148}, {748, 103}, {752, 146}, {753, 151}, {756, 146}, {757, 146}, {758, 146}, {759, 146}, {760, 146}, {761, 105}, {762, 106}, {763, 147}, {764, 148}, {768, 152}, {769, 152}, {770, 152}, {771, 152}, {788, 107}, {797, 108}, {802, 146}, {803, 146}, {804, 148}, {805, 148}, {806, 146}, {807, 146}, {810, 147}, {818, 110}, {819, 111}, {820, 112}, {821, 146}, {822, 113}, {823, 114}, {824, 115}, {825, 146}, {826, 146}, {828, 116}, {829, 117}, {830, 118}, {852, 119}, {853, 120}, {854, 121}, {855, 122}, {856, 123}, {864, 153}, {865, 153}, {866, 153}, {867, 153}, {868, 153}, {873, 124}, {874, 125}, {875, 126}, {876, 127}, {877, 147}, {878, 147}, {879, 147}, {880, 128}, {881, 129}, {882, 147}, {883, 147}, {884, 147}, {885, 147}, {886, 147}, {887, 147}, {888, 147}, {889, 147}, {891, 146}, {898, 131}, {912, 135}, {913, 136}, {914, 137}, {915, 138}, {916, 139}, {917, 140}, {918, 141}, {919, 142}, {920, 146}, {921, 146}, {922, 146}, {941, 147}, {942, 148}, {943, 146}, {947, 144}, {955, 148}, {956, 148}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 TradeCaptureReport::TradeCaptureReport() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &execType_;
+  slotFields_[14] = &cashOrderQty_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &execID_;
+  slotFields_[17] = &lastSpotRate_;
+  slotFields_[18] = &lastForwardPoints_;
+  slotFields_[19] = &maturityMonthYear_;
+  slotFields_[20] = &putOrCall_;
+  slotFields_[21] = &strikePrice_;
+  slotFields_[22] = &optAttribute_;
+  slotFields_[23] = &securityExchange_;
+  slotFields_[24] = &xmlDataLen_;
+  slotFields_[25] = &xmlData_;
+  slotFields_[26] = &spread_;
+  slotFields_[27] = &securityIDSource_;
+  slotFields_[28] = &benchmarkCurveCurrency_;
+  slotFields_[29] = &benchmarkCurveName_;
+  slotFields_[30] = &benchmarkCurvePoint_;
+  slotFields_[31] = &couponRate_;
+  slotFields_[32] = &couponPaymentDate_;
+  slotFields_[33] = &issueDate_;
+  slotFields_[34] = &repurchaseTerm_;
+  slotFields_[35] = &repurchaseRate_;
+  slotFields_[36] = &factor_;
+  slotFields_[37] = &contractMultiplier_;
+  slotFields_[38] = &yieldType_;
+  slotFields_[39] = &yield_;
+  slotFields_[40] = &repoCollateralSecurityType_;
+  slotFields_[41] = &redemptionDate_;
+  slotFields_[42] = &creditRating_;
+  slotFields_[43] = &subscriptionRequestType_;
+  slotFields_[44] = &lastMkt_;
+  slotFields_[45] = &lastPx_;
+  slotFields_[46] = &lastQty_;
+  slotFields_[47] = &unsolicitedIndicator_;
+  slotFields_[48] = &msgSeqNum_;
+  slotFields_[49] = &messageEncoding_;
+  slotFields_[50] = &encodedIssuerLen_;
+  slotFields_[51] = &encodedIssuer_;
+  slotFields_[52] = &msgType_;
+  slotFields_[53] = &encodedSecurityDescLen_;
+  slotFields_[54] = &encodedSecurityDesc_;
+  slotFields_[55] = &lastMsgSeqNumProcessed_;
+  slotFields_[56] = &execRestatementReason_;
+  slotFields_[57] = &orderQty_;
+  slotFields_[58] = &ordStatus_;
+  slotFields_[59] = &priceType_;
+  slotFields_[60] = &possDupFlag_;
+  slotFields_[61] = &multiLegReportingType_;
+  slotFields_[62] = &product_;
+  slotFields_[63] = &cFICode_;
+  slotFields_[64] = &roundingDirection_;
+  slotFields_[65] = &roundingModulus_;
+  slotFields_[66] = &countryOfIssue_;
+  slotFields_[67] = &stateOrProvinceOfIssue_;
+  slotFields_[68] = &localeOfIssue_;
+  slotFields_[69] = &securityID_;
+  slotFields_[70] = &tradeReportTransType_;
+  slotFields_[71] = &senderCompID_;
+  slotFields_[72] = &senderSubID_;
+  slotFields_[73] = &orderPercent_;
+  slotFields_[74] = &sendingTime_;
+  slotFields_[75] = &secondaryExecID_;
+  slotFields_[76] = &maturityDate_;
+  slotFields_[77] = &instrRegistry_;
+  slotFields_[78] = &symbol_;
+  slotFields_[79] = &targetCompID_;
+  slotFields_[80] = &tradeRequestID_;
+  slotFields_[81] = &targetSubID_;
+  slotFields_[82] = &previouslyReported_;
+  slotFields_[83] = &tradeReportID_;
+  slotFields_[84] = &tradeReportRefID_;
+  slotFields_[85] = &matchStatus_;
+  slotFields_[86] = &matchType_;
+  slotFields_[87] = &avgPx_;
+  slotFields_[88] = &transactTime_;
+  slotFields_[89] = &settlType_;
+  slotFields_[90] = &settlDate_;
+  slotFields_[91] = &symbolSfx_;
+  slotFields_[92] = &benchmarkPrice_;
+  slotFields_[93] = &benchmarkPriceType_;
+  slotFields_[94] = &contractSettlMonth_;
+  slotFields_[95] = &lastParPx_;
+  slotFields_[96] = &pool_;
+  slotFields_[97] = &yieldRedemptionDate_;
+  slotFields_[98] = &yieldRedemptionPrice_;
+  slotFields_[99] = &yieldRedemptionPriceType_;
+  slotFields_[100] = &benchmarkSecurityID_;
+  slotFields_[101] = &yieldCalcDate_;
+  slotFields_[102] = &clearingBusinessDate_;
+  slotFields_[103] = &totNumTradeReports_;
+  slotFields_[104] = &tradeDate_;
+  slotFields_[105] = &benchmarkSecurityIDSource_;
+  slotFields_[106] = &securitySubType_;
+  slotFields_[107] = &terminationType_;
+  slotFields_[108] = &copyMsgIndicator_;
+  slotFields_[109] = &beginString_;
+  slotFields_[110] = &secondaryTradeReportID_;
+  slotFields_[111] = &avgPxIndicator_;
+  slotFields_[112] = &tradeLinkID_;
+  slotFields_[113] = &underlyingTradingSessionID_;
+  slotFields_[114] = &underlyingTradingSessionSubID_;
+  slotFields_[115] = &tradeLegRefID_;
+  slotFields_[116] = &trdType_;
+  slotFields_[117] = &trdSubType_;
+  slotFields_[118] = &transferReason_;
+  slotFields_[119] = &publishTrdIndicator_;
+  slotFields_[120] = &shortSaleReason_;
+  slotFields_[121] = &qtyType_;
+  slotFields_[122] = &secondaryTrdType_;
+  slotFields_[123] = &tradeReportType_;
+  slotFields_[124] = &datedDate_;
+  slotFields_[125] = &interestAccrualDate_;
+  slotFields_[126] = &cPProgram_;
+  slotFields_[127] = &cPRegType_;
+  slotFields_[128] = &trdMatchID_;
+  slotFields_[129] = &secondaryTradeReportRefID_;
+  slotFields_[130] = &signature_;
+  slotFields_[131] = &marginRatio_;
+  slotFields_[132] = &bodyLength_;
+  slotFields_[133] = &secureDataLen_;
+  slotFields_[134] = &secureData_;
+  slotFields_[135] = &lastRptRequested_;
+  slotFields_[136] = &agreementDesc_;
+  slotFields_[137] = &agreementID_;
+  slotFields_[138] = &agreementDate_;
+  slotFields_[139] = &startDate_;
+  slotFields_[140] = &endDate_;
+  slotFields_[141] = &agreementCurrency_;
+  slotFields_[142] = &deliveryType_;
+  slotFields_[143] = &signatureLength_;
+  slotFields_[144] = &strikeCurrency_;
+  slotFields_[145] = &possResend_;
+  slotGroups_[0] = &sidesGroup2_;
+  slotGroups_[1] = &underlyingsGroup_;
+  slotGroups_[2] = &legsGroup2_;
+  slotGroups_[3] = &securityAltIDGroup_;
+  slotGroups_[4] = &hopsGroup_;
+  slotGroups_[5] = &posAmtGroup_;
+  slotGroups_[6] = &trdRegTimestampsGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(TradeCaptureReportSlotOfTag(), 956, slotFields_, slotGroups_, 146);
 }
 
 AbstractField* TradeCaptureReport::msgType() {
@@ -75415,9 +81059,149 @@ AbstractField* TradeCaptureReport::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* OrderMassStatusRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 101}, {9, 116}, {10, 2}, {22, 22}, {34, 55}, {35, 59}, {43, 67}, {48, 77}, {49, 78}, {50, 79}, {52, 80}, {54, 81}, {55, 85}, {56, 86}, {57, 87}, {65, 95}, {89, 115}, {90, 117}, {91, 118}, {93, 119}, {97, 122}, {106, 3}, {107, 4}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 14}, {200, 15}, {201, 16}, {202, 17}, {206, 18}, {207, 19}, {212, 20}, {213, 21}, {223, 23}, {224, 24}, {225, 25}, {226, 26}, {227, 27}, {228, 28}, {231, 29}, {239, 30}, {240, 31}, {241, 32}, {242, 33}, {243, 34}, {244, 35}, {245, 36}, {246, 37}, {247, 38}, {255, 39}, {256, 40}, {305, 41}, {306, 42}, {307, 43}, {308, 44}, {309, 45}, {310, 46}, {311, 47}, {312, 48}, {313, 49}, {315, 50}, {316, 51}, {317, 52}, {318, 53}, {336, 54}, {347, 56}, {348, 57}, {349, 58}, {350, 60}, {351, 61}, {362, 62}, {363, 63}, {364, 64}, {365, 65}, {369, 66}, {435, 68}, {436, 69}, {447, 123}, {448, 123}, {452, 123}, {453, 123}, {454, 124}, {455, 124}, {456, 124}, {457, 125}, {458, 125}, {459, 125}, {460, 70}, {461, 71}, {462, 72}, {463, 73}, {470, 74}, {471, 75}, {472, 76}, {523, 123}, {541, 82}, {542, 83}, {543, 84}, {584, 88}, {585, 89}, {592, 90}, {593, 91}, {594, 92}, {595, 93}, {625, 94}, {627, 126}, {628, 126}, {629, 126}, {630, 126}, {660, 96}, {667, 97}, {691, 98}, {762, 99}, {763, 100}, {802, 123}, {803, 123}, {810, 102}, {864, 127}, {865, 127}, {866, 127}, {867, 127}, {868, 127}, {873, 103}, {874, 104}, {875, 105}, {876, 106}, {877, 107}, {878, 108}, {879, 109}, {882, 110}, {883, 111}, {884, 112}, {885, 113}, {886, 114}, {887, 128}, {888, 128}, {889, 128}, {941, 120}, {947, 121}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 OrderMassStatusRequest::OrderMassStatusRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &securityType_;
+  slotFields_[15] = &maturityMonthYear_;
+  slotFields_[16] = &putOrCall_;
+  slotFields_[17] = &strikePrice_;
+  slotFields_[18] = &optAttribute_;
+  slotFields_[19] = &securityExchange_;
+  slotFields_[20] = &xmlDataLen_;
+  slotFields_[21] = &xmlData_;
+  slotFields_[22] = &securityIDSource_;
+  slotFields_[23] = &couponRate_;
+  slotFields_[24] = &couponPaymentDate_;
+  slotFields_[25] = &issueDate_;
+  slotFields_[26] = &repurchaseTerm_;
+  slotFields_[27] = &repurchaseRate_;
+  slotFields_[28] = &factor_;
+  slotFields_[29] = &contractMultiplier_;
+  slotFields_[30] = &repoCollateralSecurityType_;
+  slotFields_[31] = &redemptionDate_;
+  slotFields_[32] = &underlyingCouponPaymentDate_;
+  slotFields_[33] = &underlyingIssueDate_;
+  slotFields_[34] = &underlyingRepoCollateralSecurityType_;
+  slotFields_[35] = &underlyingRepurchaseTerm_;
+  slotFields_[36] = &underlyingRepurchaseRate_;
+  slotFields_[37] = &underlyingFactor_;
+  slotFields_[38] = &underlyingRedemptionDate_;
+  slotFields_[39] = &creditRating_;
+  slotFields_[40] = &underlyingCreditRating_;
+  slotFields_[41] = &underlyingSecurityIDSource_;
+  slotFields_[42] = &underlyingIssuer_;
+  slotFields_[43] = &underlyingSecurityDesc_;
+  slotFields_[44] = &underlyingSecurityExchange_;
+  slotFields_[45] = &underlyingSecurityID_;
+  slotFields_[46] = &underlyingSecurityType_;
+  slotFields_[47] = &underlyingSymbol_;
+  slotFields_[48] = &underlyingSymbolSfx_;
+  slotFields_[49] = &underlyingMaturityMonthYear_;
+  slotFields_[50] = &underlyingPutOrCall_;
+  slotFields_[51] = &underlyingStrikePrice_;
+  slotFields_[52] = &underlyingOptAttribute_;
+  slotFields_[53] = &underlyingCurrency_;
+  slotFields_[54] = &tradingSessionID_;
+  slotFields_[55] = &msgSeqNum_;
+  slotFields_[56] = &messageEncoding_;
+  slotFields_[57] = &encodedIssuerLen_;
+  slotFields_[58] = &encodedIssuer_;
+  slotFields_[59] = &msgType_;
+  slotFields_[60] = &encodedSecurityDescLen_;
+  slotFields_[61] = &encodedSecurityDesc_;
+  slotFields_[62] = &encodedUnderlyingIssuerLen_;
+  slotFields_[63] = &encodedUnderlyingIssuer_;
+  slotFields_[64] = &encodedUnderlyingSecurityDescLen_;
+  slotFields_[65] = &encodedUnderlyingSecurityDesc_;
+  slotFields_[66] = &lastMsgSeqNumProcessed_;
+  slotFields_[67] = &possDupFlag_;
+  slotFields_[68] = &underlyingCouponRate_;
+  slotFields_[69] = &underlyingContractMultiplier_;
+  slotFields_[70] = &product_;
+  slotFields_[71] = &cFICode_;
+  slotFields_[72] = &underlyingProduct_;
+  slotFields_[73] = &underlyingCFICode_;
+  slotFields_[74] = &countryOfIssue_;
+  slotFields_[75] = &stateOrProvinceOfIssue_;
+  slotFields_[76] = &localeOfIssue_;
+  slotFields_[77] = &securityID_;
+  slotFields_[78] = &senderCompID_;
+  slotFields_[79] = &senderSubID_;
+  slotFields_[80] = &sendingTime_;
+  slotFields_[81] = &side_;
+  slotFields_[82] = &maturityDate_;
+  slotFields_[83] = &underlyingMaturityDate_;
+  slotFields_[84] = &instrRegistry_;
+  slotFields_[85] = &symbol_;
+  slotFields_[86] = &targetCompID_;
+  slotFields_[87] = &targetSubID_;
+  slotFields_[88] = &massStatusReqID_;
+  slotFields_[89] = &massStatusReqType_;
+  slotFields_[90] = &underlyingCountryOfIssue_;
+  slotFields_[91] = &underlyingStateOrProvinceOfIssue_;
+  slotFields_[92] = &underlyingLocaleOfIssue_;
+  slotFields_[93] = &underlyingInstrRegistry_;
+  slotFields_[94] = &tradingSessionSubID_;
+  slotFields_[95] = &symbolSfx_;
+  slotFields_[96] = &acctIDSource_;
+  slotFields_[97] = &contractSettlMonth_;
+  slotFields_[98] = &pool_;
+  slotFields_[99] = &securitySubType_;
+  slotFields_[100] = &underlyingSecuritySubType_;
+  slotFields_[101] = &beginString_;
+  slotFields_[102] = &underlyingPx_;
+  slotFields_[103] = &datedDate_;
+  slotFields_[104] = &interestAccrualDate_;
+  slotFields_[105] = &cPProgram_;
+  slotFields_[106] = &cPRegType_;
+  slotFields_[107] = &underlyingCPProgram_;
+  slotFields_[108] = &underlyingCPRegType_;
+  slotFields_[109] = &underlyingQty_;
+  slotFields_[110] = &underlyingDirtyPrice_;
+  slotFields_[111] = &underlyingEndPrice_;
+  slotFields_[112] = &underlyingStartValue_;
+  slotFields_[113] = &underlyingCurrentValue_;
+  slotFields_[114] = &underlyingEndValue_;
+  slotFields_[115] = &signature_;
+  slotFields_[116] = &bodyLength_;
+  slotFields_[117] = &secureDataLen_;
+  slotFields_[118] = &secureData_;
+  slotFields_[119] = &signatureLength_;
+  slotFields_[120] = &underlyingStrikeCurrency_;
+  slotFields_[121] = &strikeCurrency_;
+  slotFields_[122] = &possResend_;
+  slotGroups_[0] = &partyIDsGroup_;
+  slotGroups_[1] = &securityAltIDGroup_;
+  slotGroups_[2] = &underlyingSecurityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  slotGroups_[5] = &underlyingStipsGroup_;
+  tagTable(OrderMassStatusRequestSlotOfTag(), 956, slotFields_, slotGroups_, 123);
 }
 
 AbstractField* OrderMassStatusRequest::msgType() {
@@ -76606,9 +82390,58 @@ AbstractField* OrderMassStatusRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* QuoteRequestRejectSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 36}, {8, 29}, {9, 31}, {10, 1}, {15, 36}, {22, 36}, {34, 14}, {35, 16}, {38, 36}, {40, 36}, {43, 20}, {44, 36}, {48, 36}, {49, 21}, {50, 22}, {52, 23}, {54, 36}, {55, 36}, {56, 24}, {57, 25}, {58, 26}, {60, 36}, {63, 36}, {64, 36}, {65, 36}, {89, 30}, {90, 32}, {91, 33}, {93, 34}, {97, 35}, {106, 36}, {107, 36}, {115, 2}, {116, 3}, {122, 4}, {126, 36}, {128, 5}, {129, 6}, {131, 7}, {140, 36}, {142, 8}, {143, 9}, {144, 10}, {145, 11}, {146, 36}, {152, 36}, {167, 36}, {192, 36}, {193, 36}, {200, 36}, {201, 36}, {202, 36}, {206, 36}, {207, 36}, {212, 12}, {213, 13}, {218, 36}, {220, 36}, {221, 36}, {222, 36}, {223, 36}, {224, 36}, {225, 36}, {226, 36}, {227, 36}, {228, 36}, {229, 36}, {231, 36}, {232, 36}, {233, 36}, {234, 36}, {235, 36}, {236, 36}, {239, 36}, {240, 36}, {241, 36}, {242, 36}, {243, 36}, {244, 36}, {245, 36}, {246, 36}, {247, 36}, {248, 36}, {249, 36}, {250, 36}, {251, 36}, {252, 36}, {253, 36}, {254, 36}, {255, 36}, {256, 36}, {257, 36}, {303, 36}, {305, 36}, {306, 36}, {307, 36}, {308, 36}, {309, 36}, {310, 36}, {311, 36}, {312, 36}, {313, 36}, {315, 36}, {316, 36}, {317, 36}, {318, 36}, {336, 36}, {347, 15}, {348, 36}, {349, 36}, {350, 36}, {351, 36}, {354, 17}, {355, 18}, {362, 36}, {363, 36}, {364, 36}, {365, 36}, {369, 19}, {423, 36}, {435, 36}, {436, 36}, {447, 36}, {448, 36}, {452, 36}, {453, 36}, {454, 36}, {455, 36}, {456, 36}, {457, 36}, {458, 36}, {459, 36}, {460, 36}, {461, 36}, {462, 36}, {463, 36}, {468, 36}, {469, 36}, {470, 36}, {471, 36}, {472, 36}, {516, 36}, {523, 36}, {524, 36}, {525, 36}, {537, 36}, {538, 36}, {539, 36}, {541, 36}, {542, 36}, {543, 36}, {545, 36}, {555, 36}, {556, 36}, {581, 36}, {587, 36}, {588, 36}, {592, 36}, {593, 36}, {594, 36}, {595, 36}, {596, 36}, {597, 36}, {598, 36}, {599, 36}, {600, 36}, {601, 36}, {602, 36}, {603, 36}, {604, 36}, {605, 36}, {606, 36}, {607, 36}, {608, 36}, {609, 36}, {610, 36}, {611, 36}, {612, 36}, {613, 36}, {614, 36}, {615, 36}, {616, 36}, {617, 36}, {618, 36}, {619, 36}, {620, 36}, {621, 36}, {622, 36}, {623, 36}, {624, 36}, {625, 36}, {627, 37}, {628, 37}, {629, 37}, {630, 37}, {640, 36}, {644, 27}, {658, 28}, {660, 36}, {662, 36}, {663, 36}, {667, 36}, {676, 36}, {677, 36}, {678, 36}, {679, 36}, {680, 36}, {683, 36}, {687, 36}, {688, 36}, {689, 36}, {690, 36}, {691, 36}, {692, 36}, {695, 36}, {696, 36}, {697, 36}, {698, 36}, {699, 36}, {701, 36}, {711, 36}, {735, 36}, {739, 36}, {740, 36}, {761, 36}, {762, 36}, {763, 36}, {764, 36}, {788, 36}, {802, 36}, {803, 36}, {804, 36}, {805, 36}, {810, 36}, {854, 36}, {864, 36}, {865, 36}, {866, 36}, {867, 36}, {868, 36}, {873, 36}, {874, 36}, {875, 36}, {876, 36}, {877, 36}, {878, 36}, {879, 36}, {882, 36}, {883, 36}, {884, 36}, {885, 36}, {886, 36}, {887, 36}, {888, 36}, {889, 36}, {898, 36}, {913, 36}, {914, 36}, {915, 36}, {916, 36}, {917, 36}, {918, 36}, {919, 36}, {941, 36}, {942, 36}, {947, 36}, {955, 36}, {956, 36}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 QuoteRequestReject::QuoteRequestReject() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &quoteReqID_;
+  slotFields_[8] = &senderLocationID_;
+  slotFields_[9] = &targetLocationID_;
+  slotFields_[10] = &onBehalfOfLocationID_;
+  slotFields_[11] = &deliverToLocationID_;
+  slotFields_[12] = &xmlDataLen_;
+  slotFields_[13] = &xmlData_;
+  slotFields_[14] = &msgSeqNum_;
+  slotFields_[15] = &messageEncoding_;
+  slotFields_[16] = &msgType_;
+  slotFields_[17] = &encodedTextLen_;
+  slotFields_[18] = &encodedText_;
+  slotFields_[19] = &lastMsgSeqNumProcessed_;
+  slotFields_[20] = &possDupFlag_;
+  slotFields_[21] = &senderCompID_;
+  slotFields_[22] = &senderSubID_;
+  slotFields_[23] = &sendingTime_;
+  slotFields_[24] = &targetCompID_;
+  slotFields_[25] = &targetSubID_;
+  slotFields_[26] = &text_;
+  slotFields_[27] = &rFQReqID_;
+  slotFields_[28] = &quoteRequestRejectReason_;
+  slotFields_[29] = &beginString_;
+  slotFields_[30] = &signature_;
+  slotFields_[31] = &bodyLength_;
+  slotFields_[32] = &secureDataLen_;
+  slotFields_[33] = &secureData_;
+  slotFields_[34] = &signatureLength_;
+  slotFields_[35] = &possResend_;
+  slotGroups_[0] = &relatedSymGroup5_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(QuoteRequestRejectSlotOfTag(), 956, slotFields_, slotGroups_, 36);
 }
 
 AbstractField* QuoteRequestReject::msgType() {
@@ -78477,9 +84310,54 @@ AbstractField* QuoteRequestReject::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* RFQRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 25}, {9, 27}, {10, 1}, {22, 32}, {34, 14}, {35, 16}, {43, 18}, {48, 32}, {49, 19}, {50, 20}, {52, 21}, {55, 32}, {56, 22}, {57, 23}, {65, 32}, {89, 26}, {90, 28}, {91, 29}, {93, 30}, {97, 31}, {106, 32}, {107, 32}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {140, 32}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {146, 32}, {167, 32}, {200, 32}, {201, 32}, {202, 32}, {206, 32}, {207, 32}, {212, 11}, {213, 12}, {223, 32}, {224, 32}, {225, 32}, {226, 32}, {227, 32}, {228, 32}, {231, 32}, {239, 32}, {240, 32}, {241, 32}, {242, 32}, {243, 32}, {244, 32}, {245, 32}, {246, 32}, {247, 32}, {248, 32}, {249, 32}, {250, 32}, {251, 32}, {252, 32}, {253, 32}, {254, 32}, {255, 32}, {256, 32}, {257, 32}, {263, 13}, {303, 32}, {305, 32}, {306, 32}, {307, 32}, {308, 32}, {309, 32}, {310, 32}, {311, 32}, {312, 32}, {313, 32}, {315, 32}, {316, 32}, {317, 32}, {318, 32}, {336, 32}, {347, 15}, {348, 32}, {349, 32}, {350, 32}, {351, 32}, {362, 32}, {363, 32}, {364, 32}, {365, 32}, {369, 17}, {435, 32}, {436, 32}, {454, 32}, {455, 32}, {456, 32}, {457, 32}, {458, 32}, {459, 32}, {460, 32}, {461, 32}, {462, 32}, {463, 32}, {470, 32}, {471, 32}, {472, 32}, {537, 32}, {541, 32}, {542, 32}, {543, 32}, {555, 32}, {556, 32}, {592, 32}, {593, 32}, {594, 32}, {595, 32}, {596, 32}, {597, 32}, {598, 32}, {599, 32}, {600, 32}, {601, 32}, {602, 32}, {603, 32}, {604, 32}, {605, 32}, {606, 32}, {607, 32}, {608, 32}, {609, 32}, {610, 32}, {611, 32}, {612, 32}, {613, 32}, {614, 32}, {615, 32}, {616, 32}, {617, 32}, {618, 32}, {619, 32}, {620, 32}, {621, 32}, {622, 32}, {623, 32}, {624, 32}, {625, 32}, {627, 33}, {628, 33}, {629, 33}, {630, 33}, {644, 24}, {667, 32}, {691, 32}, {711, 32}, {739, 32}, {740, 32}, {762, 32}, {763, 32}, {764, 32}, {810, 32}, {864, 32}, {865, 32}, {866, 32}, {867, 32}, {868, 32}, {873, 32}, {874, 32}, {875, 32}, {876, 32}, {877, 32}, {878, 32}, {879, 32}, {882, 32}, {883, 32}, {884, 32}, {885, 32}, {886, 32}, {887, 32}, {888, 32}, {889, 32}, {941, 32}, {942, 32}, {947, 32}, {955, 32}, {956, 32}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 RFQRequest::RFQRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &subscriptionRequestType_;
+  slotFields_[14] = &msgSeqNum_;
+  slotFields_[15] = &messageEncoding_;
+  slotFields_[16] = &msgType_;
+  slotFields_[17] = &lastMsgSeqNumProcessed_;
+  slotFields_[18] = &possDupFlag_;
+  slotFields_[19] = &senderCompID_;
+  slotFields_[20] = &senderSubID_;
+  slotFields_[21] = &sendingTime_;
+  slotFields_[22] = &targetCompID_;
+  slotFields_[23] = &targetSubID_;
+  slotFields_[24] = &rFQReqID_;
+  slotFields_[25] = &beginString_;
+  slotFields_[26] = &signature_;
+  slotFields_[27] = &bodyLength_;
+  slotFields_[28] = &secureDataLen_;
+  slotFields_[29] = &secureData_;
+  slotFields_[30] = &signatureLength_;
+  slotFields_[31] = &possResend_;
+  slotGroups_[0] = &relatedSymGroup6_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(RFQRequestSlotOfTag(), 956, slotFields_, slotGroups_, 32);
 }
 
 AbstractField* RFQRequest::msgType() {
@@ -79817,9 +85695,178 @@ AbstractField* RFQRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* QuoteStatusReportSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 130}, {9, 137}, {10, 2}, {12, 9}, {13, 14}, {15, 24}, {22, 42}, {34, 60}, {35, 64}, {38, 70}, {40, 71}, {43, 73}, {44, 74}, {48, 82}, {49, 83}, {50, 84}, {52, 86}, {54, 88}, {55, 91}, {56, 92}, {57, 93}, {58, 94}, {60, 97}, {62, 98}, {63, 100}, {64, 105}, {65, 113}, {89, 135}, {90, 138}, {91, 139}, {93, 147}, {97, 149}, {100, 3}, {106, 4}, {107, 5}, {115, 6}, {116, 7}, {117, 8}, {122, 10}, {126, 11}, {128, 12}, {129, 13}, {131, 15}, {132, 16}, {133, 17}, {134, 18}, {135, 19}, {142, 20}, {143, 21}, {144, 22}, {145, 23}, {152, 25}, {156, 26}, {167, 27}, {188, 28}, {189, 29}, {190, 30}, {191, 31}, {192, 32}, {193, 33}, {200, 34}, {201, 35}, {202, 36}, {206, 37}, {207, 38}, {212, 39}, {213, 40}, {218, 41}, {220, 43}, {221, 44}, {222, 45}, {223, 46}, {224, 47}, {225, 48}, {226, 49}, {227, 50}, {228, 51}, {231, 52}, {232, 150}, {233, 150}, {234, 150}, {235, 53}, {236, 54}, {239, 55}, {240, 56}, {241, 151}, {242, 151}, {243, 151}, {244, 151}, {245, 151}, {246, 151}, {247, 151}, {248, 152}, {249, 152}, {250, 152}, {251, 152}, {252, 152}, {253, 152}, {254, 152}, {255, 57}, {256, 151}, {257, 152}, {297, 58}, {305, 151}, {306, 151}, {307, 151}, {308, 151}, {309, 151}, {310, 151}, {311, 151}, {312, 151}, {313, 151}, {315, 151}, {316, 151}, {317, 151}, {318, 151}, {336, 59}, {347, 61}, {348, 62}, {349, 63}, {350, 65}, {351, 66}, {354, 67}, {355, 68}, {362, 151}, {363, 151}, {364, 151}, {365, 151}, {369, 69}, {423, 72}, {435, 151}, {436, 151}, {447, 153}, {448, 153}, {452, 153}, {453, 153}, {454, 154}, {455, 154}, {456, 154}, {457, 151}, {458, 151}, {459, 151}, {460, 75}, {461, 76}, {462, 151}, {463, 151}, {468, 77}, {469, 78}, {470, 79}, {471, 80}, {472, 81}, {516, 85}, {523, 153}, {524, 152}, {525, 152}, {537, 87}, {538, 152}, {539, 152}, {541, 89}, {542, 151}, {543, 90}, {545, 152}, {555, 152}, {556, 152}, {581, 95}, {582, 96}, {587, 152}, {588, 152}, {592, 151}, {593, 151}, {594, 151}, {595, 151}, {596, 152}, {597, 152}, {598, 152}, {599, 152}, {600, 152}, {601, 152}, {602, 152}, {603, 152}, {604, 152}, {605, 152}, {606, 152}, {607, 152}, {608, 152}, {609, 152}, {610, 152}, {611, 152}, {612, 152}, {613, 152}, {614, 152}, {615, 152}, {616, 152}, {617, 152}, {618, 152}, {619, 152}, {620, 152}, {621, 152}, {622, 152}, {623, 152}, {624, 152}, {625, 99}, {627, 155}, {628, 155}, {629, 155}, {630, 155}, {631, 101}, {632, 102}, {633, 103}, {634, 104}, {642, 106}, {643, 107}, {645, 108}, {646, 109}, {647, 110}, {648, 111}, {649, 112}, {656, 114}, {657, 115}, {660, 116}, {662, 117}, {663, 118}, {667, 119}, {683, 152}, {687, 152}, {688, 152}, {689, 152}, {690, 152}, {691, 120}, {693, 121}, {695, 156}, {696, 122}, {697, 123}, {698, 124}, {699, 125}, {701, 126}, {711, 151}, {735, 156}, {739, 152}, {740, 152}, {761, 127}, {762, 128}, {763, 151}, {764, 152}, {788, 129}, {802, 153}, {803, 153}, {804, 152}, {805, 152}, {810, 151}, {864, 157}, {865, 157}, {866, 157}, {867, 157}, {868, 157}, {873, 131}, {874, 132}, {875, 133}, {876, 134}, {877, 151}, {878, 151}, {879, 151}, {882, 151}, {883, 151}, {884, 151}, {885, 151}, {886, 151}, {887, 151}, {888, 151}, {889, 151}, {898, 136}, {913, 140}, {914, 141}, {915, 142}, {916, 143}, {917, 144}, {918, 145}, {919, 146}, {941, 151}, {942, 152}, {947, 148}, {955, 152}, {956, 152}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 QuoteStatusReport::QuoteStatusReport() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &exDestination_;
+  slotFields_[4] = &issuer_;
+  slotFields_[5] = &securityDesc_;
+  slotFields_[6] = &onBehalfOfCompID_;
+  slotFields_[7] = &onBehalfOfSubID_;
+  slotFields_[8] = &quoteID_;
+  slotFields_[9] = &commission_;
+  slotFields_[10] = &origSendingTime_;
+  slotFields_[11] = &expireTime_;
+  slotFields_[12] = &deliverToCompID_;
+  slotFields_[13] = &deliverToSubID_;
+  slotFields_[14] = &commType_;
+  slotFields_[15] = &quoteReqID_;
+  slotFields_[16] = &bidPx_;
+  slotFields_[17] = &offerPx_;
+  slotFields_[18] = &bidSize_;
+  slotFields_[19] = &offerSize_;
+  slotFields_[20] = &senderLocationID_;
+  slotFields_[21] = &targetLocationID_;
+  slotFields_[22] = &onBehalfOfLocationID_;
+  slotFields_[23] = &deliverToLocationID_;
+  slotFields_[24] = &currency_;
+  slotFields_[25] = &cashOrderQty_;
+  slotFields_[26] = &settlCurrFxRateCalc_;
+  slotFields_[27] = &securityType_;
+  slotFields_[28] = &bidSpotRate_;
+  slotFields_[29] = &bidForwardPoints_;
+  slotFields_[30] = &offerSpotRate_;
+  slotFields_[31] = &offerForwardPoints_;
+  slotFields_[32] = &orderQty2_;
+  slotFields_[33] = &settlDate2_;
+  slotFields_[34] = &maturityMonthYear_;
+  slotFields_[35] = &putOrCall_;
+  slotFields_[36] = &strikePrice_;
+  slotFields_[37] = &optAttribute_;
+  slotFields_[38] = &securityExchange_;
+  slotFields_[39] = &xmlDataLen_;
+  slotFields_[40] = &xmlData_;
+  slotFields_[41] = &spread_;
+  slotFields_[42] = &securityIDSource_;
+  slotFields_[43] = &benchmarkCurveCurrency_;
+  slotFields_[44] = &benchmarkCurveName_;
+  slotFields_[45] = &benchmarkCurvePoint_;
+  slotFields_[46] = &couponRate_;
+  slotFields_[47] = &couponPaymentDate_;
+  slotFields_[48] = &issueDate_;
+  slotFields_[49] = &repurchaseTerm_;
+  slotFields_[50] = &repurchaseRate_;
+  slotFields_[51] = &factor_;
+  slotFields_[52] = &contractMultiplier_;
+  slotFields_[53] = &yieldType_;
+  slotFields_[54] = &yield_;
+  slotFields_[55] = &repoCollateralSecurityType_;
+  slotFields_[56] = &redemptionDate_;
+  slotFields_[57] = &creditRating_;
+  slotFields_[58] = &quoteStatus_;
+  slotFields_[59] = &tradingSessionID_;
+  slotFields_[60] = &msgSeqNum_;
+  slotFields_[61] = &messageEncoding_;
+  slotFields_[62] = &encodedIssuerLen_;
+  slotFields_[63] = &encodedIssuer_;
+  slotFields_[64] = &msgType_;
+  slotFields_[65] = &encodedSecurityDescLen_;
+  slotFields_[66] = &encodedSecurityDesc_;
+  slotFields_[67] = &encodedTextLen_;
+  slotFields_[68] = &encodedText_;
+  slotFields_[69] = &lastMsgSeqNumProcessed_;
+  slotFields_[70] = &orderQty_;
+  slotFields_[71] = &ordType_;
+  slotFields_[72] = &priceType_;
+  slotFields_[73] = &possDupFlag_;
+  slotFields_[74] = &price_;
+  slotFields_[75] = &product_;
+  slotFields_[76] = &cFICode_;
+  slotFields_[77] = &roundingDirection_;
+  slotFields_[78] = &roundingModulus_;
+  slotFields_[79] = &countryOfIssue_;
+  slotFields_[80] = &stateOrProvinceOfIssue_;
+  slotFields_[81] = &localeOfIssue_;
+  slotFields_[82] = &securityID_;
+  slotFields_[83] = &senderCompID_;
+  slotFields_[84] = &senderSubID_;
+  slotFields_[85] = &orderPercent_;
+  slotFields_[86] = &sendingTime_;
+  slotFields_[87] = &quoteType_;
+  slotFields_[88] = &side_;
+  slotFields_[89] = &maturityDate_;
+  slotFields_[90] = &instrRegistry_;
+  slotFields_[91] = &symbol_;
+  slotFields_[92] = &targetCompID_;
+  slotFields_[93] = &targetSubID_;
+  slotFields_[94] = &text_;
+  slotFields_[95] = &accountType_;
+  slotFields_[96] = &custOrderCapacity_;
+  slotFields_[97] = &transactTime_;
+  slotFields_[98] = &validUntilTime_;
+  slotFields_[99] = &tradingSessionSubID_;
+  slotFields_[100] = &settlType_;
+  slotFields_[101] = &midPx_;
+  slotFields_[102] = &bidYield_;
+  slotFields_[103] = &midYield_;
+  slotFields_[104] = &offerYield_;
+  slotFields_[105] = &settlDate_;
+  slotFields_[106] = &bidForwardPoints2_;
+  slotFields_[107] = &offerForwardPoints2_;
+  slotFields_[108] = &mktBidPx_;
+  slotFields_[109] = &mktOfferPx_;
+  slotFields_[110] = &minBidSize_;
+  slotFields_[111] = &minOfferSize_;
+  slotFields_[112] = &quoteStatusReqID_;
+  slotFields_[113] = &symbolSfx_;
+  slotFields_[114] = &settlCurrBidFxRate_;
+  slotFields_[115] = &settlCurrOfferFxRate_;
+  slotFields_[116] = &acctIDSource_;
+  slotFields_[117] = &benchmarkPrice_;
+  slotFields_[118] = &benchmarkPriceType_;
+  slotFields_[119] = &contractSettlMonth_;
+  slotFields_[120] = &pool_;
+  slotFields_[121] = &quoteRespID_;
+  slotFields_[122] = &yieldRedemptionDate_;
+  slotFields_[123] = &yieldRedemptionPrice_;
+  slotFields_[124] = &yieldRedemptionPriceType_;
+  slotFields_[125] = &benchmarkSecurityID_;
+  slotFields_[126] = &yieldCalcDate_;
+  slotFields_[127] = &benchmarkSecurityIDSource_;
+  slotFields_[128] = &securitySubType_;
+  slotFields_[129] = &terminationType_;
+  slotFields_[130] = &beginString_;
+  slotFields_[131] = &datedDate_;
+  slotFields_[132] = &interestAccrualDate_;
+  slotFields_[133] = &cPProgram_;
+  slotFields_[134] = &cPRegType_;
+  slotFields_[135] = &signature_;
+  slotFields_[136] = &marginRatio_;
+  slotFields_[137] = &bodyLength_;
+  slotFields_[138] = &secureDataLen_;
+  slotFields_[139] = &secureData_;
+  slotFields_[140] = &agreementDesc_;
+  slotFields_[141] = &agreementID_;
+  slotFields_[142] = &agreementDate_;
+  slotFields_[143] = &startDate_;
+  slotFields_[144] = &endDate_;
+  slotFields_[145] = &agreementCurrency_;
+  slotFields_[146] = &deliveryType_;
+  slotFields_[147] = &signatureLength_;
+  slotFields_[148] = &strikeCurrency_;
+  slotFields_[149] = &possResend_;
+  slotGroups_[0] = &stipulationsGroup_;
+  slotGroups_[1] = &underlyingsGroup_;
+  slotGroups_[2] = &legsGroup7_;
+  slotGroups_[3] = &partyIDsGroup_;
+  slotGroups_[4] = &securityAltIDGroup_;
+  slotGroups_[5] = &hopsGroup_;
+  slotGroups_[6] = &quoteQualifiersGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(QuoteStatusReportSlotOfTag(), 956, slotFields_, slotGroups_, 150);
 }
 
 AbstractField* QuoteStatusReport::msgType() {
@@ -81918,9 +87965,178 @@ AbstractField* QuoteStatusReport::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* QuoteResponseSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 130}, {9, 137}, {10, 2}, {11, 6}, {12, 10}, {13, 14}, {15, 23}, {22, 41}, {23, 51}, {34, 59}, {35, 63}, {38, 69}, {40, 70}, {43, 72}, {44, 73}, {48, 81}, {49, 82}, {50, 83}, {52, 85}, {54, 88}, {55, 91}, {56, 92}, {57, 93}, {58, 94}, {60, 97}, {62, 98}, {63, 100}, {64, 105}, {65, 112}, {89, 135}, {90, 138}, {91, 139}, {93, 147}, {97, 149}, {100, 3}, {106, 4}, {107, 5}, {115, 7}, {116, 8}, {117, 9}, {122, 11}, {128, 12}, {129, 13}, {132, 15}, {133, 16}, {134, 17}, {135, 18}, {142, 19}, {143, 20}, {144, 21}, {145, 22}, {152, 24}, {156, 25}, {167, 26}, {188, 27}, {189, 28}, {190, 29}, {191, 30}, {192, 31}, {193, 32}, {200, 33}, {201, 34}, {202, 35}, {206, 36}, {207, 37}, {212, 38}, {213, 39}, {218, 40}, {220, 42}, {221, 43}, {222, 44}, {223, 45}, {224, 46}, {225, 47}, {226, 48}, {227, 49}, {228, 50}, {231, 52}, {232, 150}, {233, 150}, {234, 150}, {235, 53}, {236, 54}, {239, 55}, {240, 56}, {241, 151}, {242, 151}, {243, 151}, {244, 151}, {245, 151}, {246, 151}, {247, 151}, {248, 152}, {249, 152}, {250, 152}, {251, 152}, {252, 152}, {253, 152}, {254, 152}, {255, 57}, {256, 151}, {257, 152}, {305, 151}, {306, 151}, {307, 151}, {308, 151}, {309, 151}, {310, 151}, {311, 151}, {312, 151}, {313, 151}, {315, 151}, {316, 151}, {317, 151}, {318, 151}, {336, 58}, {347, 60}, {348, 61}, {349, 62}, {350, 64}, {351, 65}, {354, 66}, {355, 67}, {362, 151}, {363, 151}, {364, 151}, {365, 151}, {369, 68}, {423, 71}, {435, 151}, {436, 151}, {447, 153}, {448, 153}, {452, 153}, {453, 153}, {454, 154}, {455, 154}, {456, 154}, {457, 151}, {458, 151}, {459, 151}, {460, 74}, {461, 75}, {462, 151}, {463, 151}, {468, 76}, {469, 77}, {470, 78}, {471, 79}, {472, 80}, {516, 84}, {523, 153}, {524, 152}, {525, 152}, {528, 86}, {537, 87}, {538, 152}, {539, 152}, {541, 89}, {542, 151}, {543, 90}, {545, 152}, {555, 152}, {556, 152}, {581, 95}, {582, 96}, {587, 152}, {588, 152}, {592, 151}, {593, 151}, {594, 151}, {595, 151}, {596, 152}, {597, 152}, {598, 152}, {599, 152}, {600, 152}, {601, 152}, {602, 152}, {603, 152}, {604, 152}, {605, 152}, {606, 152}, {607, 152}, {608, 152}, {609, 152}, {610, 152}, {611, 152}, {612, 152}, {613, 152}, {614, 152}, {615, 152}, {616, 152}, {617, 152}, {618, 152}, {619, 152}, {620, 152}, {621, 152}, {622, 152}, {623, 152}, {624, 152}, {625, 99}, {627, 155}, {628, 155}, {629, 155}, {630, 155}, {631, 101}, {632, 102}, {633, 103}, {634, 104}, {642, 106}, {643, 107}, {645, 108}, {646, 109}, {647, 110}, {648, 111}, {656, 113}, {657, 114}, {660, 115}, {662, 116}, {663, 117}, {667, 118}, {676, 152}, {677, 152}, {678, 152}, {679, 152}, {680, 152}, {681, 152}, {683, 152}, {684, 152}, {686, 152}, {687, 152}, {688, 152}, {689, 152}, {690, 152}, {691, 119}, {693, 120}, {694, 121}, {695, 156}, {696, 122}, {697, 123}, {698, 124}, {699, 125}, {701, 126}, {711, 151}, {735, 156}, {739, 152}, {740, 152}, {761, 127}, {762, 128}, {763, 151}, {764, 152}, {788, 129}, {802, 153}, {803, 153}, {804, 152}, {805, 152}, {810, 151}, {864, 157}, {865, 157}, {866, 157}, {867, 157}, {868, 157}, {873, 131}, {874, 132}, {875, 133}, {876, 134}, {877, 151}, {878, 151}, {879, 151}, {882, 151}, {883, 151}, {884, 151}, {885, 151}, {886, 151}, {887, 151}, {888, 151}, {889, 151}, {898, 136}, {913, 140}, {914, 141}, {915, 142}, {916, 143}, {917, 144}, {918, 145}, {919, 146}, {941, 151}, {942, 152}, {947, 148}, {955, 152}, {956, 152}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 QuoteResponse::QuoteResponse() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &exDestination_;
+  slotFields_[4] = &issuer_;
+  slotFields_[5] = &securityDesc_;
+  slotFields_[6] = &clOrdID_;
+  slotFields_[7] = &onBehalfOfCompID_;
+  slotFields_[8] = &onBehalfOfSubID_;
+  slotFields_[9] = &quoteID_;
+  slotFields_[10] = &commission_;
+  slotFields_[11] = &origSendingTime_;
+  slotFields_[12] = &deliverToCompID_;
+  slotFields_[13] = &deliverToSubID_;
+  slotFields_[14] = &commType_;
+  slotFields_[15] = &bidPx_;
+  slotFields_[16] = &offerPx_;
+  slotFields_[17] = &bidSize_;
+  slotFields_[18] = &offerSize_;
+  slotFields_[19] = &senderLocationID_;
+  slotFields_[20] = &targetLocationID_;
+  slotFields_[21] = &onBehalfOfLocationID_;
+  slotFields_[22] = &deliverToLocationID_;
+  slotFields_[23] = &currency_;
+  slotFields_[24] = &cashOrderQty_;
+  slotFields_[25] = &settlCurrFxRateCalc_;
+  slotFields_[26] = &securityType_;
+  slotFields_[27] = &bidSpotRate_;
+  slotFields_[28] = &bidForwardPoints_;
+  slotFields_[29] = &offerSpotRate_;
+  slotFields_[30] = &offerForwardPoints_;
+  slotFields_[31] = &orderQty2_;
+  slotFields_[32] = &settlDate2_;
+  slotFields_[33] = &maturityMonthYear_;
+  slotFields_[34] = &putOrCall_;
+  slotFields_[35] = &strikePrice_;
+  slotFields_[36] = &optAttribute_;
+  slotFields_[37] = &securityExchange_;
+  slotFields_[38] = &xmlDataLen_;
+  slotFields_[39] = &xmlData_;
+  slotFields_[40] = &spread_;
+  slotFields_[41] = &securityIDSource_;
+  slotFields_[42] = &benchmarkCurveCurrency_;
+  slotFields_[43] = &benchmarkCurveName_;
+  slotFields_[44] = &benchmarkCurvePoint_;
+  slotFields_[45] = &couponRate_;
+  slotFields_[46] = &couponPaymentDate_;
+  slotFields_[47] = &issueDate_;
+  slotFields_[48] = &repurchaseTerm_;
+  slotFields_[49] = &repurchaseRate_;
+  slotFields_[50] = &factor_;
+  slotFields_[51] = &iOIID_;
+  slotFields_[52] = &contractMultiplier_;
+  slotFields_[53] = &yieldType_;
+  slotFields_[54] = &yield_;
+  slotFields_[55] = &repoCollateralSecurityType_;
+  slotFields_[56] = &redemptionDate_;
+  slotFields_[57] = &creditRating_;
+  slotFields_[58] = &tradingSessionID_;
+  slotFields_[59] = &msgSeqNum_;
+  slotFields_[60] = &messageEncoding_;
+  slotFields_[61] = &encodedIssuerLen_;
+  slotFields_[62] = &encodedIssuer_;
+  slotFields_[63] = &msgType_;
+  slotFields_[64] = &encodedSecurityDescLen_;
+  slotFields_[65] = &encodedSecurityDesc_;
+  slotFields_[66] = &encodedTextLen_;
+  slotFields_[67] = &encodedText_;
+  slotFields_[68] = &lastMsgSeqNumProcessed_;
+  slotFields_[69] = &orderQty_;
+  slotFields_[70] = &ordType_;
+  slotFields_[71] = &priceType_;
+  slotFields_[72] = &possDupFlag_;
+  slotFields_[73] = &price_;
+  slotFields_[74] = &product_;
+  slotFields_[75] = &cFICode_;
+  slotFields_[76] = &roundingDirection_;
+  slotFields_[77] = &roundingModulus_;
+  slotFields_[78] = &countryOfIssue_;
+  slotFields_[79] = &stateOrProvinceOfIssue_;
+  slotFields_[80] = &localeOfIssue_;
+  slotFields_[81] = &securityID_;
+  slotFields_[82] = &senderCompID_;
+  slotFields_[83] = &senderSubID_;
+  slotFields_[84] = &orderPercent_;
+  slotFields_[85] = &sendingTime_;
+  slotFields_[86] = &orderCapacity_;
+  slotFields_[87] = &quoteType_;
+  slotFields_[88] = &side_;
+  slotFields_[89] = &maturityDate_;
+  slotFields_[90] = &instrRegistry_;
+  slotFields_[91] = &symbol_;
+  slotFields_[92] = &targetCompID_;
+  slotFields_[93] = &targetSubID_;
+  slotFields_[94] = &text_;
+  slotFields_[95] = &accountType_;
+  slotFields_[96] = &custOrderCapacity_;
+  slotFields_[97] = &transactTime_;
+  slotFields_[98] = &validUntilTime_;
+  slotFields_[99] = &tradingSessionSubID_;
+  slotFields_[100] = &settlType_;
+  slotFields_[101] = &midPx_;
+  slotFields_[102] = &bidYield_;
+  slotFields_[103] = &midYield_;
+  slotFields_[104] = &offerYield_;
+  slotFields_[105] = &settlDate_;
+  slotFields_[106] = &bidForwardPoints2_;
+  slotFields_[107] = &offerForwardPoints2_;
+  slotFields_[108] = &mktBidPx_;
+  slotFields_[109] = &mktOfferPx_;
+  slotFields_[110] = &minBidSize_;
+  slotFields_[111] = &minOfferSize_;
+  slotFields_[112] = &symbolSfx_;
+  slotFields_[113] = &settlCurrBidFxRate_;
+  slotFields_[114] = &settlCurrOfferFxRate_;
+  slotFields_[115] = &acctIDSource_;
+  slotFields_[116] = &benchmarkPrice_;
+  slotFields_[117] = &benchmarkPriceType_;
+  slotFields_[118] = &contractSettlMonth_;
+  slotFields_[119] = &pool_;
+  slotFields_[120] = &quoteRespID_;
+  slotFields_[121] = &quoteRespType_;
+  slotFields_[122] = &yieldRedemptionDate_;
+  slotFields_[123] = &yieldRedemptionPrice_;
+  slotFields_[124] = &yieldRedemptionPriceType_;
+  slotFields_[125] = &benchmarkSecurityID_;
+  slotFields_[126] = &yieldCalcDate_;
+  slotFields_[127] = &benchmarkSecurityIDSource_;
+  slotFields_[128] = &securitySubType_;
+  slotFields_[129] = &terminationType_;
+  slotFields_[130] = &beginString_;
+  slotFields_[131] = &datedDate_;
+  slotFields_[132] = &interestAccrualDate_;
+  slotFields_[133] = &cPProgram_;
+  slotFields_[134] = &cPRegType_;
+  slotFields_[135] = &signature_;
+  slotFields_[136] = &marginRatio_;
+  slotFields_[137] = &bodyLength_;
+  slotFields_[138] = &secureDataLen_;
+  slotFields_[139] = &secureData_;
+  slotFields_[140] = &agreementDesc_;
+  slotFields_[141] = &agreementID_;
+  slotFields_[142] = &agreementDate_;
+  slotFields_[143] = &startDate_;
+  slotFields_[144] = &endDate_;
+  slotFields_[145] = &agreementCurrency_;
+  slotFields_[146] = &deliveryType_;
+  slotFields_[147] = &signatureLength_;
+  slotFields_[148] = &strikeCurrency_;
+  slotFields_[149] = &possResend_;
+  slotGroups_[0] = &stipulationsGroup_;
+  slotGroups_[1] = &underlyingsGroup_;
+  slotGroups_[2] = &legsGroup4_;
+  slotGroups_[3] = &partyIDsGroup_;
+  slotGroups_[4] = &securityAltIDGroup_;
+  slotGroups_[5] = &hopsGroup_;
+  slotGroups_[6] = &quoteQualifiersGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(QuoteResponseSlotOfTag(), 956, slotFields_, slotGroups_, 150);
 }
 
 AbstractField* QuoteResponse::msgType() {
@@ -84068,9 +90284,187 @@ AbstractField* QuoteResponse::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* ConfirmationSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{6, 89}, {8, 122}, {9, 138}, {10, 1}, {11, 154}, {12, 8}, {13, 13}, {15, 18}, {22, 37}, {30, 56}, {34, 57}, {35, 61}, {37, 154}, {38, 154}, {43, 69}, {48, 77}, {49, 78}, {50, 80}, {52, 81}, {54, 82}, {55, 85}, {56, 86}, {57, 87}, {58, 88}, {60, 90}, {63, 91}, {64, 92}, {65, 93}, {66, 154}, {70, 108}, {73, 154}, {74, 111}, {75, 112}, {79, 118}, {80, 123}, {81, 124}, {85, 156}, {89, 135}, {90, 139}, {91, 140}, {93, 151}, {97, 153}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {118, 6}, {119, 7}, {120, 9}, {122, 10}, {128, 11}, {129, 12}, {136, 155}, {137, 155}, {138, 155}, {139, 155}, {142, 14}, {143, 15}, {144, 16}, {145, 17}, {155, 19}, {156, 20}, {157, 21}, {158, 22}, {159, 23}, {165, 156}, {167, 24}, {169, 25}, {170, 26}, {171, 27}, {172, 28}, {198, 154}, {200, 29}, {201, 30}, {202, 31}, {206, 32}, {207, 33}, {212, 34}, {213, 35}, {218, 36}, {220, 38}, {221, 39}, {222, 40}, {223, 41}, {224, 42}, {225, 43}, {226, 44}, {227, 45}, {228, 46}, {230, 47}, {231, 48}, {232, 157}, {233, 157}, {234, 157}, {235, 49}, {236, 50}, {237, 51}, {238, 52}, {239, 53}, {240, 54}, {241, 158}, {242, 158}, {243, 158}, {244, 158}, {245, 158}, {246, 158}, {247, 158}, {248, 159}, {249, 159}, {250, 159}, {251, 159}, {252, 159}, {253, 159}, {254, 159}, {255, 55}, {256, 158}, {257, 159}, {305, 158}, {306, 158}, {307, 158}, {308, 158}, {309, 158}, {310, 158}, {311, 158}, {312, 158}, {313, 158}, {315, 158}, {316, 158}, {317, 158}, {318, 158}, {347, 58}, {348, 59}, {349, 60}, {350, 62}, {351, 63}, {354, 64}, {355, 65}, {362, 158}, {363, 158}, {364, 158}, {365, 158}, {369, 66}, {381, 67}, {423, 68}, {435, 158}, {436, 158}, {447, 160}, {448, 160}, {452, 160}, {453, 160}, {454, 161}, {455, 161}, {456, 161}, {457, 158}, {458, 158}, {459, 158}, {460, 70}, {461, 71}, {462, 158}, {463, 158}, {467, 72}, {470, 73}, {471, 74}, {472, 75}, {479, 76}, {497, 79}, {523, 160}, {526, 154}, {528, 162}, {529, 162}, {541, 83}, {542, 158}, {543, 84}, {555, 159}, {556, 159}, {592, 158}, {593, 158}, {594, 158}, {595, 158}, {596, 159}, {597, 159}, {598, 159}, {599, 159}, {600, 159}, {601, 159}, {602, 159}, {603, 159}, {604, 159}, {605, 159}, {606, 159}, {607, 159}, {608, 159}, {609, 159}, {610, 159}, {611, 159}, {612, 159}, {613, 159}, {614, 159}, {615, 159}, {616, 159}, {617, 159}, {618, 159}, {619, 159}, {620, 159}, {621, 159}, {622, 159}, {623, 159}, {624, 159}, {627, 163}, {628, 163}, {629, 163}, {630, 163}, {650, 94}, {661, 95}, {662, 96}, {663, 97}, {664, 98}, {665, 99}, {666, 100}, {667, 101}, {668, 102}, {691, 103}, {696, 104}, {697, 105}, {698, 106}, {699, 107}, {701, 109}, {711, 158}, {738, 110}, {739, 159}, {740, 159}, {756, 154}, {757, 154}, {758, 154}, {759, 154}, {760, 154}, {761, 113}, {762, 114}, {763, 158}, {764, 159}, {768, 164}, {769, 164}, {770, 164}, {771, 164}, {772, 115}, {773, 116}, {781, 156}, {782, 156}, {783, 156}, {784, 156}, {785, 156}, {786, 156}, {787, 156}, {788, 117}, {793, 119}, {797, 120}, {798, 121}, {799, 154}, {800, 154}, {801, 156}, {802, 160}, {803, 160}, {806, 154}, {807, 154}, {810, 158}, {854, 125}, {858, 126}, {859, 127}, {860, 128}, {861, 129}, {862, 162}, {863, 162}, {864, 165}, {865, 165}, {866, 165}, {867, 165}, {868, 165}, {869, 130}, {870, 166}, {871, 166}, {872, 166}, {873, 131}, {874, 132}, {875, 133}, {876, 134}, {877, 158}, {878, 158}, {879, 158}, {882, 158}, {883, 158}, {884, 158}, {885, 158}, {886, 158}, {887, 158}, {888, 158}, {889, 158}, {890, 136}, {891, 155}, {898, 137}, {913, 141}, {914, 142}, {915, 143}, {916, 144}, {917, 145}, {918, 146}, {919, 147}, {920, 148}, {921, 149}, {922, 150}, {941, 158}, {942, 159}, {947, 152}, {955, 159}, {956, 159}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 Confirmation::Confirmation() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &netMoney_;
+  slotFields_[7] = &settlCurrAmt_;
+  slotFields_[8] = &commission_;
+  slotFields_[9] = &settlCurrency_;
+  slotFields_[10] = &origSendingTime_;
+  slotFields_[11] = &deliverToCompID_;
+  slotFields_[12] = &deliverToSubID_;
+  slotFields_[13] = &commType_;
+  slotFields_[14] = &senderLocationID_;
+  slotFields_[15] = &targetLocationID_;
+  slotFields_[16] = &onBehalfOfLocationID_;
+  slotFields_[17] = &deliverToLocationID_;
+  slotFields_[18] = &currency_;
+  slotFields_[19] = &settlCurrFxRate_;
+  slotFields_[20] = &settlCurrFxRateCalc_;
+  slotFields_[21] = &numDaysInterest_;
+  slotFields_[22] = &accruedInterestRate_;
+  slotFields_[23] = &accruedInterestAmt_;
+  slotFields_[24] = &securityType_;
+  slotFields_[25] = &standInstDbType_;
+  slotFields_[26] = &standInstDbName_;
+  slotFields_[27] = &standInstDbID_;
+  slotFields_[28] = &settlDeliveryType_;
+  slotFields_[29] = &maturityMonthYear_;
+  slotFields_[30] = &putOrCall_;
+  slotFields_[31] = &strikePrice_;
+  slotFields_[32] = &optAttribute_;
+  slotFields_[33] = &securityExchange_;
+  slotFields_[34] = &xmlDataLen_;
+  slotFields_[35] = &xmlData_;
+  slotFields_[36] = &spread_;
+  slotFields_[37] = &securityIDSource_;
+  slotFields_[38] = &benchmarkCurveCurrency_;
+  slotFields_[39] = &benchmarkCurveName_;
+  slotFields_[40] = &benchmarkCurvePoint_;
+  slotFields_[41] = &couponRate_;
+  slotFields_[42] = &couponPaymentDate_;
+  slotFields_[43] = &issueDate_;
+  slotFields_[44] = &repurchaseTerm_;
+  slotFields_[45] = &repurchaseRate_;
+  slotFields_[46] = &factor_;
+  slotFields_[47] = &exDate_;
+  slotFields_[48] = &contractMultiplier_;
+  slotFields_[49] = &yieldType_;
+  slotFields_[50] = &yield_;
+  slotFields_[51] = &totalTakedown_;
+  slotFields_[52] = &concession_;
+  slotFields_[53] = &repoCollateralSecurityType_;
+  slotFields_[54] = &redemptionDate_;
+  slotFields_[55] = &creditRating_;
+  slotFields_[56] = &lastMkt_;
+  slotFields_[57] = &msgSeqNum_;
+  slotFields_[58] = &messageEncoding_;
+  slotFields_[59] = &encodedIssuerLen_;
+  slotFields_[60] = &encodedIssuer_;
+  slotFields_[61] = &msgType_;
+  slotFields_[62] = &encodedSecurityDescLen_;
+  slotFields_[63] = &encodedSecurityDesc_;
+  slotFields_[64] = &encodedTextLen_;
+  slotFields_[65] = &encodedText_;
+  slotFields_[66] = &lastMsgSeqNumProcessed_;
+  slotFields_[67] = &grossTradeAmt_;
+  slotFields_[68] = &priceType_;
+  slotFields_[69] = &possDupFlag_;
+  slotFields_[70] = &product_;
+  slotFields_[71] = &cFICode_;
+  slotFields_[72] = &individualAllocID_;
+  slotFields_[73] = &countryOfIssue_;
+  slotFields_[74] = &stateOrProvinceOfIssue_;
+  slotFields_[75] = &localeOfIssue_;
+  slotFields_[76] = &commCurrency_;
+  slotFields_[77] = &securityID_;
+  slotFields_[78] = &senderCompID_;
+  slotFields_[79] = &fundRenewWaiv_;
+  slotFields_[80] = &senderSubID_;
+  slotFields_[81] = &sendingTime_;
+  slotFields_[82] = &side_;
+  slotFields_[83] = &maturityDate_;
+  slotFields_[84] = &instrRegistry_;
+  slotFields_[85] = &symbol_;
+  slotFields_[86] = &targetCompID_;
+  slotFields_[87] = &targetSubID_;
+  slotFields_[88] = &text_;
+  slotFields_[89] = &avgPx_;
+  slotFields_[90] = &transactTime_;
+  slotFields_[91] = &settlType_;
+  slotFields_[92] = &settlDate_;
+  slotFields_[93] = &symbolSfx_;
+  slotFields_[94] = &legalConfirm_;
+  slotFields_[95] = &allocAcctIDSource_;
+  slotFields_[96] = &benchmarkPrice_;
+  slotFields_[97] = &benchmarkPriceType_;
+  slotFields_[98] = &confirmID_;
+  slotFields_[99] = &confirmStatus_;
+  slotFields_[100] = &confirmTransType_;
+  slotFields_[101] = &contractSettlMonth_;
+  slotFields_[102] = &deliveryForm_;
+  slotFields_[103] = &pool_;
+  slotFields_[104] = &yieldRedemptionDate_;
+  slotFields_[105] = &yieldRedemptionPrice_;
+  slotFields_[106] = &yieldRedemptionPriceType_;
+  slotFields_[107] = &benchmarkSecurityID_;
+  slotFields_[108] = &allocID_;
+  slotFields_[109] = &yieldCalcDate_;
+  slotFields_[110] = &interestAtMaturity_;
+  slotFields_[111] = &avgPxPrecision_;
+  slotFields_[112] = &tradeDate_;
+  slotFields_[113] = &benchmarkSecurityIDSource_;
+  slotFields_[114] = &securitySubType_;
+  slotFields_[115] = &confirmRefID_;
+  slotFields_[116] = &confirmType_;
+  slotFields_[117] = &terminationType_;
+  slotFields_[118] = &allocAccount_;
+  slotFields_[119] = &secondaryAllocID_;
+  slotFields_[120] = &copyMsgIndicator_;
+  slotFields_[121] = &allocAccountType_;
+  slotFields_[122] = &beginString_;
+  slotFields_[123] = &allocQty_;
+  slotFields_[124] = &processCode_;
+  slotFields_[125] = &qtyType_;
+  slotFields_[126] = &sharedCommission_;
+  slotFields_[127] = &confirmReqID_;
+  slotFields_[128] = &avgParPx_;
+  slotFields_[129] = &reportedPx_;
+  slotFields_[130] = &pctAtRisk_;
+  slotFields_[131] = &datedDate_;
+  slotFields_[132] = &interestAccrualDate_;
+  slotFields_[133] = &cPProgram_;
+  slotFields_[134] = &cPRegType_;
+  slotFields_[135] = &signature_;
+  slotFields_[136] = &maturityNetMoney_;
+  slotFields_[137] = &marginRatio_;
+  slotFields_[138] = &bodyLength_;
+  slotFields_[139] = &secureDataLen_;
+  slotFields_[140] = &secureData_;
+  slotFields_[141] = &agreementDesc_;
+  slotFields_[142] = &agreementID_;
+  slotFields_[143] = &agreementDate_;
+  slotFields_[144] = &startDate_;
+  slotFields_[145] = &endDate_;
+  slotFields_[146] = &agreementCurrency_;
+  slotFields_[147] = &deliveryType_;
+  slotFields_[148] = &endAccruedInterestAmt_;
+  slotFields_[149] = &startCash_;
+  slotFields_[150] = &endCash_;
+  slotFields_[151] = &signatureLength_;
+  slotFields_[152] = &strikeCurrency_;
+  slotFields_[153] = &possResend_;
+  slotGroups_[0] = &ordersGroup1_;
+  slotGroups_[1] = &miscFeesGroup_;
+  slotGroups_[2] = &dlvyInstGroup_;
+  slotGroups_[3] = &stipulationsGroup_;
+  slotGroups_[4] = &underlyingsGroup_;
+  slotGroups_[5] = &legsGroup1_;
+  slotGroups_[6] = &partyIDsGroup_;
+  slotGroups_[7] = &securityAltIDGroup_;
+  slotGroups_[8] = &capacitiesGroup_;
+  slotGroups_[9] = &hopsGroup_;
+  slotGroups_[10] = &trdRegTimestampsGroup_;
+  slotGroups_[11] = &eventsGroup_;
+  slotGroups_[12] = &instrAttribGroup_;
+  tagTable(ConfirmationSlotOfTag(), 956, slotFields_, slotGroups_, 154);
 }
 
 AbstractField* Confirmation::msgType() {
@@ -86345,9 +92739,119 @@ AbstractField* Confirmation::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* PositionMaintenanceRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 78}, {9, 85}, {10, 2}, {15, 14}, {22, 23}, {34, 34}, {35, 38}, {43, 44}, {48, 50}, {49, 51}, {50, 52}, {52, 53}, {55, 56}, {56, 57}, {57, 58}, {58, 59}, {60, 61}, {65, 62}, {89, 84}, {90, 86}, {91, 87}, {93, 88}, {97, 90}, {106, 3}, {107, 4}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 15}, {200, 16}, {201, 17}, {202, 18}, {206, 19}, {207, 20}, {212, 21}, {213, 22}, {223, 24}, {224, 25}, {225, 26}, {226, 27}, {227, 28}, {228, 29}, {231, 30}, {239, 31}, {240, 32}, {241, 91}, {242, 91}, {243, 91}, {244, 91}, {245, 91}, {246, 91}, {247, 91}, {248, 92}, {249, 92}, {250, 92}, {251, 92}, {252, 92}, {253, 92}, {254, 92}, {255, 33}, {256, 91}, {257, 92}, {305, 91}, {306, 91}, {307, 91}, {308, 91}, {309, 91}, {310, 91}, {311, 91}, {312, 91}, {313, 91}, {315, 91}, {316, 91}, {317, 91}, {318, 91}, {336, 93}, {347, 35}, {348, 36}, {349, 37}, {350, 39}, {351, 40}, {354, 41}, {355, 42}, {362, 91}, {363, 91}, {364, 91}, {365, 91}, {369, 43}, {386, 93}, {435, 91}, {436, 91}, {447, 94}, {448, 94}, {452, 94}, {453, 94}, {454, 95}, {455, 95}, {456, 95}, {457, 91}, {458, 91}, {459, 91}, {460, 45}, {461, 46}, {462, 91}, {463, 91}, {470, 47}, {471, 48}, {472, 49}, {523, 94}, {524, 96}, {525, 96}, {538, 96}, {539, 96}, {541, 54}, {542, 91}, {543, 55}, {545, 96}, {555, 92}, {556, 92}, {581, 60}, {592, 91}, {593, 91}, {594, 91}, {595, 91}, {596, 92}, {597, 92}, {598, 92}, {599, 92}, {600, 92}, {601, 92}, {602, 92}, {603, 92}, {604, 92}, {605, 92}, {606, 92}, {607, 92}, {608, 92}, {609, 92}, {610, 92}, {611, 92}, {612, 92}, {613, 92}, {614, 92}, {615, 92}, {616, 92}, {617, 92}, {618, 92}, {619, 92}, {620, 92}, {621, 92}, {622, 92}, {623, 92}, {624, 92}, {625, 93}, {627, 97}, {628, 97}, {629, 97}, {630, 97}, {660, 63}, {667, 64}, {691, 65}, {702, 96}, {703, 96}, {704, 96}, {705, 96}, {706, 96}, {709, 66}, {710, 67}, {711, 91}, {712, 68}, {713, 69}, {714, 70}, {715, 71}, {716, 72}, {717, 73}, {718, 74}, {719, 75}, {720, 76}, {739, 92}, {740, 92}, {762, 77}, {763, 91}, {764, 92}, {802, 94}, {803, 94}, {804, 96}, {805, 96}, {810, 91}, {834, 79}, {864, 98}, {865, 98}, {866, 98}, {867, 98}, {868, 98}, {873, 80}, {874, 81}, {875, 82}, {876, 83}, {877, 91}, {878, 91}, {879, 91}, {882, 91}, {883, 91}, {884, 91}, {885, 91}, {886, 91}, {887, 91}, {888, 91}, {889, 91}, {941, 91}, {942, 92}, {947, 89}, {955, 92}, {956, 92}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 PositionMaintenanceRequest::PositionMaintenanceRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &currency_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &maturityMonthYear_;
+  slotFields_[17] = &putOrCall_;
+  slotFields_[18] = &strikePrice_;
+  slotFields_[19] = &optAttribute_;
+  slotFields_[20] = &securityExchange_;
+  slotFields_[21] = &xmlDataLen_;
+  slotFields_[22] = &xmlData_;
+  slotFields_[23] = &securityIDSource_;
+  slotFields_[24] = &couponRate_;
+  slotFields_[25] = &couponPaymentDate_;
+  slotFields_[26] = &issueDate_;
+  slotFields_[27] = &repurchaseTerm_;
+  slotFields_[28] = &repurchaseRate_;
+  slotFields_[29] = &factor_;
+  slotFields_[30] = &contractMultiplier_;
+  slotFields_[31] = &repoCollateralSecurityType_;
+  slotFields_[32] = &redemptionDate_;
+  slotFields_[33] = &creditRating_;
+  slotFields_[34] = &msgSeqNum_;
+  slotFields_[35] = &messageEncoding_;
+  slotFields_[36] = &encodedIssuerLen_;
+  slotFields_[37] = &encodedIssuer_;
+  slotFields_[38] = &msgType_;
+  slotFields_[39] = &encodedSecurityDescLen_;
+  slotFields_[40] = &encodedSecurityDesc_;
+  slotFields_[41] = &encodedTextLen_;
+  slotFields_[42] = &encodedText_;
+  slotFields_[43] = &lastMsgSeqNumProcessed_;
+  slotFields_[44] = &possDupFlag_;
+  slotFields_[45] = &product_;
+  slotFields_[46] = &cFICode_;
+  slotFields_[47] = &countryOfIssue_;
+  slotFields_[48] = &stateOrProvinceOfIssue_;
+  slotFields_[49] = &localeOfIssue_;
+  slotFields_[50] = &securityID_;
+  slotFields_[51] = &senderCompID_;
+  slotFields_[52] = &senderSubID_;
+  slotFields_[53] = &sendingTime_;
+  slotFields_[54] = &maturityDate_;
+  slotFields_[55] = &instrRegistry_;
+  slotFields_[56] = &symbol_;
+  slotFields_[57] = &targetCompID_;
+  slotFields_[58] = &targetSubID_;
+  slotFields_[59] = &text_;
+  slotFields_[60] = &accountType_;
+  slotFields_[61] = &transactTime_;
+  slotFields_[62] = &symbolSfx_;
+  slotFields_[63] = &acctIDSource_;
+  slotFields_[64] = &contractSettlMonth_;
+  slotFields_[65] = &pool_;
+  slotFields_[66] = &posTransType_;
+  slotFields_[67] = &posReqID_;
+  slotFields_[68] = &posMaintAction_;
+  slotFields_[69] = &origPosReqRefID_;
+  slotFields_[70] = &posMaintRptRefID_;
+  slotFields_[71] = &clearingBusinessDate_;
+  slotFields_[72] = &settlSessID_;
+  slotFields_[73] = &settlSessSubID_;
+  slotFields_[74] = &adjustmentType_;
+  slotFields_[75] = &contraryInstructionIndicator_;
+  slotFields_[76] = &priorSpreadIndicator_;
+  slotFields_[77] = &securitySubType_;
+  slotFields_[78] = &beginString_;
+  slotFields_[79] = &thresholdAmount_;
+  slotFields_[80] = &datedDate_;
+  slotFields_[81] = &interestAccrualDate_;
+  slotFields_[82] = &cPProgram_;
+  slotFields_[83] = &cPRegType_;
+  slotFields_[84] = &signature_;
+  slotFields_[85] = &bodyLength_;
+  slotFields_[86] = &secureDataLen_;
+  slotFields_[87] = &secureData_;
+  slotFields_[88] = &signatureLength_;
+  slotFields_[89] = &strikeCurrency_;
+  slotFields_[90] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &tradingSessionsGroup_;
+  slotGroups_[3] = &partyIDsGroup_;
+  slotGroups_[4] = &securityAltIDGroup_;
+  slotGroups_[5] = &positionsGroup_;
+  slotGroups_[6] = &hopsGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(PositionMaintenanceRequestSlotOfTag(), 956, slotFields_, slotGroups_, 91);
 }
 
 AbstractField* PositionMaintenanceRequest::msgType() {
@@ -87981,9 +94485,120 @@ AbstractField* PositionMaintenanceRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* PositionMaintenanceReportSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 78}, {9, 85}, {10, 2}, {15, 14}, {22, 23}, {34, 34}, {35, 38}, {43, 44}, {48, 50}, {49, 51}, {50, 52}, {52, 53}, {55, 56}, {56, 57}, {57, 58}, {58, 59}, {60, 61}, {65, 62}, {89, 84}, {90, 86}, {91, 87}, {93, 88}, {97, 90}, {106, 3}, {107, 4}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 15}, {200, 16}, {201, 17}, {202, 18}, {206, 19}, {207, 20}, {212, 21}, {213, 22}, {223, 24}, {224, 25}, {225, 26}, {226, 27}, {227, 28}, {228, 29}, {231, 30}, {239, 31}, {240, 32}, {241, 91}, {242, 91}, {243, 91}, {244, 91}, {245, 91}, {246, 91}, {247, 91}, {248, 92}, {249, 92}, {250, 92}, {251, 92}, {252, 92}, {253, 92}, {254, 92}, {255, 33}, {256, 91}, {257, 92}, {305, 91}, {306, 91}, {307, 91}, {308, 91}, {309, 91}, {310, 91}, {311, 91}, {312, 91}, {313, 91}, {315, 91}, {316, 91}, {317, 91}, {318, 91}, {336, 93}, {347, 35}, {348, 36}, {349, 37}, {350, 39}, {351, 40}, {354, 41}, {355, 42}, {362, 91}, {363, 91}, {364, 91}, {365, 91}, {369, 43}, {386, 93}, {435, 91}, {436, 91}, {447, 94}, {448, 94}, {452, 94}, {453, 94}, {454, 95}, {455, 95}, {456, 95}, {457, 91}, {458, 91}, {459, 91}, {460, 45}, {461, 46}, {462, 91}, {463, 91}, {470, 47}, {471, 48}, {472, 49}, {523, 94}, {524, 96}, {525, 96}, {538, 96}, {539, 96}, {541, 54}, {542, 91}, {543, 55}, {545, 96}, {555, 92}, {556, 92}, {581, 60}, {592, 91}, {593, 91}, {594, 91}, {595, 91}, {596, 92}, {597, 92}, {598, 92}, {599, 92}, {600, 92}, {601, 92}, {602, 92}, {603, 92}, {604, 92}, {605, 92}, {606, 92}, {607, 92}, {608, 92}, {609, 92}, {610, 92}, {611, 92}, {612, 92}, {613, 92}, {614, 92}, {615, 92}, {616, 92}, {617, 92}, {618, 92}, {619, 92}, {620, 92}, {621, 92}, {622, 92}, {623, 92}, {624, 92}, {625, 93}, {627, 97}, {628, 97}, {629, 97}, {630, 97}, {660, 63}, {667, 64}, {691, 65}, {702, 96}, {703, 96}, {704, 96}, {705, 96}, {706, 96}, {707, 98}, {708, 98}, {709, 66}, {710, 67}, {711, 91}, {712, 68}, {713, 69}, {715, 70}, {716, 71}, {717, 72}, {718, 73}, {721, 74}, {722, 75}, {723, 76}, {739, 92}, {740, 92}, {753, 98}, {762, 77}, {763, 91}, {764, 92}, {802, 94}, {803, 94}, {804, 96}, {805, 96}, {810, 91}, {834, 79}, {864, 99}, {865, 99}, {866, 99}, {867, 99}, {868, 99}, {873, 80}, {874, 81}, {875, 82}, {876, 83}, {877, 91}, {878, 91}, {879, 91}, {882, 91}, {883, 91}, {884, 91}, {885, 91}, {886, 91}, {887, 91}, {888, 91}, {889, 91}, {941, 91}, {942, 92}, {947, 89}, {955, 92}, {956, 92}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 PositionMaintenanceReport::PositionMaintenanceReport() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &currency_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &maturityMonthYear_;
+  slotFields_[17] = &putOrCall_;
+  slotFields_[18] = &strikePrice_;
+  slotFields_[19] = &optAttribute_;
+  slotFields_[20] = &securityExchange_;
+  slotFields_[21] = &xmlDataLen_;
+  slotFields_[22] = &xmlData_;
+  slotFields_[23] = &securityIDSource_;
+  slotFields_[24] = &couponRate_;
+  slotFields_[25] = &couponPaymentDate_;
+  slotFields_[26] = &issueDate_;
+  slotFields_[27] = &repurchaseTerm_;
+  slotFields_[28] = &repurchaseRate_;
+  slotFields_[29] = &factor_;
+  slotFields_[30] = &contractMultiplier_;
+  slotFields_[31] = &repoCollateralSecurityType_;
+  slotFields_[32] = &redemptionDate_;
+  slotFields_[33] = &creditRating_;
+  slotFields_[34] = &msgSeqNum_;
+  slotFields_[35] = &messageEncoding_;
+  slotFields_[36] = &encodedIssuerLen_;
+  slotFields_[37] = &encodedIssuer_;
+  slotFields_[38] = &msgType_;
+  slotFields_[39] = &encodedSecurityDescLen_;
+  slotFields_[40] = &encodedSecurityDesc_;
+  slotFields_[41] = &encodedTextLen_;
+  slotFields_[42] = &encodedText_;
+  slotFields_[43] = &lastMsgSeqNumProcessed_;
+  slotFields_[44] = &possDupFlag_;
+  slotFields_[45] = &product_;
+  slotFields_[46] = &cFICode_;
+  slotFields_[47] = &countryOfIssue_;
+  slotFields_[48] = &stateOrProvinceOfIssue_;
+  slotFields_[49] = &localeOfIssue_;
+  slotFields_[50] = &securityID_;
+  slotFields_[51] = &senderCompID_;
+  slotFields_[52] = &senderSubID_;
+  slotFields_[53] = &sendingTime_;
+  slotFields_[54] = &maturityDate_;
+  slotFields_[55] = &instrRegistry_;
+  slotFields_[56] = &symbol_;
+  slotFields_[57] = &targetCompID_;
+  slotFields_[58] = &targetSubID_;
+  slotFields_[59] = &text_;
+  slotFields_[60] = &accountType_;
+  slotFields_[61] = &transactTime_;
+  slotFields_[62] = &symbolSfx_;
+  slotFields_[63] = &acctIDSource_;
+  slotFields_[64] = &contractSettlMonth_;
+  slotFields_[65] = &pool_;
+  slotFields_[66] = &posTransType_;
+  slotFields_[67] = &posReqID_;
+  slotFields_[68] = &posMaintAction_;
+  slotFields_[69] = &origPosReqRefID_;
+  slotFields_[70] = &clearingBusinessDate_;
+  slotFields_[71] = &settlSessID_;
+  slotFields_[72] = &settlSessSubID_;
+  slotFields_[73] = &adjustmentType_;
+  slotFields_[74] = &posMaintRptID_;
+  slotFields_[75] = &posMaintStatus_;
+  slotFields_[76] = &posMaintResult_;
+  slotFields_[77] = &securitySubType_;
+  slotFields_[78] = &beginString_;
+  slotFields_[79] = &thresholdAmount_;
+  slotFields_[80] = &datedDate_;
+  slotFields_[81] = &interestAccrualDate_;
+  slotFields_[82] = &cPProgram_;
+  slotFields_[83] = &cPRegType_;
+  slotFields_[84] = &signature_;
+  slotFields_[85] = &bodyLength_;
+  slotFields_[86] = &secureDataLen_;
+  slotFields_[87] = &secureData_;
+  slotFields_[88] = &signatureLength_;
+  slotFields_[89] = &strikeCurrency_;
+  slotFields_[90] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &tradingSessionsGroup_;
+  slotGroups_[3] = &partyIDsGroup_;
+  slotGroups_[4] = &securityAltIDGroup_;
+  slotGroups_[5] = &positionsGroup_;
+  slotGroups_[6] = &hopsGroup_;
+  slotGroups_[7] = &posAmtGroup_;
+  slotGroups_[8] = &eventsGroup_;
+  tagTable(PositionMaintenanceReportSlotOfTag(), 956, slotFields_, slotGroups_, 91);
 }
 
 AbstractField* PositionMaintenanceReport::msgType() {
@@ -89641,9 +96256,115 @@ AbstractField* PositionMaintenanceReport::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* RequestForPositionsSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 76}, {9, 82}, {10, 2}, {15, 14}, {22, 23}, {34, 35}, {35, 39}, {43, 45}, {48, 51}, {49, 52}, {50, 53}, {52, 54}, {55, 57}, {56, 58}, {57, 59}, {58, 61}, {60, 63}, {65, 64}, {89, 81}, {90, 83}, {91, 84}, {93, 85}, {97, 87}, {106, 3}, {107, 4}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 15}, {200, 16}, {201, 17}, {202, 18}, {206, 19}, {207, 20}, {212, 21}, {213, 22}, {223, 24}, {224, 25}, {225, 26}, {226, 27}, {227, 28}, {228, 29}, {231, 30}, {239, 31}, {240, 32}, {241, 88}, {242, 88}, {243, 88}, {244, 88}, {245, 88}, {246, 88}, {247, 88}, {248, 89}, {249, 89}, {250, 89}, {251, 89}, {252, 89}, {253, 89}, {254, 89}, {255, 33}, {256, 88}, {257, 89}, {263, 34}, {305, 88}, {306, 88}, {307, 88}, {308, 88}, {309, 88}, {310, 88}, {311, 88}, {312, 88}, {313, 88}, {315, 88}, {316, 88}, {317, 88}, {318, 88}, {336, 90}, {347, 36}, {348, 37}, {349, 38}, {350, 40}, {351, 41}, {354, 42}, {355, 43}, {362, 88}, {363, 88}, {364, 88}, {365, 88}, {369, 44}, {386, 90}, {435, 88}, {436, 88}, {447, 91}, {448, 91}, {452, 91}, {453, 91}, {454, 92}, {455, 92}, {456, 92}, {457, 88}, {458, 88}, {459, 88}, {460, 46}, {461, 47}, {462, 88}, {463, 88}, {470, 48}, {471, 49}, {472, 50}, {523, 91}, {541, 55}, {542, 88}, {543, 56}, {555, 89}, {556, 89}, {573, 60}, {581, 62}, {592, 88}, {593, 88}, {594, 88}, {595, 88}, {596, 89}, {597, 89}, {598, 89}, {599, 89}, {600, 89}, {601, 89}, {602, 89}, {603, 89}, {604, 89}, {605, 89}, {606, 89}, {607, 89}, {608, 89}, {609, 89}, {610, 89}, {611, 89}, {612, 89}, {613, 89}, {614, 89}, {615, 89}, {616, 89}, {617, 89}, {618, 89}, {619, 89}, {620, 89}, {621, 89}, {622, 89}, {623, 89}, {624, 89}, {625, 90}, {627, 93}, {628, 93}, {629, 93}, {630, 93}, {660, 65}, {667, 66}, {691, 67}, {710, 68}, {711, 88}, {715, 69}, {716, 70}, {717, 71}, {724, 72}, {725, 73}, {726, 74}, {739, 89}, {740, 89}, {762, 75}, {763, 88}, {764, 89}, {802, 91}, {803, 91}, {810, 88}, {864, 94}, {865, 94}, {866, 94}, {867, 94}, {868, 94}, {873, 77}, {874, 78}, {875, 79}, {876, 80}, {877, 88}, {878, 88}, {879, 88}, {882, 88}, {883, 88}, {884, 88}, {885, 88}, {886, 88}, {887, 88}, {888, 88}, {889, 88}, {941, 88}, {942, 89}, {947, 86}, {955, 89}, {956, 89}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 RequestForPositions::RequestForPositions() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &currency_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &maturityMonthYear_;
+  slotFields_[17] = &putOrCall_;
+  slotFields_[18] = &strikePrice_;
+  slotFields_[19] = &optAttribute_;
+  slotFields_[20] = &securityExchange_;
+  slotFields_[21] = &xmlDataLen_;
+  slotFields_[22] = &xmlData_;
+  slotFields_[23] = &securityIDSource_;
+  slotFields_[24] = &couponRate_;
+  slotFields_[25] = &couponPaymentDate_;
+  slotFields_[26] = &issueDate_;
+  slotFields_[27] = &repurchaseTerm_;
+  slotFields_[28] = &repurchaseRate_;
+  slotFields_[29] = &factor_;
+  slotFields_[30] = &contractMultiplier_;
+  slotFields_[31] = &repoCollateralSecurityType_;
+  slotFields_[32] = &redemptionDate_;
+  slotFields_[33] = &creditRating_;
+  slotFields_[34] = &subscriptionRequestType_;
+  slotFields_[35] = &msgSeqNum_;
+  slotFields_[36] = &messageEncoding_;
+  slotFields_[37] = &encodedIssuerLen_;
+  slotFields_[38] = &encodedIssuer_;
+  slotFields_[39] = &msgType_;
+  slotFields_[40] = &encodedSecurityDescLen_;
+  slotFields_[41] = &encodedSecurityDesc_;
+  slotFields_[42] = &encodedTextLen_;
+  slotFields_[43] = &encodedText_;
+  slotFields_[44] = &lastMsgSeqNumProcessed_;
+  slotFields_[45] = &possDupFlag_;
+  slotFields_[46] = &product_;
+  slotFields_[47] = &cFICode_;
+  slotFields_[48] = &countryOfIssue_;
+  slotFields_[49] = &stateOrProvinceOfIssue_;
+  slotFields_[50] = &localeOfIssue_;
+  slotFields_[51] = &securityID_;
+  slotFields_[52] = &senderCompID_;
+  slotFields_[53] = &senderSubID_;
+  slotFields_[54] = &sendingTime_;
+  slotFields_[55] = &maturityDate_;
+  slotFields_[56] = &instrRegistry_;
+  slotFields_[57] = &symbol_;
+  slotFields_[58] = &targetCompID_;
+  slotFields_[59] = &targetSubID_;
+  slotFields_[60] = &matchStatus_;
+  slotFields_[61] = &text_;
+  slotFields_[62] = &accountType_;
+  slotFields_[63] = &transactTime_;
+  slotFields_[64] = &symbolSfx_;
+  slotFields_[65] = &acctIDSource_;
+  slotFields_[66] = &contractSettlMonth_;
+  slotFields_[67] = &pool_;
+  slotFields_[68] = &posReqID_;
+  slotFields_[69] = &clearingBusinessDate_;
+  slotFields_[70] = &settlSessID_;
+  slotFields_[71] = &settlSessSubID_;
+  slotFields_[72] = &posReqType_;
+  slotFields_[73] = &responseTransportType_;
+  slotFields_[74] = &responseDestination_;
+  slotFields_[75] = &securitySubType_;
+  slotFields_[76] = &beginString_;
+  slotFields_[77] = &datedDate_;
+  slotFields_[78] = &interestAccrualDate_;
+  slotFields_[79] = &cPProgram_;
+  slotFields_[80] = &cPRegType_;
+  slotFields_[81] = &signature_;
+  slotFields_[82] = &bodyLength_;
+  slotFields_[83] = &secureDataLen_;
+  slotFields_[84] = &secureData_;
+  slotFields_[85] = &signatureLength_;
+  slotFields_[86] = &strikeCurrency_;
+  slotFields_[87] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &tradingSessionsGroup_;
+  slotGroups_[3] = &partyIDsGroup_;
+  slotGroups_[4] = &securityAltIDGroup_;
+  slotGroups_[5] = &hopsGroup_;
+  slotGroups_[6] = &eventsGroup_;
+  tagTable(RequestForPositionsSlotOfTag(), 956, slotFields_, slotGroups_, 88);
 }
 
 AbstractField* RequestForPositions::msgType() {
@@ -91171,9 +97892,112 @@ AbstractField* RequestForPositions::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* RequestForPositionsAckSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 74}, {9, 80}, {10, 2}, {15, 14}, {22, 23}, {34, 35}, {35, 39}, {43, 45}, {48, 51}, {49, 52}, {50, 53}, {52, 54}, {55, 57}, {56, 58}, {57, 59}, {58, 60}, {65, 62}, {89, 79}, {90, 81}, {91, 82}, {93, 83}, {97, 85}, {106, 3}, {107, 4}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 15}, {200, 16}, {201, 17}, {202, 18}, {206, 19}, {207, 20}, {212, 21}, {213, 22}, {223, 24}, {224, 25}, {225, 26}, {226, 27}, {227, 28}, {228, 29}, {231, 30}, {239, 31}, {240, 32}, {241, 86}, {242, 86}, {243, 86}, {244, 86}, {245, 86}, {246, 86}, {247, 86}, {248, 87}, {249, 87}, {250, 87}, {251, 87}, {252, 87}, {253, 87}, {254, 87}, {255, 33}, {256, 86}, {257, 87}, {305, 86}, {306, 86}, {307, 86}, {308, 86}, {309, 86}, {310, 86}, {311, 86}, {312, 86}, {313, 86}, {315, 86}, {316, 86}, {317, 86}, {318, 86}, {325, 34}, {347, 36}, {348, 37}, {349, 38}, {350, 40}, {351, 41}, {354, 42}, {355, 43}, {362, 86}, {363, 86}, {364, 86}, {365, 86}, {369, 44}, {435, 86}, {436, 86}, {447, 88}, {448, 88}, {452, 88}, {453, 88}, {454, 89}, {455, 89}, {456, 89}, {457, 86}, {458, 86}, {459, 86}, {460, 46}, {461, 47}, {462, 86}, {463, 86}, {470, 48}, {471, 49}, {472, 50}, {523, 88}, {541, 55}, {542, 86}, {543, 56}, {555, 87}, {556, 87}, {581, 61}, {592, 86}, {593, 86}, {594, 86}, {595, 86}, {596, 87}, {597, 87}, {598, 87}, {599, 87}, {600, 87}, {601, 87}, {602, 87}, {603, 87}, {604, 87}, {605, 87}, {606, 87}, {607, 87}, {608, 87}, {609, 87}, {610, 87}, {611, 87}, {612, 87}, {613, 87}, {614, 87}, {615, 87}, {616, 87}, {617, 87}, {618, 87}, {619, 87}, {620, 87}, {621, 87}, {622, 87}, {623, 87}, {624, 87}, {627, 90}, {628, 90}, {629, 90}, {630, 90}, {660, 63}, {667, 64}, {691, 65}, {710, 66}, {711, 86}, {721, 67}, {725, 68}, {726, 69}, {727, 70}, {728, 71}, {729, 72}, {739, 87}, {740, 87}, {762, 73}, {763, 86}, {764, 87}, {802, 88}, {803, 88}, {810, 86}, {864, 91}, {865, 91}, {866, 91}, {867, 91}, {868, 91}, {873, 75}, {874, 76}, {875, 77}, {876, 78}, {877, 86}, {878, 86}, {879, 86}, {882, 86}, {883, 86}, {884, 86}, {885, 86}, {886, 86}, {887, 86}, {888, 86}, {889, 86}, {941, 86}, {942, 87}, {947, 84}, {955, 87}, {956, 87}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 RequestForPositionsAck::RequestForPositionsAck() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &currency_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &maturityMonthYear_;
+  slotFields_[17] = &putOrCall_;
+  slotFields_[18] = &strikePrice_;
+  slotFields_[19] = &optAttribute_;
+  slotFields_[20] = &securityExchange_;
+  slotFields_[21] = &xmlDataLen_;
+  slotFields_[22] = &xmlData_;
+  slotFields_[23] = &securityIDSource_;
+  slotFields_[24] = &couponRate_;
+  slotFields_[25] = &couponPaymentDate_;
+  slotFields_[26] = &issueDate_;
+  slotFields_[27] = &repurchaseTerm_;
+  slotFields_[28] = &repurchaseRate_;
+  slotFields_[29] = &factor_;
+  slotFields_[30] = &contractMultiplier_;
+  slotFields_[31] = &repoCollateralSecurityType_;
+  slotFields_[32] = &redemptionDate_;
+  slotFields_[33] = &creditRating_;
+  slotFields_[34] = &unsolicitedIndicator_;
+  slotFields_[35] = &msgSeqNum_;
+  slotFields_[36] = &messageEncoding_;
+  slotFields_[37] = &encodedIssuerLen_;
+  slotFields_[38] = &encodedIssuer_;
+  slotFields_[39] = &msgType_;
+  slotFields_[40] = &encodedSecurityDescLen_;
+  slotFields_[41] = &encodedSecurityDesc_;
+  slotFields_[42] = &encodedTextLen_;
+  slotFields_[43] = &encodedText_;
+  slotFields_[44] = &lastMsgSeqNumProcessed_;
+  slotFields_[45] = &possDupFlag_;
+  slotFields_[46] = &product_;
+  slotFields_[47] = &cFICode_;
+  slotFields_[48] = &countryOfIssue_;
+  slotFields_[49] = &stateOrProvinceOfIssue_;
+  slotFields_[50] = &localeOfIssue_;
+  slotFields_[51] = &securityID_;
+  slotFields_[52] = &senderCompID_;
+  slotFields_[53] = &senderSubID_;
+  slotFields_[54] = &sendingTime_;
+  slotFields_[55] = &maturityDate_;
+  slotFields_[56] = &instrRegistry_;
+  slotFields_[57] = &symbol_;
+  slotFields_[58] = &targetCompID_;
+  slotFields_[59] = &targetSubID_;
+  slotFields_[60] = &text_;
+  slotFields_[61] = &accountType_;
+  slotFields_[62] = &symbolSfx_;
+  slotFields_[63] = &acctIDSource_;
+  slotFields_[64] = &contractSettlMonth_;
+  slotFields_[65] = &pool_;
+  slotFields_[66] = &posReqID_;
+  slotFields_[67] = &posMaintRptID_;
+  slotFields_[68] = &responseTransportType_;
+  slotFields_[69] = &responseDestination_;
+  slotFields_[70] = &totalNumPosReports_;
+  slotFields_[71] = &posReqResult_;
+  slotFields_[72] = &posReqStatus_;
+  slotFields_[73] = &securitySubType_;
+  slotFields_[74] = &beginString_;
+  slotFields_[75] = &datedDate_;
+  slotFields_[76] = &interestAccrualDate_;
+  slotFields_[77] = &cPProgram_;
+  slotFields_[78] = &cPRegType_;
+  slotFields_[79] = &signature_;
+  slotFields_[80] = &bodyLength_;
+  slotFields_[81] = &secureDataLen_;
+  slotFields_[82] = &secureData_;
+  slotFields_[83] = &signatureLength_;
+  slotFields_[84] = &strikeCurrency_;
+  slotFields_[85] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &partyIDsGroup_;
+  slotGroups_[3] = &securityAltIDGroup_;
+  slotGroups_[4] = &hopsGroup_;
+  slotGroups_[5] = &eventsGroup_;
+  tagTable(RequestForPositionsAckSlotOfTag(), 956, slotFields_, slotGroups_, 86);
 }
 
 AbstractField* RequestForPositionsAck::msgType() {
@@ -92672,9 +99496,121 @@ AbstractField* RequestForPositionsAck::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* PositionReportSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 81}, {9, 87}, {10, 2}, {15, 14}, {22, 23}, {34, 36}, {35, 40}, {43, 46}, {48, 52}, {49, 53}, {50, 54}, {52, 56}, {55, 59}, {56, 60}, {57, 61}, {58, 62}, {65, 64}, {89, 86}, {90, 88}, {91, 89}, {93, 90}, {97, 92}, {106, 3}, {107, 4}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 15}, {200, 16}, {201, 17}, {202, 18}, {206, 19}, {207, 20}, {212, 21}, {213, 22}, {223, 24}, {224, 25}, {225, 26}, {226, 27}, {227, 28}, {228, 29}, {231, 30}, {239, 31}, {240, 32}, {241, 93}, {242, 93}, {243, 93}, {244, 93}, {245, 93}, {246, 93}, {247, 93}, {248, 94}, {249, 94}, {250, 94}, {251, 94}, {252, 94}, {253, 94}, {254, 94}, {255, 33}, {256, 93}, {257, 94}, {263, 34}, {305, 93}, {306, 93}, {307, 93}, {308, 93}, {309, 93}, {310, 93}, {311, 93}, {312, 93}, {313, 93}, {315, 93}, {316, 93}, {317, 93}, {318, 93}, {325, 35}, {347, 37}, {348, 38}, {349, 39}, {350, 41}, {351, 42}, {354, 43}, {355, 44}, {362, 93}, {363, 93}, {364, 93}, {365, 93}, {369, 45}, {435, 93}, {436, 93}, {447, 95}, {448, 95}, {452, 95}, {453, 95}, {454, 96}, {455, 96}, {456, 96}, {457, 93}, {458, 93}, {459, 93}, {460, 47}, {461, 48}, {462, 93}, {463, 93}, {470, 49}, {471, 50}, {472, 51}, {506, 55}, {523, 95}, {524, 97}, {525, 97}, {538, 97}, {539, 97}, {541, 57}, {542, 93}, {543, 58}, {545, 97}, {555, 94}, {556, 94}, {581, 63}, {592, 93}, {593, 93}, {594, 93}, {595, 93}, {596, 94}, {597, 94}, {598, 94}, {599, 94}, {600, 94}, {601, 94}, {602, 94}, {603, 94}, {604, 94}, {605, 94}, {606, 94}, {607, 94}, {608, 94}, {609, 94}, {610, 94}, {611, 94}, {612, 94}, {613, 94}, {614, 94}, {615, 94}, {616, 94}, {617, 94}, {618, 94}, {619, 94}, {620, 94}, {621, 94}, {622, 94}, {623, 94}, {624, 94}, {627, 98}, {628, 98}, {629, 98}, {630, 98}, {660, 65}, {667, 66}, {691, 67}, {702, 97}, {703, 97}, {704, 97}, {705, 97}, {706, 97}, {707, 99}, {708, 99}, {710, 68}, {711, 93}, {715, 69}, {716, 70}, {717, 71}, {721, 72}, {724, 73}, {727, 74}, {728, 75}, {730, 76}, {731, 77}, {732, 93}, {733, 93}, {734, 78}, {739, 94}, {740, 94}, {743, 79}, {753, 99}, {762, 80}, {763, 93}, {764, 94}, {802, 95}, {803, 95}, {804, 97}, {805, 97}, {810, 93}, {864, 100}, {865, 100}, {866, 100}, {867, 100}, {868, 100}, {873, 82}, {874, 83}, {875, 84}, {876, 85}, {877, 93}, {878, 93}, {879, 93}, {882, 93}, {883, 93}, {884, 93}, {885, 93}, {886, 93}, {887, 93}, {888, 93}, {889, 93}, {941, 93}, {942, 94}, {947, 91}, {955, 94}, {956, 94}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 PositionReport::PositionReport() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &currency_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &maturityMonthYear_;
+  slotFields_[17] = &putOrCall_;
+  slotFields_[18] = &strikePrice_;
+  slotFields_[19] = &optAttribute_;
+  slotFields_[20] = &securityExchange_;
+  slotFields_[21] = &xmlDataLen_;
+  slotFields_[22] = &xmlData_;
+  slotFields_[23] = &securityIDSource_;
+  slotFields_[24] = &couponRate_;
+  slotFields_[25] = &couponPaymentDate_;
+  slotFields_[26] = &issueDate_;
+  slotFields_[27] = &repurchaseTerm_;
+  slotFields_[28] = &repurchaseRate_;
+  slotFields_[29] = &factor_;
+  slotFields_[30] = &contractMultiplier_;
+  slotFields_[31] = &repoCollateralSecurityType_;
+  slotFields_[32] = &redemptionDate_;
+  slotFields_[33] = &creditRating_;
+  slotFields_[34] = &subscriptionRequestType_;
+  slotFields_[35] = &unsolicitedIndicator_;
+  slotFields_[36] = &msgSeqNum_;
+  slotFields_[37] = &messageEncoding_;
+  slotFields_[38] = &encodedIssuerLen_;
+  slotFields_[39] = &encodedIssuer_;
+  slotFields_[40] = &msgType_;
+  slotFields_[41] = &encodedSecurityDescLen_;
+  slotFields_[42] = &encodedSecurityDesc_;
+  slotFields_[43] = &encodedTextLen_;
+  slotFields_[44] = &encodedText_;
+  slotFields_[45] = &lastMsgSeqNumProcessed_;
+  slotFields_[46] = &possDupFlag_;
+  slotFields_[47] = &product_;
+  slotFields_[48] = &cFICode_;
+  slotFields_[49] = &countryOfIssue_;
+  slotFields_[50] = &stateOrProvinceOfIssue_;
+  slotFields_[51] = &localeOfIssue_;
+  slotFields_[52] = &securityID_;
+  slotFields_[53] = &senderCompID_;
+  slotFields_[54] = &senderSubID_;
+  slotFields_[55] = &registStatus_;
+  slotFields_[56] = &sendingTime_;
+  slotFields_[57] = &maturityDate_;
+  slotFields_[58] = &instrRegistry_;
+  slotFields_[59] = &symbol_;
+  slotFields_[60] = &targetCompID_;
+  slotFields_[61] = &targetSubID_;
+  slotFields_[62] = &text_;
+  slotFields_[63] = &accountType_;
+  slotFields_[64] = &symbolSfx_;
+  slotFields_[65] = &acctIDSource_;
+  slotFields_[66] = &contractSettlMonth_;
+  slotFields_[67] = &pool_;
+  slotFields_[68] = &posReqID_;
+  slotFields_[69] = &clearingBusinessDate_;
+  slotFields_[70] = &settlSessID_;
+  slotFields_[71] = &settlSessSubID_;
+  slotFields_[72] = &posMaintRptID_;
+  slotFields_[73] = &posReqType_;
+  slotFields_[74] = &totalNumPosReports_;
+  slotFields_[75] = &posReqResult_;
+  slotFields_[76] = &settlPrice_;
+  slotFields_[77] = &settlPriceType_;
+  slotFields_[78] = &priorSettlPrice_;
+  slotFields_[79] = &deliveryDate_;
+  slotFields_[80] = &securitySubType_;
+  slotFields_[81] = &beginString_;
+  slotFields_[82] = &datedDate_;
+  slotFields_[83] = &interestAccrualDate_;
+  slotFields_[84] = &cPProgram_;
+  slotFields_[85] = &cPRegType_;
+  slotFields_[86] = &signature_;
+  slotFields_[87] = &bodyLength_;
+  slotFields_[88] = &secureDataLen_;
+  slotFields_[89] = &secureData_;
+  slotFields_[90] = &signatureLength_;
+  slotFields_[91] = &strikeCurrency_;
+  slotFields_[92] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup2_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &partyIDsGroup_;
+  slotGroups_[3] = &securityAltIDGroup_;
+  slotGroups_[4] = &positionsGroup_;
+  slotGroups_[5] = &hopsGroup_;
+  slotGroups_[6] = &posAmtGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(PositionReportSlotOfTag(), 956, slotFields_, slotGroups_, 93);
 }
 
 AbstractField* PositionReport::msgType() {
@@ -94349,9 +101285,108 @@ AbstractField* PositionReport::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* TradeCaptureReportRequestAckSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 71}, {9, 77}, {10, 1}, {22, 21}, {34, 33}, {35, 37}, {43, 43}, {48, 50}, {49, 51}, {50, 52}, {52, 53}, {55, 56}, {56, 57}, {57, 60}, {58, 61}, {65, 62}, {89, 76}, {90, 78}, {91, 79}, {93, 80}, {97, 82}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {122, 6}, {128, 7}, {129, 8}, {142, 9}, {143, 10}, {144, 11}, {145, 12}, {167, 13}, {200, 14}, {201, 15}, {202, 16}, {206, 17}, {207, 18}, {212, 19}, {213, 20}, {223, 22}, {224, 23}, {225, 24}, {226, 25}, {227, 26}, {228, 27}, {231, 28}, {239, 29}, {240, 30}, {241, 83}, {242, 83}, {243, 83}, {244, 83}, {245, 83}, {246, 83}, {247, 83}, {248, 84}, {249, 84}, {250, 84}, {251, 84}, {252, 84}, {253, 84}, {254, 84}, {255, 31}, {256, 83}, {257, 84}, {263, 32}, {305, 83}, {306, 83}, {307, 83}, {308, 83}, {309, 83}, {310, 83}, {311, 83}, {312, 83}, {313, 83}, {315, 83}, {316, 83}, {317, 83}, {318, 83}, {347, 34}, {348, 35}, {349, 36}, {350, 38}, {351, 39}, {354, 40}, {355, 41}, {362, 83}, {363, 83}, {364, 83}, {365, 83}, {369, 42}, {435, 83}, {436, 83}, {442, 44}, {454, 85}, {455, 85}, {456, 85}, {457, 83}, {458, 83}, {459, 83}, {460, 45}, {461, 46}, {462, 83}, {463, 83}, {470, 47}, {471, 48}, {472, 49}, {541, 54}, {542, 83}, {543, 55}, {555, 84}, {556, 84}, {568, 58}, {569, 59}, {592, 83}, {593, 83}, {594, 83}, {595, 83}, {596, 84}, {597, 84}, {598, 84}, {599, 84}, {600, 84}, {601, 84}, {602, 84}, {603, 84}, {604, 84}, {605, 84}, {606, 84}, {607, 84}, {608, 84}, {609, 84}, {610, 84}, {611, 84}, {612, 84}, {613, 84}, {614, 84}, {615, 84}, {616, 84}, {617, 84}, {618, 84}, {619, 84}, {620, 84}, {621, 84}, {622, 84}, {623, 84}, {624, 84}, {627, 86}, {628, 86}, {629, 86}, {630, 86}, {667, 63}, {691, 64}, {711, 83}, {725, 65}, {726, 66}, {739, 84}, {740, 84}, {748, 67}, {749, 68}, {750, 69}, {762, 70}, {763, 83}, {764, 84}, {810, 83}, {864, 87}, {865, 87}, {866, 87}, {867, 87}, {868, 87}, {873, 72}, {874, 73}, {875, 74}, {876, 75}, {877, 83}, {878, 83}, {879, 83}, {882, 83}, {883, 83}, {884, 83}, {885, 83}, {886, 83}, {887, 83}, {888, 83}, {889, 83}, {941, 83}, {942, 84}, {947, 81}, {955, 84}, {956, 84}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 TradeCaptureReportRequestAck::TradeCaptureReportRequestAck() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &origSendingTime_;
+  slotFields_[7] = &deliverToCompID_;
+  slotFields_[8] = &deliverToSubID_;
+  slotFields_[9] = &senderLocationID_;
+  slotFields_[10] = &targetLocationID_;
+  slotFields_[11] = &onBehalfOfLocationID_;
+  slotFields_[12] = &deliverToLocationID_;
+  slotFields_[13] = &securityType_;
+  slotFields_[14] = &maturityMonthYear_;
+  slotFields_[15] = &putOrCall_;
+  slotFields_[16] = &strikePrice_;
+  slotFields_[17] = &optAttribute_;
+  slotFields_[18] = &securityExchange_;
+  slotFields_[19] = &xmlDataLen_;
+  slotFields_[20] = &xmlData_;
+  slotFields_[21] = &securityIDSource_;
+  slotFields_[22] = &couponRate_;
+  slotFields_[23] = &couponPaymentDate_;
+  slotFields_[24] = &issueDate_;
+  slotFields_[25] = &repurchaseTerm_;
+  slotFields_[26] = &repurchaseRate_;
+  slotFields_[27] = &factor_;
+  slotFields_[28] = &contractMultiplier_;
+  slotFields_[29] = &repoCollateralSecurityType_;
+  slotFields_[30] = &redemptionDate_;
+  slotFields_[31] = &creditRating_;
+  slotFields_[32] = &subscriptionRequestType_;
+  slotFields_[33] = &msgSeqNum_;
+  slotFields_[34] = &messageEncoding_;
+  slotFields_[35] = &encodedIssuerLen_;
+  slotFields_[36] = &encodedIssuer_;
+  slotFields_[37] = &msgType_;
+  slotFields_[38] = &encodedSecurityDescLen_;
+  slotFields_[39] = &encodedSecurityDesc_;
+  slotFields_[40] = &encodedTextLen_;
+  slotFields_[41] = &encodedText_;
+  slotFields_[42] = &lastMsgSeqNumProcessed_;
+  slotFields_[43] = &possDupFlag_;
+  slotFields_[44] = &multiLegReportingType_;
+  slotFields_[45] = &product_;
+  slotFields_[46] = &cFICode_;
+  slotFields_[47] = &countryOfIssue_;
+  slotFields_[48] = &stateOrProvinceOfIssue_;
+  slotFields_[49] = &localeOfIssue_;
+  slotFields_[50] = &securityID_;
+  slotFields_[51] = &senderCompID_;
+  slotFields_[52] = &senderSubID_;
+  slotFields_[53] = &sendingTime_;
+  slotFields_[54] = &maturityDate_;
+  slotFields_[55] = &instrRegistry_;
+  slotFields_[56] = &symbol_;
+  slotFields_[57] = &targetCompID_;
+  slotFields_[58] = &tradeRequestID_;
+  slotFields_[59] = &tradeRequestType_;
+  slotFields_[60] = &targetSubID_;
+  slotFields_[61] = &text_;
+  slotFields_[62] = &symbolSfx_;
+  slotFields_[63] = &contractSettlMonth_;
+  slotFields_[64] = &pool_;
+  slotFields_[65] = &responseTransportType_;
+  slotFields_[66] = &responseDestination_;
+  slotFields_[67] = &totNumTradeReports_;
+  slotFields_[68] = &tradeRequestResult_;
+  slotFields_[69] = &tradeRequestStatus_;
+  slotFields_[70] = &securitySubType_;
+  slotFields_[71] = &beginString_;
+  slotFields_[72] = &datedDate_;
+  slotFields_[73] = &interestAccrualDate_;
+  slotFields_[74] = &cPProgram_;
+  slotFields_[75] = &cPRegType_;
+  slotFields_[76] = &signature_;
+  slotFields_[77] = &bodyLength_;
+  slotFields_[78] = &secureDataLen_;
+  slotFields_[79] = &secureData_;
+  slotFields_[80] = &signatureLength_;
+  slotFields_[81] = &strikeCurrency_;
+  slotFields_[82] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &securityAltIDGroup_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &eventsGroup_;
+  tagTable(TradeCaptureReportRequestAckSlotOfTag(), 956, slotFields_, slotGroups_, 83);
 }
 
 AbstractField* TradeCaptureReportRequestAck::msgType() {
@@ -95780,9 +102815,130 @@ AbstractField* TradeCaptureReportRequestAck::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* TradeCaptureReportAckSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 82}, {9, 97}, {10, 2}, {17, 16}, {22, 24}, {34, 36}, {35, 40}, {43, 46}, {48, 52}, {49, 54}, {50, 55}, {52, 56}, {55, 62}, {56, 63}, {57, 64}, {58, 67}, {60, 71}, {65, 73}, {77, 81}, {78, 106}, {79, 106}, {80, 106}, {89, 96}, {90, 98}, {91, 99}, {93, 100}, {97, 103}, {106, 3}, {107, 4}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {150, 14}, {167, 15}, {200, 17}, {201, 18}, {202, 19}, {206, 20}, {207, 21}, {212, 22}, {213, 23}, {223, 25}, {224, 26}, {225, 27}, {226, 28}, {227, 29}, {228, 30}, {231, 31}, {239, 32}, {240, 33}, {248, 104}, {249, 104}, {250, 104}, {251, 104}, {252, 104}, {253, 104}, {254, 104}, {255, 34}, {257, 104}, {263, 35}, {347, 37}, {348, 38}, {349, 39}, {350, 41}, {351, 42}, {354, 43}, {355, 44}, {369, 45}, {454, 105}, {455, 105}, {456, 105}, {460, 47}, {461, 48}, {467, 106}, {470, 49}, {471, 50}, {472, 51}, {487, 53}, {524, 104}, {525, 104}, {527, 57}, {528, 58}, {529, 59}, {538, 104}, {539, 104}, {541, 60}, {543, 61}, {545, 104}, {555, 104}, {556, 104}, {564, 104}, {565, 104}, {566, 104}, {571, 65}, {572, 66}, {581, 68}, {582, 69}, {587, 104}, {588, 104}, {591, 70}, {596, 104}, {597, 104}, {598, 104}, {599, 104}, {600, 104}, {601, 104}, {602, 104}, {603, 104}, {604, 104}, {605, 104}, {606, 104}, {607, 104}, {608, 104}, {609, 104}, {610, 104}, {611, 104}, {612, 104}, {613, 104}, {614, 104}, {615, 104}, {616, 104}, {617, 104}, {618, 104}, {619, 104}, {620, 104}, {621, 104}, {622, 104}, {623, 104}, {624, 104}, {627, 107}, {628, 107}, {629, 107}, {630, 107}, {635, 72}, {637, 104}, {654, 104}, {660, 74}, {661, 106}, {667, 75}, {683, 104}, {687, 104}, {688, 104}, {689, 104}, {690, 104}, {691, 76}, {725, 77}, {726, 78}, {736, 106}, {739, 104}, {740, 104}, {751, 79}, {756, 106}, {757, 106}, {758, 106}, {759, 106}, {760, 106}, {762, 80}, {764, 104}, {768, 108}, {769, 108}, {770, 108}, {771, 108}, {804, 104}, {805, 104}, {806, 106}, {807, 106}, {818, 83}, {820, 84}, {828, 85}, {829, 86}, {830, 87}, {855, 88}, {856, 89}, {864, 109}, {865, 109}, {866, 109}, {867, 109}, {868, 109}, {873, 90}, {874, 91}, {875, 92}, {876, 93}, {880, 94}, {881, 95}, {939, 101}, {942, 104}, {947, 102}, {955, 104}, {956, 104}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 TradeCaptureReportAck::TradeCaptureReportAck() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &execType_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &execID_;
+  slotFields_[17] = &maturityMonthYear_;
+  slotFields_[18] = &putOrCall_;
+  slotFields_[19] = &strikePrice_;
+  slotFields_[20] = &optAttribute_;
+  slotFields_[21] = &securityExchange_;
+  slotFields_[22] = &xmlDataLen_;
+  slotFields_[23] = &xmlData_;
+  slotFields_[24] = &securityIDSource_;
+  slotFields_[25] = &couponRate_;
+  slotFields_[26] = &couponPaymentDate_;
+  slotFields_[27] = &issueDate_;
+  slotFields_[28] = &repurchaseTerm_;
+  slotFields_[29] = &repurchaseRate_;
+  slotFields_[30] = &factor_;
+  slotFields_[31] = &contractMultiplier_;
+  slotFields_[32] = &repoCollateralSecurityType_;
+  slotFields_[33] = &redemptionDate_;
+  slotFields_[34] = &creditRating_;
+  slotFields_[35] = &subscriptionRequestType_;
+  slotFields_[36] = &msgSeqNum_;
+  slotFields_[37] = &messageEncoding_;
+  slotFields_[38] = &encodedIssuerLen_;
+  slotFields_[39] = &encodedIssuer_;
+  slotFields_[40] = &msgType_;
+  slotFields_[41] = &encodedSecurityDescLen_;
+  slotFields_[42] = &encodedSecurityDesc_;
+  slotFields_[43] = &encodedTextLen_;
+  slotFields_[44] = &encodedText_;
+  slotFields_[45] = &lastMsgSeqNumProcessed_;
+  slotFields_[46] = &possDupFlag_;
+  slotFields_[47] = &product_;
+  slotFields_[48] = &cFICode_;
+  slotFields_[49] = &countryOfIssue_;
+  slotFields_[50] = &stateOrProvinceOfIssue_;
+  slotFields_[51] = &localeOfIssue_;
+  slotFields_[52] = &securityID_;
+  slotFields_[53] = &tradeReportTransType_;
+  slotFields_[54] = &senderCompID_;
+  slotFields_[55] = &senderSubID_;
+  slotFields_[56] = &sendingTime_;
+  slotFields_[57] = &secondaryExecID_;
+  slotFields_[58] = &orderCapacity_;
+  slotFields_[59] = &orderRestrictions_;
+  slotFields_[60] = &maturityDate_;
+  slotFields_[61] = &instrRegistry_;
+  slotFields_[62] = &symbol_;
+  slotFields_[63] = &targetCompID_;
+  slotFields_[64] = &targetSubID_;
+  slotFields_[65] = &tradeReportID_;
+  slotFields_[66] = &tradeReportRefID_;
+  slotFields_[67] = &text_;
+  slotFields_[68] = &accountType_;
+  slotFields_[69] = &custOrderCapacity_;
+  slotFields_[70] = &preallocMethod_;
+  slotFields_[71] = &transactTime_;
+  slotFields_[72] = &clearingFeeIndicator_;
+  slotFields_[73] = &symbolSfx_;
+  slotFields_[74] = &acctIDSource_;
+  slotFields_[75] = &contractSettlMonth_;
+  slotFields_[76] = &pool_;
+  slotFields_[77] = &responseTransportType_;
+  slotFields_[78] = &responseDestination_;
+  slotFields_[79] = &tradeReportRejectReason_;
+  slotFields_[80] = &securitySubType_;
+  slotFields_[81] = &positionEffect_;
+  slotFields_[82] = &beginString_;
+  slotFields_[83] = &secondaryTradeReportID_;
+  slotFields_[84] = &tradeLinkID_;
+  slotFields_[85] = &trdType_;
+  slotFields_[86] = &trdSubType_;
+  slotFields_[87] = &transferReason_;
+  slotFields_[88] = &secondaryTrdType_;
+  slotFields_[89] = &tradeReportType_;
+  slotFields_[90] = &datedDate_;
+  slotFields_[91] = &interestAccrualDate_;
+  slotFields_[92] = &cPProgram_;
+  slotFields_[93] = &cPRegType_;
+  slotFields_[94] = &trdMatchID_;
+  slotFields_[95] = &secondaryTradeReportRefID_;
+  slotFields_[96] = &signature_;
+  slotFields_[97] = &bodyLength_;
+  slotFields_[98] = &secureDataLen_;
+  slotFields_[99] = &secureData_;
+  slotFields_[100] = &signatureLength_;
+  slotFields_[101] = &trdRptStatus_;
+  slotFields_[102] = &strikeCurrency_;
+  slotFields_[103] = &possResend_;
+  slotGroups_[0] = &legsGroup2_;
+  slotGroups_[1] = &securityAltIDGroup_;
+  slotGroups_[2] = &allocsGroup4_;
+  slotGroups_[3] = &hopsGroup_;
+  slotGroups_[4] = &trdRegTimestampsGroup_;
+  slotGroups_[5] = &eventsGroup_;
+  tagTable(TradeCaptureReportAckSlotOfTag(), 956, slotFields_, slotGroups_, 104);
 }
 
 AbstractField* TradeCaptureReportAck::msgType() {
@@ -97290,9 +104446,182 @@ AbstractField* TradeCaptureReportAck::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* AllocationReportSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{6, 84}, {8, 119}, {9, 135}, {10, 1}, {11, 151}, {12, 152}, {13, 152}, {15, 14}, {17, 153}, {22, 29}, {29, 153}, {30, 48}, {31, 153}, {32, 153}, {34, 50}, {35, 54}, {37, 151}, {38, 151}, {43, 62}, {48, 69}, {49, 70}, {50, 71}, {52, 72}, {53, 73}, {54, 74}, {55, 78}, {56, 79}, {57, 80}, {58, 83}, {60, 85}, {63, 87}, {64, 88}, {65, 89}, {66, 151}, {70, 100}, {71, 103}, {72, 104}, {73, 151}, {74, 106}, {75, 107}, {77, 112}, {78, 152}, {79, 152}, {80, 152}, {81, 152}, {85, 152}, {87, 125}, {88, 130}, {89, 131}, {90, 136}, {91, 137}, {93, 148}, {97, 150}, {106, 2}, {107, 3}, {115, 4}, {116, 5}, {118, 6}, {119, 152}, {120, 152}, {122, 7}, {124, 153}, {128, 8}, {129, 9}, {136, 152}, {137, 152}, {138, 152}, {139, 152}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {153, 152}, {154, 152}, {155, 152}, {156, 152}, {157, 15}, {158, 16}, {159, 17}, {161, 152}, {165, 152}, {167, 18}, {169, 152}, {170, 152}, {171, 152}, {172, 152}, {196, 19}, {197, 20}, {198, 151}, {200, 21}, {201, 22}, {202, 23}, {206, 24}, {207, 25}, {208, 152}, {209, 152}, {212, 26}, {213, 27}, {218, 28}, {220, 30}, {221, 31}, {222, 32}, {223, 33}, {224, 34}, {225, 35}, {226, 36}, {227, 37}, {228, 38}, {229, 39}, {231, 40}, {232, 154}, {233, 154}, {234, 154}, {235, 41}, {236, 42}, {237, 43}, {238, 44}, {239, 45}, {240, 46}, {241, 155}, {242, 155}, {243, 155}, {244, 155}, {245, 155}, {246, 155}, {247, 155}, {248, 156}, {249, 156}, {250, 156}, {251, 156}, {252, 156}, {253, 156}, {254, 156}, {255, 47}, {256, 155}, {257, 156}, {305, 155}, {306, 155}, {307, 155}, {308, 155}, {309, 155}, {310, 155}, {311, 155}, {312, 155}, {313, 155}, {315, 155}, {316, 155}, {317, 155}, {318, 155}, {336, 49}, {347, 51}, {348, 52}, {349, 53}, {350, 55}, {351, 56}, {354, 57}, {355, 58}, {360, 152}, {361, 152}, {362, 155}, {363, 155}, {364, 155}, {365, 155}, {366, 152}, {369, 59}, {381, 60}, {423, 61}, {435, 155}, {436, 155}, {447, 157}, {448, 157}, {452, 157}, {453, 157}, {454, 158}, {455, 158}, {456, 158}, {457, 155}, {458, 155}, {459, 155}, {460, 63}, {461, 64}, {462, 155}, {463, 155}, {466, 65}, {467, 152}, {470, 66}, {471, 67}, {472, 68}, {479, 152}, {497, 152}, {523, 157}, {524, 152}, {525, 152}, {526, 151}, {527, 153}, {538, 152}, {539, 152}, {540, 75}, {541, 76}, {542, 155}, {543, 77}, {545, 152}, {555, 156}, {556, 156}, {570, 81}, {573, 152}, {574, 82}, {576, 152}, {577, 152}, {592, 155}, {593, 155}, {594, 155}, {595, 155}, {596, 156}, {597, 156}, {598, 156}, {599, 156}, {600, 156}, {601, 156}, {602, 156}, {603, 156}, {604, 156}, {605, 156}, {606, 156}, {607, 156}, {608, 156}, {609, 156}, {610, 156}, {611, 156}, {612, 156}, {613, 156}, {614, 156}, {615, 156}, {616, 156}, {617, 156}, {618, 156}, {619, 156}, {620, 156}, {621, 156}, {622, 156}, {623, 156}, {624, 156}, {625, 86}, {627, 159}, {628, 159}, {629, 159}, {630, 159}, {650, 90}, {661, 152}, {662, 91}, {663, 92}, {667, 93}, {668, 94}, {669, 153}, {691, 95}, {696, 96}, {697, 97}, {698, 98}, {699, 99}, {700, 101}, {701, 102}, {711, 155}, {736, 152}, {737, 152}, {738, 105}, {739, 156}, {740, 156}, {741, 152}, {742, 152}, {754, 108}, {755, 109}, {756, 151}, {757, 151}, {758, 151}, {759, 151}, {760, 151}, {761, 110}, {762, 111}, {763, 155}, {764, 156}, {775, 113}, {780, 152}, {781, 152}, {782, 152}, {783, 152}, {784, 152}, {785, 152}, {786, 152}, {787, 152}, {788, 114}, {793, 115}, {794, 116}, {795, 117}, {796, 118}, {799, 151}, {800, 151}, {801, 152}, {802, 157}, {803, 157}, {804, 152}, {805, 152}, {806, 151}, {807, 151}, {808, 120}, {810, 155}, {854, 121}, {857, 122}, {860, 123}, {864, 160}, {865, 160}, {866, 160}, {867, 160}, {868, 160}, {869, 124}, {870, 161}, {871, 161}, {872, 161}, {873, 126}, {874, 127}, {875, 128}, {876, 129}, {877, 155}, {878, 155}, {879, 155}, {882, 155}, {883, 155}, {884, 155}, {885, 155}, {886, 155}, {887, 155}, {888, 155}, {889, 155}, {891, 152}, {892, 132}, {893, 133}, {898, 134}, {913, 138}, {914, 139}, {915, 140}, {916, 141}, {917, 142}, {918, 143}, {919, 144}, {920, 145}, {921, 146}, {922, 147}, {941, 155}, {942, 156}, {947, 149}, {955, 156}, {956, 156}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 AllocationReport::AllocationReport() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &issuer_;
+  slotFields_[3] = &securityDesc_;
+  slotFields_[4] = &onBehalfOfCompID_;
+  slotFields_[5] = &onBehalfOfSubID_;
+  slotFields_[6] = &netMoney_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &currency_;
+  slotFields_[15] = &numDaysInterest_;
+  slotFields_[16] = &accruedInterestRate_;
+  slotFields_[17] = &accruedInterestAmt_;
+  slotFields_[18] = &securityType_;
+  slotFields_[19] = &allocLinkID_;
+  slotFields_[20] = &allocLinkType_;
+  slotFields_[21] = &maturityMonthYear_;
+  slotFields_[22] = &putOrCall_;
+  slotFields_[23] = &strikePrice_;
+  slotFields_[24] = &optAttribute_;
+  slotFields_[25] = &securityExchange_;
+  slotFields_[26] = &xmlDataLen_;
+  slotFields_[27] = &xmlData_;
+  slotFields_[28] = &spread_;
+  slotFields_[29] = &securityIDSource_;
+  slotFields_[30] = &benchmarkCurveCurrency_;
+  slotFields_[31] = &benchmarkCurveName_;
+  slotFields_[32] = &benchmarkCurvePoint_;
+  slotFields_[33] = &couponRate_;
+  slotFields_[34] = &couponPaymentDate_;
+  slotFields_[35] = &issueDate_;
+  slotFields_[36] = &repurchaseTerm_;
+  slotFields_[37] = &repurchaseRate_;
+  slotFields_[38] = &factor_;
+  slotFields_[39] = &tradeOriginationDate_;
+  slotFields_[40] = &contractMultiplier_;
+  slotFields_[41] = &yieldType_;
+  slotFields_[42] = &yield_;
+  slotFields_[43] = &totalTakedown_;
+  slotFields_[44] = &concession_;
+  slotFields_[45] = &repoCollateralSecurityType_;
+  slotFields_[46] = &redemptionDate_;
+  slotFields_[47] = &creditRating_;
+  slotFields_[48] = &lastMkt_;
+  slotFields_[49] = &tradingSessionID_;
+  slotFields_[50] = &msgSeqNum_;
+  slotFields_[51] = &messageEncoding_;
+  slotFields_[52] = &encodedIssuerLen_;
+  slotFields_[53] = &encodedIssuer_;
+  slotFields_[54] = &msgType_;
+  slotFields_[55] = &encodedSecurityDescLen_;
+  slotFields_[56] = &encodedSecurityDesc_;
+  slotFields_[57] = &encodedTextLen_;
+  slotFields_[58] = &encodedText_;
+  slotFields_[59] = &lastMsgSeqNumProcessed_;
+  slotFields_[60] = &grossTradeAmt_;
+  slotFields_[61] = &priceType_;
+  slotFields_[62] = &possDupFlag_;
+  slotFields_[63] = &product_;
+  slotFields_[64] = &cFICode_;
+  slotFields_[65] = &bookingRefID_;
+  slotFields_[66] = &countryOfIssue_;
+  slotFields_[67] = &stateOrProvinceOfIssue_;
+  slotFields_[68] = &localeOfIssue_;
+  slotFields_[69] = &securityID_;
+  slotFields_[70] = &senderCompID_;
+  slotFields_[71] = &senderSubID_;
+  slotFields_[72] = &sendingTime_;
+  slotFields_[73] = &quantity_;
+  slotFields_[74] = &side_;
+  slotFields_[75] = &totalAccruedInterestAmt_;
+  slotFields_[76] = &maturityDate_;
+  slotFields_[77] = &instrRegistry_;
+  slotFields_[78] = &symbol_;
+  slotFields_[79] = &targetCompID_;
+  slotFields_[80] = &targetSubID_;
+  slotFields_[81] = &previouslyReported_;
+  slotFields_[82] = &matchType_;
+  slotFields_[83] = &text_;
+  slotFields_[84] = &avgPx_;
+  slotFields_[85] = &transactTime_;
+  slotFields_[86] = &tradingSessionSubID_;
+  slotFields_[87] = &settlType_;
+  slotFields_[88] = &settlDate_;
+  slotFields_[89] = &symbolSfx_;
+  slotFields_[90] = &legalConfirm_;
+  slotFields_[91] = &benchmarkPrice_;
+  slotFields_[92] = &benchmarkPriceType_;
+  slotFields_[93] = &contractSettlMonth_;
+  slotFields_[94] = &deliveryForm_;
+  slotFields_[95] = &pool_;
+  slotFields_[96] = &yieldRedemptionDate_;
+  slotFields_[97] = &yieldRedemptionPrice_;
+  slotFields_[98] = &yieldRedemptionPriceType_;
+  slotFields_[99] = &benchmarkSecurityID_;
+  slotFields_[100] = &allocID_;
+  slotFields_[101] = &reversalIndicator_;
+  slotFields_[102] = &yieldCalcDate_;
+  slotFields_[103] = &allocTransType_;
+  slotFields_[104] = &refAllocID_;
+  slotFields_[105] = &interestAtMaturity_;
+  slotFields_[106] = &avgPxPrecision_;
+  slotFields_[107] = &tradeDate_;
+  slotFields_[108] = &autoAcceptIndicator_;
+  slotFields_[109] = &allocReportID_;
+  slotFields_[110] = &benchmarkSecurityIDSource_;
+  slotFields_[111] = &securitySubType_;
+  slotFields_[112] = &positionEffect_;
+  slotFields_[113] = &bookingType_;
+  slotFields_[114] = &terminationType_;
+  slotFields_[115] = &secondaryAllocID_;
+  slotFields_[116] = &allocReportType_;
+  slotFields_[117] = &allocReportRefID_;
+  slotFields_[118] = &allocCancReplaceReason_;
+  slotFields_[119] = &beginString_;
+  slotFields_[120] = &allocIntermedReqType_;
+  slotFields_[121] = &qtyType_;
+  slotFields_[122] = &allocNoOrdersType_;
+  slotFields_[123] = &avgParPx_;
+  slotFields_[124] = &pctAtRisk_;
+  slotFields_[125] = &allocStatus_;
+  slotFields_[126] = &datedDate_;
+  slotFields_[127] = &interestAccrualDate_;
+  slotFields_[128] = &cPProgram_;
+  slotFields_[129] = &cPRegType_;
+  slotFields_[130] = &allocRejCode_;
+  slotFields_[131] = &signature_;
+  slotFields_[132] = &totNoAllocs_;
+  slotFields_[133] = &lastFragment_;
+  slotFields_[134] = &marginRatio_;
+  slotFields_[135] = &bodyLength_;
+  slotFields_[136] = &secureDataLen_;
+  slotFields_[137] = &secureData_;
+  slotFields_[138] = &agreementDesc_;
+  slotFields_[139] = &agreementID_;
+  slotFields_[140] = &agreementDate_;
+  slotFields_[141] = &startDate_;
+  slotFields_[142] = &endDate_;
+  slotFields_[143] = &agreementCurrency_;
+  slotFields_[144] = &deliveryType_;
+  slotFields_[145] = &endAccruedInterestAmt_;
+  slotFields_[146] = &startCash_;
+  slotFields_[147] = &endCash_;
+  slotFields_[148] = &signatureLength_;
+  slotFields_[149] = &strikeCurrency_;
+  slotFields_[150] = &possResend_;
+  slotGroups_[0] = &ordersGroup1_;
+  slotGroups_[1] = &allocsGroup1_;
+  slotGroups_[2] = &execsGroup_;
+  slotGroups_[3] = &stipulationsGroup_;
+  slotGroups_[4] = &underlyingsGroup_;
+  slotGroups_[5] = &legsGroup1_;
+  slotGroups_[6] = &partyIDsGroup_;
+  slotGroups_[7] = &securityAltIDGroup_;
+  slotGroups_[8] = &hopsGroup_;
+  slotGroups_[9] = &eventsGroup_;
+  slotGroups_[10] = &instrAttribGroup_;
+  tagTable(AllocationReportSlotOfTag(), 956, slotFields_, slotGroups_, 151);
 }
 
 AbstractField* AllocationReport::msgType() {
@@ -99786,9 +107115,68 @@ AbstractField* AllocationReport::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* AllocationReportAckSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 35}, {9, 40}, {10, 1}, {34, 14}, {35, 16}, {43, 20}, {49, 22}, {50, 23}, {52, 24}, {56, 25}, {57, 26}, {58, 28}, {60, 29}, {70, 30}, {75, 31}, {78, 45}, {79, 45}, {87, 37}, {88, 38}, {89, 39}, {90, 41}, {91, 42}, {93, 43}, {97, 44}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {161, 45}, {167, 11}, {212, 12}, {213, 13}, {347, 15}, {354, 17}, {355, 18}, {360, 45}, {361, 45}, {366, 45}, {369, 19}, {447, 46}, {448, 46}, {452, 46}, {453, 46}, {460, 21}, {467, 45}, {523, 46}, {573, 27}, {627, 47}, {628, 47}, {629, 47}, {630, 47}, {661, 45}, {755, 32}, {776, 45}, {793, 33}, {794, 34}, {802, 46}, {803, 46}, {808, 36}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 AllocationReportAck::AllocationReportAck() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &securityType_;
+  slotFields_[12] = &xmlDataLen_;
+  slotFields_[13] = &xmlData_;
+  slotFields_[14] = &msgSeqNum_;
+  slotFields_[15] = &messageEncoding_;
+  slotFields_[16] = &msgType_;
+  slotFields_[17] = &encodedTextLen_;
+  slotFields_[18] = &encodedText_;
+  slotFields_[19] = &lastMsgSeqNumProcessed_;
+  slotFields_[20] = &possDupFlag_;
+  slotFields_[21] = &product_;
+  slotFields_[22] = &senderCompID_;
+  slotFields_[23] = &senderSubID_;
+  slotFields_[24] = &sendingTime_;
+  slotFields_[25] = &targetCompID_;
+  slotFields_[26] = &targetSubID_;
+  slotFields_[27] = &matchStatus_;
+  slotFields_[28] = &text_;
+  slotFields_[29] = &transactTime_;
+  slotFields_[30] = &allocID_;
+  slotFields_[31] = &tradeDate_;
+  slotFields_[32] = &allocReportID_;
+  slotFields_[33] = &secondaryAllocID_;
+  slotFields_[34] = &allocReportType_;
+  slotFields_[35] = &beginString_;
+  slotFields_[36] = &allocIntermedReqType_;
+  slotFields_[37] = &allocStatus_;
+  slotFields_[38] = &allocRejCode_;
+  slotFields_[39] = &signature_;
+  slotFields_[40] = &bodyLength_;
+  slotFields_[41] = &secureDataLen_;
+  slotFields_[42] = &secureData_;
+  slotFields_[43] = &signatureLength_;
+  slotFields_[44] = &possResend_;
+  slotGroups_[0] = &allocsGroup2_;
+  slotGroups_[1] = &partyIDsGroup_;
+  slotGroups_[2] = &hopsGroup_;
+  tagTable(AllocationReportAckSlotOfTag(), 956, slotFields_, slotGroups_, 45);
 }
 
 AbstractField* AllocationReportAck::msgType() {
@@ -100312,9 +107700,60 @@ AbstractField* AllocationReportAck::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* ConfirmationAckSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 31}, {9, 33}, {10, 1}, {34, 13}, {35, 15}, {43, 19}, {49, 20}, {50, 21}, {52, 22}, {56, 23}, {57, 24}, {58, 26}, {60, 27}, {75, 29}, {89, 32}, {90, 34}, {91, 35}, {93, 36}, {97, 38}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {347, 14}, {354, 16}, {355, 17}, {369, 18}, {573, 25}, {627, 39}, {628, 39}, {629, 39}, {630, 39}, {664, 28}, {774, 30}, {940, 37}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 ConfirmationAck::ConfirmationAck() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &encodedTextLen_;
+  slotFields_[17] = &encodedText_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &possDupFlag_;
+  slotFields_[20] = &senderCompID_;
+  slotFields_[21] = &senderSubID_;
+  slotFields_[22] = &sendingTime_;
+  slotFields_[23] = &targetCompID_;
+  slotFields_[24] = &targetSubID_;
+  slotFields_[25] = &matchStatus_;
+  slotFields_[26] = &text_;
+  slotFields_[27] = &transactTime_;
+  slotFields_[28] = &confirmID_;
+  slotFields_[29] = &tradeDate_;
+  slotFields_[30] = &confirmRejReason_;
+  slotFields_[31] = &beginString_;
+  slotFields_[32] = &signature_;
+  slotFields_[33] = &bodyLength_;
+  slotFields_[34] = &secureDataLen_;
+  slotFields_[35] = &secureData_;
+  slotFields_[36] = &signatureLength_;
+  slotFields_[37] = &affirmStatus_;
+  slotFields_[38] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(ConfirmationAckSlotOfTag(), 956, slotFields_, slotGroups_, 39);
 }
 
 AbstractField* ConfirmationAck::msgType() {
@@ -100664,9 +108103,66 @@ AbstractField* ConfirmationAck::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* SettlementInstructionRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 37}, {9, 39}, {10, 1}, {34, 19}, {35, 21}, {43, 23}, {49, 26}, {50, 27}, {52, 28}, {54, 29}, {56, 30}, {57, 31}, {60, 32}, {79, 35}, {89, 38}, {90, 40}, {91, 41}, {93, 42}, {97, 43}, {115, 2}, {116, 3}, {122, 4}, {126, 5}, {128, 6}, {129, 7}, {142, 8}, {143, 9}, {144, 10}, {145, 11}, {167, 12}, {168, 13}, {169, 14}, {170, 15}, {171, 16}, {212, 17}, {213, 18}, {347, 20}, {369, 22}, {447, 44}, {448, 44}, {452, 44}, {453, 44}, {460, 24}, {461, 25}, {523, 44}, {627, 45}, {628, 45}, {629, 45}, {630, 45}, {661, 33}, {779, 34}, {791, 36}, {802, 44}, {803, 44}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 SettlementInstructionRequest::SettlementInstructionRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &expireTime_;
+  slotFields_[6] = &deliverToCompID_;
+  slotFields_[7] = &deliverToSubID_;
+  slotFields_[8] = &senderLocationID_;
+  slotFields_[9] = &targetLocationID_;
+  slotFields_[10] = &onBehalfOfLocationID_;
+  slotFields_[11] = &deliverToLocationID_;
+  slotFields_[12] = &securityType_;
+  slotFields_[13] = &effectiveTime_;
+  slotFields_[14] = &standInstDbType_;
+  slotFields_[15] = &standInstDbName_;
+  slotFields_[16] = &standInstDbID_;
+  slotFields_[17] = &xmlDataLen_;
+  slotFields_[18] = &xmlData_;
+  slotFields_[19] = &msgSeqNum_;
+  slotFields_[20] = &messageEncoding_;
+  slotFields_[21] = &msgType_;
+  slotFields_[22] = &lastMsgSeqNumProcessed_;
+  slotFields_[23] = &possDupFlag_;
+  slotFields_[24] = &product_;
+  slotFields_[25] = &cFICode_;
+  slotFields_[26] = &senderCompID_;
+  slotFields_[27] = &senderSubID_;
+  slotFields_[28] = &sendingTime_;
+  slotFields_[29] = &side_;
+  slotFields_[30] = &targetCompID_;
+  slotFields_[31] = &targetSubID_;
+  slotFields_[32] = &transactTime_;
+  slotFields_[33] = &allocAcctIDSource_;
+  slotFields_[34] = &lastUpdateTime_;
+  slotFields_[35] = &allocAccount_;
+  slotFields_[36] = &settlInstReqID_;
+  slotFields_[37] = &beginString_;
+  slotFields_[38] = &signature_;
+  slotFields_[39] = &bodyLength_;
+  slotFields_[40] = &secureDataLen_;
+  slotFields_[41] = &secureData_;
+  slotFields_[42] = &signatureLength_;
+  slotFields_[43] = &possResend_;
+  slotGroups_[0] = &partyIDsGroup_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(SettlementInstructionRequestSlotOfTag(), 956, slotFields_, slotGroups_, 44);
 }
 
 AbstractField* SettlementInstructionRequest::msgType() {
@@ -101124,9 +108620,120 @@ AbstractField* SettlementInstructionRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* AssignmentReportSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 76}, {9, 85}, {10, 2}, {15, 14}, {22, 23}, {34, 34}, {35, 38}, {43, 44}, {48, 51}, {49, 52}, {50, 53}, {52, 54}, {55, 57}, {56, 58}, {57, 59}, {58, 60}, {65, 62}, {89, 84}, {90, 86}, {91, 87}, {93, 89}, {97, 91}, {106, 3}, {107, 4}, {115, 5}, {116, 6}, {122, 7}, {128, 8}, {129, 9}, {142, 10}, {143, 11}, {144, 12}, {145, 13}, {167, 15}, {200, 16}, {201, 17}, {202, 18}, {206, 19}, {207, 20}, {212, 21}, {213, 22}, {223, 24}, {224, 25}, {225, 26}, {226, 27}, {227, 28}, {228, 29}, {231, 30}, {239, 31}, {240, 32}, {241, 92}, {242, 92}, {243, 92}, {244, 92}, {245, 92}, {246, 92}, {247, 92}, {248, 93}, {249, 93}, {250, 93}, {251, 93}, {252, 93}, {253, 93}, {254, 93}, {255, 33}, {256, 92}, {257, 93}, {305, 92}, {306, 92}, {307, 92}, {308, 92}, {309, 92}, {310, 92}, {311, 92}, {312, 92}, {313, 92}, {315, 92}, {316, 92}, {317, 92}, {318, 92}, {347, 35}, {348, 36}, {349, 37}, {350, 39}, {351, 40}, {354, 41}, {355, 42}, {362, 92}, {363, 92}, {364, 92}, {365, 92}, {369, 43}, {432, 45}, {435, 92}, {436, 92}, {447, 94}, {448, 94}, {452, 94}, {453, 94}, {454, 95}, {455, 95}, {456, 95}, {457, 92}, {458, 92}, {459, 92}, {460, 46}, {461, 47}, {462, 92}, {463, 92}, {470, 48}, {471, 49}, {472, 50}, {523, 94}, {524, 96}, {525, 96}, {538, 96}, {539, 96}, {541, 55}, {542, 92}, {543, 56}, {545, 96}, {555, 93}, {556, 93}, {581, 61}, {592, 92}, {593, 92}, {594, 92}, {595, 92}, {596, 93}, {597, 93}, {598, 93}, {599, 93}, {600, 93}, {601, 93}, {602, 93}, {603, 93}, {604, 93}, {605, 93}, {606, 93}, {607, 93}, {608, 93}, {609, 93}, {610, 93}, {611, 93}, {612, 93}, {613, 93}, {614, 93}, {615, 93}, {616, 93}, {617, 93}, {618, 93}, {619, 93}, {620, 93}, {621, 93}, {622, 93}, {623, 93}, {624, 93}, {627, 97}, {628, 97}, {629, 97}, {630, 97}, {667, 63}, {691, 64}, {702, 96}, {703, 96}, {704, 96}, {705, 96}, {706, 96}, {707, 98}, {708, 98}, {711, 92}, {715, 65}, {716, 66}, {717, 67}, {730, 68}, {731, 69}, {732, 70}, {739, 93}, {740, 93}, {744, 71}, {745, 72}, {746, 73}, {747, 74}, {753, 98}, {762, 75}, {763, 92}, {764, 93}, {802, 94}, {803, 94}, {804, 96}, {805, 96}, {810, 92}, {832, 77}, {833, 78}, {834, 79}, {864, 99}, {865, 99}, {866, 99}, {867, 99}, {868, 99}, {873, 80}, {874, 81}, {875, 82}, {876, 83}, {877, 92}, {878, 92}, {879, 92}, {882, 92}, {883, 92}, {884, 92}, {885, 92}, {886, 92}, {887, 92}, {888, 92}, {889, 92}, {912, 88}, {941, 92}, {942, 93}, {947, 90}, {955, 93}, {956, 93}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 AssignmentReport::AssignmentReport() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &onBehalfOfCompID_;
+  slotFields_[6] = &onBehalfOfSubID_;
+  slotFields_[7] = &origSendingTime_;
+  slotFields_[8] = &deliverToCompID_;
+  slotFields_[9] = &deliverToSubID_;
+  slotFields_[10] = &senderLocationID_;
+  slotFields_[11] = &targetLocationID_;
+  slotFields_[12] = &onBehalfOfLocationID_;
+  slotFields_[13] = &deliverToLocationID_;
+  slotFields_[14] = &currency_;
+  slotFields_[15] = &securityType_;
+  slotFields_[16] = &maturityMonthYear_;
+  slotFields_[17] = &putOrCall_;
+  slotFields_[18] = &strikePrice_;
+  slotFields_[19] = &optAttribute_;
+  slotFields_[20] = &securityExchange_;
+  slotFields_[21] = &xmlDataLen_;
+  slotFields_[22] = &xmlData_;
+  slotFields_[23] = &securityIDSource_;
+  slotFields_[24] = &couponRate_;
+  slotFields_[25] = &couponPaymentDate_;
+  slotFields_[26] = &issueDate_;
+  slotFields_[27] = &repurchaseTerm_;
+  slotFields_[28] = &repurchaseRate_;
+  slotFields_[29] = &factor_;
+  slotFields_[30] = &contractMultiplier_;
+  slotFields_[31] = &repoCollateralSecurityType_;
+  slotFields_[32] = &redemptionDate_;
+  slotFields_[33] = &creditRating_;
+  slotFields_[34] = &msgSeqNum_;
+  slotFields_[35] = &messageEncoding_;
+  slotFields_[36] = &encodedIssuerLen_;
+  slotFields_[37] = &encodedIssuer_;
+  slotFields_[38] = &msgType_;
+  slotFields_[39] = &encodedSecurityDescLen_;
+  slotFields_[40] = &encodedSecurityDesc_;
+  slotFields_[41] = &encodedTextLen_;
+  slotFields_[42] = &encodedText_;
+  slotFields_[43] = &lastMsgSeqNumProcessed_;
+  slotFields_[44] = &possDupFlag_;
+  slotFields_[45] = &expireDate_;
+  slotFields_[46] = &product_;
+  slotFields_[47] = &cFICode_;
+  slotFields_[48] = &countryOfIssue_;
+  slotFields_[49] = &stateOrProvinceOfIssue_;
+  slotFields_[50] = &localeOfIssue_;
+  slotFields_[51] = &securityID_;
+  slotFields_[52] = &senderCompID_;
+  slotFields_[53] = &senderSubID_;
+  slotFields_[54] = &sendingTime_;
+  slotFields_[55] = &maturityDate_;
+  slotFields_[56] = &instrRegistry_;
+  slotFields_[57] = &symbol_;
+  slotFields_[58] = &targetCompID_;
+  slotFields_[59] = &targetSubID_;
+  slotFields_[60] = &text_;
+  slotFields_[61] = &accountType_;
+  slotFields_[62] = &symbolSfx_;
+  slotFields_[63] = &contractSettlMonth_;
+  slotFields_[64] = &pool_;
+  slotFields_[65] = &clearingBusinessDate_;
+  slotFields_[66] = &settlSessID_;
+  slotFields_[67] = &settlSessSubID_;
+  slotFields_[68] = &settlPrice_;
+  slotFields_[69] = &settlPriceType_;
+  slotFields_[70] = &underlyingSettlPrice_;
+  slotFields_[71] = &assignmentMethod_;
+  slotFields_[72] = &assignmentUnit_;
+  slotFields_[73] = &openInterest_;
+  slotFields_[74] = &exerciseMethod_;
+  slotFields_[75] = &securitySubType_;
+  slotFields_[76] = &beginString_;
+  slotFields_[77] = &totNumAssignmentReports_;
+  slotFields_[78] = &asgnRptID_;
+  slotFields_[79] = &thresholdAmount_;
+  slotFields_[80] = &datedDate_;
+  slotFields_[81] = &interestAccrualDate_;
+  slotFields_[82] = &cPProgram_;
+  slotFields_[83] = &cPRegType_;
+  slotFields_[84] = &signature_;
+  slotFields_[85] = &bodyLength_;
+  slotFields_[86] = &secureDataLen_;
+  slotFields_[87] = &secureData_;
+  slotFields_[88] = &lastRptRequested_;
+  slotFields_[89] = &signatureLength_;
+  slotFields_[90] = &strikeCurrency_;
+  slotFields_[91] = &possResend_;
+  slotGroups_[0] = &underlyingsGroup_;
+  slotGroups_[1] = &legsGroup1_;
+  slotGroups_[2] = &partyIDsGroup_;
+  slotGroups_[3] = &securityAltIDGroup_;
+  slotGroups_[4] = &positionsGroup_;
+  slotGroups_[5] = &hopsGroup_;
+  slotGroups_[6] = &posAmtGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  tagTable(AssignmentReportSlotOfTag(), 956, slotFields_, slotGroups_, 92);
 }
 
 AbstractField* AssignmentReport::msgType() {
@@ -102777,9 +110384,151 @@ AbstractField* AssignmentReport::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* CollateralRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 91}, {9, 102}, {10, 2}, {11, 5}, {15, 16}, {17, 120}, {22, 28}, {34, 43}, {35, 47}, {37, 53}, {43, 55}, {44, 56}, {48, 62}, {49, 63}, {50, 64}, {52, 65}, {53, 67}, {54, 68}, {55, 71}, {56, 72}, {57, 73}, {58, 74}, {60, 76}, {64, 78}, {65, 79}, {89, 97}, {90, 103}, {91, 106}, {93, 117}, {97, 119}, {106, 3}, {107, 4}, {115, 6}, {116, 7}, {122, 8}, {124, 120}, {126, 9}, {128, 10}, {129, 11}, {136, 121}, {137, 121}, {138, 121}, {139, 121}, {142, 12}, {143, 13}, {144, 14}, {145, 15}, {159, 17}, {167, 18}, {198, 19}, {200, 20}, {201, 21}, {202, 22}, {206, 23}, {207, 24}, {212, 25}, {213, 26}, {218, 27}, {220, 29}, {221, 30}, {222, 31}, {223, 32}, {224, 33}, {225, 34}, {226, 35}, {227, 36}, {228, 37}, {231, 38}, {232, 122}, {233, 122}, {234, 122}, {239, 39}, {240, 40}, {241, 123}, {242, 123}, {243, 123}, {244, 123}, {245, 123}, {246, 123}, {247, 123}, {248, 124}, {249, 124}, {250, 124}, {251, 124}, {252, 124}, {253, 124}, {254, 124}, {255, 41}, {256, 123}, {257, 124}, {305, 123}, {306, 123}, {307, 123}, {308, 123}, {309, 123}, {310, 123}, {311, 123}, {312, 123}, {313, 123}, {315, 123}, {316, 123}, {317, 123}, {318, 123}, {336, 42}, {347, 44}, {348, 45}, {349, 46}, {350, 48}, {351, 49}, {354, 50}, {355, 51}, {362, 123}, {363, 123}, {364, 123}, {365, 123}, {369, 52}, {423, 54}, {435, 123}, {436, 123}, {447, 125}, {448, 125}, {452, 125}, {453, 125}, {454, 126}, {455, 126}, {456, 126}, {457, 123}, {458, 123}, {459, 123}, {460, 57}, {461, 58}, {462, 123}, {463, 123}, {470, 59}, {471, 60}, {472, 61}, {523, 125}, {526, 66}, {541, 69}, {542, 123}, {543, 70}, {555, 124}, {556, 124}, {571, 127}, {581, 75}, {592, 123}, {593, 123}, {594, 123}, {595, 123}, {596, 124}, {597, 124}, {598, 124}, {599, 124}, {600, 124}, {601, 124}, {602, 124}, {603, 124}, {604, 124}, {605, 124}, {606, 124}, {607, 124}, {608, 124}, {609, 124}, {610, 124}, {611, 124}, {612, 124}, {613, 124}, {614, 124}, {615, 124}, {616, 124}, {617, 124}, {618, 124}, {619, 124}, {620, 124}, {621, 124}, {622, 124}, {623, 124}, {624, 124}, {625, 77}, {627, 128}, {628, 128}, {629, 128}, {630, 128}, {662, 80}, {663, 81}, {667, 82}, {691, 83}, {699, 84}, {711, 123}, {715, 85}, {716, 86}, {717, 87}, {739, 124}, {740, 124}, {761, 88}, {762, 89}, {763, 123}, {764, 124}, {768, 129}, {769, 129}, {770, 129}, {771, 129}, {788, 90}, {802, 125}, {803, 125}, {810, 123}, {818, 127}, {854, 92}, {864, 130}, {865, 130}, {866, 130}, {867, 130}, {868, 130}, {873, 93}, {874, 94}, {875, 95}, {876, 96}, {877, 123}, {878, 123}, {879, 123}, {882, 123}, {883, 123}, {884, 123}, {885, 123}, {886, 123}, {887, 123}, {888, 123}, {889, 123}, {891, 121}, {894, 98}, {895, 99}, {897, 127}, {898, 100}, {899, 101}, {900, 104}, {901, 105}, {913, 107}, {914, 108}, {915, 109}, {916, 110}, {917, 111}, {918, 112}, {919, 113}, {920, 114}, {921, 115}, {922, 116}, {941, 123}, {942, 124}, {944, 123}, {947, 118}, {955, 124}, {956, 124}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 CollateralRequest::CollateralRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &clOrdID_;
+  slotFields_[6] = &onBehalfOfCompID_;
+  slotFields_[7] = &onBehalfOfSubID_;
+  slotFields_[8] = &origSendingTime_;
+  slotFields_[9] = &expireTime_;
+  slotFields_[10] = &deliverToCompID_;
+  slotFields_[11] = &deliverToSubID_;
+  slotFields_[12] = &senderLocationID_;
+  slotFields_[13] = &targetLocationID_;
+  slotFields_[14] = &onBehalfOfLocationID_;
+  slotFields_[15] = &deliverToLocationID_;
+  slotFields_[16] = &currency_;
+  slotFields_[17] = &accruedInterestAmt_;
+  slotFields_[18] = &securityType_;
+  slotFields_[19] = &secondaryOrderID_;
+  slotFields_[20] = &maturityMonthYear_;
+  slotFields_[21] = &putOrCall_;
+  slotFields_[22] = &strikePrice_;
+  slotFields_[23] = &optAttribute_;
+  slotFields_[24] = &securityExchange_;
+  slotFields_[25] = &xmlDataLen_;
+  slotFields_[26] = &xmlData_;
+  slotFields_[27] = &spread_;
+  slotFields_[28] = &securityIDSource_;
+  slotFields_[29] = &benchmarkCurveCurrency_;
+  slotFields_[30] = &benchmarkCurveName_;
+  slotFields_[31] = &benchmarkCurvePoint_;
+  slotFields_[32] = &couponRate_;
+  slotFields_[33] = &couponPaymentDate_;
+  slotFields_[34] = &issueDate_;
+  slotFields_[35] = &repurchaseTerm_;
+  slotFields_[36] = &repurchaseRate_;
+  slotFields_[37] = &factor_;
+  slotFields_[38] = &contractMultiplier_;
+  slotFields_[39] = &repoCollateralSecurityType_;
+  slotFields_[40] = &redemptionDate_;
+  slotFields_[41] = &creditRating_;
+  slotFields_[42] = &tradingSessionID_;
+  slotFields_[43] = &msgSeqNum_;
+  slotFields_[44] = &messageEncoding_;
+  slotFields_[45] = &encodedIssuerLen_;
+  slotFields_[46] = &encodedIssuer_;
+  slotFields_[47] = &msgType_;
+  slotFields_[48] = &encodedSecurityDescLen_;
+  slotFields_[49] = &encodedSecurityDesc_;
+  slotFields_[50] = &encodedTextLen_;
+  slotFields_[51] = &encodedText_;
+  slotFields_[52] = &lastMsgSeqNumProcessed_;
+  slotFields_[53] = &orderID_;
+  slotFields_[54] = &priceType_;
+  slotFields_[55] = &possDupFlag_;
+  slotFields_[56] = &price_;
+  slotFields_[57] = &product_;
+  slotFields_[58] = &cFICode_;
+  slotFields_[59] = &countryOfIssue_;
+  slotFields_[60] = &stateOrProvinceOfIssue_;
+  slotFields_[61] = &localeOfIssue_;
+  slotFields_[62] = &securityID_;
+  slotFields_[63] = &senderCompID_;
+  slotFields_[64] = &senderSubID_;
+  slotFields_[65] = &sendingTime_;
+  slotFields_[66] = &secondaryClOrdID_;
+  slotFields_[67] = &quantity_;
+  slotFields_[68] = &side_;
+  slotFields_[69] = &maturityDate_;
+  slotFields_[70] = &instrRegistry_;
+  slotFields_[71] = &symbol_;
+  slotFields_[72] = &targetCompID_;
+  slotFields_[73] = &targetSubID_;
+  slotFields_[74] = &text_;
+  slotFields_[75] = &accountType_;
+  slotFields_[76] = &transactTime_;
+  slotFields_[77] = &tradingSessionSubID_;
+  slotFields_[78] = &settlDate_;
+  slotFields_[79] = &symbolSfx_;
+  slotFields_[80] = &benchmarkPrice_;
+  slotFields_[81] = &benchmarkPriceType_;
+  slotFields_[82] = &contractSettlMonth_;
+  slotFields_[83] = &pool_;
+  slotFields_[84] = &benchmarkSecurityID_;
+  slotFields_[85] = &clearingBusinessDate_;
+  slotFields_[86] = &settlSessID_;
+  slotFields_[87] = &settlSessSubID_;
+  slotFields_[88] = &benchmarkSecurityIDSource_;
+  slotFields_[89] = &securitySubType_;
+  slotFields_[90] = &terminationType_;
+  slotFields_[91] = &beginString_;
+  slotFields_[92] = &qtyType_;
+  slotFields_[93] = &datedDate_;
+  slotFields_[94] = &interestAccrualDate_;
+  slotFields_[95] = &cPProgram_;
+  slotFields_[96] = &cPRegType_;
+  slotFields_[97] = &signature_;
+  slotFields_[98] = &collReqID_;
+  slotFields_[99] = &collAsgnReason_;
+  slotFields_[100] = &marginRatio_;
+  slotFields_[101] = &marginExcess_;
+  slotFields_[102] = &bodyLength_;
+  slotFields_[103] = &secureDataLen_;
+  slotFields_[104] = &totalNetValue_;
+  slotFields_[105] = &cashOutstanding_;
+  slotFields_[106] = &secureData_;
+  slotFields_[107] = &agreementDesc_;
+  slotFields_[108] = &agreementID_;
+  slotFields_[109] = &agreementDate_;
+  slotFields_[110] = &startDate_;
+  slotFields_[111] = &endDate_;
+  slotFields_[112] = &agreementCurrency_;
+  slotFields_[113] = &deliveryType_;
+  slotFields_[114] = &endAccruedInterestAmt_;
+  slotFields_[115] = &startCash_;
+  slotFields_[116] = &endCash_;
+  slotFields_[117] = &signatureLength_;
+  slotFields_[118] = &strikeCurrency_;
+  slotFields_[119] = &possResend_;
+  slotGroups_[0] = &execsGroup1_;
+  slotGroups_[1] = &miscFeesGroup_;
+  slotGroups_[2] = &stipulationsGroup_;
+  slotGroups_[3] = &underlyingsGroup3_;
+  slotGroups_[4] = &legsGroup1_;
+  slotGroups_[5] = &partyIDsGroup_;
+  slotGroups_[6] = &securityAltIDGroup_;
+  slotGroups_[7] = &tradesGroup_;
+  slotGroups_[8] = &hopsGroup_;
+  slotGroups_[9] = &trdRegTimestampsGroup_;
+  slotGroups_[10] = &eventsGroup_;
+  tagTable(CollateralRequestSlotOfTag(), 956, slotFields_, slotGroups_, 120);
 }
 
 AbstractField* CollateralRequest::msgType() {
@@ -104651,9 +112400,159 @@ AbstractField* CollateralRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* CollateralAssignmentSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 95}, {9, 106}, {10, 2}, {11, 5}, {15, 16}, {17, 127}, {22, 32}, {34, 47}, {35, 51}, {37, 57}, {43, 59}, {44, 60}, {48, 66}, {49, 67}, {50, 68}, {52, 69}, {53, 71}, {54, 72}, {55, 75}, {56, 76}, {57, 77}, {58, 78}, {60, 80}, {64, 82}, {65, 83}, {85, 129}, {89, 101}, {90, 107}, {91, 113}, {93, 124}, {97, 126}, {106, 3}, {107, 4}, {115, 6}, {116, 7}, {122, 8}, {124, 127}, {126, 9}, {128, 10}, {129, 11}, {136, 128}, {137, 128}, {138, 128}, {139, 128}, {142, 12}, {143, 13}, {144, 14}, {145, 15}, {159, 17}, {165, 129}, {167, 18}, {169, 19}, {170, 20}, {171, 21}, {172, 22}, {198, 23}, {200, 24}, {201, 25}, {202, 26}, {206, 27}, {207, 28}, {212, 29}, {213, 30}, {218, 31}, {220, 33}, {221, 34}, {222, 35}, {223, 36}, {224, 37}, {225, 38}, {226, 39}, {227, 40}, {228, 41}, {231, 42}, {232, 130}, {233, 130}, {234, 130}, {239, 43}, {240, 44}, {241, 131}, {242, 131}, {243, 131}, {244, 131}, {245, 131}, {246, 131}, {247, 131}, {248, 132}, {249, 132}, {250, 132}, {251, 132}, {252, 132}, {253, 132}, {254, 132}, {255, 45}, {256, 131}, {257, 132}, {305, 131}, {306, 131}, {307, 131}, {308, 131}, {309, 131}, {310, 131}, {311, 131}, {312, 131}, {313, 131}, {315, 131}, {316, 131}, {317, 131}, {318, 131}, {336, 46}, {347, 48}, {348, 49}, {349, 50}, {350, 52}, {351, 53}, {354, 54}, {355, 55}, {362, 131}, {363, 131}, {364, 131}, {365, 131}, {369, 56}, {423, 58}, {435, 131}, {436, 131}, {447, 133}, {448, 133}, {452, 133}, {453, 133}, {454, 134}, {455, 134}, {456, 134}, {457, 131}, {458, 131}, {459, 131}, {460, 61}, {461, 62}, {462, 131}, {463, 131}, {470, 63}, {471, 64}, {472, 65}, {523, 133}, {526, 70}, {541, 73}, {542, 131}, {543, 74}, {555, 132}, {556, 132}, {571, 135}, {581, 79}, {592, 131}, {593, 131}, {594, 131}, {595, 131}, {596, 132}, {597, 132}, {598, 132}, {599, 132}, {600, 132}, {601, 132}, {602, 132}, {603, 132}, {604, 132}, {605, 132}, {606, 132}, {607, 132}, {608, 132}, {609, 132}, {610, 132}, {611, 132}, {612, 132}, {613, 132}, {614, 132}, {615, 132}, {616, 132}, {617, 132}, {618, 132}, {619, 132}, {620, 132}, {621, 132}, {622, 132}, {623, 132}, {624, 132}, {625, 81}, {627, 136}, {628, 136}, {629, 136}, {630, 136}, {662, 84}, {663, 85}, {667, 86}, {691, 87}, {699, 88}, {711, 131}, {715, 89}, {716, 90}, {717, 91}, {739, 132}, {740, 132}, {761, 92}, {762, 93}, {763, 131}, {764, 132}, {768, 137}, {769, 137}, {770, 137}, {771, 137}, {781, 129}, {782, 129}, {783, 129}, {784, 129}, {785, 129}, {786, 129}, {787, 129}, {788, 94}, {801, 129}, {802, 133}, {803, 133}, {810, 131}, {818, 135}, {854, 96}, {864, 138}, {865, 138}, {866, 138}, {867, 138}, {868, 138}, {873, 97}, {874, 98}, {875, 99}, {876, 100}, {877, 131}, {878, 131}, {879, 131}, {882, 131}, {883, 131}, {884, 131}, {885, 131}, {886, 131}, {887, 131}, {888, 131}, {889, 131}, {891, 128}, {894, 102}, {895, 103}, {897, 135}, {898, 104}, {899, 105}, {900, 108}, {901, 109}, {902, 110}, {903, 111}, {907, 112}, {913, 114}, {914, 115}, {915, 116}, {916, 117}, {917, 118}, {918, 119}, {919, 120}, {920, 121}, {921, 122}, {922, 123}, {941, 131}, {942, 132}, {944, 131}, {947, 125}, {955, 132}, {956, 132}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 CollateralAssignment::CollateralAssignment() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &clOrdID_;
+  slotFields_[6] = &onBehalfOfCompID_;
+  slotFields_[7] = &onBehalfOfSubID_;
+  slotFields_[8] = &origSendingTime_;
+  slotFields_[9] = &expireTime_;
+  slotFields_[10] = &deliverToCompID_;
+  slotFields_[11] = &deliverToSubID_;
+  slotFields_[12] = &senderLocationID_;
+  slotFields_[13] = &targetLocationID_;
+  slotFields_[14] = &onBehalfOfLocationID_;
+  slotFields_[15] = &deliverToLocationID_;
+  slotFields_[16] = &currency_;
+  slotFields_[17] = &accruedInterestAmt_;
+  slotFields_[18] = &securityType_;
+  slotFields_[19] = &standInstDbType_;
+  slotFields_[20] = &standInstDbName_;
+  slotFields_[21] = &standInstDbID_;
+  slotFields_[22] = &settlDeliveryType_;
+  slotFields_[23] = &secondaryOrderID_;
+  slotFields_[24] = &maturityMonthYear_;
+  slotFields_[25] = &putOrCall_;
+  slotFields_[26] = &strikePrice_;
+  slotFields_[27] = &optAttribute_;
+  slotFields_[28] = &securityExchange_;
+  slotFields_[29] = &xmlDataLen_;
+  slotFields_[30] = &xmlData_;
+  slotFields_[31] = &spread_;
+  slotFields_[32] = &securityIDSource_;
+  slotFields_[33] = &benchmarkCurveCurrency_;
+  slotFields_[34] = &benchmarkCurveName_;
+  slotFields_[35] = &benchmarkCurvePoint_;
+  slotFields_[36] = &couponRate_;
+  slotFields_[37] = &couponPaymentDate_;
+  slotFields_[38] = &issueDate_;
+  slotFields_[39] = &repurchaseTerm_;
+  slotFields_[40] = &repurchaseRate_;
+  slotFields_[41] = &factor_;
+  slotFields_[42] = &contractMultiplier_;
+  slotFields_[43] = &repoCollateralSecurityType_;
+  slotFields_[44] = &redemptionDate_;
+  slotFields_[45] = &creditRating_;
+  slotFields_[46] = &tradingSessionID_;
+  slotFields_[47] = &msgSeqNum_;
+  slotFields_[48] = &messageEncoding_;
+  slotFields_[49] = &encodedIssuerLen_;
+  slotFields_[50] = &encodedIssuer_;
+  slotFields_[51] = &msgType_;
+  slotFields_[52] = &encodedSecurityDescLen_;
+  slotFields_[53] = &encodedSecurityDesc_;
+  slotFields_[54] = &encodedTextLen_;
+  slotFields_[55] = &encodedText_;
+  slotFields_[56] = &lastMsgSeqNumProcessed_;
+  slotFields_[57] = &orderID_;
+  slotFields_[58] = &priceType_;
+  slotFields_[59] = &possDupFlag_;
+  slotFields_[60] = &price_;
+  slotFields_[61] = &product_;
+  slotFields_[62] = &cFICode_;
+  slotFields_[63] = &countryOfIssue_;
+  slotFields_[64] = &stateOrProvinceOfIssue_;
+  slotFields_[65] = &localeOfIssue_;
+  slotFields_[66] = &securityID_;
+  slotFields_[67] = &senderCompID_;
+  slotFields_[68] = &senderSubID_;
+  slotFields_[69] = &sendingTime_;
+  slotFields_[70] = &secondaryClOrdID_;
+  slotFields_[71] = &quantity_;
+  slotFields_[72] = &side_;
+  slotFields_[73] = &maturityDate_;
+  slotFields_[74] = &instrRegistry_;
+  slotFields_[75] = &symbol_;
+  slotFields_[76] = &targetCompID_;
+  slotFields_[77] = &targetSubID_;
+  slotFields_[78] = &text_;
+  slotFields_[79] = &accountType_;
+  slotFields_[80] = &transactTime_;
+  slotFields_[81] = &tradingSessionSubID_;
+  slotFields_[82] = &settlDate_;
+  slotFields_[83] = &symbolSfx_;
+  slotFields_[84] = &benchmarkPrice_;
+  slotFields_[85] = &benchmarkPriceType_;
+  slotFields_[86] = &contractSettlMonth_;
+  slotFields_[87] = &pool_;
+  slotFields_[88] = &benchmarkSecurityID_;
+  slotFields_[89] = &clearingBusinessDate_;
+  slotFields_[90] = &settlSessID_;
+  slotFields_[91] = &settlSessSubID_;
+  slotFields_[92] = &benchmarkSecurityIDSource_;
+  slotFields_[93] = &securitySubType_;
+  slotFields_[94] = &terminationType_;
+  slotFields_[95] = &beginString_;
+  slotFields_[96] = &qtyType_;
+  slotFields_[97] = &datedDate_;
+  slotFields_[98] = &interestAccrualDate_;
+  slotFields_[99] = &cPProgram_;
+  slotFields_[100] = &cPRegType_;
+  slotFields_[101] = &signature_;
+  slotFields_[102] = &collReqID_;
+  slotFields_[103] = &collAsgnReason_;
+  slotFields_[104] = &marginRatio_;
+  slotFields_[105] = &marginExcess_;
+  slotFields_[106] = &bodyLength_;
+  slotFields_[107] = &secureDataLen_;
+  slotFields_[108] = &totalNetValue_;
+  slotFields_[109] = &cashOutstanding_;
+  slotFields_[110] = &collAsgnID_;
+  slotFields_[111] = &collAsgnTransType_;
+  slotFields_[112] = &collAsgnRefID_;
+  slotFields_[113] = &secureData_;
+  slotFields_[114] = &agreementDesc_;
+  slotFields_[115] = &agreementID_;
+  slotFields_[116] = &agreementDate_;
+  slotFields_[117] = &startDate_;
+  slotFields_[118] = &endDate_;
+  slotFields_[119] = &agreementCurrency_;
+  slotFields_[120] = &deliveryType_;
+  slotFields_[121] = &endAccruedInterestAmt_;
+  slotFields_[122] = &startCash_;
+  slotFields_[123] = &endCash_;
+  slotFields_[124] = &signatureLength_;
+  slotFields_[125] = &strikeCurrency_;
+  slotFields_[126] = &possResend_;
+  slotGroups_[0] = &execsGroup1_;
+  slotGroups_[1] = &miscFeesGroup_;
+  slotGroups_[2] = &dlvyInstGroup_;
+  slotGroups_[3] = &stipulationsGroup_;
+  slotGroups_[4] = &underlyingsGroup3_;
+  slotGroups_[5] = &legsGroup1_;
+  slotGroups_[6] = &partyIDsGroup_;
+  slotGroups_[7] = &securityAltIDGroup_;
+  slotGroups_[8] = &tradesGroup_;
+  slotGroups_[9] = &hopsGroup_;
+  slotGroups_[10] = &trdRegTimestampsGroup_;
+  slotGroups_[11] = &eventsGroup_;
+  tagTable(CollateralAssignmentSlotOfTag(), 956, slotFields_, slotGroups_, 127);
 }
 
 AbstractField* CollateralAssignment::msgType() {
@@ -106646,9 +114545,150 @@ AbstractField* CollateralAssignment::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* CollateralResponseSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 85}, {9, 96}, {10, 2}, {11, 5}, {15, 15}, {17, 119}, {22, 27}, {34, 41}, {35, 45}, {37, 51}, {43, 53}, {44, 54}, {48, 60}, {49, 61}, {50, 62}, {52, 63}, {53, 65}, {54, 66}, {55, 69}, {56, 70}, {57, 71}, {58, 72}, {60, 74}, {64, 75}, {65, 76}, {89, 91}, {90, 97}, {91, 105}, {93, 116}, {97, 118}, {106, 3}, {107, 4}, {115, 6}, {116, 7}, {122, 8}, {124, 119}, {128, 9}, {129, 10}, {136, 120}, {137, 120}, {138, 120}, {139, 120}, {142, 11}, {143, 12}, {144, 13}, {145, 14}, {159, 16}, {167, 17}, {198, 18}, {200, 19}, {201, 20}, {202, 21}, {206, 22}, {207, 23}, {212, 24}, {213, 25}, {218, 26}, {220, 28}, {221, 29}, {222, 30}, {223, 31}, {224, 32}, {225, 33}, {226, 34}, {227, 35}, {228, 36}, {231, 37}, {232, 121}, {233, 121}, {234, 121}, {239, 38}, {240, 39}, {241, 122}, {242, 122}, {243, 122}, {244, 122}, {245, 122}, {246, 122}, {247, 122}, {248, 123}, {249, 123}, {250, 123}, {251, 123}, {252, 123}, {253, 123}, {254, 123}, {255, 40}, {256, 122}, {257, 123}, {305, 122}, {306, 122}, {307, 122}, {308, 122}, {309, 122}, {310, 122}, {311, 122}, {312, 122}, {313, 122}, {315, 122}, {316, 122}, {317, 122}, {318, 122}, {347, 42}, {348, 43}, {349, 44}, {350, 46}, {351, 47}, {354, 48}, {355, 49}, {362, 122}, {363, 122}, {364, 122}, {365, 122}, {369, 50}, {423, 52}, {435, 122}, {436, 122}, {447, 124}, {448, 124}, {452, 124}, {453, 124}, {454, 125}, {455, 125}, {456, 125}, {457, 122}, {458, 122}, {459, 122}, {460, 55}, {461, 56}, {462, 122}, {463, 122}, {470, 57}, {471, 58}, {472, 59}, {523, 124}, {526, 64}, {541, 67}, {542, 122}, {543, 68}, {555, 123}, {556, 123}, {571, 126}, {581, 73}, {592, 122}, {593, 122}, {594, 122}, {595, 122}, {596, 123}, {597, 123}, {598, 123}, {599, 123}, {600, 123}, {601, 123}, {602, 123}, {603, 123}, {604, 123}, {605, 123}, {606, 123}, {607, 123}, {608, 123}, {609, 123}, {610, 123}, {611, 123}, {612, 123}, {613, 123}, {614, 123}, {615, 123}, {616, 123}, {617, 123}, {618, 123}, {619, 123}, {620, 123}, {621, 123}, {622, 123}, {623, 123}, {624, 123}, {627, 127}, {628, 127}, {629, 127}, {630, 127}, {662, 77}, {663, 78}, {667, 79}, {691, 80}, {699, 81}, {711, 122}, {739, 123}, {740, 123}, {761, 82}, {762, 83}, {763, 122}, {764, 123}, {768, 128}, {769, 128}, {770, 128}, {771, 128}, {788, 84}, {802, 124}, {803, 124}, {810, 122}, {818, 126}, {854, 86}, {864, 129}, {865, 129}, {866, 129}, {867, 129}, {868, 129}, {873, 87}, {874, 88}, {875, 89}, {876, 90}, {877, 122}, {878, 122}, {879, 122}, {882, 122}, {883, 122}, {884, 122}, {885, 122}, {886, 122}, {887, 122}, {888, 122}, {889, 122}, {891, 120}, {894, 92}, {895, 93}, {897, 126}, {898, 94}, {899, 95}, {900, 98}, {901, 99}, {902, 100}, {903, 101}, {904, 102}, {905, 103}, {906, 104}, {913, 106}, {914, 107}, {915, 108}, {916, 109}, {917, 110}, {918, 111}, {919, 112}, {920, 113}, {921, 114}, {922, 115}, {941, 122}, {942, 123}, {944, 122}, {947, 117}, {955, 123}, {956, 123}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 CollateralResponse::CollateralResponse() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &clOrdID_;
+  slotFields_[6] = &onBehalfOfCompID_;
+  slotFields_[7] = &onBehalfOfSubID_;
+  slotFields_[8] = &origSendingTime_;
+  slotFields_[9] = &deliverToCompID_;
+  slotFields_[10] = &deliverToSubID_;
+  slotFields_[11] = &senderLocationID_;
+  slotFields_[12] = &targetLocationID_;
+  slotFields_[13] = &onBehalfOfLocationID_;
+  slotFields_[14] = &deliverToLocationID_;
+  slotFields_[15] = &currency_;
+  slotFields_[16] = &accruedInterestAmt_;
+  slotFields_[17] = &securityType_;
+  slotFields_[18] = &secondaryOrderID_;
+  slotFields_[19] = &maturityMonthYear_;
+  slotFields_[20] = &putOrCall_;
+  slotFields_[21] = &strikePrice_;
+  slotFields_[22] = &optAttribute_;
+  slotFields_[23] = &securityExchange_;
+  slotFields_[24] = &xmlDataLen_;
+  slotFields_[25] = &xmlData_;
+  slotFields_[26] = &spread_;
+  slotFields_[27] = &securityIDSource_;
+  slotFields_[28] = &benchmarkCurveCurrency_;
+  slotFields_[29] = &benchmarkCurveName_;
+  slotFields_[30] = &benchmarkCurvePoint_;
+  slotFields_[31] = &couponRate_;
+  slotFields_[32] = &couponPaymentDate_;
+  slotFields_[33] = &issueDate_;
+  slotFields_[34] = &repurchaseTerm_;
+  slotFields_[35] = &repurchaseRate_;
+  slotFields_[36] = &factor_;
+  slotFields_[37] = &contractMultiplier_;
+  slotFields_[38] = &repoCollateralSecurityType_;
+  slotFields_[39] = &redemptionDate_;
+  slotFields_[40] = &creditRating_;
+  slotFields_[41] = &msgSeqNum_;
+  slotFields_[42] = &messageEncoding_;
+  slotFields_[43] = &encodedIssuerLen_;
+  slotFields_[44] = &encodedIssuer_;
+  slotFields_[45] = &msgType_;
+  slotFields_[46] = &encodedSecurityDescLen_;
+  slotFields_[47] = &encodedSecurityDesc_;
+  slotFields_[48] = &encodedTextLen_;
+  slotFields_[49] = &encodedText_;
+  slotFields_[50] = &lastMsgSeqNumProcessed_;
+  slotFields_[51] = &orderID_;
+  slotFields_[52] = &priceType_;
+  slotFields_[53] = &possDupFlag_;
+  slotFields_[54] = &price_;
+  slotFields_[55] = &product_;
+  slotFields_[56] = &cFICode_;
+  slotFields_[57] = &countryOfIssue_;
+  slotFields_[58] = &stateOrProvinceOfIssue_;
+  slotFields_[59] = &localeOfIssue_;
+  slotFields_[60] = &securityID_;
+  slotFields_[61] = &senderCompID_;
+  slotFields_[62] = &senderSubID_;
+  slotFields_[63] = &sendingTime_;
+  slotFields_[64] = &secondaryClOrdID_;
+  slotFields_[65] = &quantity_;
+  slotFields_[66] = &side_;
+  slotFields_[67] = &maturityDate_;
+  slotFields_[68] = &instrRegistry_;
+  slotFields_[69] = &symbol_;
+  slotFields_[70] = &targetCompID_;
+  slotFields_[71] = &targetSubID_;
+  slotFields_[72] = &text_;
+  slotFields_[73] = &accountType_;
+  slotFields_[74] = &transactTime_;
+  slotFields_[75] = &settlDate_;
+  slotFields_[76] = &symbolSfx_;
+  slotFields_[77] = &benchmarkPrice_;
+  slotFields_[78] = &benchmarkPriceType_;
+  slotFields_[79] = &contractSettlMonth_;
+  slotFields_[80] = &pool_;
+  slotFields_[81] = &benchmarkSecurityID_;
+  slotFields_[82] = &benchmarkSecurityIDSource_;
+  slotFields_[83] = &securitySubType_;
+  slotFields_[84] = &terminationType_;
+  slotFields_[85] = &beginString_;
+  slotFields_[86] = &qtyType_;
+  slotFields_[87] = &datedDate_;
+  slotFields_[88] = &interestAccrualDate_;
+  slotFields_[89] = &cPProgram_;
+  slotFields_[90] = &cPRegType_;
+  slotFields_[91] = &signature_;
+  slotFields_[92] = &collReqID_;
+  slotFields_[93] = &collAsgnReason_;
+  slotFields_[94] = &marginRatio_;
+  slotFields_[95] = &marginExcess_;
+  slotFields_[96] = &bodyLength_;
+  slotFields_[97] = &secureDataLen_;
+  slotFields_[98] = &totalNetValue_;
+  slotFields_[99] = &cashOutstanding_;
+  slotFields_[100] = &collAsgnID_;
+  slotFields_[101] = &collAsgnTransType_;
+  slotFields_[102] = &collRespID_;
+  slotFields_[103] = &collAsgnRespType_;
+  slotFields_[104] = &collAsgnRejectReason_;
+  slotFields_[105] = &secureData_;
+  slotFields_[106] = &agreementDesc_;
+  slotFields_[107] = &agreementID_;
+  slotFields_[108] = &agreementDate_;
+  slotFields_[109] = &startDate_;
+  slotFields_[110] = &endDate_;
+  slotFields_[111] = &agreementCurrency_;
+  slotFields_[112] = &deliveryType_;
+  slotFields_[113] = &endAccruedInterestAmt_;
+  slotFields_[114] = &startCash_;
+  slotFields_[115] = &endCash_;
+  slotFields_[116] = &signatureLength_;
+  slotFields_[117] = &strikeCurrency_;
+  slotFields_[118] = &possResend_;
+  slotGroups_[0] = &execsGroup1_;
+  slotGroups_[1] = &miscFeesGroup_;
+  slotGroups_[2] = &stipulationsGroup_;
+  slotGroups_[3] = &underlyingsGroup3_;
+  slotGroups_[4] = &legsGroup1_;
+  slotGroups_[5] = &partyIDsGroup_;
+  slotGroups_[6] = &securityAltIDGroup_;
+  slotGroups_[7] = &tradesGroup_;
+  slotGroups_[8] = &hopsGroup_;
+  slotGroups_[9] = &trdRegTimestampsGroup_;
+  slotGroups_[10] = &eventsGroup_;
+  tagTable(CollateralResponseSlotOfTag(), 956, slotFields_, slotGroups_, 119);
 }
 
 AbstractField* CollateralResponse::msgType() {
@@ -108508,9 +116548,157 @@ AbstractField* CollateralResponse::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* CollateralReportSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 93}, {9, 102}, {10, 2}, {11, 5}, {15, 15}, {17, 125}, {22, 31}, {34, 46}, {35, 50}, {37, 56}, {43, 58}, {44, 59}, {48, 65}, {49, 66}, {50, 67}, {52, 68}, {53, 70}, {54, 71}, {55, 74}, {56, 75}, {57, 76}, {58, 77}, {64, 80}, {65, 81}, {85, 127}, {89, 99}, {90, 103}, {91, 108}, {93, 122}, {97, 124}, {106, 3}, {107, 4}, {115, 6}, {116, 7}, {122, 8}, {124, 125}, {128, 9}, {129, 10}, {136, 126}, {137, 126}, {138, 126}, {139, 126}, {142, 11}, {143, 12}, {144, 13}, {145, 14}, {159, 16}, {165, 127}, {167, 17}, {169, 18}, {170, 19}, {171, 20}, {172, 21}, {198, 22}, {200, 23}, {201, 24}, {202, 25}, {206, 26}, {207, 27}, {212, 28}, {213, 29}, {218, 30}, {220, 32}, {221, 33}, {222, 34}, {223, 35}, {224, 36}, {225, 37}, {226, 38}, {227, 39}, {228, 40}, {231, 41}, {232, 128}, {233, 128}, {234, 128}, {239, 42}, {240, 43}, {241, 129}, {242, 129}, {243, 129}, {244, 129}, {245, 129}, {246, 129}, {247, 129}, {248, 130}, {249, 130}, {250, 130}, {251, 130}, {252, 130}, {253, 130}, {254, 130}, {255, 44}, {256, 129}, {257, 130}, {305, 129}, {306, 129}, {307, 129}, {308, 129}, {309, 129}, {310, 129}, {311, 129}, {312, 129}, {313, 129}, {315, 129}, {316, 129}, {317, 129}, {318, 129}, {336, 45}, {347, 47}, {348, 48}, {349, 49}, {350, 51}, {351, 52}, {354, 53}, {355, 54}, {362, 129}, {363, 129}, {364, 129}, {365, 129}, {369, 55}, {423, 57}, {435, 129}, {436, 129}, {447, 131}, {448, 131}, {452, 131}, {453, 131}, {454, 132}, {455, 132}, {456, 132}, {457, 129}, {458, 129}, {459, 129}, {460, 60}, {461, 61}, {462, 129}, {463, 129}, {470, 62}, {471, 63}, {472, 64}, {523, 131}, {526, 69}, {541, 72}, {542, 129}, {543, 73}, {555, 130}, {556, 130}, {571, 133}, {581, 78}, {592, 129}, {593, 129}, {594, 129}, {595, 129}, {596, 130}, {597, 130}, {598, 130}, {599, 130}, {600, 130}, {601, 130}, {602, 130}, {603, 130}, {604, 130}, {605, 130}, {606, 130}, {607, 130}, {608, 130}, {609, 130}, {610, 130}, {611, 130}, {612, 130}, {613, 130}, {614, 130}, {615, 130}, {616, 130}, {617, 130}, {618, 130}, {619, 130}, {620, 130}, {621, 130}, {622, 130}, {623, 130}, {624, 130}, {625, 79}, {627, 134}, {628, 134}, {629, 134}, {630, 134}, {662, 82}, {663, 83}, {667, 84}, {691, 85}, {699, 86}, {711, 129}, {715, 87}, {716, 88}, {717, 89}, {739, 130}, {740, 130}, {761, 90}, {762, 91}, {763, 129}, {764, 130}, {768, 135}, {769, 135}, {770, 135}, {771, 135}, {781, 127}, {782, 127}, {783, 127}, {784, 127}, {785, 127}, {786, 127}, {787, 127}, {788, 92}, {801, 127}, {802, 131}, {803, 131}, {810, 129}, {818, 133}, {854, 94}, {864, 136}, {865, 136}, {866, 136}, {867, 136}, {868, 136}, {873, 95}, {874, 96}, {875, 97}, {876, 98}, {877, 129}, {878, 129}, {879, 129}, {882, 129}, {883, 129}, {884, 129}, {885, 129}, {886, 129}, {887, 129}, {888, 129}, {889, 129}, {891, 126}, {897, 133}, {898, 100}, {899, 101}, {900, 104}, {901, 105}, {908, 106}, {909, 107}, {910, 109}, {911, 110}, {912, 111}, {913, 112}, {914, 113}, {915, 114}, {916, 115}, {917, 116}, {918, 117}, {919, 118}, {920, 119}, {921, 120}, {922, 121}, {941, 129}, {942, 130}, {947, 123}, {955, 130}, {956, 130}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 CollateralReport::CollateralReport() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &clOrdID_;
+  slotFields_[6] = &onBehalfOfCompID_;
+  slotFields_[7] = &onBehalfOfSubID_;
+  slotFields_[8] = &origSendingTime_;
+  slotFields_[9] = &deliverToCompID_;
+  slotFields_[10] = &deliverToSubID_;
+  slotFields_[11] = &senderLocationID_;
+  slotFields_[12] = &targetLocationID_;
+  slotFields_[13] = &onBehalfOfLocationID_;
+  slotFields_[14] = &deliverToLocationID_;
+  slotFields_[15] = &currency_;
+  slotFields_[16] = &accruedInterestAmt_;
+  slotFields_[17] = &securityType_;
+  slotFields_[18] = &standInstDbType_;
+  slotFields_[19] = &standInstDbName_;
+  slotFields_[20] = &standInstDbID_;
+  slotFields_[21] = &settlDeliveryType_;
+  slotFields_[22] = &secondaryOrderID_;
+  slotFields_[23] = &maturityMonthYear_;
+  slotFields_[24] = &putOrCall_;
+  slotFields_[25] = &strikePrice_;
+  slotFields_[26] = &optAttribute_;
+  slotFields_[27] = &securityExchange_;
+  slotFields_[28] = &xmlDataLen_;
+  slotFields_[29] = &xmlData_;
+  slotFields_[30] = &spread_;
+  slotFields_[31] = &securityIDSource_;
+  slotFields_[32] = &benchmarkCurveCurrency_;
+  slotFields_[33] = &benchmarkCurveName_;
+  slotFields_[34] = &benchmarkCurvePoint_;
+  slotFields_[35] = &couponRate_;
+  slotFields_[36] = &couponPaymentDate_;
+  slotFields_[37] = &issueDate_;
+  slotFields_[38] = &repurchaseTerm_;
+  slotFields_[39] = &repurchaseRate_;
+  slotFields_[40] = &factor_;
+  slotFields_[41] = &contractMultiplier_;
+  slotFields_[42] = &repoCollateralSecurityType_;
+  slotFields_[43] = &redemptionDate_;
+  slotFields_[44] = &creditRating_;
+  slotFields_[45] = &tradingSessionID_;
+  slotFields_[46] = &msgSeqNum_;
+  slotFields_[47] = &messageEncoding_;
+  slotFields_[48] = &encodedIssuerLen_;
+  slotFields_[49] = &encodedIssuer_;
+  slotFields_[50] = &msgType_;
+  slotFields_[51] = &encodedSecurityDescLen_;
+  slotFields_[52] = &encodedSecurityDesc_;
+  slotFields_[53] = &encodedTextLen_;
+  slotFields_[54] = &encodedText_;
+  slotFields_[55] = &lastMsgSeqNumProcessed_;
+  slotFields_[56] = &orderID_;
+  slotFields_[57] = &priceType_;
+  slotFields_[58] = &possDupFlag_;
+  slotFields_[59] = &price_;
+  slotFields_[60] = &product_;
+  slotFields_[61] = &cFICode_;
+  slotFields_[62] = &countryOfIssue_;
+  slotFields_[63] = &stateOrProvinceOfIssue_;
+  slotFields_[64] = &localeOfIssue_;
+  slotFields_[65] = &securityID_;
+  slotFields_[66] = &senderCompID_;
+  slotFields_[67] = &senderSubID_;
+  slotFields_[68] = &sendingTime_;
+  slotFields_[69] = &secondaryClOrdID_;
+  slotFields_[70] = &quantity_;
+  slotFields_[71] = &side_;
+  slotFields_[72] = &maturityDate_;
+  slotFields_[73] = &instrRegistry_;
+  slotFields_[74] = &symbol_;
+  slotFields_[75] = &targetCompID_;
+  slotFields_[76] = &targetSubID_;
+  slotFields_[77] = &text_;
+  slotFields_[78] = &accountType_;
+  slotFields_[79] = &tradingSessionSubID_;
+  slotFields_[80] = &settlDate_;
+  slotFields_[81] = &symbolSfx_;
+  slotFields_[82] = &benchmarkPrice_;
+  slotFields_[83] = &benchmarkPriceType_;
+  slotFields_[84] = &contractSettlMonth_;
+  slotFields_[85] = &pool_;
+  slotFields_[86] = &benchmarkSecurityID_;
+  slotFields_[87] = &clearingBusinessDate_;
+  slotFields_[88] = &settlSessID_;
+  slotFields_[89] = &settlSessSubID_;
+  slotFields_[90] = &benchmarkSecurityIDSource_;
+  slotFields_[91] = &securitySubType_;
+  slotFields_[92] = &terminationType_;
+  slotFields_[93] = &beginString_;
+  slotFields_[94] = &qtyType_;
+  slotFields_[95] = &datedDate_;
+  slotFields_[96] = &interestAccrualDate_;
+  slotFields_[97] = &cPProgram_;
+  slotFields_[98] = &cPRegType_;
+  slotFields_[99] = &signature_;
+  slotFields_[100] = &marginRatio_;
+  slotFields_[101] = &marginExcess_;
+  slotFields_[102] = &bodyLength_;
+  slotFields_[103] = &secureDataLen_;
+  slotFields_[104] = &totalNetValue_;
+  slotFields_[105] = &cashOutstanding_;
+  slotFields_[106] = &collRptID_;
+  slotFields_[107] = &collInquiryID_;
+  slotFields_[108] = &secureData_;
+  slotFields_[109] = &collStatus_;
+  slotFields_[110] = &totNumReports_;
+  slotFields_[111] = &lastRptRequested_;
+  slotFields_[112] = &agreementDesc_;
+  slotFields_[113] = &agreementID_;
+  slotFields_[114] = &agreementDate_;
+  slotFields_[115] = &startDate_;
+  slotFields_[116] = &endDate_;
+  slotFields_[117] = &agreementCurrency_;
+  slotFields_[118] = &deliveryType_;
+  slotFields_[119] = &endAccruedInterestAmt_;
+  slotFields_[120] = &startCash_;
+  slotFields_[121] = &endCash_;
+  slotFields_[122] = &signatureLength_;
+  slotFields_[123] = &strikeCurrency_;
+  slotFields_[124] = &possResend_;
+  slotGroups_[0] = &execsGroup1_;
+  slotGroups_[1] = &miscFeesGroup_;
+  slotGroups_[2] = &dlvyInstGroup_;
+  slotGroups_[3] = &stipulationsGroup_;
+  slotGroups_[4] = &underlyingsGroup_;
+  slotGroups_[5] = &legsGroup1_;
+  slotGroups_[6] = &partyIDsGroup_;
+  slotGroups_[7] = &securityAltIDGroup_;
+  slotGroups_[8] = &tradesGroup_;
+  slotGroups_[9] = &hopsGroup_;
+  slotGroups_[10] = &trdRegTimestampsGroup_;
+  slotGroups_[11] = &eventsGroup_;
+  tagTable(CollateralReportSlotOfTag(), 956, slotFields_, slotGroups_, 125);
 }
 
 AbstractField* CollateralReport::msgType() {
@@ -110485,9 +118673,156 @@ AbstractField* CollateralReport::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* CollateralInquirySlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 96}, {9, 105}, {10, 2}, {11, 5}, {15, 15}, {17, 124}, {22, 31}, {34, 47}, {35, 51}, {37, 57}, {43, 59}, {44, 60}, {48, 66}, {49, 67}, {50, 68}, {52, 69}, {53, 71}, {54, 72}, {55, 75}, {56, 76}, {57, 77}, {58, 78}, {64, 81}, {65, 82}, {85, 125}, {89, 102}, {90, 106}, {91, 110}, {93, 121}, {97, 123}, {106, 3}, {107, 4}, {115, 6}, {116, 7}, {122, 8}, {124, 124}, {128, 9}, {129, 10}, {142, 11}, {143, 12}, {144, 13}, {145, 14}, {159, 16}, {165, 125}, {167, 17}, {169, 18}, {170, 19}, {171, 20}, {172, 21}, {198, 22}, {200, 23}, {201, 24}, {202, 25}, {206, 26}, {207, 27}, {212, 28}, {213, 29}, {218, 30}, {220, 32}, {221, 33}, {222, 34}, {223, 35}, {224, 36}, {225, 37}, {226, 38}, {227, 39}, {228, 40}, {231, 41}, {232, 126}, {233, 126}, {234, 126}, {239, 42}, {240, 43}, {241, 127}, {242, 127}, {243, 127}, {244, 127}, {245, 127}, {246, 127}, {247, 127}, {248, 128}, {249, 128}, {250, 128}, {251, 128}, {252, 128}, {253, 128}, {254, 128}, {255, 44}, {256, 127}, {257, 128}, {263, 45}, {305, 127}, {306, 127}, {307, 127}, {308, 127}, {309, 127}, {310, 127}, {311, 127}, {312, 127}, {313, 127}, {315, 127}, {316, 127}, {317, 127}, {318, 127}, {336, 46}, {347, 48}, {348, 49}, {349, 50}, {350, 52}, {351, 53}, {354, 54}, {355, 55}, {362, 127}, {363, 127}, {364, 127}, {365, 127}, {369, 56}, {423, 58}, {435, 127}, {436, 127}, {447, 129}, {448, 129}, {452, 129}, {453, 129}, {454, 130}, {455, 130}, {456, 130}, {457, 127}, {458, 127}, {459, 127}, {460, 61}, {461, 62}, {462, 127}, {463, 127}, {470, 63}, {471, 64}, {472, 65}, {523, 129}, {526, 70}, {541, 73}, {542, 127}, {543, 74}, {555, 128}, {556, 128}, {571, 131}, {581, 79}, {592, 127}, {593, 127}, {594, 127}, {595, 127}, {596, 128}, {597, 128}, {598, 128}, {599, 128}, {600, 128}, {601, 128}, {602, 128}, {603, 128}, {604, 128}, {605, 128}, {606, 128}, {607, 128}, {608, 128}, {609, 128}, {610, 128}, {611, 128}, {612, 128}, {613, 128}, {614, 128}, {615, 128}, {616, 128}, {617, 128}, {618, 128}, {619, 128}, {620, 128}, {621, 128}, {622, 128}, {623, 128}, {624, 128}, {625, 80}, {627, 132}, {628, 132}, {629, 132}, {630, 132}, {662, 83}, {663, 84}, {667, 85}, {691, 86}, {699, 87}, {711, 127}, {715, 88}, {716, 89}, {717, 90}, {725, 91}, {726, 92}, {739, 128}, {740, 128}, {761, 93}, {762, 94}, {763, 127}, {764, 128}, {768, 133}, {769, 133}, {770, 133}, {771, 133}, {781, 125}, {782, 125}, {783, 125}, {784, 125}, {785, 125}, {786, 125}, {787, 125}, {788, 95}, {801, 125}, {802, 129}, {803, 129}, {810, 127}, {818, 131}, {854, 97}, {864, 134}, {865, 134}, {866, 134}, {867, 134}, {868, 134}, {873, 98}, {874, 99}, {875, 100}, {876, 101}, {877, 127}, {878, 127}, {879, 127}, {882, 127}, {883, 127}, {884, 127}, {885, 127}, {886, 127}, {887, 127}, {888, 127}, {889, 127}, {896, 135}, {897, 131}, {898, 103}, {899, 104}, {900, 107}, {901, 108}, {909, 109}, {913, 111}, {914, 112}, {915, 113}, {916, 114}, {917, 115}, {918, 116}, {919, 117}, {920, 118}, {921, 119}, {922, 120}, {938, 135}, {941, 127}, {942, 128}, {947, 122}, {955, 128}, {956, 128}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 CollateralInquiry::CollateralInquiry() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &clOrdID_;
+  slotFields_[6] = &onBehalfOfCompID_;
+  slotFields_[7] = &onBehalfOfSubID_;
+  slotFields_[8] = &origSendingTime_;
+  slotFields_[9] = &deliverToCompID_;
+  slotFields_[10] = &deliverToSubID_;
+  slotFields_[11] = &senderLocationID_;
+  slotFields_[12] = &targetLocationID_;
+  slotFields_[13] = &onBehalfOfLocationID_;
+  slotFields_[14] = &deliverToLocationID_;
+  slotFields_[15] = &currency_;
+  slotFields_[16] = &accruedInterestAmt_;
+  slotFields_[17] = &securityType_;
+  slotFields_[18] = &standInstDbType_;
+  slotFields_[19] = &standInstDbName_;
+  slotFields_[20] = &standInstDbID_;
+  slotFields_[21] = &settlDeliveryType_;
+  slotFields_[22] = &secondaryOrderID_;
+  slotFields_[23] = &maturityMonthYear_;
+  slotFields_[24] = &putOrCall_;
+  slotFields_[25] = &strikePrice_;
+  slotFields_[26] = &optAttribute_;
+  slotFields_[27] = &securityExchange_;
+  slotFields_[28] = &xmlDataLen_;
+  slotFields_[29] = &xmlData_;
+  slotFields_[30] = &spread_;
+  slotFields_[31] = &securityIDSource_;
+  slotFields_[32] = &benchmarkCurveCurrency_;
+  slotFields_[33] = &benchmarkCurveName_;
+  slotFields_[34] = &benchmarkCurvePoint_;
+  slotFields_[35] = &couponRate_;
+  slotFields_[36] = &couponPaymentDate_;
+  slotFields_[37] = &issueDate_;
+  slotFields_[38] = &repurchaseTerm_;
+  slotFields_[39] = &repurchaseRate_;
+  slotFields_[40] = &factor_;
+  slotFields_[41] = &contractMultiplier_;
+  slotFields_[42] = &repoCollateralSecurityType_;
+  slotFields_[43] = &redemptionDate_;
+  slotFields_[44] = &creditRating_;
+  slotFields_[45] = &subscriptionRequestType_;
+  slotFields_[46] = &tradingSessionID_;
+  slotFields_[47] = &msgSeqNum_;
+  slotFields_[48] = &messageEncoding_;
+  slotFields_[49] = &encodedIssuerLen_;
+  slotFields_[50] = &encodedIssuer_;
+  slotFields_[51] = &msgType_;
+  slotFields_[52] = &encodedSecurityDescLen_;
+  slotFields_[53] = &encodedSecurityDesc_;
+  slotFields_[54] = &encodedTextLen_;
+  slotFields_[55] = &encodedText_;
+  slotFields_[56] = &lastMsgSeqNumProcessed_;
+  slotFields_[57] = &orderID_;
+  slotFields_[58] = &priceType_;
+  slotFields_[59] = &possDupFlag_;
+  slotFields_[60] = &price_;
+  slotFields_[61] = &product_;
+  slotFields_[62] = &cFICode_;
+  slotFields_[63] = &countryOfIssue_;
+  slotFields_[64] = &stateOrProvinceOfIssue_;
+  slotFields_[65] = &localeOfIssue_;
+  slotFields_[66] = &securityID_;
+  slotFields_[67] = &senderCompID_;
+  slotFields_[68] = &senderSubID_;
+  slotFields_[69] = &sendingTime_;
+  slotFields_[70] = &secondaryClOrdID_;
+  slotFields_[71] = &quantity_;
+  slotFields_[72] = &side_;
+  slotFields_[73] = &maturityDate_;
+  slotFields_[74] = &instrRegistry_;
+  slotFields_[75] = &symbol_;
+  slotFields_[76] = &targetCompID_;
+  slotFields_[77] = &targetSubID_;
+  slotFields_[78] = &text_;
+  slotFields_[79] = &accountType_;
+  slotFields_[80] = &tradingSessionSubID_;
+  slotFields_[81] = &settlDate_;
+  slotFields_[82] = &symbolSfx_;
+  slotFields_[83] = &benchmarkPrice_;
+  slotFields_[84] = &benchmarkPriceType_;
+  slotFields_[85] = &contractSettlMonth_;
+  slotFields_[86] = &pool_;
+  slotFields_[87] = &benchmarkSecurityID_;
+  slotFields_[88] = &clearingBusinessDate_;
+  slotFields_[89] = &settlSessID_;
+  slotFields_[90] = &settlSessSubID_;
+  slotFields_[91] = &responseTransportType_;
+  slotFields_[92] = &responseDestination_;
+  slotFields_[93] = &benchmarkSecurityIDSource_;
+  slotFields_[94] = &securitySubType_;
+  slotFields_[95] = &terminationType_;
+  slotFields_[96] = &beginString_;
+  slotFields_[97] = &qtyType_;
+  slotFields_[98] = &datedDate_;
+  slotFields_[99] = &interestAccrualDate_;
+  slotFields_[100] = &cPProgram_;
+  slotFields_[101] = &cPRegType_;
+  slotFields_[102] = &signature_;
+  slotFields_[103] = &marginRatio_;
+  slotFields_[104] = &marginExcess_;
+  slotFields_[105] = &bodyLength_;
+  slotFields_[106] = &secureDataLen_;
+  slotFields_[107] = &totalNetValue_;
+  slotFields_[108] = &cashOutstanding_;
+  slotFields_[109] = &collInquiryID_;
+  slotFields_[110] = &secureData_;
+  slotFields_[111] = &agreementDesc_;
+  slotFields_[112] = &agreementID_;
+  slotFields_[113] = &agreementDate_;
+  slotFields_[114] = &startDate_;
+  slotFields_[115] = &endDate_;
+  slotFields_[116] = &agreementCurrency_;
+  slotFields_[117] = &deliveryType_;
+  slotFields_[118] = &endAccruedInterestAmt_;
+  slotFields_[119] = &startCash_;
+  slotFields_[120] = &endCash_;
+  slotFields_[121] = &signatureLength_;
+  slotFields_[122] = &strikeCurrency_;
+  slotFields_[123] = &possResend_;
+  slotGroups_[0] = &execsGroup1_;
+  slotGroups_[1] = &dlvyInstGroup_;
+  slotGroups_[2] = &stipulationsGroup_;
+  slotGroups_[3] = &underlyingsGroup_;
+  slotGroups_[4] = &legsGroup1_;
+  slotGroups_[5] = &partyIDsGroup_;
+  slotGroups_[6] = &securityAltIDGroup_;
+  slotGroups_[7] = &tradesGroup_;
+  slotGroups_[8] = &hopsGroup_;
+  slotGroups_[9] = &trdRegTimestampsGroup_;
+  slotGroups_[10] = &eventsGroup_;
+  slotGroups_[11] = &collInquiryQualifierGroup_;
+  tagTable(CollateralInquirySlotOfTag(), 956, slotFields_, slotGroups_, 124);
 }
 
 AbstractField* CollateralInquiry::msgType() {
@@ -112435,9 +120770,54 @@ AbstractField* CollateralInquiry::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* NetworkCounterpartySystemStatusRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 23}, {9, 25}, {10, 1}, {34, 13}, {35, 15}, {43, 17}, {49, 18}, {50, 19}, {52, 20}, {56, 21}, {57, 22}, {89, 24}, {90, 26}, {91, 27}, {93, 28}, {97, 31}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {283, 32}, {284, 32}, {347, 14}, {369, 16}, {627, 33}, {628, 33}, {629, 33}, {630, 33}, {930, 32}, {931, 32}, {933, 29}, {935, 30}, {936, 32}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 NetworkCounterpartySystemStatusRequest::NetworkCounterpartySystemStatusRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &lastMsgSeqNumProcessed_;
+  slotFields_[17] = &possDupFlag_;
+  slotFields_[18] = &senderCompID_;
+  slotFields_[19] = &senderSubID_;
+  slotFields_[20] = &sendingTime_;
+  slotFields_[21] = &targetCompID_;
+  slotFields_[22] = &targetSubID_;
+  slotFields_[23] = &beginString_;
+  slotFields_[24] = &signature_;
+  slotFields_[25] = &bodyLength_;
+  slotFields_[26] = &secureDataLen_;
+  slotFields_[27] = &secureData_;
+  slotFields_[28] = &signatureLength_;
+  slotFields_[29] = &networkRequestID_;
+  slotFields_[30] = &networkRequestType_;
+  slotFields_[31] = &possResend_;
+  slotGroups_[0] = &compIDsGroup_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(NetworkCounterpartySystemStatusRequestSlotOfTag(), 956, slotFields_, slotGroups_, 32);
 }
 
 AbstractField* NetworkCounterpartySystemStatusRequest::msgType() {
@@ -112771,9 +121151,56 @@ AbstractField* NetworkCounterpartySystemStatusRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* NetworkCounterpartySystemStatusResponseSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 23}, {9, 25}, {10, 1}, {34, 13}, {35, 15}, {43, 17}, {49, 18}, {50, 19}, {52, 20}, {56, 21}, {57, 22}, {89, 24}, {90, 26}, {91, 27}, {93, 28}, {97, 33}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {283, 34}, {284, 34}, {347, 14}, {369, 16}, {627, 35}, {628, 35}, {629, 35}, {630, 35}, {928, 34}, {929, 34}, {930, 34}, {931, 34}, {932, 29}, {933, 30}, {934, 31}, {936, 34}, {937, 32}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 NetworkCounterpartySystemStatusResponse::NetworkCounterpartySystemStatusResponse() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &lastMsgSeqNumProcessed_;
+  slotFields_[17] = &possDupFlag_;
+  slotFields_[18] = &senderCompID_;
+  slotFields_[19] = &senderSubID_;
+  slotFields_[20] = &sendingTime_;
+  slotFields_[21] = &targetCompID_;
+  slotFields_[22] = &targetSubID_;
+  slotFields_[23] = &beginString_;
+  slotFields_[24] = &signature_;
+  slotFields_[25] = &bodyLength_;
+  slotFields_[26] = &secureDataLen_;
+  slotFields_[27] = &secureData_;
+  slotFields_[28] = &signatureLength_;
+  slotFields_[29] = &networkResponseID_;
+  slotFields_[30] = &networkRequestID_;
+  slotFields_[31] = &lastNetworkResponseID_;
+  slotFields_[32] = &networkStatusResponseType_;
+  slotFields_[33] = &possResend_;
+  slotGroups_[0] = &compIDsGroup1_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(NetworkCounterpartySystemStatusResponseSlotOfTag(), 956, slotFields_, slotGroups_, 34);
 }
 
 AbstractField* NetworkCounterpartySystemStatusResponse::msgType() {
@@ -113138,9 +121565,58 @@ AbstractField* NetworkCounterpartySystemStatusResponse::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* UserRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 25}, {9, 27}, {10, 1}, {34, 13}, {35, 15}, {43, 17}, {49, 18}, {50, 19}, {52, 20}, {56, 23}, {57, 24}, {89, 26}, {90, 28}, {91, 29}, {93, 33}, {95, 34}, {96, 35}, {97, 36}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {347, 14}, {369, 16}, {553, 21}, {554, 22}, {627, 37}, {628, 37}, {629, 37}, {630, 37}, {923, 30}, {924, 31}, {925, 32}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 UserRequest::UserRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &lastMsgSeqNumProcessed_;
+  slotFields_[17] = &possDupFlag_;
+  slotFields_[18] = &senderCompID_;
+  slotFields_[19] = &senderSubID_;
+  slotFields_[20] = &sendingTime_;
+  slotFields_[21] = &username_;
+  slotFields_[22] = &password_;
+  slotFields_[23] = &targetCompID_;
+  slotFields_[24] = &targetSubID_;
+  slotFields_[25] = &beginString_;
+  slotFields_[26] = &signature_;
+  slotFields_[27] = &bodyLength_;
+  slotFields_[28] = &secureDataLen_;
+  slotFields_[29] = &secureData_;
+  slotFields_[30] = &userRequestID_;
+  slotFields_[31] = &userRequestType_;
+  slotFields_[32] = &newPassword_;
+  slotFields_[33] = &signatureLength_;
+  slotFields_[34] = &rawDataLength_;
+  slotFields_[35] = &rawData_;
+  slotFields_[36] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(UserRequestSlotOfTag(), 956, slotFields_, slotGroups_, 37);
 }
 
 AbstractField* UserRequest::msgType() {
@@ -113480,9 +121956,55 @@ AbstractField* UserRequest::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* UserResponseSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 24}, {9, 26}, {10, 1}, {34, 13}, {35, 15}, {43, 17}, {49, 18}, {50, 19}, {52, 20}, {56, 22}, {57, 23}, {89, 25}, {90, 27}, {91, 28}, {93, 32}, {97, 33}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {212, 11}, {213, 12}, {347, 14}, {369, 16}, {553, 21}, {627, 34}, {628, 34}, {629, 34}, {630, 34}, {923, 29}, {926, 30}, {927, 31}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 UserResponse::UserResponse() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &lastMsgSeqNumProcessed_;
+  slotFields_[17] = &possDupFlag_;
+  slotFields_[18] = &senderCompID_;
+  slotFields_[19] = &senderSubID_;
+  slotFields_[20] = &sendingTime_;
+  slotFields_[21] = &username_;
+  slotFields_[22] = &targetCompID_;
+  slotFields_[23] = &targetSubID_;
+  slotFields_[24] = &beginString_;
+  slotFields_[25] = &signature_;
+  slotFields_[26] = &bodyLength_;
+  slotFields_[27] = &secureDataLen_;
+  slotFields_[28] = &secureData_;
+  slotFields_[29] = &userRequestID_;
+  slotFields_[30] = &userStatus_;
+  slotFields_[31] = &userStatusText_;
+  slotFields_[32] = &signatureLength_;
+  slotFields_[33] = &possResend_;
+  slotGroups_[0] = &hopsGroup_;
+  tagTable(UserResponseSlotOfTag(), 956, slotFields_, slotGroups_, 34);
 }
 
 AbstractField* UserResponse::msgType() {
@@ -113796,9 +122318,133 @@ AbstractField* UserResponse::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* CollateralInquiryAckSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{1, 1}, {8, 79}, {9, 87}, {10, 2}, {11, 5}, {15, 15}, {17, 104}, {22, 25}, {34, 37}, {35, 41}, {37, 47}, {43, 48}, {48, 54}, {49, 55}, {50, 56}, {52, 57}, {53, 59}, {55, 62}, {56, 63}, {57, 64}, {58, 65}, {64, 68}, {65, 69}, {89, 85}, {90, 88}, {91, 90}, {93, 99}, {97, 103}, {106, 3}, {107, 4}, {115, 6}, {116, 7}, {122, 8}, {124, 104}, {128, 9}, {129, 10}, {142, 11}, {143, 12}, {144, 13}, {145, 14}, {167, 16}, {198, 17}, {200, 18}, {201, 19}, {202, 20}, {206, 21}, {207, 22}, {212, 23}, {213, 24}, {223, 26}, {224, 27}, {225, 28}, {226, 29}, {227, 30}, {228, 31}, {231, 32}, {239, 33}, {240, 34}, {241, 105}, {242, 105}, {243, 105}, {244, 105}, {245, 105}, {246, 105}, {247, 105}, {248, 106}, {249, 106}, {250, 106}, {251, 106}, {252, 106}, {253, 106}, {254, 106}, {255, 35}, {256, 105}, {257, 106}, {305, 105}, {306, 105}, {307, 105}, {308, 105}, {309, 105}, {310, 105}, {311, 105}, {312, 105}, {313, 105}, {315, 105}, {316, 105}, {317, 105}, {318, 105}, {336, 36}, {347, 38}, {348, 39}, {349, 40}, {350, 42}, {351, 43}, {354, 44}, {355, 45}, {362, 105}, {363, 105}, {364, 105}, {365, 105}, {369, 46}, {435, 105}, {436, 105}, {447, 107}, {448, 107}, {452, 107}, {453, 107}, {454, 108}, {455, 108}, {456, 108}, {457, 105}, {458, 105}, {459, 105}, {460, 49}, {461, 50}, {462, 105}, {463, 105}, {470, 51}, {471, 52}, {472, 53}, {523, 107}, {526, 58}, {541, 60}, {542, 105}, {543, 61}, {555, 106}, {556, 106}, {571, 109}, {581, 66}, {592, 105}, {593, 105}, {594, 105}, {595, 105}, {596, 106}, {597, 106}, {598, 106}, {599, 106}, {600, 106}, {601, 106}, {602, 106}, {603, 106}, {604, 106}, {605, 106}, {606, 106}, {607, 106}, {608, 106}, {609, 106}, {610, 106}, {611, 106}, {612, 106}, {613, 106}, {614, 106}, {615, 106}, {616, 106}, {617, 106}, {618, 106}, {619, 106}, {620, 106}, {621, 106}, {622, 106}, {623, 106}, {624, 106}, {625, 67}, {627, 110}, {628, 110}, {629, 110}, {630, 110}, {667, 70}, {691, 71}, {711, 105}, {715, 72}, {716, 73}, {717, 74}, {725, 75}, {726, 76}, {739, 106}, {740, 106}, {762, 77}, {763, 105}, {764, 106}, {788, 78}, {802, 107}, {803, 107}, {810, 105}, {818, 109}, {854, 80}, {864, 111}, {865, 111}, {866, 111}, {867, 111}, {868, 111}, {873, 81}, {874, 82}, {875, 83}, {876, 84}, {877, 105}, {878, 105}, {879, 105}, {882, 105}, {883, 105}, {884, 105}, {885, 105}, {886, 105}, {887, 105}, {888, 105}, {889, 105}, {896, 112}, {897, 109}, {898, 86}, {909, 89}, {911, 91}, {913, 92}, {914, 93}, {915, 94}, {916, 95}, {917, 96}, {918, 97}, {919, 98}, {938, 112}, {941, 105}, {942, 106}, {945, 100}, {946, 101}, {947, 102}, {955, 106}, {956, 106}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 CollateralInquiryAck::CollateralInquiryAck() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &account_;
+  slotFields_[2] = &checkSum_;
+  slotFields_[3] = &issuer_;
+  slotFields_[4] = &securityDesc_;
+  slotFields_[5] = &clOrdID_;
+  slotFields_[6] = &onBehalfOfCompID_;
+  slotFields_[7] = &onBehalfOfSubID_;
+  slotFields_[8] = &origSendingTime_;
+  slotFields_[9] = &deliverToCompID_;
+  slotFields_[10] = &deliverToSubID_;
+  slotFields_[11] = &senderLocationID_;
+  slotFields_[12] = &targetLocationID_;
+  slotFields_[13] = &onBehalfOfLocationID_;
+  slotFields_[14] = &deliverToLocationID_;
+  slotFields_[15] = &currency_;
+  slotFields_[16] = &securityType_;
+  slotFields_[17] = &secondaryOrderID_;
+  slotFields_[18] = &maturityMonthYear_;
+  slotFields_[19] = &putOrCall_;
+  slotFields_[20] = &strikePrice_;
+  slotFields_[21] = &optAttribute_;
+  slotFields_[22] = &securityExchange_;
+  slotFields_[23] = &xmlDataLen_;
+  slotFields_[24] = &xmlData_;
+  slotFields_[25] = &securityIDSource_;
+  slotFields_[26] = &couponRate_;
+  slotFields_[27] = &couponPaymentDate_;
+  slotFields_[28] = &issueDate_;
+  slotFields_[29] = &repurchaseTerm_;
+  slotFields_[30] = &repurchaseRate_;
+  slotFields_[31] = &factor_;
+  slotFields_[32] = &contractMultiplier_;
+  slotFields_[33] = &repoCollateralSecurityType_;
+  slotFields_[34] = &redemptionDate_;
+  slotFields_[35] = &creditRating_;
+  slotFields_[36] = &tradingSessionID_;
+  slotFields_[37] = &msgSeqNum_;
+  slotFields_[38] = &messageEncoding_;
+  slotFields_[39] = &encodedIssuerLen_;
+  slotFields_[40] = &encodedIssuer_;
+  slotFields_[41] = &msgType_;
+  slotFields_[42] = &encodedSecurityDescLen_;
+  slotFields_[43] = &encodedSecurityDesc_;
+  slotFields_[44] = &encodedTextLen_;
+  slotFields_[45] = &encodedText_;
+  slotFields_[46] = &lastMsgSeqNumProcessed_;
+  slotFields_[47] = &orderID_;
+  slotFields_[48] = &possDupFlag_;
+  slotFields_[49] = &product_;
+  slotFields_[50] = &cFICode_;
+  slotFields_[51] = &countryOfIssue_;
+  slotFields_[52] = &stateOrProvinceOfIssue_;
+  slotFields_[53] = &localeOfIssue_;
+  slotFields_[54] = &securityID_;
+  slotFields_[55] = &senderCompID_;
+  slotFields_[56] = &senderSubID_;
+  slotFields_[57] = &sendingTime_;
+  slotFields_[58] = &secondaryClOrdID_;
+  slotFields_[59] = &quantity_;
+  slotFields_[60] = &maturityDate_;
+  slotFields_[61] = &instrRegistry_;
+  slotFields_[62] = &symbol_;
+  slotFields_[63] = &targetCompID_;
+  slotFields_[64] = &targetSubID_;
+  slotFields_[65] = &text_;
+  slotFields_[66] = &accountType_;
+  slotFields_[67] = &tradingSessionSubID_;
+  slotFields_[68] = &settlDate_;
+  slotFields_[69] = &symbolSfx_;
+  slotFields_[70] = &contractSettlMonth_;
+  slotFields_[71] = &pool_;
+  slotFields_[72] = &clearingBusinessDate_;
+  slotFields_[73] = &settlSessID_;
+  slotFields_[74] = &settlSessSubID_;
+  slotFields_[75] = &responseTransportType_;
+  slotFields_[76] = &responseDestination_;
+  slotFields_[77] = &securitySubType_;
+  slotFields_[78] = &terminationType_;
+  slotFields_[79] = &beginString_;
+  slotFields_[80] = &qtyType_;
+  slotFields_[81] = &datedDate_;
+  slotFields_[82] = &interestAccrualDate_;
+  slotFields_[83] = &cPProgram_;
+  slotFields_[84] = &cPRegType_;
+  slotFields_[85] = &signature_;
+  slotFields_[86] = &marginRatio_;
+  slotFields_[87] = &bodyLength_;
+  slotFields_[88] = &secureDataLen_;
+  slotFields_[89] = &collInquiryID_;
+  slotFields_[90] = &secureData_;
+  slotFields_[91] = &totNumReports_;
+  slotFields_[92] = &agreementDesc_;
+  slotFields_[93] = &agreementID_;
+  slotFields_[94] = &agreementDate_;
+  slotFields_[95] = &startDate_;
+  slotFields_[96] = &endDate_;
+  slotFields_[97] = &agreementCurrency_;
+  slotFields_[98] = &deliveryType_;
+  slotFields_[99] = &signatureLength_;
+  slotFields_[100] = &collInquiryStatus_;
+  slotFields_[101] = &collInquiryResult_;
+  slotFields_[102] = &strikeCurrency_;
+  slotFields_[103] = &possResend_;
+  slotGroups_[0] = &execsGroup1_;
+  slotGroups_[1] = &underlyingsGroup_;
+  slotGroups_[2] = &legsGroup1_;
+  slotGroups_[3] = &partyIDsGroup_;
+  slotGroups_[4] = &securityAltIDGroup_;
+  slotGroups_[5] = &tradesGroup_;
+  slotGroups_[6] = &hopsGroup_;
+  slotGroups_[7] = &eventsGroup_;
+  slotGroups_[8] = &collInquiryQualifierGroup_;
+  tagTable(CollateralInquiryAckSlotOfTag(), 956, slotFields_, slotGroups_, 104);
 }
 
 AbstractField* CollateralInquiryAck::msgType() {
@@ -115471,9 +124117,64 @@ AbstractField* CollateralInquiryAck::mapField(int fldBeg) {
   return unknownField(beg);
 }
 
+static const uint16_t* ConfirmationRequestSlotOfTag() {
+  static const std::array<uint16_t, 957> table = [] {
+    std::array<uint16_t, 957> t{};
+    static const uint16_t pairs[][2] = {{8, 34}, {9, 37}, {10, 1}, {11, 42}, {34, 13}, {35, 15}, {37, 42}, {38, 42}, {43, 19}, {49, 21}, {50, 22}, {52, 23}, {56, 24}, {57, 25}, {58, 26}, {60, 27}, {66, 42}, {70, 29}, {73, 42}, {79, 31}, {89, 36}, {90, 38}, {91, 39}, {93, 40}, {97, 41}, {115, 2}, {116, 3}, {122, 4}, {128, 5}, {129, 6}, {142, 7}, {143, 8}, {144, 9}, {145, 10}, {198, 42}, {212, 11}, {213, 12}, {347, 14}, {354, 16}, {355, 17}, {369, 18}, {467, 20}, {526, 42}, {627, 43}, {628, 43}, {629, 43}, {630, 43}, {661, 28}, {756, 42}, {757, 42}, {758, 42}, {759, 42}, {760, 42}, {773, 30}, {793, 32}, {798, 33}, {799, 42}, {800, 42}, {806, 42}, {807, 42}, {859, 35}};
+    for (const auto& p : pairs) t[p[0]] = p[1];
+    return t;
+  }();
+  return table.data();
+}
+
 ConfirmationRequest::ConfirmationRequest() {
   beginString_.set("FIX.4.4");
   bodyLength_.set(999);
+  slotFields_[0] = nullptr;
+  slotFields_[1] = &checkSum_;
+  slotFields_[2] = &onBehalfOfCompID_;
+  slotFields_[3] = &onBehalfOfSubID_;
+  slotFields_[4] = &origSendingTime_;
+  slotFields_[5] = &deliverToCompID_;
+  slotFields_[6] = &deliverToSubID_;
+  slotFields_[7] = &senderLocationID_;
+  slotFields_[8] = &targetLocationID_;
+  slotFields_[9] = &onBehalfOfLocationID_;
+  slotFields_[10] = &deliverToLocationID_;
+  slotFields_[11] = &xmlDataLen_;
+  slotFields_[12] = &xmlData_;
+  slotFields_[13] = &msgSeqNum_;
+  slotFields_[14] = &messageEncoding_;
+  slotFields_[15] = &msgType_;
+  slotFields_[16] = &encodedTextLen_;
+  slotFields_[17] = &encodedText_;
+  slotFields_[18] = &lastMsgSeqNumProcessed_;
+  slotFields_[19] = &possDupFlag_;
+  slotFields_[20] = &individualAllocID_;
+  slotFields_[21] = &senderCompID_;
+  slotFields_[22] = &senderSubID_;
+  slotFields_[23] = &sendingTime_;
+  slotFields_[24] = &targetCompID_;
+  slotFields_[25] = &targetSubID_;
+  slotFields_[26] = &text_;
+  slotFields_[27] = &transactTime_;
+  slotFields_[28] = &allocAcctIDSource_;
+  slotFields_[29] = &allocID_;
+  slotFields_[30] = &confirmType_;
+  slotFields_[31] = &allocAccount_;
+  slotFields_[32] = &secondaryAllocID_;
+  slotFields_[33] = &allocAccountType_;
+  slotFields_[34] = &beginString_;
+  slotFields_[35] = &confirmReqID_;
+  slotFields_[36] = &signature_;
+  slotFields_[37] = &bodyLength_;
+  slotFields_[38] = &secureDataLen_;
+  slotFields_[39] = &secureData_;
+  slotFields_[40] = &signatureLength_;
+  slotFields_[41] = &possResend_;
+  slotGroups_[0] = &ordersGroup1_;
+  slotGroups_[1] = &hopsGroup_;
+  tagTable(ConfirmationRequestSlotOfTag(), 956, slotFields_, slotGroups_, 42);
 }
 
 AbstractField* ConfirmationRequest::msgType() {

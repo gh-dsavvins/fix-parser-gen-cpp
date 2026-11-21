@@ -10,6 +10,8 @@
 
 namespace fix {
 
+class AbstractGroup;
+
 /** Fields for tags the message type does not define; reused across parses. */
 class StringRefPool {
  public:
@@ -22,6 +24,7 @@ class StringRefPool {
   StringRef* at(int i) { return &pool_[i]; }
 
  private:
+  friend class AbstractMessage;
   std::array<StringRef, MAX_SIZE> pool_;
   int pointer_ = 0;
 };
@@ -49,6 +52,9 @@ class AbstractMessage {
   StringRef* unknownField(int ix);
   std::string toDebugFixString();
 
+  /** true: map with the branchless tag table (mapAllTable); false: with the generated tag switch (mapField). */
+  static inline bool useTagTable = false;
+
  protected:
   friend class AbstractField;
   friend class StringRef;
@@ -62,6 +68,15 @@ class AbstractMessage {
   void writeUnmapped(LongRef& bodyLenField, int bodyLen, StringRef& beginString, StringRef& checksum);
   void calcAndWriteBodyLengthMapped(LongRef& bodyLength, StringRef& beginString);
   void calcAndWriteCheckSum(StringRef& checkSum);
+  /** Set by the generated constructor: tag -> slot (0 unknown, 1..groupBase-1 fields, groupBase.. groups). */
+  void tagTable(const uint16_t* slotOfTag, int maxTag, AbstractField** fields, AbstractGroup** groups,
+                int groupBase) {
+    slotOfTag_ = slotOfTag;
+    maxTag_ = maxTag;
+    slotFields_ = fields;
+    slotGroups_ = groups;
+    groupBase_ = groupBase;
+  }
 
   int64_t version_ = 0;
   static constexpr int SIMD_PAD = 16;  // the last 16-byte load may read past valLim
@@ -75,9 +90,16 @@ class AbstractMessage {
   bool dirty_ = false;
   int valBeg_ = 0;
   int valLim_ = 0;
+  const uint16_t* slotOfTag_ = nullptr;
+  int maxTag_ = 0;
+  AbstractField** slotFields_ = nullptr;
+  AbstractGroup** slotGroups_ = nullptr;
+  int groupBase_ = 0;
+  StringRef listHead_;  // sentinel: the table loop appends without a first-field branch
 
  private:
   AbstractMessage* mapAll();
+  AbstractMessage* mapAllTable();
   int indexSoh();
 };
 

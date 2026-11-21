@@ -10,13 +10,13 @@
 
 static fix::AbstractMessage* volatile msg;
 
-int main() {
+int main(int argc, char** argv) {
   const int COUNT = 10'000'000;
 
   fix::gen::DefaultFixDictionary dict;
   auto messages = std::make_unique<test::Messages>();
 
-  std::vector<std::string> lines = test::loadMessages();
+  std::vector<std::string> lines = argc > 1 ? test::loadMessages(argv[1]) : test::loadMessages();
   std::vector<const std::string*> bytes(COUNT);
   long long totalBytes = 0;
   for (int i = 0; i < COUNT; i++) {

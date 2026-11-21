@@ -4,8 +4,11 @@
 
 #if defined(__ARM_NEON)
 #include <arm_neon.h>
+#elif defined(__SSE2__)
+#include <emmintrin.h>
 #endif
 
+#include "fix/group.hpp"
 #include "fix/utils.hpp"
 
 namespace fix {
@@ -21,7 +24,7 @@ StringRefPool::StringRefPool(AbstractMessage* message) {
 
 // ---------------------------------------------------------------- AbstractMessage
 
-AbstractMessage::AbstractMessage() : stringRefPool_(this) {
+AbstractMessage::AbstractMessage() : stringRefPool_(this), listHead_(this, &UNKNOWN_TAG) {
   reset();
 }
 
@@ -149,6 +152,24 @@ int AbstractMessage::indexSoh() {
   }
   return n;
 }
+#elif defined(__SSE2__)
+int AbstractMessage::indexSoh() {
+  int n = 0;
+  const __m128i soh = _mm_set1_epi8(FLD_CHAR);
+  for (int i = valBeg_; i < valLim_; i += 16) {
+    __m128i eq = _mm_cmpeq_epi8(_mm_loadu_si128(reinterpret_cast<const __m128i*>(bytes_ + i)), soh);
+    unsigned mask = static_cast<unsigned>(_mm_movemask_epi8(eq));  // 1 bit per byte
+    int rem = valLim_ - i;
+    if (rem < 16) {
+      mask &= (1u << rem) - 1;
+    }
+    while (mask) {
+      soh_[n++] = static_cast<uint16_t>(i + __builtin_ctz(mask));
+      mask &= mask - 1;
+    }
+  }
+  return n;
+}
 #else
 int AbstractMessage::indexSoh() {
   int n = 0;
@@ -160,6 +181,9 @@ int AbstractMessage::indexSoh() {
 #endif
 
 AbstractMessage* AbstractMessage::mapAll() {
+  if (useTagTable && slotOfTag_ != nullptr) {
+    return mapAllTable();
+  }
   indexSoh();
   sohIx_ = 0;
   int ix = valBeg_;
@@ -173,6 +197,64 @@ AbstractMessage* AbstractMessage::mapAll() {
     }
     ix = field->valLim_ + 1;
     sohIx_++;
+  }
+  dirty_ = false;
+  return this;
+}
+
+// Branchless per field, except for group fields and tags without '=' in the first 8 bytes (both rare):
+// SWAR finds '=' and converts the tag digits, one table load gives the slot, a select picks the field
+// (known slot, or the next unknown-pool entry), plain stores map it and append it after a sentinel.
+AbstractMessage* AbstractMessage::mapAllTable() {
+  const int n = indexSoh();
+  int& pool = stringRefPool_.pointer_;
+  AbstractField* tail = &listHead_;
+  int fldBeg = valBeg_;
+  for (int k = 0; k < n; k++) {
+    sohIx_ = k;
+    const int valLim = soh_[k];
+    uint64_t w;
+    std::memcpy(&w, bytes_ + fldBeg, 8);
+    const uint64_t x = w ^ 0x3D3D3D3D3D3D3D3DULL;  // '=' bytes become 0
+    const uint64_t z = (x - 0x0101010101010101ULL) & ~x & 0x8080808080808080ULL;
+    AbstractField* f;
+    if (__builtin_expect(z == 0, 0)) {
+      f = unknownField(fldBeg);  // tag longer than 7 characters
+    } else {
+      const int len = __builtin_ctzll(z) >> 3;
+      // digits to the top bytes, leading zeros below; borrows from bytes after '=' are shifted out
+      uint64_t d = ((w - 0x3030303030303030ULL) << ((8 - len) * 8 - 1)) << 1;
+      d = (d * 10 + (d >> 8)) & 0x00FF00FF00FF00FFULL;
+      d = (d * 100 + (d >> 16)) & 0x0000FFFF0000FFFFULL;
+      d = (d * 10000 + (d >> 32)) & 0xFFFFFFFFULL;
+      const int tag = d <= static_cast<uint64_t>(maxTag_) ? static_cast<int>(d) : 0;
+      const unsigned slot = slotOfTag_[tag];
+      if (__builtin_expect(slot >= static_cast<unsigned>(groupBase_), 0)) {
+        f = slotGroups_[slot - groupBase_]->map(tag, fldBeg);
+      } else {
+        AbstractField* known = slotFields_[slot];
+        AbstractField* unknown = stringRefPool_.at(pool);
+        f = slot != 0 ? known : unknown;
+        pool += slot == 0;
+        f->fldBeg_ = fldBeg;
+        f->valBeg_ = fldBeg + len + 1;
+        f->valLim_ = valLim;
+        f->version_ = version_;
+        f->hash_ = 0;
+        f->unset_ = false;
+        f->parsed_ = false;
+      }
+    }
+    tail->next_ = f;
+    f->prev_ = tail;
+    tail = f;
+    fldBeg = valLim + 1;
+  }
+  tail->next_ = nullptr;
+  if (n > 0) {
+    head_ = listHead_.next_;
+    head_->prev_ = nullptr;
+    tail_ = tail;
   }
   dirty_ = false;
   return this;

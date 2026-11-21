@@ -560,10 +560,22 @@ class Generator:
         trailer = self.d.trailer()
         h = ["#pragma once\n\n#include \"fix/message.hpp\"\n#include \"fix/gen/fields.hpp\"\n"
              "#include \"fix/gen/groups.hpp\"\n#include \"fix/gen/tags.hpp\"\n\nnamespace fix::gen::message {\n\n"]
-        cpp = ["#include \"fix/gen/messages.hpp\"\n\nnamespace fix::gen::message {\n\n"]
+        cpp = ["#include \"fix/gen/messages.hpp\"\n\n#include <array>\n\nnamespace fix::gen::message {\n\n"]
+        max_tag = max(f.tag for f in self.d.fields().values())
         for m in messages:
             members = header.elements + m.elements + trailer.elements
             cn = m.class_name
+            for e in m.elements:
+                if isinstance(e, FieldCfg):
+                    e.owner = None
+                else:
+                    e.set_owner(None)
+            all_fields = []
+            flat_map(m.elements, all_fields)
+            flat_map(header.elements, all_fields)
+            flat_map(trailer.elements, all_fields)
+            all_fields.sort(key=lambda o: str(o.tag))
+            slot_fields, slot_groups, tag_slot = self.tag_slots(all_fields)
             h.append(f"class {cn} : public AbstractMessage {{\n public:\n{T[1]}{cn}();\n\n")
             for c in members:
                 if c.var_name not in MESSAGE_METHODS:
@@ -573,10 +585,25 @@ class Generator:
                      f"{T[1]}int writeMapped() override;\n\n private:\n")
             for c in members:
                 h.append(f"{T[1]}{self.member_type(c, 'group::')} {c.var_name}_{{this}};\n")
+            h.append(f"{T[1]}AbstractField* slotFields_[{len(slot_fields) + 1}];\n")
+            h.append(f"{T[1]}AbstractGroup* slotGroups_[{max(1, len(slot_groups))}];\n")
             h.append("};\n\n")
 
+            pairs = ", ".join(f"{{{t}, {sl}}}" for t, sl in sorted(tag_slot.items()))
+            cpp.append(f"static const uint16_t* {cn}SlotOfTag() {{\n"
+                       f"{T[1]}static const std::array<uint16_t, {max_tag + 1}> table = [] {{\n"
+                       f"{T[2]}std::array<uint16_t, {max_tag + 1}> t{{}};\n"
+                       f"{T[2]}static const uint16_t pairs[][2] = {{{pairs}}};\n"
+                       f"{T[2]}for (const auto& p : pairs) t[p[0]] = p[1];\n"
+                       f"{T[2]}return t;\n{T[1]}}}();\n{T[1]}return table.data();\n}}\n\n")
             cpp.append(f"{cn}::{cn}() {{\n{T[1]}beginString_.set(\"{self.version}\");\n"
-                       f"{T[1]}bodyLength_.set(999);\n}}\n\n")
+                       f"{T[1]}bodyLength_.set(999);\n{T[1]}slotFields_[0] = nullptr;\n")
+            for i, v in enumerate(slot_fields):
+                cpp.append(f"{T[1]}slotFields_[{i + 1}] = &{v}_;\n")
+            for i, v in enumerate(slot_groups):
+                cpp.append(f"{T[1]}slotGroups_[{i}] = &{v}_;\n")
+            cpp.append(f"{T[1]}tagTable({cn}SlotOfTag(), {max_tag}, slotFields_, slotGroups_, "
+                       f"{len(slot_fields) + 1});\n}}\n\n")
             cpp.append(f"AbstractField* {cn}::msgType() {{\n{T[1]}return &beginString_;\n}}\n\n")
             cpp.append(f"void {cn}::writeUnmapped() {{\n{T[1]}valBeg_ = 24;\n{T[1]}valLim_ = 24;\n"
                        f"{T[1]}int bodyBeg = 24;\n")
@@ -590,21 +617,37 @@ class Generator:
                        f"{T[1]}calcAndWriteBodyLengthMapped(bodyLength_, beginString_);\n"
                        f"{T[1]}calcAndWriteCheckSum(checkSum_);\n{T[1]}return fldLim;\n}}\n\n")
 
-            for e in m.elements:
-                if isinstance(e, FieldCfg):
-                    e.owner = None
-                else:
-                    e.set_owner(None)
-            all_fields = []
-            flat_map(m.elements, all_fields)
-            flat_map(header.elements, all_fields)
-            flat_map(trailer.elements, all_fields)
-            all_fields.sort(key=lambda o: str(o.tag))
             self.gen_fix_tag_switch(cn, all_fields, cpp)
         h.append("}  // namespace fix::gen::message\n")
         cpp.append("}  // namespace fix::gen::message\n")
         self.write_file("messages.hpp", "".join(h))
         self.write_file("messages.cpp", "".join(cpp))
+
+    @staticmethod
+    def tag_slots(tags):
+        """Tag -> slot for the branchless mapper: 1..F index plain fields, F+1.. index groups (the owner group,
+        as in field_return). First in sorted order wins, as in the switch."""
+        slot_fields, slot_groups, owner = [], [], {}
+        for f in tags:
+            if f.tag in owner:
+                continue
+            owner[f.tag] = f.owner.var_name if f.owner is not None else None
+            if f.owner is None:
+                slot_fields.append(f.var_name)
+            elif f.owner.var_name not in slot_groups:
+                slot_groups.append(f.owner.var_name)
+        base = len(slot_fields) + 1
+        tag_slot = {}
+        fi = 0
+        for f in tags:
+            if f.tag in tag_slot:
+                continue
+            if owner[f.tag] is None:
+                fi += 1
+                tag_slot[f.tag] = fi
+            else:
+                tag_slot[f.tag] = base + slot_groups.index(owner[f.tag])
+        return slot_fields, slot_groups, tag_slot
 
     def gen_fix_tag_switch(self, class_name, tags, b):
         b.append(f"AbstractField* {class_name}::mapField(int fldBeg) {{\n")

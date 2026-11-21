@@ -80,6 +80,8 @@ class Heartbeat : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[31];
+  AbstractGroup* slotGroups_[1];
 };
 
 class TestRequest : public AbstractMessage {
@@ -155,6 +157,8 @@ class TestRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[31];
+  AbstractGroup* slotGroups_[1];
 };
 
 class ResendRequest : public AbstractMessage {
@@ -232,6 +236,8 @@ class ResendRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[32];
+  AbstractGroup* slotGroups_[1];
 };
 
 class Reject : public AbstractMessage {
@@ -319,6 +325,8 @@ class Reject : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[37];
+  AbstractGroup* slotGroups_[1];
 };
 
 class SequenceReset : public AbstractMessage {
@@ -396,6 +404,8 @@ class SequenceReset : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[32];
+  AbstractGroup* slotGroups_[1];
 };
 
 class Logout : public AbstractMessage {
@@ -475,6 +485,8 @@ class Logout : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[33];
+  AbstractGroup* slotGroups_[1];
 };
 
 class IOI : public AbstractMessage {
@@ -734,6 +746,8 @@ class IOI : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[116];
+  AbstractGroup* slotGroups_[8];
 };
 
 class Advertisement : public AbstractMessage {
@@ -931,6 +945,8 @@ class Advertisement : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[88];
+  AbstractGroup* slotGroups_[5];
 };
 
 class ExecutionReport : public AbstractMessage {
@@ -1440,6 +1456,8 @@ class ExecutionReport : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[239];
+  AbstractGroup* slotGroups_[10];
 };
 
 class OrderCancelReject : public AbstractMessage {
@@ -1555,6 +1573,8 @@ class OrderCancelReject : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[51];
+  AbstractGroup* slotGroups_[1];
 };
 
 class Logon : public AbstractMessage {
@@ -1650,6 +1670,8 @@ class Logon : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[40];
+  AbstractGroup* slotGroups_[2];
 };
 
 class News : public AbstractMessage {
@@ -1749,6 +1771,8 @@ class News : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[38];
+  AbstractGroup* slotGroups_[6];
 };
 
 class Email : public AbstractMessage {
@@ -1852,6 +1876,8 @@ class Email : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[40];
+  AbstractGroup* slotGroups_[6];
 };
 
 class NewOrderSingle : public AbstractMessage {
@@ -2237,6 +2263,8 @@ class NewOrderSingle : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[179];
+  AbstractGroup* slotGroups_[8];
 };
 
 class NewOrderList : public AbstractMessage {
@@ -2348,6 +2376,8 @@ class NewOrderList : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[48];
+  AbstractGroup* slotGroups_[2];
 };
 
 class OrderCancelRequest : public AbstractMessage {
@@ -2571,6 +2601,8 @@ class OrderCancelRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[101];
+  AbstractGroup* slotGroups_[5];
 };
 
 class OrderCancelReplaceRequest : public AbstractMessage {
@@ -2954,6 +2986,8 @@ class OrderCancelReplaceRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[179];
+  AbstractGroup* slotGroups_[7];
 };
 
 class OrderStatusRequest : public AbstractMessage {
@@ -3151,6 +3185,8 @@ class OrderStatusRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[88];
+  AbstractGroup* slotGroups_[5];
 };
 
 class AllocationInstruction : public AbstractMessage {
@@ -3478,6 +3514,8 @@ class AllocationInstruction : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[147];
+  AbstractGroup* slotGroups_[11];
 };
 
 class ListCancelRequest : public AbstractMessage {
@@ -3565,6 +3603,8 @@ class ListCancelRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[37];
+  AbstractGroup* slotGroups_[1];
 };
 
 class ListExecute : public AbstractMessage {
@@ -3652,6 +3692,8 @@ class ListExecute : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[37];
+  AbstractGroup* slotGroups_[1];
 };
 
 class ListStatusRequest : public AbstractMessage {
@@ -3733,6 +3775,8 @@ class ListStatusRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[34];
+  AbstractGroup* slotGroups_[1];
 };
 
 class ListStatus : public AbstractMessage {
@@ -3830,6 +3874,8 @@ class ListStatus : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[41];
+  AbstractGroup* slotGroups_[2];
 };
 
 class AllocationInstructionAck : public AbstractMessage {
@@ -3935,6 +3981,8 @@ class AllocationInstructionAck : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[44];
+  AbstractGroup* slotGroups_[3];
 };
 
 class DontKnowTrade : public AbstractMessage {
@@ -4128,6 +4176,8 @@ class DontKnowTrade : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[86];
+  AbstractGroup* slotGroups_[5];
 };
 
 class QuoteRequest : public AbstractMessage {
@@ -4217,6 +4267,8 @@ class QuoteRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[37];
+  AbstractGroup* slotGroups_[2];
 };
 
 class Quote : public AbstractMessage {
@@ -4540,6 +4592,8 @@ class Quote : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[148];
+  AbstractGroup* slotGroups_[8];
 };
 
 class SettlementInstructions : public AbstractMessage {
@@ -4633,6 +4687,8 @@ class SettlementInstructions : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[39];
+  AbstractGroup* slotGroups_[2];
 };
 
 class MarketDataRequest : public AbstractMessage {
@@ -4732,6 +4788,8 @@ class MarketDataRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[40];
+  AbstractGroup* slotGroups_[4];
 };
 
 class MarketDataSnapshotFullRefresh : public AbstractMessage {
@@ -4909,6 +4967,8 @@ class MarketDataSnapshotFullRefresh : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[77];
+  AbstractGroup* slotGroups_[6];
 };
 
 class MarketDataIncrementalRefresh : public AbstractMessage {
@@ -4990,6 +5050,8 @@ class MarketDataIncrementalRefresh : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[33];
+  AbstractGroup* slotGroups_[2];
 };
 
 class MarketDataRequestReject : public AbstractMessage {
@@ -5075,6 +5137,8 @@ class MarketDataRequestReject : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[35];
+  AbstractGroup* slotGroups_[2];
 };
 
 class QuoteCancel : public AbstractMessage {
@@ -5170,6 +5234,8 @@ class QuoteCancel : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[39];
+  AbstractGroup* slotGroups_[3];
 };
 
 class QuoteStatusRequest : public AbstractMessage {
@@ -5369,6 +5435,8 @@ class QuoteStatusRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[88];
+  AbstractGroup* slotGroups_[6];
 };
 
 class MassQuoteAcknowledgement : public AbstractMessage {
@@ -5470,6 +5538,8 @@ class MassQuoteAcknowledgement : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[42];
+  AbstractGroup* slotGroups_[3];
 };
 
 class SecurityDefinitionRequest : public AbstractMessage {
@@ -5659,6 +5729,8 @@ class SecurityDefinitionRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[83];
+  AbstractGroup* slotGroups_[6];
 };
 
 class SecurityDefinition : public AbstractMessage {
@@ -5852,6 +5924,8 @@ class SecurityDefinition : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[85];
+  AbstractGroup* slotGroups_[6];
 };
 
 class SecurityStatusRequest : public AbstractMessage {
@@ -6031,6 +6105,8 @@ class SecurityStatusRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[78];
+  AbstractGroup* slotGroups_[6];
 };
 
 class SecurityStatus : public AbstractMessage {
@@ -6242,6 +6318,8 @@ class SecurityStatus : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[94];
+  AbstractGroup* slotGroups_[6];
 };
 
 class TradingSessionStatusRequest : public AbstractMessage {
@@ -6327,6 +6405,8 @@ class TradingSessionStatusRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[36];
+  AbstractGroup* slotGroups_[1];
 };
 
 class TradingSessionStatus : public AbstractMessage {
@@ -6434,6 +6514,8 @@ class TradingSessionStatus : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[47];
+  AbstractGroup* slotGroups_[1];
 };
 
 class MassQuote : public AbstractMessage {
@@ -6529,6 +6611,8 @@ class MassQuote : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[39];
+  AbstractGroup* slotGroups_[3];
 };
 
 class BusinessMessageReject : public AbstractMessage {
@@ -6616,6 +6700,8 @@ class BusinessMessageReject : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[37];
+  AbstractGroup* slotGroups_[1];
 };
 
 class BidRequest : public AbstractMessage {
@@ -6747,6 +6833,8 @@ class BidRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[57];
+  AbstractGroup* slotGroups_[3];
 };
 
 class BidResponse : public AbstractMessage {
@@ -6826,6 +6914,8 @@ class BidResponse : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[32];
+  AbstractGroup* slotGroups_[2];
 };
 
 class ListStrikePrice : public AbstractMessage {
@@ -6909,6 +6999,8 @@ class ListStrikePrice : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[33];
+  AbstractGroup* slotGroups_[3];
 };
 
 class XMLnonFIX : public AbstractMessage {
@@ -6982,6 +7074,8 @@ class XMLnonFIX : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[30];
+  AbstractGroup* slotGroups_[1];
 };
 
 class RegistrationInstructions : public AbstractMessage {
@@ -7079,6 +7173,8 @@ class RegistrationInstructions : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[39];
+  AbstractGroup* slotGroups_[4];
 };
 
 class RegistrationInstructionsResponse : public AbstractMessage {
@@ -7172,6 +7268,8 @@ class RegistrationInstructionsResponse : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[39];
+  AbstractGroup* slotGroups_[2];
 };
 
 class OrderMassCancelRequest : public AbstractMessage {
@@ -7445,6 +7543,8 @@ class OrderMassCancelRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[126];
+  AbstractGroup* slotGroups_[5];
 };
 
 class OrderMassCancelReport : public AbstractMessage {
@@ -7730,6 +7830,8 @@ class OrderMassCancelReport : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[131];
+  AbstractGroup* slotGroups_[6];
 };
 
 class NewOrderCross : public AbstractMessage {
@@ -8023,6 +8125,8 @@ class NewOrderCross : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[133];
+  AbstractGroup* slotGroups_[8];
 };
 
 class CrossOrderCancelReplaceRequest : public AbstractMessage {
@@ -8320,6 +8424,8 @@ class CrossOrderCancelReplaceRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[135];
+  AbstractGroup* slotGroups_[8];
 };
 
 class CrossOrderCancelRequest : public AbstractMessage {
@@ -8497,6 +8603,8 @@ class CrossOrderCancelRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[77];
+  AbstractGroup* slotGroups_[6];
 };
 
 class SecurityTypeRequest : public AbstractMessage {
@@ -8588,6 +8696,8 @@ class SecurityTypeRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[39];
+  AbstractGroup* slotGroups_[1];
 };
 
 class SecurityTypes : public AbstractMessage {
@@ -8685,6 +8795,8 @@ class SecurityTypes : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[41];
+  AbstractGroup* slotGroups_[2];
 };
 
 class SecurityListRequest : public AbstractMessage {
@@ -8890,6 +9002,8 @@ class SecurityListRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[91];
+  AbstractGroup* slotGroups_[6];
 };
 
 class SecurityList : public AbstractMessage {
@@ -8975,6 +9089,8 @@ class SecurityList : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[35];
+  AbstractGroup* slotGroups_[2];
 };
 
 class DerivativeSecurityListRequest : public AbstractMessage {
@@ -9162,6 +9278,8 @@ class DerivativeSecurityListRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[85];
+  AbstractGroup* slotGroups_[3];
 };
 
 class DerivativeSecurityList : public AbstractMessage {
@@ -9341,6 +9459,8 @@ class DerivativeSecurityList : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[80];
+  AbstractGroup* slotGroups_[4];
 };
 
 class NewOrderMultileg : public AbstractMessage {
@@ -9676,6 +9796,8 @@ class NewOrderMultileg : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[154];
+  AbstractGroup* slotGroups_[8];
 };
 
 class MultilegOrderCancelReplace : public AbstractMessage {
@@ -10017,6 +10139,8 @@ class MultilegOrderCancelReplace : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[157];
+  AbstractGroup* slotGroups_[8];
 };
 
 class TradeCaptureReportRequest : public AbstractMessage {
@@ -10266,6 +10390,8 @@ class TradeCaptureReportRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[111];
+  AbstractGroup* slotGroups_[8];
 };
 
 class TradeCaptureReport : public AbstractMessage {
@@ -10585,6 +10711,8 @@ class TradeCaptureReport : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[146];
+  AbstractGroup* slotGroups_[8];
 };
 
 class OrderMassStatusRequest : public AbstractMessage {
@@ -10854,6 +10982,8 @@ class OrderMassStatusRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[123];
+  AbstractGroup* slotGroups_[6];
 };
 
 class QuoteRequestReject : public AbstractMessage {
@@ -10941,6 +11071,8 @@ class QuoteRequestReject : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[36];
+  AbstractGroup* slotGroups_[2];
 };
 
 class RFQRequest : public AbstractMessage {
@@ -11020,6 +11152,8 @@ class RFQRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[32];
+  AbstractGroup* slotGroups_[2];
 };
 
 class QuoteStatusReport : public AbstractMessage {
@@ -11347,6 +11481,8 @@ class QuoteStatusReport : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[150];
+  AbstractGroup* slotGroups_[8];
 };
 
 class QuoteResponse : public AbstractMessage {
@@ -11674,6 +11810,8 @@ class QuoteResponse : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[150];
+  AbstractGroup* slotGroups_[8];
 };
 
 class Confirmation : public AbstractMessage {
@@ -12019,6 +12157,8 @@ class Confirmation : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[154];
+  AbstractGroup* slotGroups_[13];
 };
 
 class PositionMaintenanceRequest : public AbstractMessage {
@@ -12228,6 +12368,8 @@ class PositionMaintenanceRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[91];
+  AbstractGroup* slotGroups_[8];
 };
 
 class PositionMaintenanceReport : public AbstractMessage {
@@ -12439,6 +12581,8 @@ class PositionMaintenanceReport : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[91];
+  AbstractGroup* slotGroups_[9];
 };
 
 class RequestForPositions : public AbstractMessage {
@@ -12640,6 +12784,8 @@ class RequestForPositions : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[88];
+  AbstractGroup* slotGroups_[7];
 };
 
 class RequestForPositionsAck : public AbstractMessage {
@@ -12835,6 +12981,8 @@ class RequestForPositionsAck : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[86];
+  AbstractGroup* slotGroups_[6];
 };
 
 class PositionReport : public AbstractMessage {
@@ -13048,6 +13196,8 @@ class PositionReport : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[93];
+  AbstractGroup* slotGroups_[8];
 };
 
 class TradeCaptureReportRequestAck : public AbstractMessage {
@@ -13235,6 +13385,8 @@ class TradeCaptureReportRequestAck : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[83];
+  AbstractGroup* slotGroups_[5];
 };
 
 class TradeCaptureReportAck : public AbstractMessage {
@@ -13466,6 +13618,8 @@ class TradeCaptureReportAck : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[104];
+  AbstractGroup* slotGroups_[6];
 };
 
 class AllocationReport : public AbstractMessage {
@@ -13801,6 +13955,8 @@ class AllocationReport : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[151];
+  AbstractGroup* slotGroups_[11];
 };
 
 class AllocationReportAck : public AbstractMessage {
@@ -13908,6 +14064,8 @@ class AllocationReportAck : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[45];
+  AbstractGroup* slotGroups_[3];
 };
 
 class ConfirmationAck : public AbstractMessage {
@@ -13999,6 +14157,8 @@ class ConfirmationAck : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[39];
+  AbstractGroup* slotGroups_[1];
 };
 
 class SettlementInstructionRequest : public AbstractMessage {
@@ -14102,6 +14262,8 @@ class SettlementInstructionRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[44];
+  AbstractGroup* slotGroups_[2];
 };
 
 class AssignmentReport : public AbstractMessage {
@@ -14313,6 +14475,8 @@ class AssignmentReport : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[92];
+  AbstractGroup* slotGroups_[8];
 };
 
 class CollateralRequest : public AbstractMessage {
@@ -14586,6 +14750,8 @@ class CollateralRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[120];
+  AbstractGroup* slotGroups_[11];
 };
 
 class CollateralAssignment : public AbstractMessage {
@@ -14875,6 +15041,8 @@ class CollateralAssignment : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[127];
+  AbstractGroup* slotGroups_[12];
 };
 
 class CollateralResponse : public AbstractMessage {
@@ -15146,6 +15314,8 @@ class CollateralResponse : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[119];
+  AbstractGroup* slotGroups_[11];
 };
 
 class CollateralReport : public AbstractMessage {
@@ -15431,6 +15601,8 @@ class CollateralReport : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[125];
+  AbstractGroup* slotGroups_[12];
 };
 
 class CollateralInquiry : public AbstractMessage {
@@ -15714,6 +15886,8 @@ class CollateralInquiry : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[124];
+  AbstractGroup* slotGroups_[12];
 };
 
 class NetworkCounterpartySystemStatusRequest : public AbstractMessage {
@@ -15793,6 +15967,8 @@ class NetworkCounterpartySystemStatusRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[32];
+  AbstractGroup* slotGroups_[2];
 };
 
 class NetworkCounterpartySystemStatusResponse : public AbstractMessage {
@@ -15876,6 +16052,8 @@ class NetworkCounterpartySystemStatusResponse : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[34];
+  AbstractGroup* slotGroups_[2];
 };
 
 class UserRequest : public AbstractMessage {
@@ -15963,6 +16141,8 @@ class UserRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[37];
+  AbstractGroup* slotGroups_[1];
 };
 
 class UserResponse : public AbstractMessage {
@@ -16044,6 +16224,8 @@ class UserResponse : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[34];
+  AbstractGroup* slotGroups_[1];
 };
 
 class CollateralInquiryAck : public AbstractMessage {
@@ -16281,6 +16463,8 @@ class CollateralInquiryAck : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[104];
+  AbstractGroup* slotGroups_[9];
 };
 
 class ConfirmationRequest : public AbstractMessage {
@@ -16380,6 +16564,8 @@ class ConfirmationRequest : public AbstractMessage {
   field::SignatureLength signatureLength_{this};
   field::Signature signature_{this};
   field::CheckSum checkSum_{this};
+  AbstractField* slotFields_[42];
+  AbstractGroup* slotGroups_[2];
 };
 
 }  // namespace fix::gen::message

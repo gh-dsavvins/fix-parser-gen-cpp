@@ -16,8 +16,18 @@ static std::string join(const std::vector<std::string>& v) {
   return s;
 }
 
-int main() {
-  std::vector<std::string> lines = test::loadMessages();
+// args: [table] [file in resources]; "table" maps with the branchless tag table instead of the switch
+int main(int argc, char** argv) {
+  std::string file = "42_test_messages_no_unknown.txt";
+  for (int i = 1; i < argc; i++) {
+    if (std::string(argv[i]) == "table") {
+      fix::AbstractMessage::useTagTable = true;
+    } else {
+      file = argv[i];
+    }
+  }
+  const bool quiet = file != "42_test_messages_no_unknown.txt";
+  std::vector<std::string> lines = test::loadMessages(file);
   int failed = 0;
   for (size_t n = 0; n < lines.size(); n++) {
     const std::string& raw = lines[n];
@@ -56,10 +66,11 @@ int main() {
     if (e != a) {
       failed++;
       std::printf("FAIL message %zu\n  expected: %s\n  but was:  %s\n", n + 1, e.c_str(), a.c_str());
-    } else {
+    } else if (!quiet) {
       std::printf("PASS message %zu\n", n + 1);
     }
   }
-  std::printf("%zu tests completed, %d failed\n", lines.size(), failed);
+  std::printf("%s, %s: %zu tests completed, %d failed\n", file.c_str(),
+              fix::AbstractMessage::useTagTable ? "tag table" : "tag switch", lines.size(), failed);
   return failed == 0 ? 0 : 1;
 }

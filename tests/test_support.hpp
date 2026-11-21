@@ -10,9 +10,9 @@
 
 namespace test {
 
-/** The 42 test messages, '|' replaced with SOH. */
-inline std::vector<std::string> loadMessages() {
-  std::ifstream in(std::string(TEST_DATA_DIR) + "/42_test_messages_no_unknown.txt");
+/** Test messages from a file in the resources directory, '|' replaced with SOH. */
+inline std::vector<std::string> loadMessages(const std::string& file = "42_test_messages_no_unknown.txt") {
+  std::ifstream in(std::string(TEST_DATA_DIR) + "/" + file);
   if (!in) {
     throw std::runtime_error("cannot open test messages");
   }
