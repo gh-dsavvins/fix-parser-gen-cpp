@@ -2,8 +2,7 @@
 // Pass 1 (copy): only copies each message's bytes into a fixed buffer, as map() does first. A compiler
 // barrier after each copy keeps it from being optimized away. Pass 2 (map): the full map() call.
 // parse = map - copy: the work after the bytes are in the message's own (hot) buffer.
-// Runs over the 42 real messages and over a second file (default synthetic_messages.txt).
-// Each file runs with the tag switch, then with the branchless tag table.
+// args: [file in resources], default synthetic_messages.txt.
 // Run as root (sudo) to also get hardware counters: cycles, instructions, branches, branch mispredictions;
 // clocks/byte then comes from measured cycles.
 #include <algorithm>
@@ -90,8 +89,7 @@ static void run(const char* file) {
     m[i] = static_cast<double>(map.counts.v[i]);
     p[i] = m[i] - c[i];
   }
-  std::printf("%s, %s: %zu messages, avg %.2f bytes, avg %.2f fields\n", file,
-              fix::AbstractMessage::useTagTable ? "tag table" : "tag switch", lines.size(), totalBytes / COUNT,
+  std::printf("%s: %zu messages, avg %.2f bytes, avg %.2f fields\n", file, lines.size(), totalBytes / COUNT,
               fields / COUNT);
   print("copy", copy.nanos, c, totalBytes, fields);
   print("parse", map.nanos - copy.nanos, p, totalBytes, fields);
@@ -102,11 +100,6 @@ int main(int argc, char** argv) {
   if (!counters.init()) {
     std::printf("* clocks/byte assume %.2f GHz\n", GHZ);
   }
-  const char* second = argc > 1 ? argv[1] : "synthetic_messages.txt";
-  for (bool table : {false, true}) {
-    fix::AbstractMessage::useTagTable = table;
-    run("42_test_messages_no_unknown.txt");
-    run(second);
-  }
+  run(argc > 1 ? argv[1] : "synthetic_messages.txt");
   return 0;
 }

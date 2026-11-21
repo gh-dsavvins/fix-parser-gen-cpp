@@ -180,32 +180,11 @@ int AbstractMessage::indexSoh() {
 }
 #endif
 
-AbstractMessage* AbstractMessage::mapAll() {
-  if (useTagTable && slotOfTag_ != nullptr) {
-    return mapAllTable();
-  }
-  indexSoh();
-  sohIx_ = 0;
-  int ix = valBeg_;
-  while (ix < valLim_) {
-    AbstractField* field = mapField(ix);
-    if (head_ == nullptr) {
-      head_ = field;
-      tail_ = field;
-    } else {
-      tail_ = tail_->append(field);
-    }
-    ix = field->valLim_ + 1;
-    sohIx_++;
-  }
-  dirty_ = false;
-  return this;
-}
-
 // Branchless per field, except for group fields and tags without '=' in the first 8 bytes (both rare):
 // SWAR finds '=' and converts the tag digits, one table load gives the slot, a select picks the field
 // (known slot, or the next unknown-pool entry), plain stores map it and append it after a sentinel.
-AbstractMessage* AbstractMessage::mapAllTable() {
+// Input is assumed to be valid FIX: tags are not validated (that is the session layer's job).
+AbstractMessage* AbstractMessage::mapAll() {
   const int n = indexSoh();
   int& pool = stringRefPool_.pointer_;
   AbstractField* tail = &listHead_;

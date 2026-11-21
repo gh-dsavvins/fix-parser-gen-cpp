@@ -90,6 +90,5 @@ foreach (t field_by_field_test number_ref_test test_message latency_test breakdo
   target_compile_definitions(${t} PRIVATE TEST_DATA_DIR="${TEST_DATA_DIR}")
 endforeach ()
 add_test(NAME field_by_field_test COMMAND field_by_field_test)
-add_test(NAME field_by_field_table_test COMMAND field_by_field_test table)
 add_test(NAME number_ref_test COMMAND number_ref_test)
 add_test(NAME test_message COMMAND test_message)

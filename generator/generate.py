@@ -2,14 +2,15 @@
 """C++ port of fix-parser-gen's Generator.java.
 
 Reads a QuickFIX XML dictionary and generates typed C++ classes for every field, repeating group and message.
-The dictionary walk (components, groups, group de-duplication and naming, group ownership of fields) and the
-generated tag-matching switch follow Generator.java on fix-parser-gen main.
+The dictionary walk (components, groups, group de-duplication and naming, group ownership of fields) follows
+Generator.java on fix-parser-gen main. Tags are matched with a generated tag -> slot table per message type
+(see AbstractMessage::mapAll) instead of Generator.java's tag switch.
 
 Output (under --output):
     fix/gen/tags.hpp        Tag constants (FixTag)
     fix/gen/fields.hpp/cpp  one class per field, enum constants, enum value() parsers
     fix/gen/groups.hpp/cpp  one group + one component class per repeating group
-    fix/gen/messages.hpp/cpp one class per message, with the generated tag switch
+    fix/gen/messages.hpp/cpp one class per message, with its tag -> slot table
     fix/gen/dictionary.hpp  DefaultFixDictionary
 """
 import argparse
@@ -580,8 +581,7 @@ class Generator:
             for c in members:
                 if c.var_name not in MESSAGE_METHODS:
                     h.append(f"{T[1]}{self.member_type(c, 'group::')}& {ident(c.var_name)}() {{ return {c.var_name}_; }}\n")
-            h.append(f"\n protected:\n{T[1]}AbstractField* mapField(int fldBeg) override;\n"
-                     f"{T[1]}void writeUnmapped() override;\n{T[1]}AbstractField* msgType() override;\n"
+            h.append(f"\n protected:\n{T[1]}void writeUnmapped() override;\n{T[1]}AbstractField* msgType() override;\n"
                      f"{T[1]}int writeMapped() override;\n\n private:\n")
             for c in members:
                 h.append(f"{T[1]}{self.member_type(c, 'group::')} {c.var_name}_{{this}};\n")
@@ -617,7 +617,6 @@ class Generator:
                        f"{T[1]}calcAndWriteBodyLengthMapped(bodyLength_, beginString_);\n"
                        f"{T[1]}calcAndWriteCheckSum(checkSum_);\n{T[1]}return fldLim;\n}}\n\n")
 
-            self.gen_fix_tag_switch(cn, all_fields, cpp)
         h.append("}  // namespace fix::gen::message\n")
         cpp.append("}  // namespace fix::gen::message\n")
         self.write_file("messages.hpp", "".join(h))
@@ -625,8 +624,8 @@ class Generator:
 
     @staticmethod
     def tag_slots(tags):
-        """Tag -> slot for the branchless mapper: 1..F index plain fields, F+1.. index groups (the owner group,
-        as in field_return). First in sorted order wins, as in the switch."""
+        """Tag -> slot for AbstractMessage::mapAll: 1..F index plain fields, F+1.. index groups (a group field
+        maps through its owner group). For a tag listed twice, the first in sorted order wins."""
         slot_fields, slot_groups, owner = [], [], {}
         for f in tags:
             if f.tag in owner:
@@ -648,67 +647,6 @@ class Generator:
             else:
                 tag_slot[f.tag] = base + slot_groups.index(owner[f.tag])
         return slot_fields, slot_groups, tag_slot
-
-    def gen_fix_tag_switch(self, class_name, tags, b):
-        b.append(f"AbstractField* {class_name}::mapField(int fldBeg) {{\n")
-        b.append(f"{T[1]}int beg = fldBeg;\n")
-        self.print_field_switch(0, len(tags), 1, 0, tags, b)
-        b.append(f"{T[1]}return unknownField(beg);\n}}\n\n")
-
-    @staticmethod
-    def field_return(f):
-        if f.owner is not None:
-            return f"return {f.owner.var_name}_.map({f.tag}, beg);  // {f.tag}\n"
-        return f"return {f.var_name}_.map(version_, bytes_, beg);  // {f.tag}\n"
-
-    def print_field_switch(self, beg, end, tab, ix, tags, b):
-        else_case = False
-        first_node = tags[beg]
-        first_str = str(first_node.tag)
-        if len(first_str) == ix:
-            beg += 1
-            b.append(f"{T[tab]}if (bytes_[fldBeg] == '=') {{\n")
-            b.append(f"{T[tab + 1]}{self.field_return(first_node)}")
-            b.append(f"{T[tab]}}}")
-            if beg == end:
-                b.append(f"\n{T[tab]}break;\n")
-                return
-            else_case = True
-            b.append(" else {\n")
-            tab += 1
-            first_node = tags[beg]
-            first_str = str(first_node.tag)
-        group_count = end - beg
-        if group_count == 1:
-            b.append(f"{T[tab]}if (bytes_[fldBeg] == '{first_str[ix]}'")
-            ix += 1
-            while ix < len(first_str):
-                b.append(f" && bytes_[++fldBeg] == '{first_str[ix]}'")
-                ix += 1
-            b.append(" && bytes_[++fldBeg] == '=') {\n")
-            b.append(f"{T[tab + 1]}{self.field_return(first_node)}")
-        else:
-            b.append(f"{T[tab]}switch (bytes_[fldBeg]) {{\n")
-            first_char = first_str[ix]
-            same = 0
-            while beg < end + 1:
-                node = None if beg == end else tags[beg]
-                s = None if beg == end else str(node.tag)
-                c = "\x01" if beg == end else s[ix]
-                if c == first_char:
-                    same += 1
-                    beg += 1
-                else:
-                    b.append(f"{T[tab + 1]}case '{first_char}':\n")
-                    b.append(f"{T[tab + 2]}fldBeg++;\n")
-                    self.print_field_switch(beg - same, beg, tab + 2, ix + 1, tags, b)
-                    first_char = c
-                    same = 0
-        b.append(f"{T[tab]}}}\n")
-        if else_case:
-            b.append(f"{T[tab - 1]}}}\n")
-        if ix > 0:
-            b.append(f"{T[tab - (1 if else_case else 0)]}break;\n")
 
     # -------------------------------------------------------------------------------------------- dictionary
 

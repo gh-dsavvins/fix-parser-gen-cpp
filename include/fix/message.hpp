@@ -52,15 +52,10 @@ class AbstractMessage {
   StringRef* unknownField(int ix);
   std::string toDebugFixString();
 
-  /** true: map with the branchless tag table (mapAllTable); false: with the generated tag switch (mapField). */
-  static inline bool useTagTable = false;
-
  protected:
   friend class AbstractField;
   friend class StringRef;
 
-  /** Maps the field starting at fldBeg (generated per message type). */
-  virtual AbstractField* mapField(int fldBeg) = 0;
   virtual void writeUnmapped() = 0;
   virtual AbstractField* msgType() = 0;
   virtual int writeMapped();
@@ -95,11 +90,10 @@ class AbstractMessage {
   AbstractField** slotFields_ = nullptr;
   AbstractGroup** slotGroups_ = nullptr;
   int groupBase_ = 0;
-  StringRef listHead_;  // sentinel: the table loop appends without a first-field branch
+  StringRef listHead_;  // sentinel: mapAll appends without a first-field branch
 
  private:
   AbstractMessage* mapAll();
-  AbstractMessage* mapAllTable();
   int indexSoh();
 };
 

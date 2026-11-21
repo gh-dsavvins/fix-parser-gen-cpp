@@ -1,8 +1,7 @@
 // Port of LatencyTest.java: 10M messages cycling through the test messages, single thread.
-// args: [table] [ghz=<clock>] [file in resources]
-//   table: map with the branchless tag table instead of the tag switch
+// args: [ghz=<clock>] [file in resources]
 //   ghz:   core clock for "clock per byte" (default 3.49, Apple M2 Ultra P-core, as in the Java test)
-//   file:  default 42_test_messages_no_unknown.txt
+//   file:  default synthetic_messages.txt
 #include <chrono>
 #include <cstdio>
 #include <memory>
@@ -20,19 +19,16 @@ int main(int argc, char** argv) {
   auto messages = std::make_unique<test::Messages>();
 
   double ghz = 3.49;
-  std::string file = "42_test_messages_no_unknown.txt";
+  std::string file = "synthetic_messages.txt";
   for (int i = 1; i < argc; i++) {
     std::string a = argv[i];
-    if (a == "table") {
-      fix::AbstractMessage::useTagTable = true;
-    } else if (a.rfind("ghz=", 0) == 0) {
+    if (a.rfind("ghz=", 0) == 0) {
       ghz = std::stod(a.substr(4));
     } else {
       file = a;
     }
   }
-  std::printf("%s, %s, %.2f GHz\n", file.c_str(), fix::AbstractMessage::useTagTable ? "tag table" : "tag switch",
-              ghz);
+  std::printf("%s, %.2f GHz\n", file.c_str(), ghz);
   std::vector<std::string> lines = test::loadMessages(file);
   std::vector<const std::string*> bytes(COUNT);
   long long totalBytes = 0;

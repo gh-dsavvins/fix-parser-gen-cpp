@@ -43,7 +43,6 @@ class Heartbeat : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -120,7 +119,6 @@ class TestRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -198,7 +196,6 @@ class ResendRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -282,7 +279,6 @@ class Reject : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -366,7 +362,6 @@ class SequenceReset : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -446,7 +441,6 @@ class Logout : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -617,7 +611,6 @@ class IOI : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -847,7 +840,6 @@ class Advertisement : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -1202,7 +1194,6 @@ class ExecutionReport : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -1516,7 +1507,6 @@ class OrderCancelReject : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -1623,7 +1613,6 @@ class Logon : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -1722,7 +1711,6 @@ class News : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -1825,7 +1813,6 @@ class Email : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -2071,7 +2058,6 @@ class NewOrderSingle : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -2321,7 +2307,6 @@ class NewOrderList : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -2490,7 +2475,6 @@ class OrderCancelRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -2795,7 +2779,6 @@ class OrderCancelReplaceRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -3087,7 +3070,6 @@ class OrderStatusRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -3351,7 +3333,6 @@ class AllocationInstruction : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -3560,7 +3541,6 @@ class ListCancelRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -3649,7 +3629,6 @@ class ListExecute : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -3735,7 +3714,6 @@ class ListStatusRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -3826,7 +3804,6 @@ class ListStatus : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -3929,7 +3906,6 @@ class AllocationInstructionAck : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -4080,7 +4056,6 @@ class DontKnowTrade : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -4223,7 +4198,6 @@ class QuoteRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -4431,7 +4405,6 @@ class Quote : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -4641,7 +4614,6 @@ class SettlementInstructions : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -4739,7 +4711,6 @@ class MarketDataRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -4879,7 +4850,6 @@ class MarketDataSnapshotFullRefresh : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -5010,7 +4980,6 @@ class MarketDataIncrementalRefresh : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -5095,7 +5064,6 @@ class MarketDataRequestReject : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -5187,7 +5155,6 @@ class QuoteCancel : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -5336,7 +5303,6 @@ class QuoteStatusRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -5488,7 +5454,6 @@ class MassQuoteAcknowledgement : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -5635,7 +5600,6 @@ class SecurityDefinitionRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -5828,7 +5792,6 @@ class SecurityDefinition : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -6016,7 +5979,6 @@ class SecurityStatusRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -6213,7 +6175,6 @@ class SecurityStatus : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -6363,7 +6324,6 @@ class TradingSessionStatusRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -6461,7 +6421,6 @@ class TradingSessionStatus : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -6564,7 +6523,6 @@ class MassQuote : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -6657,7 +6615,6 @@ class BusinessMessageReject : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -6768,7 +6725,6 @@ class BidRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -6875,7 +6831,6 @@ class BidResponse : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -6958,7 +6913,6 @@ class ListStrikePrice : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -7038,7 +6992,6 @@ class XMLnonFIX : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -7125,7 +7078,6 @@ class RegistrationInstructions : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -7222,7 +7174,6 @@ class RegistrationInstructionsResponse : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -7407,7 +7358,6 @@ class OrderMassCancelRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -7688,7 +7638,6 @@ class OrderMassCancelReport : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -7979,7 +7928,6 @@ class NewOrderCross : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -8276,7 +8224,6 @@ class CrossOrderCancelReplaceRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -8515,7 +8462,6 @@ class CrossOrderCancelRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -8651,7 +8597,6 @@ class SecurityTypeRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -8747,7 +8692,6 @@ class SecurityTypes : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -8900,7 +8844,6 @@ class SecurityListRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -9047,7 +8990,6 @@ class SecurityList : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -9185,7 +9127,6 @@ class DerivativeSecurityListRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -9370,7 +9311,6 @@ class DerivativeSecurityList : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -9629,7 +9569,6 @@ class NewOrderMultileg : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -9969,7 +9908,6 @@ class MultilegOrderCancelReplace : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -10266,7 +10204,6 @@ class TradeCaptureReportRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -10552,7 +10489,6 @@ class TradeCaptureReport : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -10848,7 +10784,6 @@ class OrderMassStatusRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -11028,7 +10963,6 @@ class QuoteRequestReject : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -11113,7 +11047,6 @@ class RFQRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -11318,7 +11251,6 @@ class QuoteStatusReport : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -11647,7 +11579,6 @@ class QuoteResponse : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -11985,7 +11916,6 @@ class Confirmation : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -12264,7 +12194,6 @@ class PositionMaintenanceRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -12476,7 +12405,6 @@ class PositionMaintenanceReport : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -12684,7 +12612,6 @@ class RequestForPositions : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -12884,7 +12811,6 @@ class RequestForPositionsAck : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -13090,7 +13016,6 @@ class PositionReport : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -13292,7 +13217,6 @@ class TradeCaptureReportRequestAck : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -13503,7 +13427,6 @@ class TradeCaptureReportAck : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -13788,7 +13711,6 @@ class AllocationReport : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -14011,7 +13933,6 @@ class AllocationReportAck : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -14112,7 +14033,6 @@ class ConfirmationAck : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -14211,7 +14131,6 @@ class SettlementInstructionRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -14370,7 +14289,6 @@ class AssignmentReport : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -14614,7 +14532,6 @@ class CollateralRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -14897,7 +14814,6 @@ class CollateralAssignment : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -15179,7 +15095,6 @@ class CollateralResponse : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -15459,7 +15374,6 @@ class CollateralReport : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -15745,7 +15659,6 @@ class CollateralInquiry : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -15928,7 +15841,6 @@ class NetworkCounterpartySystemStatusRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -16011,7 +15923,6 @@ class NetworkCounterpartySystemStatusResponse : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -16098,7 +16009,6 @@ class UserRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -16184,7 +16094,6 @@ class UserResponse : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -16345,7 +16254,6 @@ class CollateralInquiryAck : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;
@@ -16515,7 +16423,6 @@ class ConfirmationRequest : public AbstractMessage {
   field::CheckSum& checkSum() { return checkSum_; }
 
  protected:
-  AbstractField* mapField(int fldBeg) override;
   void writeUnmapped() override;
   AbstractField* msgType() override;
   int writeMapped() override;

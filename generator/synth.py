@@ -7,6 +7,9 @@ with random lengths by field type, and shuffles the order of body fields. Repeat
 block (count tag, then its members in order). BodyLength (9) and CheckSum (10) are recomputed.
 
 usage: synth.py <quickfix.xml> <template messages> <output> [count] [seed]
+
+resources/synthetic_messages.txt was made from 42 real FIX 4.2 messages (count 5000, seed 1). The templates are
+not part of this repo, so this script documents how the file was made rather than rebuilding it.
 """
 import random
 import sys
